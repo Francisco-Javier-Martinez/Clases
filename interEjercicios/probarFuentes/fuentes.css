@@ -1,0 +1,25 @@
+/* Fuente de Google:Agbalumo */
+@import url('https://fonts.googleapis.com/css2?family=Agbalumo&display=swap');
+
+
+
+/* Fuente descargada: Barriecito-Regular */
+@font-face {
+    font-family: Barriecito-Regular;
+    src: local(Barriecito-Regular), 
+	url(fuentes/Barriecito/Barriecito-Regular.ttf);  /* Descargada de Google Fonts */ 
+}
+
+#h1p{
+	font-family: 'Barriecito-Regular', cursive;
+	font-size:30px;
+}
+
+#h2p{
+    font-family: 'Agbalumo',cursive;
+    font-size: 30px;
+}
+#h3p{
+    font-family: 'Bahianita family Barriecito',cursive;
+    font-size: 30px;
+}
