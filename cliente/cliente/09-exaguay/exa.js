@@ -100,7 +100,6 @@ console.log(obj); */
 function ej3(){
     arrayActores = [];
     actoresSinRepetir = []
-    let owo; //comentario
     peliculas.forEach(peli => {
         peli.actores.forEach(actor => {
             arrayActores.push(actor);
