@@ -1,56 +1,50 @@
 <?php
-    //datos de conesion
-    require 'configBD.php';
-    class Boletin_Usuario{
-        public function meterUsuario($sql){
-            $conexion = new mysqli(SERVIDOR,USUARIO,PASSWORD,BBDD); //instacio el obeto mysqli
-            if($conexion->connect_errno){ //si hay error de conexion
-                echo "<h1>Error de conexion a la base de datos</h1>";
-                return false;
-            }
-            $conexion->query($sql);
-            if($conexion->affected_rows>0){//si hubo filas afectadas devuelvo correcto
-                $conexion->close();
-                return true;
-            }else{
-                $conexion->close();
-                return false;
-            }
-        }
-        public function validarCorreo($correo){
-            $conexion = new mysqli(SERVIDOR,USUARIO,PASSWORD,BBDD); //instacio el obeto mysqli
-            if($conexion->connect_errno){ //si hay error de conexion
-                echo "<h1>Error de conexion a la base de datos</h1>";
-                return false;
-            }
-            $sql = "SELECT * FROM boletin_usuario WHERE correo='$correo';";
+require 'configBD.php';
 
-            $existe=$conexion->query($sql);
-            if($existe->num_rows>0){
-                $conexion->close();
-                return true;
-            }else{
-                $conexion->close();
-                return false;
-            }
+class Boletin_Usuario{
+
+    // Inserta un usuario y devuelve el id insertado
+    public function meterUsuario($nombre, $correo, $idioma, $idRecomendacion){
+        $conexion = new mysqli(SERVIDOR, USUARIO, PASSWORD, BBDD); //conexion
+        //Si da fallo la conexion 
+        if($conexion->connect_errno){
+            echo "<h1>Error de conexion a la base de datos</h1>";//muentra error
+            return false;
         }
-        public function idUsuario($nombre){
-            $conexion = new mysqli(SERVIDOR,USUARIO,PASSWORD,BBDD); //instacio el obeto mysqli
-            if($conexion->connect_errno){ //si hay error de conexion
-                echo "<h1>Error de conexion a la base de datos</h1>";
-                $conexion->close();
-                return false;
-            }
-            $sql="SELECT idUsuario FROM boletin_usuario WHERE nombreUsuario=".$nombre.";";
-            $id=$conexion->query($sql);
-            if($id->num_rows>0){
-                $conexion->close();
-                return $id;
-            }else{
-                $conexion->close();
-                return false;
-            }
+        //Consulta de introduccion
+        $sql="INSERT INTO boletin_usuario (nombreUsuario, correo, idioma, idRecomendacion)
+                VALUES ('$nombre', '$correo', '$idioma', $idRecomendacion);";
+        //echo $sql;
+        //Ejecuto la query
+        if($conexion->query($sql)){
+            //Si sale bien uso insert_id para sacar el id para poder hacer la introduccion de animales y usuarios
+            $idInsertado = $conexion->insert_id;
+            $conexion->close();
+            return $idInsertado; // devuelvo id
+        } else {
+            $conexion->close();//si falla cierro conexion y retorno false
+            return false;
         }
     }
 
+    // Valida si existe un correo
+    public function validarCorreo($correo){
+        $conexion = new mysqli(SERVIDOR, USUARIO, PASSWORD, BBDD);
+        if($conexion->connect_errno){
+            echo "<h1>Error de conexion a la base de datos</h1>";
+            return false;
+        }
+        //Consulta del correo
+        $sql = "SELECT * FROM boletin_usuario WHERE correo='$correo';";
+        $existe = $conexion->query($sql);
+        //Si hay filas sacadas cierro conexion y devuelvo true porque si existe
+        if($existe->num_rows > 0){
+            $conexion->close();
+            return true;
+        } else {
+            $conexion->close();
+            return false;
+        }
+    }
+}
 ?>

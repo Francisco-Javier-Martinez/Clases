@@ -1,9 +1,9 @@
 <?php
     require 'boletin_Usuario.php';
     require 'boletin_Animales.php';
-    $error = false;
-    $usuarios = new Boletin_Usuario();
-    $animalUsuario = new Boletin_animales();
+    $error = false; //Variable para poder sabir si dejo algo vacio o sin rellenar
+    $usuarios = new Boletin_Usuario(); //Estancio el objeto Boletin_Usuario
+    $animalUsuario = new Boletin_animales(); //Estancio el objeto Boletin_animal
 
     if (empty($_POST['nombre'])) {
         echo '<h1>Se envió vacío el campo nombre</h1>';
@@ -36,23 +36,25 @@
     }
 
     if ($error) {
-        echo '<a href="indexServidor.php"><h1>volver</h1></a>';
+        echo '<a href="indexServidor.php"><h1>volver</h1></a>'; //Si falla algo de arriba monstrara este error
     }else{
         if($mesanje=$usuarios->validarCorreo($_POST['correoElectronico'])){ //valido que ese correo no exista
             echo '<a href="indexServidor.php"><h1> Correo existente </h1></a> ';
         }else{
-            $sql='insert into boletin_usuario (nombreUsuario,correo,idioma,idRecomendacion) values("'.$_POST['nombre'].'","'.$_POST['correoElectronico'].'","'.$_POST['idioma'].'",'.$_POST['comoConocio'].');';
-            //echo $sql
-            //inserto el usuarioA';
-            $idUsu=$usuarios->idUsuario($_POST['nombre']);
-            foreach($_POST['animales'] as $valor){
-                $sql2='insert into  boletin_Animales values('.$idUsu.','.$valor.');';
-                $animalUsuario->meterAnimalUsuario($sql2);
+            $idUsu = $usuarios->meterUsuario( //Le paso todo los datos necesitarios para registrar al usuario
+            $_POST['nombre'],
+            $_POST['correoElectronico'],
+            $_POST['idioma'],
+            $_POST['comoConocio']
+            );
+            if($idUsu){ // si el id insertado seguimos
+                foreach($_POST['animales'] as $valor){ //Realizo un foreach de los animales repitiendo la consulta por cada animal que haya recibido
+                $sql2 = "INSERT INTO boletin_animales (idUsuario, idAnimales) VALUES ($idUsu, $valor);"; 
+                $animalUsuario->meterAnimalUsuario($sql2); //Llamo a meter animal
             }
-            if($mesanje==true){
-                echo '<a href="indexServidor.php"><h1>Todo correcto</h1></a>';
+            echo '<a href="indexServidor.php"><h1>Todo correcto</h1></a>';
             }else{
-                echo '<a href="indexServidor.php"><h1>Ups algo fallo</h1></a>';
+                echo '<a href="indexServidor.php"><h1>Ups algo fallo</h1></a>'; //si falla algo la insercion saldra esto
             }
         }
     }

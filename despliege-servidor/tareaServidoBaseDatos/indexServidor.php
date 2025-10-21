@@ -116,7 +116,7 @@
         <div id="formu">
         <section id="formulario">
             <h1>Boletín de Noticias de Animales</h1>
-            <form action="recibir.php" method="post">
+            <form action="recibir_dejaSinCheckbox.php" method="post">
                 <!--Text-->
                 <p>Nombre:</p>
                 <input type="text" name="nombre"/>
@@ -147,10 +147,10 @@
                 <p>¿Cómo nos has conocido?:</p>
                 <select id="comoConocio" name="comoConocio">';
                 <?php
-                    while($fila=$arrayRecomendados->fetch_array()){ //fetch_array esto se recorrera hasta que no queden filas y devuelva false
+                    while($fila=$arrayRecomendados->fetch_row()){ //fetch_array esto se recorrera hasta que no queden filas y devuelva false
                         // fetch_array() me devolvera un array de la fila donde este el puntero.
                         // Cada vez que se llama, avanza a la siguiente fila
-                        echo '<option value="'.$fila['idRecomendacion'] .'">'. $fila['nombre'] .'</option>';
+                        echo '<option value="'.$fila[0] .'">'. $fila[1] .'</option>';
                     }
                 ?>
                 </select>;

@@ -8,7 +8,7 @@
             if($conexion->connect_errno){ //si hay error de conexion
                 $conexion->close();
                 echo "<h1>Error de conexion a la base de datos</h1>";
-                return null;
+                return false;
             }
             $sql = "SELECT * FROM recomendaciones"; //select para recoger los datos
             //hago un echo para saber que me saca
@@ -17,7 +17,7 @@
             if($conexion->errno==1146){ //error de que no existe la tabla me salio y me parecio util probarlo
                 echo "<h1> No existe la tabla </h1>";
                 $conexion->close();
-                return null;
+                return false;
             }
             if($recomenArray->num_rows>0){ //si num_rows me devuleve que si ha traido filas es que hay si no saco mensaje
                 $conexion->close();
@@ -25,7 +25,7 @@
             }else{
                 echo "<h1> No hay filas</h1>";
                 $conexion->close();
-                return null;
+                return false;
             }
         }
     } 

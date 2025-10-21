@@ -17,7 +17,7 @@
  */                $conexion->close();
                 return null;
             }
-            if($animale->num_rows>0){ //si hay filas las devuelbos
+            if($animale->num_rows>0){ //si hay filas las retornos
                 $conexion->close();
                 return $animale;
             }else{
