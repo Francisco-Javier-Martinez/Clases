@@ -1,0 +1,13 @@
+body{
+    width: 1280px;
+    border: 10px solid black;
+    height: 800px;
+}
+
+.cama{
+    background-color: burlywood;
+    width: 100px;
+    height: 300px;
+    display: inline-block;
+    text-align: center;
+}

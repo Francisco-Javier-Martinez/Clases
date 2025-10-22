@@ -116,7 +116,7 @@
         <div id="formu">
         <section id="formulario">
             <h1>Boletín de Noticias de Animales</h1>
-            <form action="recibir_dejaSinCheckbox.php" method="post">
+            <form action="recibir.php" method="post">
                 <!--Text-->
                 <p>Nombre:</p>
                 <input type="text" name="nombre"/>
