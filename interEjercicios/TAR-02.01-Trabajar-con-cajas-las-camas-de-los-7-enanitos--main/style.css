@@ -1,106 +1,66 @@
 body{
-    width: 1280px;/*La habitación va a tener un ancho (width) de 1280px*/
-    border: 10px solid black;/*las paredes (border) van a medir 10px.*/
+    width: 1280px;
+    border: 10px solid black;
     height: 800px;
 }
-/*
-Acho disponible: 1280(width) -2 2*10(border) = 1260px de ancho util
-Altura disponible: 800(heigt) -2 2*10(border) = 780px de alto util
-*/
-/*(100px(ancho)+(5(borde)*2)+20px(padding horizontal)+40(margen horizontal)*7=1190-1260=70px sobrantes de ancho*/
-/*(300px(alto)+(5(borde)*2)+2(padding superior)+80(margen)=800-392=408px sobrantes de alto*/
-/*130px me ocupa una sola cama*/
-.cama{
-    width: 100px;/*ancho total de las camas va a ser de 100px*/
-    height: 300px;/*largo de 300px*/
-    display: inline-block; /*Les indico que quiero que tengan las caracteristicas de un ele de bloque y linea*/
-    background-color: rgb(177, 242, 242);
-    border: 5px solid black;
-    text-align: center;
-    /*Espacio entre el colchón y su borde, este espacio será de 10 px a izquierda y derecha y 2px por la parte superior. */
-    padding: 2px 10px 0px 10px;
-    /*Separar 20px por los lados y 40px por arriba y abajo*/
-    margin: 40px 20px;
 
-    /*flotar a la derecha*/
-    /*float: right;*/
+.cama{
+    background-color: burlywood;
+    width: 100px;
+    height: 300px;
+    text-align: center;
+    padding: 2px 10px 0px 10px;
+    margin: 40px 20px;
+    float: right;
 }
-#divCasa{    
-    position: relative;/*la pongo relativa para que los elementos hijos puedan posicionarse respecto a este */
+
+#camasBloque {
+    background-color: aquamarine;
+    overflow: hidden;
 }
+/*ocupa 832 = 800(body)+2(borde)+15+15(padding)*/
+#camasLinea{
+    width: 800px;
+    background-color: darkgreen;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid black;
+    padding: 0px 15px;
+}
+#camasBloque .cama{
+    
+    background-color: rgb(238, 145, 145);
+}
+#dormilon{
+    float: left;
+    border: 1px solid black;
+}
+/*cama de altura 302 -800 (body) =249px esto es la mitad*/
+#gunon{
+    position: absolute;
+    top:249px;
+    right: 0px; /*20px a la drc como ya tenia 20 de derecha 20-20=0*/
+}
+
+#timido{
+    position: relative;
+    z-index: -1;
+}
+
 /*pagina 20 del pdf de css de classroom*/
 .cama::first-letter {
-    font-size: 2em;
+    font-size: 35px;
     font-style: italic;
 }
 /*even pares old impares*/
-#cajaLinea .cama:nth-child(even) {
+#camasLinea .cama:nth-child(even) {
     background-color: #F1FEE3;
 }
 /*color gruñon*/
-#cajaLinea .cama:nth-child(2){
+#camasLinea .cama:nth-child(2){
     background-color: #D6234A;
 }
 /*selector con mas pioridad*/
 #cajaLinea span.cama:nth-child(2){
     background-color: #3b0aee;
 }
-/* Posición de la cama de Gruñón:
-    top: 204px =  408px sobrantes de alto /2
-    right: 70px = 70px sobrantes de ancho /2
-*/
-/*
-#camaGunon{
-    position: absolute;
-    top: 204px; 
-    right: 70px; 
-}
-*/
-/* Posición de la cama de Gruñón V2:
-    top: 204px =  408px sobrantes de alto /2
-    left:  20+130-1260= px de la pared derecha
-*/
-/* #camaGunonV7{
-    position: absolute;
-    top: 204px; 
-    left: 1110px;
-} */
-
-/*V8*/
-/*V8.0*//*V8.3*/
-/*
-
-#camasBloque .cama {
-    float: left
-}   
-    *//*
-#camasBloque {
-    overflow: visible;
-}*/
-/*V8.1*/
-/*romper el flotamiento*/
-/*
-#primeraCamaFlotada{
-    clear: both; 
-}
-*/
-/*V8.2*/
-#cajaLinea{
-    /*float: left;*/
-    width: 520px;
-    
-}
-
-/*capa de invisibilidad*/
-/*para colocarla respector a su contenedora*/
-/*<-inde para que este por encima*/
-/* opacity para ponerlo en invisible*/
-/*
-#capaInvisibilidad{
-    position: absolute;
-    top: 204px; 
-    right: 70px;
-    z-index: 10px;
-    opacity: 0; 
-}
-    */

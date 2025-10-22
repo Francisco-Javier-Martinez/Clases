@@ -1,0 +1,36 @@
+body{
+    width: 1280px;
+    border: 10px solid black;
+    height: 800px;
+}
+
+.cama{
+    background-color: burlywood;
+    width: 100px;
+    height: 300px;
+    text-align: center;
+    padding: 2px 10px 0px 10px;
+    margin: 40px 20px;
+}
+
+#camasBloque {
+    background-color: aquamarine;
+}
+
+#camasLinea{
+    background-color: darkgreen;
+    position: relative;
+}
+#camasBloque .cama{
+    float: left;
+    background-color: rgb(238, 145, 145);
+}
+#camasLinea .cama{
+    display: inline-block;
+}
+/*cama de altura 302 -800 (body) =249px esto es la mitad*/
+#gunon{
+    position: absolute;
+    top:249px;
+    right: 0px; /*20px a la drc como ya tenia 20 de derecha 20-20=0*/
+}

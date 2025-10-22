@@ -13,6 +13,9 @@ body{
     padding: 2px 10px 0px 10px;
     
 }
-.cama>div{
-        display: inline-block;
+#camasBloque .cama{
+    display: inline-block;
 }
+/* #camasLinea .cama{
+
+} */
