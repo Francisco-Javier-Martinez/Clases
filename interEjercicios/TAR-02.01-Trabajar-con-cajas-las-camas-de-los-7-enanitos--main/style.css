@@ -2,6 +2,7 @@ body{
     width: 1280px;
     border: 10px solid black;
     height: 800px;
+    margin: auto;
 }
 
 .cama{
@@ -48,7 +49,7 @@ body{
 }
 
 /*pagina 20 del pdf de css de classroom*/
-.cama::first-letter {
+.cama:first-letter {
     font-size: 35px;
     font-style: italic;
 }
@@ -63,4 +64,25 @@ body{
 /*selector con mas pioridad*/
 #cajaLinea span.cama:nth-child(2){
     background-color: #3b0aee;
+}
+
+#puerta{
+    width: 80px;
+    height: 150px;
+    background-color: saddlebrown;
+    position: absolute;
+    top:400px;
+    left: 250px;
+    z-index: 1;
+    text-align: center;
+}
+#ventana{
+    background-color: aqua;
+    width: 80px;
+    height: 150px;
+    position: absolute;
+    top:250px;
+    right: 250px;
+    z-index: 1;
+    text-align: center;
 }
