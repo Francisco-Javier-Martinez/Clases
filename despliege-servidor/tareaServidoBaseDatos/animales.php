@@ -1,6 +1,7 @@
 <?php
     //datos de conesion
-    require_once 'configBD.php';
+    require_once 'configBD.php'; //He decido usar require_once ya que si el fichero ha sido ya incluido evita la inclusión del mismo fichero y asi no me da errores como me estaba dando en varios sitios
+
     class Animales{
         public function recogerAnimales(){
             mysqli_report(MYSQLI_REPORT_OFF);

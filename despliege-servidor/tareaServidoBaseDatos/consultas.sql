@@ -43,3 +43,7 @@ insert into boletin_usuario (nombreUsuario,correo,idioma,idRecomendacion) values
 INSERT INTO animales (nombreAnimal) VALUES ('Koala'),
 ('Oso Polar'),
 ('Elefante Asiatico');
+
+//Añadir un campo que permita NU ll 
+ALTER TABLE boletin_usuario
+	ADD COLUMN sugerencias VARCHAR(150) NULL;

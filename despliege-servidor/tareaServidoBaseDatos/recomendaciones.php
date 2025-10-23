@@ -1,6 +1,6 @@
 <?php
     //datos de conesion
-    require 'configBD.php';
+    require_once 'configBD.php';//He decido usar require_once ya que si el fichero ha sido ya incluido evita la inclusión del mismo fichero y asi no me da errores como me estaba dando en varios sitios
     class Recomendaciones{
         public function recogerRecomendaciones(){
             mysqli_report(MYSQLI_REPORT_OFF); //apargar los errores fatales esto sera mejor cuando use try y cacht

@@ -1,5 +1,5 @@
 <?php
-    require 'recomendaciones.php';
+    require_once 'recomendaciones.php';//He decido usar require_once ya que si el fichero ha sido ya incluido evita la inclusión del mismo fichero y asi no me da errores como me estaba dando en varios sitios
 
     $recomendar = new Recomendaciones(); //instancio el objeto de Recomendaciones
 

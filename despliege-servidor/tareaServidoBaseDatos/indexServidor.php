@@ -1,6 +1,6 @@
 <?php
-    require 'recomendaciones.php';
-    require 'animales.php';
+    require_once 'recomendaciones.php';//He decido usar require_once ya que si el fichero ha sido ya incluido evita la inclusión del mismo fichero y asi no me da errores como me estaba dando en varios sitios
+    require_once 'animales.php';
 
     $recomendar = new Recomendaciones(); //instancio el objeto de Recomendaciones
     $animal = new Animales(); //instanciar el objeto de animales
@@ -117,11 +117,18 @@
         <section id="formulario">
             <h1>Boletín de Noticias de Animales</h1>
             <form action="recibir.php" method="post">
-                <!--Text-->
-                <p>Nombre:</p>
-                <input type="text" name="nombre"/>
-                <p>Correo Electrónico:</p>
-                <input type="text" name="correoElectronico"/>
+                <!-- Text -->
+                <label class="texlabel">Nombre:
+                    <input type="text" name="nombre"/>
+                </label>
+
+                <label class="texlabel" >Correo:  
+                    <input type="text" name="correoElectronico"/>
+                </label>
+                <!-- Sugurencias-->
+                <label>Sugerencia
+                    <input type="text" name="sugerencia"/>
+                </label>
                 <!--Radio-->
                 <p>Seleccione idioma:</p>
                 <label>
@@ -133,7 +140,7 @@
                 <!--Checkbox-->
                 <p>Información a recibir:</p>
                 <?php
-                    while($fila=$arrayAnimales->fetch_row()){
+                    while($fila=$arrayAnimales->fetch_row()){ //Uso el fetch_row para sacar mediante indices ya que me resulta mas facil y sencillo
                         echo '<label>
                                 <input type="checkbox" name="animales[]" value='.$fila[0].'>'.$fila[1].'</label>';
                     }

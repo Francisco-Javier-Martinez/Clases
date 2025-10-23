@@ -137,6 +137,11 @@ th{
     border: 2px solid black;
     border-radius: 5px;
 }
+label {
+    display: block;
+    margin-bottom: 10px; /* Espaciado entre etiquetas */
+}
+
 
 .botonesFormulario{
     width: 100px;

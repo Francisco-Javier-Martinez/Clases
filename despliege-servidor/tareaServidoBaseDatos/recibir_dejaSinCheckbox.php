@@ -1,6 +1,6 @@
 <?php
-    require 'boletin_Usuario.php';
-    require 'boletin_Animales.php';
+    require_once 'boletin_Usuario.php';//He decido usar require_once ya que si el fichero ha sido ya incluido evita la inclusión del mismo fichero y asi no me da errores como me estaba dando en varios sitios
+    require_once 'boletin_Animales.php';
     $error = false; //Variable para poder sabir si dejo algo vacio o sin rellenar
     $usuarios = new Boletin_Usuario(); //Estancio el objeto Boletin_Usuario
     $animalUsuario = new Boletin_animales(); //Estancio el objeto Boletin_animal
@@ -24,7 +24,13 @@
         echo '<h1>No ha seleccionado ningún animal</h1>';
         $error = true;
     } */
-
+    //Aqui voy a usar una variable porque la manejo mejor si esta vacio guardare el valor null si no el texto
+    if(empty($_POST['sugerencia'])){
+        $sugerencia=null;
+    }else{
+        $sugerencia=$_POST['sugerencia'];
+    }
+    
     if (!isset($_POST['terminosCondicones'])) {
         echo '<h1>No has aceptados los terminos</h1>';
     }
@@ -44,12 +50,13 @@
             $_POST['nombre'],
             $_POST['correoElectronico'],
             $_POST['idioma'],
-            $_POST['comoConocio']
+            $_POST['comoConocio'],
+            $sugerencia
             );
             if($idUsu){ // si el id insertado seguimos
                 if(isset($_POST['animales']) && count($_POST['animales'])> 0){ //Si animales esta reñene y es mayor a 0 siginifca que si selecciono animal
                     foreach($_POST['animales'] as $valor){ //Realizo un foreach de los animales repitiendo la consulta por cada animal que haya recibido
-                        $sql2 = "INSERT INTO boletin_animales (idUsuario, idAnimales) VALUES ($idUsu, $valor);"; 
+                        $sql2="INSERT INTO boletin_animales (idUsuario, idAnimales) VALUES (".$idUsu.",".$valor.");";
                         $animalUsuario->meterAnimalUsuario($sql2); //Llamo a meter animal
                     } 
                 }

@@ -1,6 +1,7 @@
 <?php
+    //Este sera un archivo cual el progromado ejecuta para la creacion de las cosas y luego se borrara o se queda en local pero nunca subir al host ya que pueden hacernos una injeccion por la multi_query
     //datos de conesion
-    require 'configBD.php';
+    require_once 'configBD.php';//He decido usar require_once ya que si el fichero ha sido ya incluido evita la inclusión del mismo fichero y asi no me da errores como me estaba dando en varios sitios
     $conexion = new mysqli(SERVIDOR,USUARIO,PASSWORD,BBDD);
     mysqli_report(MYSQLI_REPORT_OFF); //apargar los errores fatales esto sera mejor cuando use try y cacht
     $sql="
