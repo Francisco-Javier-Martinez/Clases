@@ -51,21 +51,27 @@ console.log("Permisos:", sesionGuardada.permisos.join(", "));
 
 //He decido usar la op de promnt y alert
 //1
-let nombre=prompt("Nombre: ");
-//2
+let nombre;
+if(sessionStorage.length==0){
+    nombre=prompt("Nombre: ");
+    //2
 sessionStorage.setItem("usuario",nombre);
-//3
-const usuario = sessionStorage.getItem("usuario");
-console.log("Bienvenido de nuevo, "+usuario+" si el dato existe en ssesionStorage");
-//4
-let sn=prompt("Quieres borrar(s) o no(n)");
-if(sn=="n"){
-    alert("Has decidido no borrar");
-}else if(sn=="s"){
-    sessionStorage.clear(); 
 }else{
-    alert("Error no has seleccionado s o n");
+    //3
+    const usuario = sessionStorage.getItem("usuario");
+    alert("Bienvenido de nuevo, "+usuario+" si el dato existe en ssesionStorage");
+    
+    //4
+    let sn=prompt("Quieres borrar(s) o no(n)");
+    if(sn=="n"){
+        alert("Has decidido no borrar");
+    }else if(sn=="s"){
+        sessionStorage.clear(); 
+    }else{
+        alert("Error no has seleccionado s o n");
+    }
 }
+
 
 
 /* cuando lo guardo y le doy a que no quiero borrar puedo ver que en mi locateStorage 
