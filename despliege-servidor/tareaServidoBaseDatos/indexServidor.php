@@ -6,7 +6,7 @@
     $animal = new Animales(); //instanciar el objeto de animales
     $arrayRecomendados = $recomendar->recogerRecomendaciones(); //llamo a recogerRecomendaciones
 
-    $arrayAnimales = $animal->recogerAnimales();
+    $arrayAnimales = $animal->recogerAnimales(); //llamo a animales
 ?>
 <!DOCTYPE html>
 <html>

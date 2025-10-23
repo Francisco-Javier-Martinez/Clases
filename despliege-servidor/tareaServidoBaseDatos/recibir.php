@@ -20,7 +20,7 @@
         $error = true;
     }
 
-    if (!isset($_POST['animales']) || count($_POST['animales']) === 0) {
+    if (!isset($_POST['animales']) || count($_POST['animales'])== 0) {
         echo '<h1>No ha seleccionado ningún animal</h1>';
         $error = true;
     }
