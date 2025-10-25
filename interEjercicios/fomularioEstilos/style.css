@@ -121,6 +121,13 @@ input,select{
     margin:  0px auto;
 }
 
+/*Para no escribir pegado a la caja*/
+input[type="text"]{
+    padding-left: 10px;
+    color: blue;/*Color azul solicitado*/
+}
+
+
 /*En la indicacion me dice que ocupe todo el ancho*/
 input[type="submit"]{
     width: 470px;
