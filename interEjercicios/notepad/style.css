@@ -1,0 +1,78 @@
+/*Fuente*/
+@import url("https://fonts.googleapis.com/css2?family=Caprasimo&display=swap");
+
+body{
+	background: rgb(234, 232, 243);
+	width:1300px;
+}
+h1{
+	font-family:"Caprasimo";
+}
+
+header{
+	background-color:white;
+	text-align:center;
+	color:blue;
+	padding:15px;
+}
+/*nav*/
+nav{
+	background: rgb(60, 240, 204);
+}
+nav ul{
+	padding:0px;
+}
+
+nav ul li{
+	display:inline-block;
+	width:150px;
+	text-align:center
+}
+
+nav ul li a:hover {
+    background-color: darkcyan;
+    box-shadow: 0px 0px 15px rgba(0, 0, 139, 0.8);
+}
+nav ul li a{
+	padding:20px 0px;
+	text-decoration:none;
+	color:black;
+	display: block;
+}
+table{
+	margin: 0 auto;
+}
+
+table,tr,th{ 
+	border: 2px solid black;
+	border-collapse:collapse;
+	padding:15px;
+}
+
+h2:first-letter{
+	font-family:cursive;
+}
+h2:nth-child(even){
+	color:green;
+}
+h2:nth-child(odd){
+	color:red;
+}
+/*caja ocupa 500+20=520px;*/
+#izq{
+	width:500px;
+	padding:15px 10px;
+	background-color: rgb(240, 168, 168);
+	height:700px;
+	float:left;
+}
+
+/*1300(body)-520px=780px usables*/
+/*780-20(padding)=760px esto es el width*/
+#drc{
+	width:760px;
+	padding:15px 10px;
+	background-color: rgb(197, 203, 207);
+	height:700px;
+	float:left;
+}
