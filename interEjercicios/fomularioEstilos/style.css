@@ -53,6 +53,7 @@ nav ul li a:hover {
     padding-top:50px;
     font-size: 50px;
     text-shadow: 3px 3px 8px rgba(0,0,0,0.7), 0px 1px 0px #fff;
+    margin: 0px;
 }
 
 /*De mis 1300px usable decido coger 500px para el primer div de la drc*/
@@ -79,7 +80,8 @@ entoneces 1300px-520px=780px-30px(padding)=750px*/
 
 /*Caja contenedora cual dentr de ella tendra los demas div*/
 #cajaContenedoraPrincipal{
-    background-color: rgb(101, 233, 160);
+    background-color: rgb(154, 241, 194);
+    padding: 15px 0;
     overflow: hidden;
 }
 
@@ -109,7 +111,6 @@ entoneces 1300px-520px=780px-30px(padding)=750px*/
     font-weight: bold;
     color: red;
 }
-
 /*Estilos del formu*/
 /*Espacio usbale 500-15-15=470px */
 #cajaFormulario{
