@@ -24,7 +24,7 @@
         <!--Menu -->
         <ul>
             <li><a href="#inicio" class="amenu">Inicio</a></li>
-            <li><a href="#animales" class="amenu">Animales en peligro</a></li>
+            <li><a href="#formuIndice" class="amenu">Formulario</a></li>
             <li><a href="ayudar.html" class="amenu">Como ayudar</a></li>
         </ul>
     </nav>
@@ -44,7 +44,7 @@
             <p>En resumen, el cambio climático representa una amenaza significativa para la fauna mundial. Es crucial tomar medidas para mitigar sus efectos y proteger a las especies vulnerables antes de que sea demasiado tarde.</p>
         </section>
         <!--Segundo apartado sobre los animales en peligro por culpa del cambio climatico-->
-        <section class="cajaAnimales" id="animales">
+        <section class="cajaAnimales">
             <h2>Animales en peligro por culpa del cambio climatico</h2>
             <h3>Koala</h3>
             <!--Imagen de Koala-->
@@ -115,7 +115,7 @@
         <!--formulario-->
         <div id="formu">
         <section id="formulario">
-            <h1>Boletín de Noticias de Animales</h1>
+            <h1  id="formuIndice" >Boletín de Noticias de Animales</h1>
             <form action="recibir.php" method="post">
                 <!-- Text -->
                 <label class="texlabel">Nombre:

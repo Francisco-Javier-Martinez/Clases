@@ -59,21 +59,31 @@ nav ul li a:hover {
 /*500+20(padding)=520px ancho total que ocupa*/
 #lateral{
     width: 500px;
-    height: 510px;
     background-color: blanchedalmond;
     float: left; /*lo pongo a la drc*/
     padding: 10px;
     margin: auto;
+    height: 453.5px;
+    position: relative;
 }
 /*Quiero que el siguiente me ocupe todo lo demas
 entoneces 1300px-520px=780px-30px(padding)=750px*/
 #form{
     width: 750px;
-    height: 500px;
+    height: 443.5px; /* La primera caja tiene de altura 473.5px si yo tengo 15px de pading
+    por arriba y abajo se lo resto y son 443.5 para que tengan la misma altura*/
     padding: 15px;
     background-color: rgb(240, 168, 168);
     float: left;/*lo pongo a la drc*/
 }
+
+/*Caja contenedora cual dentr de ella tendra los demas div*/
+#cajaContenedoraPrincipal{
+    background-color: rgb(101, 233, 160);
+    overflow: hidden;
+}
+
+
 
 /*Imagen*/
 /*Espacio usbale 500px-20px(padding)=480px*/
@@ -86,11 +96,13 @@ entoneces 1300px-520px=780px-30px(padding)=750px*/
     margin: 0 auto;
 }
 
-/*Estilo del enlace*/
+/*Estilo del enlace del assaid*/
 #quieresSaber{
     font-size: 1.7em; /*con referencia al padre*/
     font-family: cursive;
     color: red;
+    position: absolute;
+    bottom: 0px;
 }
 
 .aviso{
@@ -142,10 +154,12 @@ input[type="submit"]:hover{
 /* Estilos del Pie de Página (Footer) */
 .piePagina{
     clear: both; /*para romper flotamiento*/
+    width: 1300px; /*Le doy el mismo tamaño que el body*/
+    bottom: 0px; /*Lo fijo abajo*/
+    position: sticky; /*Para el footer uso posicion sticky */
     background-color: black;
     color: white;
     text-align: center;
-    height: 150px;
+    height: 50px;
     padding-bottom: 40px;
 }
-
