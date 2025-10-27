@@ -76,3 +76,36 @@ h2:nth-child(odd){
 	height:700px;
 	float:left;
 }
+
+
+/*width:760px-20(padding)=740px-(20*3)(padding) = 680/3= 226px para cada una ; para usar*/
+
+#caja1{
+	background-color:green;
+	height:250px;
+	display:inline-block;
+	padding:10px;
+	width:226px;
+}
+#caja2{
+	background-color:green;
+	height:150px;
+	display:inline-block;
+	padding:10px;
+	width:226px;
+	position:relative;
+	top:200px;
+}
+#caja3{
+	background-color:green;
+	height:150px;
+	display:inline-block;
+	padding:10px;
+	width:226px;
+}
+div div >h1{
+	color: red;
+}
+#caja2 p::before {
+  content: "★ "
+}
