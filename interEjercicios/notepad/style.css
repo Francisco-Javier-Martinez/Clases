@@ -1,4 +1,185 @@
+/*Fuentes*/
+@import url("https://fonts.googleapis.com/css2?family=Bitcount+Grid+Single:wght@100..900&display=swap");
 body{
     width: 1500px;
-    background-color: azure;
+    background-color: rgb(152, 245, 245);
+    margin: 0 auto;
+}
+
+/*Estilos del layaout*/
+
+/*Encabezado*/
+header{
+    background-color: blanchedalmond;
+    padding: 5px;
+    text-align: center;
+}
+header>h1{
+    color: brown;
+    font-family: "Bitcount Grid Single";
+    font-style: italic;
+    text-decoration: underline;
+}
+
+/*Nav*/
+nav{
+    width: 1500px;
+    position: fixed;
+    top: 90.88;
+    background-color: blanchedalmond;
+    z-index: 1;
+}
+nav>ul{
+    padding: 0px; /*Le quito el padding por defecto*/
+    margin: 0px;/*lo mismo*/
+}
+/*de 1500px usable voy a decir que una caja ocupara
+100px + 30(padding)=130px
+y 1500/130=11 entran el 12 desborda
+*/
+nav>ul li{
+    display: inline-block;
+    text-align: center;
+}
+nav>ul>li a{
+    color: black;
+    text-decoration: none;
+    display: block;
+    padding: 15px;
+    width: 100px;
+}
+nav>ul>li a:hover{
+    background-color: aquamarine;
+    box-shadow: 10px 10px 10px black;
+}
+
+/*Main*/
+/*Caja principal*/
+/*Usable 1500-20=1480*/
+#CajaPrincipal{
+    margin-top: 48.75px;
+    overflow: hidden; /*para que pille todo el tamaño de su contenido*/
+    width: 1480px;
+    background-color: greenyellow;
+    padding: 5px 10px;
+}
+/*de esos 1480 voy a decir que quiero 500 de ancho
+el usable: 500-20=480px
+total 520px-1500=960 sobrantes de la caja principal*/
+#drc{
+    position: relative;
+    background-color: cornflowerblue;
+    width: 500px;
+    padding: 10px;
+    float: left;
+    height: 514.09px
+}
+
+#drc>div{
+    background-color: aquamarine;
+    border-radius: 5px;
+    border: 2px solid black;
+    padding: 15px;
+}
+
+#drc>h2{
+    color: darkgreen;
+}
+#imagenYoutube{
+    position: absolute;
+    bottom: 0px;
+    width: 50px;
+}
+
+
+/*al tener border-box su anto usable es sera
+960-15-15=930px pero como dije antes va a tener border-box
+asi que debo poner el total que son 960
+el total era los 960 */
+#izq{
+    background-color: rgb(236, 115, 139);
+    width: 960px;
+    padding: 15px;
+    box-sizing: border-box;
+    float: left;
+    font-size: 0; /*quitar espacios*/
+    height: 514.09px;
+}
+/*usable 930px/2=465px para dividir entre 2 cajas*/
+#izq>div:nth-child(1){
+    width: 445px;
+    background-color: blanchedalmond;
+    padding: 10px;
+    display: inline-block;
+    font-size: 30px;
+}
+#izq>div:nth-child(2){
+    width: 445px;
+    background-color: rgb(250, 176, 64);
+    padding: 10px;
+    display: inline-block;
+}
+#izq>div:nth-child(3){
+    width: 910px;
+    background-color: rgb(162, 60, 230);
+    padding: 10px;
+    clear: both;
+}
+
+/*tabla*/
+/*usable 445px voy a decir que va a tener 150px el total es 150+4=154px total*/
+table{
+    display: inline-block;
+}
+table, tr, th{
+    box-sizing: content-box;
+    width: 146px;
+    border: 2px solid black;
+    border-collapse: collapse;
+}
+/*150px-445px=291px;*/
+#div4{
+    width: 287px;
+    background-color: aqua;
+    display: inline-block;
+}
+
+form{
+    margin: 0 auto;
+    width: 500px;
+    border: 2px solid black;
+    background-color: rgb(101, 109, 101);
+    padding: 0 15px;
+}
+
+label{
+    display: block;
+    margin: 10px 0px;
+    text-align: center;
+    font-family: "Agbalumo";
+}
+input,select{
+    display: block;
+    margin:  0px auto;
+}
+label[for="nombre"],[for="correo"]{
+        display: inline-block;
+}
+input[type="text"]{
+    display: inline-block;
+    color: aqua;
+    padding: 0 15px;
+}
+
+
+/* Para tu código: Asegúrate de que este CSS reemplaza o anula el CSS previo que te di */
+#formu{
+    background-color: rgb(129, 110, 81);
+}
+footer{
+    background-color: black;
+    padding: 15px;
+    color: aliceblue;
+    text-align: center;
+    font-size: 2em;
 }
