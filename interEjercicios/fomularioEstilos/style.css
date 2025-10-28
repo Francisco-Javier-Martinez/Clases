@@ -154,7 +154,6 @@ input[type="submit"]:hover{
 
 /* Estilos del Pie de Página (Footer) */
 .piePagina{
-    clear: both; /*para romper flotamiento*/
     width: 1300px; /*Le doy el mismo tamaño que el body*/
     bottom: 0px; /*Lo fijo abajo*/
     position: sticky; /*Para el footer uso posicion sticky */

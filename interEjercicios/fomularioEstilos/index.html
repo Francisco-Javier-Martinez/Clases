@@ -19,7 +19,7 @@
         </ul>
     </nav>
     <main>
-        <div id="cajaContenedoraPrincipal">
+        <section id="cajaContenedoraPrincipal">
             <aside id="lateral">
                 <img id="animales" src="img/losTres.png" alt="Los 3"/>
                 <p>Registrate total mente gratuito para saber mas 
@@ -39,28 +39,25 @@
                     que le pueda ser interesante , para darse de baja ves al tu gmail a
                     un correo nuestro y le daras a darse de bajas.
                 </p>
-                <div id="cajaFormulario">
-                    
-                    <form action=""" method="get">
-                        <!--Text-->
-                        <label for="nombre">Nombre:</label>
-                        <input type="text" name="nombre" id="nombre" size="30" maxlength="30"/>
-                        <label for="correoElectronico">Correo Electrónico:</label>
-                        <input type="text" name="correoElectronico" id="correoElectronico" size="50" maxlength="150" minlength="10"/>
-                        <label for="comoConocio">¿Cómo nos has conocido?:</label>
-                        <select id="comoConocio" name="comoConocio">
-                            <option value="google">Me lo recomendó Google</option>
-                            <option value="anuncio">Anuncio</option>
-                            <option value="amigo">Me lo recomendó un amigo</option>
-                            <option value="otros">Otros...</option>
-                        </select>  
-                        <!--Envicar y Resetear-->
-                        <label>¿Has terminado de rellenar?</label>
-                        <input class="botonesFormulario" type="submit" value="Enviar"/>
-                    </form>
-                </div>
+                <form action=""" method="get" id="cajaFormulario">
+                    <!--Text-->
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" name="nombre" id="nombre" size="30" maxlength="30"/>
+                    <label for="correoElectronico">Correo Electrónico:</label>
+                    <input type="text" name="correoElectronico" id="correoElectronico" size="50" maxlength="150" minlength="10"/>
+                    <label for="comoConocio">¿Cómo nos has conocido?:</label>
+                    <select id="comoConocio" name="comoConocio">
+                        <option value="google">Me lo recomendó Google</option>
+                        <option value="anuncio">Anuncio</option>
+                        <option value="amigo">Me lo recomendó un amigo</option>
+                        <option value="otros">Otros...</option>
+                    </select>  
+                    <!--Envicar y Resetear-->
+                    <label>¿Has terminado de rellenar?</label>
+                    <input class="botonesFormulario" type="submit" value="Enviar"/>
+                </form>
             </div>
-        </div>
+        </section>
     </main>
     <footer class="piePagina">
         <h2>2º DAW</h2>
