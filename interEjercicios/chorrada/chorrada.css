@@ -1,0 +1,116 @@
+@import url("https://fonts.googleapis.com/css2?family=Chiron+Sung+HK:ital,wght@0,200..900;1,200..900&display=swap");
+html{
+    background-color: aliceblue;
+}
+body{
+    width: 800px;
+    margin: 0 auto;
+}
+
+header{
+    background-color: antiquewhite;
+}
+header>h1{
+    text-align: center;
+    color: blue;
+    margin: 0px;
+    font-family: "Chiron Sung HK";
+}
+
+
+nav>ul{
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+    overflow: hidden; 
+}
+
+nav>ul li{
+    float: left;
+}
+/*uno es 70+15+15+4 de magin a la izq= 104*/
+nav>ul li a{
+    text-decoration: none;
+    width: 70px;
+    padding: 15px;
+    display: block;
+    color:black; 
+    font-size: 1.5em;
+}
+nav>ul li a:hover{
+    background-color: brown;
+    box-shadow: 10px 10px 10px black;
+}
+/*tengo 800px pillo 400+4+15+15=434px; total de ancho*/
+aside{
+    background-color: rgb(166, 188, 230);
+    width: 400px;
+    padding: 15px;
+    border: 2px solid black;
+    float: left;
+    position: relative;
+    height: 400px;
+}
+
+
+aside>a{
+    position: absolute;
+    bottom: 0px;
+}
+/*434px-800=366p-4-15-15=*/
+#drc{
+    width: 332px;
+    border: 2px orangered solid;
+    padding: 15px;
+    float: left;
+    height: 400px;
+}
+
+/*332px usables 332-10-10-4=308 para usar*/
+form{
+    background-color: rgb(174, 243, 220);
+    border: 2px solid black;
+    padding: 10px;
+    overflow: hidden;
+}
+label,select{
+    float: left;
+    width: 80px;
+}
+input[type="text"] {
+    float: left;
+    width: 150px;
+    height: 25px;
+    margin-bottom:5px;
+    color: rgb(3, 68, 68);
+    padding: 0 5px;
+}
+input[type="submit"] {
+    margin: 0px auto;
+    clear: both;
+    display: block;
+}
+label[for="correo"] {
+    clear: left;
+}
+
+
+/* 
+h1:nth-child(1){
+    color:brown
+} */
+
+
+footer{
+    position: sticky;
+    width: 780px;
+    bottom: 0px;
+    background-color: black;
+    text-align: center;
+    padding: 10px;
+    color: white;
+    clear: both;
+}
+#numero5{
+    float: right;
+}

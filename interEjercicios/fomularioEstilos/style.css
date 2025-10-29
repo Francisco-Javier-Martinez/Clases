@@ -17,6 +17,7 @@ nav {
 /* Centramos el contenido del ul */
 nav ul {
     padding: 0px; /*le pongo 0 para quitarle el padding que sale por defecto*/
+    margin: 0px;
 }
 
 /*Una cja me ocupa 150px tengo 3 = 450px y tengo 1300px para usar
@@ -118,6 +119,7 @@ entoneces 1300px-520px=780px-30px(padding)=750px*/
     border-radius: 5px;
     padding: 15px;
     margin:  0px auto;
+    overflow: hidden;
 }
 
 label{
@@ -148,9 +150,6 @@ input[type="submit"]:hover{
     background-color: red;
     color: aliceblue;
 }
-
-
-
 /* Estilos del Pie de Página (Footer) */
 .piePagina{
     width: 1300px; /*Le doy el mismo tamaño que el body*/
