@@ -17,6 +17,10 @@ header>h1{
     font-family: "Chiron Sung HK";
 }
 
+header>h1::first-letter{
+    color: green;
+    font-size: 2em;
+}
 
 nav>ul{
     margin: 0px;
@@ -76,6 +80,7 @@ form{
 label,select{
     float: left;
     width: 80px;
+    margin-bottom: 10px;
 }
 input[type="text"] {
     float: left;
@@ -94,6 +99,13 @@ label[for="correo"] {
     clear: left;
 }
 
+input[type="submit"]{
+    width: 308px;
+}
+
+input[type="submit"]:hover{
+    background-color: red;
+}
 
 /* 
 h1:nth-child(1){
