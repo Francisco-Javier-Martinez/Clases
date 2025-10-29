@@ -23,11 +23,11 @@ header>h1{
 
 /*Nav*/
 nav{
-    width: 1500px;
+    width: 1500px;/* 
     position: fixed;
-    top: 90.88;
+    top: 90.88; */
     background-color: blanchedalmond;
-    z-index: 1;
+    /* z-index: 1; */
 }
 nav>ul{
     padding: 0px; /*Le quito el padding por defecto*/
@@ -56,8 +56,8 @@ nav>ul>li a:hover{
 /*Main*/
 /*Caja principal*/
 /*Usable 1500-20=1480*/
-#CajaPrincipal{
-    margin-top: 48.75px;
+#CajaPrincipal{/* 
+    margin-top: 48.75px; */
     overflow: hidden; /*para que pille todo el tamaño de su contenido*/
     width: 1480px;
     background-color: greenyellow;
@@ -84,6 +84,9 @@ total 520px-1500=960 sobrantes de la caja principal*/
 
 #drc>h2{
     color: darkgreen;
+}
+#drc>h2:nth-child(2){
+    color: red;
 }
 #imagenYoutube{
     position: absolute;

@@ -5,7 +5,6 @@
 /* Estilos Generales y Contenedor Principal */
 body{
     background: rgb(234, 232, 243);
-    justify-content: center;
     width: 1300px; /* Ancho total del contenedor*/
     margin: auto;
 }
