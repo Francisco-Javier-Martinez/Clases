@@ -1,9 +1,10 @@
 import { Usuario } from "./usuario.js";
 
-class UsuarioVip extends Usuario{
+export class UsuarioVip extends Usuario{
     #membresia;
     #dinero;
     constructor(){
+        super();
         this.#membresia="";
         this.#dinero=0;
     }
@@ -15,4 +16,7 @@ class UsuarioVip extends Usuario{
         this.#dinero=_dinero;
     }
     
+    monstrarUsuario(){
+        console.log("Nombre: " + this.nombre +" Edad: " + this.edad +" Teléfono: " + this.telefono +" Tipo: VIP" +" Membresía: " + this.#membresia +" Dinero: " + this.#dinero + "€" +" Libros Prestados: " + this.libroPrestados.length);
+    }
 }

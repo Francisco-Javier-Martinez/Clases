@@ -20,19 +20,23 @@ export class Libro{
         console.log("Titulo: "+this.titulo+" Autor: "+this.autor+" Diponibilidad: "+this.disponible);
     }
 
-    prestarLibro(libro){
-        if(libro.disponible!=true){
+    prestarLibro(){
+        if(this.disponible == true){ 
+            this.disponible = false;
+            console.log("Libro prestado");
+            return true; 
+        } else {
             console.log("No esta disponible");
-        }else{
-            this.disponible=false;
+            return false;
         }
     }
-
-    devolver(libro){
-        if(libro.disponible==true){
-            console.log("Este libro no esta reserbado");
+    devolver(){
+        if(this.disponible==false){ 
+            this.disponible=true; 
+            console.log("Libro devuelto");
+            return true;
         }else{
-            libro.disponible=true;
+            return false;
         }
     }
 }

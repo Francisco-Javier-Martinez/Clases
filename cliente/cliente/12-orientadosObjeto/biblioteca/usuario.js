@@ -19,4 +19,29 @@ export class Usuario{
     set meterTelefono(_telefono){
         this.telefono=_telefono;
     }
+    
+    agregarLibroPrestado(lirbo){
+        this.libroPrestados.push(lirbo);
+    }
+
+    quitarPrestamos(lirbo){
+        const indice= this.libroPrestados.indexOf(lirbo)
+        if(indice!=-1){
+            this.libroPrestados.splice(indice,1);
+            return true;
+        }else{
+            console.log("El libro: "+lirbo.titulo+" no lo tiene prestado "+this.nombre);
+            return false;
+        }
+    }
+    monstrarLibrosPrestados(){
+        console.log("Libros prestados de "+this.nombre+": ");
+        if(this.libroPrestados.length==0){
+            console.log("No hay libro prestado");
+        }else{
+            this.libroPrestados.forEach(element => {
+                console.log("Libro: "+element.titulo);
+            });
+        }
+    }
 }
