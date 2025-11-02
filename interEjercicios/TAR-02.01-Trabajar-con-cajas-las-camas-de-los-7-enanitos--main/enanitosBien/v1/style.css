@@ -1,0 +1,6 @@
+body{
+    width: 1280px; /*ancho total 1300 =1290+20(border)*/
+    border: 10px solid black;
+    height: 800px;
+}
+

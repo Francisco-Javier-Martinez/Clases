@@ -1,0 +1,63 @@
+/* El normalize sirve para que los estilos por defecto entre navegadores,
+   sin eliminarlos completamente. */
+
+/*html y body tienen un margen por defecto*/
+
+/*archivo sacado de https://necolas.github.io/normalize.css/8.0.1/normalize.css*/
+
+/*En el archivo hay muchos mas pero yo solo he dejado los que he esudado en el html
+-- los h1, ul, table, a, p y form.*/
+html {
+  line-height: 1.15;
+  -webkit-text-size-adjust: 100%;
+}
+
+/*el body tiene un margen por defecto*/
+body {
+  margin: 0;
+}
+/*los h1 tienen un tamaño de fuente*/
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+/*los ul tienen un padding y margen por defecto y las listas tienen viñetas*/
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: disc inside;
+}
+/*las tablas tienen un borde por defecto*/
+table {
+  border-collapse: collapse;
+}
+/*las celdas de las tablas tienen un padding y borde por defecto*/
+td, th {
+  padding: 0.5em;
+  border: 1px solid #ccc;
+}
+
+/*los enlaces tienen un color */
+a {
+  background-color: transparent;
+}
+/*los párrafos tienen un margen por defecto*/
+p {
+  margin: 1em 0;
+}
+/*los formularios tienen estilos por defecto*/
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit;
+  font-size: 100%;
+  line-height: 1.15;
+  margin: 0;
+}
+
+/*label tiene un margen por defecto*/
+label {
+  display: inline-block;
+  margin-bottom: 0.5em;
+}
