@@ -56,9 +56,6 @@
 				$conexsion->close();
 				}
 		}
-		
-		
-		
 	}
 	}
 ?>
