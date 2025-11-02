@@ -21,7 +21,7 @@
         echo '<h1>Se envió vacío el campo Contraseña.</h1>';
         $error = true;
     }
-
+	
 	if(!isset($_POST['obt'])){
 		echo '<h1>No ha seleccionado ningun objeto</h1>';
         $error = true;
@@ -57,10 +57,4 @@
 			}
 		}
 	}
-	
-
-
-
-
-
 ?>
