@@ -1,0 +1,7 @@
+CREATE TABLE usuarios(
+	idUsuario SMALLINT unsigned AUTO_INCREMENT ,
+    nombre varchar (150) not null,
+    correo varchar(180) not null UNIQUE,
+    contrasena char(13) not null,
+    CONSTRAINT pk_usuarios PRIMARY KEY (idUsuario)
+);
