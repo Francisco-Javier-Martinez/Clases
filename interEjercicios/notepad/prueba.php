@@ -83,6 +83,9 @@
 					?>
 					<input type="checkbox">
 				</div>
+				<div>
+					<input type="text" name="obs">
+				</div>
                 <button type="submit">Registrarse</button>
             </form>
         </section>

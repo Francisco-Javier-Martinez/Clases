@@ -31,6 +31,12 @@
 		echo '<h1>No ha seleccionado ningun conoce</h1>';
         $error = true;
 	}
+	
+	if(empty($_POST['obs'])){
+		$observacion=null;
+	}else{
+		$observacion="'".$_POST['obs']."'";
+	}
 
 	if($error){
 		echo '<a href="prueba.php"><h1>volver</h1></a>';
@@ -39,7 +45,7 @@
 			echo'<h1><a href="prueba.php">Error correo existente</a></h1>';
 		}else{
 			$id=$obtUsuario->meterUsuario($_POST['nombreUsuario'],$_POST['correo']
-			,$_POST['contrasena']);
+			,$_POST['contrasena'],$observacion);
 			if($id){
 				$obtCompras->registrarCompra($id,$_POST['obt']);
 				foreach($_POST['conoce'] as $valor){

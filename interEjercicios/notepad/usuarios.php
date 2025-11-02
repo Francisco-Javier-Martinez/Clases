@@ -1,11 +1,14 @@
 <?php
 	require_once 'configBD.php';
 	class Usuarios{
-		public function meterUsuario($nomUsuario,$correo,$contra){
+		public function meterUsuario($nomUsuario,$correo,$contra,$observacion){
 			try{
 				$conexsion= new mysqli(SERVIDOR,USUARIO,PASSWORD,BBDD);
-				$sql='insert into usuarios (nombre,correo,contrasena) values 
-				("'.$nomUsuario.'","'.$correo.'","'.$contra.'");';
+				if($observacion==null){
+					$observacion="NULL";
+				}
+				$sql='insert into usuarios (nombre,correo,contrasena,observacion) values 
+				("'.$nomUsuario.'","'.$correo.'","'.$contra.'",'.$observacion.');';
 				//echo $sql;
 				$correcto=$conexsion->query($sql);
 				if($correcto){

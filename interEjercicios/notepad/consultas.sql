@@ -110,3 +110,10 @@ ADD CONSTRAINT fk_conoce_usuario_conoce
 -- Esto asegura que un usuario solo pueda registrar una vez que conoció por un medio específico.
 ALTER TABLE conoce_Usuario
 ADD UNIQUE KEY uk_usuario_conoce (idUsuario, idConoce);
+
+ALTER TABLE usuarios
+	add observacion varchar(150) null ;
+
+SELECT conoce.nombre as "nombreConoce",COUNT(conoce_usuario.idConoce) FROM conoce_usuario
+    	inner join conoce on conoce.idConoce=conoce_usuario.idConoce
+        GROUP by conoce.nombre,conoce_usuario.idConoce;
