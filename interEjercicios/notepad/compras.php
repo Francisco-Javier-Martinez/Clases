@@ -57,5 +57,28 @@
 				}
 			}
 		}
+		
+		public function filaInner(){
+			try{
+				$conexion = new mysqli(SERVIDOR,USUARIO,PASSWORD,BBDD);
+				$sql='SELECT usuarios.nombre as "nombreUsuario" ,objetos.nombre as "nombreObj" ,YEAR(fecha) as "ano" ,month(fecha) as "mes"
+					FROM usuarios LEFT join compras
+						on compras.idUsuario=usuarios.idUsuario
+						LEFT JOIN objetos on compras.idObjeto=objetos.idObjeto
+						WHERE objetos.nombre is null;';
+				$listaSinCompras=$conexion->query($sql);
+				if($listaSinCompras->num_rows>0){
+					return $listaSinCompras;
+				}else{
+					echo"<h1>No hay filas</h1>";
+					return null;
+				}
+			}catch(mysqli_sql_exception $e){
+				if($e->getCode()==1146){
+					echo "<h1> No existe la tabla </h1>";
+					return null;
+				}
+			}
+		}
 	}
 ?>

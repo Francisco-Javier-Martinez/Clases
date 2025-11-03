@@ -117,3 +117,33 @@ ALTER TABLE usuarios
 SELECT conoce.nombre as "nombreConoce",COUNT(conoce_usuario.idConoce) FROM conoce_usuario
     	inner join conoce on conoce.idConoce=conoce_usuario.idConoce
         GROUP by conoce.nombre,conoce_usuario.idConoce;
+
+
+SELECT usuarios.nombre as 'nombreUsuario' ,objetos.nombre as 'nombreObj' ,YEAR(fecha) as 'ano' ,month(fecha) as 'mes'
+	FROM usuarios LEFT join compras
+    	on compras.idUsuario=usuarios.idUsuario
+        LEFT JOIN objetos on compras.idObjeto=objetos.idObjeto
+        WHERE objetos.nombre is null;
+
+SELECT usuarios.nombre as 'nombreUsuario' ,objetos.nombre as 'nombreObj' ,YEAR(fecha) as 'ano' ,month(fecha) as 'mes'
+	FROM usuarios inner join compras
+    	on compras.idUsuario=usuarios.idUsuario
+        inner JOIN objetos on compras.idObjeto=objetos.idObjeto
+        	where precio BETWEEN  50 and 80;
+
+SELECT usuarios.nombre as 'nombreUsuario' ,objetos.nombre as 'nombreObj' ,YEAR(fecha) as 'ano' ,month(fecha) as 'mes'
+	FROM usuarios inner join compras
+    	on compras.idUsuario=usuarios.idUsuario
+        inner JOIN objetos on compras.idObjeto=objetos.idObjeto
+        	where usuarios.nombre like 'a_a%'  ;
+
+SELECT usuarios.nombre as 'nombreUsuario' ,objetos.nombre as 'nombreObj' ,YEAR(fecha) as 'ano' ,month(fecha) as 'mes'
+	FROM usuarios inner join compras
+    	on compras.idUsuario=usuarios.idUsuario
+        inner JOIN objetos on compras.idObjeto=objetos.idObjeto
+        	where month(fecha) in (9,11)
+            	order by month(fecha) asc;
+				
+SELECT idUsuario,nombre 
+	from usuarios
+    	WHERE idUsuario in (1,4,5,6);
