@@ -86,6 +86,10 @@
 				<div>
 					<input type="text" name="obs">
 				</div>
+				<div>
+					<label>Edad</label>
+					<input type="number" name="edad">
+				</div>
                 <button type="submit">Registrarse</button>
             </form>
         </section>

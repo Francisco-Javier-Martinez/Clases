@@ -16,7 +16,10 @@
         echo '<h1>Se envió vacío el campo Correo Electrónico.</h1>';
 		$error=true;
     }
-	
+	if(empty($_POST['edad'])){
+		echo '<h1>Se envió vacío el campo edad.</h1>';
+        $error = true;
+	}
 	if (empty($_POST['contrasena'])) {
         echo '<h1>Se envió vacío el campo Contraseña.</h1>';
         $error = true;
@@ -45,7 +48,7 @@
 			echo'<h1><a href="prueba.php">Error correo existente</a></h1>';
 		}else{
 			$id=$obtUsuario->meterUsuario($_POST['nombreUsuario'],$_POST['correo']
-			,$_POST['contrasena'],$observacion);
+			,$_POST['contrasena'],$observacion,$_POST['edad']);
 			if($id){
 				$obtCompras->registrarCompra($id,$_POST['obt']);
 				foreach($_POST['conoce'] as $valor){

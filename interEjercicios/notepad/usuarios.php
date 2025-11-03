@@ -12,14 +12,14 @@
 				}
 			}
 		}
-		public function meterUsuario($nomUsuario,$correo,$contra,$observacion){
+		public function meterUsuario($nomUsuario,$correo,$contra,$observacion,$edad){
 			try{
 				
 				if($observacion==null){
 					$observacion="NULL";
 				}
-				$sql='insert into usuarios (nombre,correo,contrasena,observacion) values 
-				("'.$nomUsuario.'","'.$correo.'","'.$contra.'",'.$observacion.');';
+				$sql='insert into usuarios (nombre,correo,contrasena,observacion,edad) values 
+				("'.$nomUsuario.'","'.$correo.'","'.$contra.'",'.$observacion.','.$edad.');';
 				//echo $sql;
 				$correcto=$this->conexsion->query($sql);
 				if($correcto){

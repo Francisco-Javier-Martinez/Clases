@@ -147,3 +147,11 @@ SELECT usuarios.nombre as 'nombreUsuario' ,objetos.nombre as 'nombreObj' ,YEAR(f
 SELECT idUsuario,nombre 
 	from usuarios
     	WHERE idUsuario in (1,4,5,6);
+		
+ALTER TABLE usuarios
+ADD edad TINYINT UNSIGNED NULL,
+ADD CONSTRAINT chk_edad CHECK (edad > 0 AND edad < 100);
+
+ALTER TABLE usuarios 
+MODIFY edad TINYINT UNSIGNED NOT NULL,
+ADD CONSTRAINT chk_edad CHECK (edad > 0 AND edad < 100);
