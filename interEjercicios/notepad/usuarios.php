@@ -1,17 +1,6 @@
 <?php
-	require_once 'configBD.php';
-	class Usuarios{
-		private $conexsion;
-		public function __construct(){
-			try{
-				$this->conexsion= new mysqli(SERVIDOR,USUARIO,PASSWORD,BBDD);
-			}catch(mysqli_sql_exception $e){
-				if($e->getCode()==2002){
-					echo'<h1><a href="prueba.php">Error de conexion</a></h1>';
-					return null;
-				}
-			}
-		}
+	require_once 'conexion.php';
+	class Usuarios extends conectar{
 		public function meterUsuario($nomUsuario,$correo,$contra,$observacion,$edad){
 			try{
 				
@@ -108,6 +97,7 @@
 				$sql2='update usuarios
 							set correo="'.$nuevoCorreo.'"
 								where idUsuario='.$datosUsuario['idUsuario'].';';
+				//echo $sql2;
 				$correcto=$this->conexsion->query($sql2);
 				if($correcto){
 					echo '<h1>Cambio modifcado correcto</h1>';
