@@ -10,6 +10,9 @@
 				if($e->getCode()==2002){
 					echo '<h1>Erro al conectar</h1>';
 				}
+				if($e->getCode()==1049){
+					echo '<h1>Error no se encontra la bd</h1>';
+				}
 			}
 		}
 	
