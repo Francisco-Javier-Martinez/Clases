@@ -3,8 +3,14 @@ require_once 'conectar.php';//He decido usar require_once ya que si el fichero h
 
 class Boletin_Usuario extends Conectar{
     // Inserta un usuario y devuelve el id insertado
-    public function meterUsuario($nombre, $correo, $idioma, $idRecomendacion, $sugerencia){
+    public function meterUsuario(){
         try{
+			//Recojo los datos del formulario
+			$nombre=$_POST['nombre'];
+			$correo=$_POST['correoElectronico'];
+			$idioma=$_POST['idioma'];
+			$idRecomendacion=$_POST['comoConocio'];
+			$sugerencia=$_POST['sugerencia'];
 			//Voy a preguntar si es null si lo es guardare "NULL" entre comillas 
 			// doble para que se guarde el valor null en la BD 
 			//Si no voy a concatenar sugerencia y asi me ahorro hacer dos insert into
