@@ -10,9 +10,9 @@
 				$sql='insert into usuarios (nombre,correo,contrasena,observacion,edad) values 
 				("'.$nomUsuario.'","'.$correo.'","'.$contra.'",'.$observacion.','.$edad.');';
 				//echo $sql;
-				$correcto=$this->conexsion->query($sql);
+				$correcto=$this->conexion->query($sql);
 				if($correcto){
-					return $this->conexsion->insert_id;
+					return $this->conexion->insert_id;
 				}else{
 					echo '<h1>No se pudo crear el usuario</h1>';
 					return false;
@@ -26,9 +26,9 @@
 		}
 	public function validarCorreo($correo){
 		try{ 
-			$this->conexsion= new mysqli(SERVIDOR,USUARIO,PASSWORD,BBDD);
+			$this->conexion= new mysqli(SERVIDOR,USUARIO,PASSWORD,BBDD);
 			$sql='(select * from usuarios where correo="'.$correo.'");';
-			$esta=$this->conexsion->query($sql);
+			$esta=$this->conexion->query($sql);
 			if($esta->num_rows>0){
 				return true;
 			}else{
@@ -49,7 +49,7 @@
 		try{
 			$sql='SELECT idUsuario,nombre 
 				from usuarios;';
-			$usuariosLista=$this->conexsion->query($sql);
+			$usuariosLista=$this->conexion->query($sql);
 			if($usuariosLista->num_rows>0){
 				return $usuariosLista;
 			}else{
@@ -75,7 +75,7 @@
 			$sql='SELECT * 
 				from usuarios
 					WHERE idUsuario in ('.$datosIn.');';
-			$usuariosEspecifico=$this->conexsion->query($sql);
+			$usuariosEspecifico=$this->conexion->query($sql);
 			if($usuariosEspecifico->num_rows>0){
 				return $usuariosEspecifico;
 			}else{
@@ -91,14 +91,14 @@
 	public function modificar($usuarioModificar,$nuevoCorreo){
 		try{
 			$sql='select * from usuarios where idUsuario='.$usuarioModificar.';';
-			$datosDelUsuario=$this->conexsion->query($sql);
+			$datosDelUsuario=$this->conexion->query($sql);
 			if($datosDelUsuario->num_rows>0){
 				$datosUsuario = $datosDelUsuario->fetch_assoc();
 				$sql2='update usuarios
 							set correo="'.$nuevoCorreo.'"
 								where idUsuario='.$datosUsuario['idUsuario'].';';
 				//echo $sql2;
-				$correcto=$this->conexsion->query($sql2);
+				$correcto=$this->conexion->query($sql2);
 				if($correcto){
 					echo '<h1>Cambio modifcado correcto</h1>';
 				}else{
