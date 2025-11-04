@@ -19,9 +19,6 @@
 					case 1146:
 						echo '<h1>La tabla no existe</h1>';
 						return null; 
-					case 1062:
-						echo '<h1>Correo duplicado</h1>';
-						return null;
 					case 1064:
 						echo '<h1>Error de sintaxis en la consulta SQL</h1>';
 						return null;

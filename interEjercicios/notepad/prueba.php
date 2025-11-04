@@ -53,7 +53,7 @@
                 
                 <div class="form-group">
                     <label for="contrasena">Contraseña:</label>
-                    <input type="password" id="contrasena" name="contrasena" minlength="8" maxlength="13"> 
+                    <input type="password" id="contrasena" name="contrasena" minlength="8" maxlength="13" > 
                 </div>
                 <div class="form-group">
                     <label for="obt">Selecciona un Objeto:</label>
