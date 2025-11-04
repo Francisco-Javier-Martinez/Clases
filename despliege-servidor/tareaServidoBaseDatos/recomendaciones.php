@@ -1,32 +1,33 @@
 <?php
     //datos de conesion
-    require_once 'configBD.php';//He decido usar require_once ya que si el fichero ha sido ya incluido evita la inclusión del mismo fichero y asi no me da errores como me estaba dando en varios sitios
-    class Recomendaciones{
+    require_once 'conectar.php';//He decido usar require_once ya que si el fichero ha sido ya incluido evita la inclusión del mismo fichero y asi no me da errores como me estaba dando en varios sitios
+    class Recomendaciones extends Conectar{
         public function recogerRecomendaciones(){
-            mysqli_report(MYSQLI_REPORT_OFF); //apargar los errores fatales esto sera mejor cuando use try y cacht
-            $conexion = new mysqli(SERVIDOR,USUARIO,PASSWORD,BBDD); //instacio el obeto mysqli
-            if($conexion->connect_errno){ //si hay error de conexion
-                $conexion->close();
-                echo "<h1>Error de conexion a la base de datos</h1>";
-                return null;
-            }
-            $sql = "SELECT * FROM recomendaciones"; //select para recoger los datos
-            //hago un echo para saber que me saca
-            //echo $sql;
-            $recomenArray = $conexion->query($sql);
-            if($conexion->errno==1146){ //error de que no existe la tabla me salio y me parecio util probarlo
-                echo "<h1> No existe la tabla </h1>";
-                $conexion->close();
-                return null;
-            }
-            if($recomenArray->num_rows>0){ //si num_rows me devuleve que si ha traido filas es que hay si no saco mensaje
-                $conexion->close();
-                return $recomenArray; //retorno el objeto con las filas
-            }else{
-                echo "<h1> No hay filas</h1>";
-                $conexion->close();
-                return null;
+				try{
+					$sql='select * from recomendaciones';//select para recoger los datos
+					//echo $sql;
+					$recomendacionArray=$this->conexion->query($sql);
+					if($recomendacionArray->num_rows>0){
+						return $recomendacionArray;//si hay filas devuelbo array de objetos
+					}else{
+						return null;//Retorno null porque no hay filas;
+					}	
+				}catch(mysqli_sql_exception $e){
+					switch ($e->getCode()) {
+						case 1146:
+							echo '<h1>La tabla no existe</h1>';
+							return null; 
+						case 1062:
+							echo '<h1>Correo duplicado</h1>';
+							return null;
+						case 1064:
+							echo '<h1>Error de sintaxis en la consulta SQL</h1>';
+							return null;
+						default:
+							echo '<h1>ERROR: ' . $e->getMessage() . '</h1>';
+							return null;
+					}
+				}
             }
         }
-    } 
 ?>

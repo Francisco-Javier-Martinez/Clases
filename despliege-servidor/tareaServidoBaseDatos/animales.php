@@ -1,31 +1,35 @@
 <?php
-    //datos de conesion
-    require_once 'configBD.php'; //He decido usar require_once ya que si el fichero ha sido ya incluido evita la inclusión del mismo fichero y asi no me da errores como me estaba dando en varios sitios
+    require_once 'conectar.php'; //He decido usar require_once ya que si el fichero ha sido ya incluido evita la inclusión del mismo fichero y asi no me da errores como me estaba dando en varios sitios
 
-    class Animales{
+    class Animales extends Conectar{
         public function recogerAnimales(){
-            mysqli_report(MYSQLI_REPORT_OFF);
-            $conexion = new mysqli(SERVIDOR,USUARIO,PASSWORD,BBDD); //instacio el obeto mysqli
-            if($conexion->connect_errno){ //si hay error de conexion
-                echo "<h1>Error de conexion a la base de datos</h1>";
-                return null;
-            }
-            $sql="SELECT * FROM animales;";
-            //echo $sql;
-            $animale=$conexion->query($sql);
-            if($conexion->errno==1146){ //error de que no existe la tabla me salio y me parecio util probarlo
-                echo "<h1> No existe la tabla </h1>";
-                $conexion->close();
-                return null;
-            }
-            if($animale->num_rows>0){ //si hay filas las retornos
-                $conexion->close();
-                return $animale;
-            }else{
-                echo "<h1> No hay filas</h1>"; 
-                $conexion->close();
-                return null;
-            }
+            try{
+				//consulta
+				$sql="SELECT * FROM animales;";
+				//echo $sql;
+				$animales=$this->conexion->query($sql);
+				if($animales->num_rows>0){ //si hay filas pa lante
+					return $animales;
+				}else{
+					return null;
+				}
+				
+			}catch(mysqli_sql_exception $e){
+				switch ($e->getCode()) {
+					case 1146:
+						echo '<h1>La tabla no existe</h1>';
+						return null; 
+					case 1062:
+						echo '<h1>Correo duplicado</h1>';
+						return null;
+					case 1064:
+						echo '<h1>Error de sintaxis en la consulta SQL</h1>';
+						return null;
+					default:
+						echo '<h1>ERROR: ' . $e->getMessage() . '</h1>';
+						return null;
+				}
+			}
         }
     }
 ?>

@@ -44,25 +44,20 @@
     if ($error) {
         echo '<a href="indexServidor.php"><h1>volver</h1></a>'; //Si falla algo de arriba monstrara este error
     }else{
-        if($mesanje=$usuarios->validarCorreo($_POST['correoElectronico'])){ //valido que ese correo no exista
-            echo '<a href="indexServidor.php"><h1> Correo existente </h1></a> ';
-        }else{
-            $idUsu = $usuarios->meterUsuario( //Le paso todo los datos necesitarios para registrar al usuario
-            $_POST['nombre'],
-            $_POST['correoElectronico'],
-            $_POST['idioma'],
-            $_POST['comoConocio'],
-            $sugerencia
-            );
-            if($idUsu){ // si el id insertado seguimos
-                foreach($_POST['animales'] as $valor){ //Realizo un foreach de los animales repitiendo la consulta por cada animal que haya recibido
-                $sql2="INSERT INTO boletin_animales (idUsuario, idAnimales) VALUES (".$idUsu.",".$valor.");"; 
-                $animalUsuario->meterAnimalUsuario($sql2); //Llamo a meter animal
-            }
-            echo '<a href="indexServidor.php"><h1>Todo correcto</h1></a>';
-            }else{
-                echo '<a href="indexServidor.php"><h1>Ups algo fallo</h1></a>'; //si falla algo la insercion saldra esto
-            }
-        }
-    }
+		$idUsu = $usuarios->meterUsuario( //Le paso todo los datos necesitarios para registrar al usuario
+		$_POST['nombre'],
+		$_POST['correoElectronico'],
+		$_POST['idioma'],
+		$_POST['comoConocio'],
+		$sugerencia
+		);
+		if($idUsu){ // si el id insertado seguimos
+			foreach($_POST['animales'] as $valor){ //Realizo un foreach de los animales repitiendo la consulta por cada animal que haya recibido
+			$animalUsuario->meterAnimalUsuario($idUsu,$valor); //Llamo a meter animal
+		}
+		echo '<a href="indexServidor.php"><h1>Todo correcto</h1></a>';
+		}else{
+			echo '<a href="indexServidor.php"><h1>Ups algo fallo</h1></a>'; //si falla algo la insercion saldra esto
+		}
+	}
 ?>
