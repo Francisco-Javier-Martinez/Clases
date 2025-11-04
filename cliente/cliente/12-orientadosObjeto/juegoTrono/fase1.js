@@ -39,10 +39,10 @@ Reino1.meterCasa(CasaStark);      // La Casa Stark Reino de Poniente.
 Reino1.meterCasa(CasaLannister);  // La Casa Lannister Reino de Poniente.
 
 //equipar arma
-JonSnow.meterArma(Garra);
+/* JonSnow.meterArma(Garra); */
 console.log("Jon Snow ha equipado el arma "+Garra.getNombreArma());
 
-AryaStark.meterArma(Aguja);
+/* AryaStark.meterArma(Aguja); */
 console.log("Arya Stark ha equipado el arma "+Aguja.getNombreArma());
 
 //meter personajes a las casas
@@ -62,11 +62,9 @@ console.log("Jaime Lannister ha sido añadido a la Casa Lannister");
 Reino1.proclamarRey(JaimeLannister);
 
 //Visualizar casa de poniente
-console.log("Xasas del Reino de Poniente:");
 Reino1.visualizarCasas();
 
 //ver rey
-console.log("Rey actual:");
 Reino1.mostrarReyActual();
 
 //Monatrar miembro de la casa dtark

@@ -1,11 +1,11 @@
 import { Casa } from "./casa.js";
-import { Arma } from "./arma.js";
+/* import { Arma } from "./arma.js"; */
 export class Personaje{
     #nombrePersonaje;
     #edad;
     #live;
     #casaPerteneciente;
-    #arma;
+    /* #arma; */
 
     constructor(){
         this.#nombrePersonaje="";
@@ -28,16 +28,16 @@ export class Personaje{
         }
         this.#casaPerteneciente=cas;
     }
-    meterArma(arm){
+    /* meterArma(arm){
         if (!(arm instanceof Arma)) {
             console.log("Error: Solo se pueden añadir instancias de Arma");
             return;
         }
         this.#arma=arm;
-    }
+    } */
     presentarse(){
         let nombreCasa=this.#casaPerteneciente.getNombreCasa();
-        console.log("Soy "+this.#nombrePersonaje+" y tengo "+ this.#edad+" y pertenezco a la casa: "+nombreCasa);
+        console.log("Soy "+this.#nombrePersonaje+" y pertenezco a la casa: "+nombreCasa);
     }
 
     // Getters
@@ -57,7 +57,7 @@ export class Personaje{
         return this.#casaPerteneciente;
     }
 
-    getArma(){
+    /* getArma(){
         return this.#arma;
-    }
+    } */
 }

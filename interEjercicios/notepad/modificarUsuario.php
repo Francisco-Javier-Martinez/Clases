@@ -23,7 +23,7 @@
 				}
 			?>
 			<label for="correoNuevo">correoNuevo</label>
-			<input type="text" name="correoNuevo">
+			<input type="text" name="correoNuevo"  placeholder="correoNuevo">
 			<input type="submit" name="Enviar">
 		</form>
 	</body>
