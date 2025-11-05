@@ -15,10 +15,15 @@
 				}
 			}
 		}
-	
+		
 		public function conectar(){
 			return $this->conexion;
 		}
-	
+		
+		public function __destruct(){
+			$this->conexion->close();
+		}
 	}
+	
+	
 ?>

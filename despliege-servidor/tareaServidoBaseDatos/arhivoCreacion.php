@@ -6,10 +6,12 @@
 	try {
 		//Conexión a la base de datos
 		// Si la conexión falla, mysqli lanza una mysqli_sql_exception.
-		$conexion = new mysqli(SERVIDOR, USUARIO, PASSWORD, BBDD);
+		$conexion = new mysqli(SERVIDOR, USUARIO, PASSWORD);
 
 		// Consulta SQL con creación de tablas e inserciones
 		$sql = "
+		create database cambioclimatico;
+		use cambioclimatico;
 		-- Crear tabla recomendaciones
 		CREATE TABLE recomendaciones (
 			idRecomendacion SMALLINT UNSIGNED AUTO_INCREMENT,
@@ -70,6 +72,9 @@
 		}
 	} catch (mysqli_sql_exception $e) {
 		switch ($e->getCode()) {
+			case 1007:
+				echo "<h1>BD existente</h1>";
+				break;
 			case 1050:
 				echo "<h1>Tabla existente</h1>";
 				break;

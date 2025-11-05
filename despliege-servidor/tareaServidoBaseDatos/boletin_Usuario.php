@@ -19,6 +19,7 @@ class Boletin_Usuario extends Conectar{
 			}else{
 				$sugerencia="NULL";
 			}
+			
 			//Consulta de introduccion
 			$sql="insert into boletin_usuario (nombreUsuario,correo,idioma,
 			idRecomendacion,sugerencias) values('".$nombre."','".$correo."','".$idioma."',".$idRecomendacion.",".$sugerencia.");";
@@ -33,15 +34,9 @@ class Boletin_Usuario extends Conectar{
 				return false;
 			}
 		}catch(mysqli_sql_exception $e){
-			switch ($e->getCode()) {
-				case 1146:
-					echo '<h1>La tabla no existe</h1>';
-					return false; 
+			switch ($e->getCode()) { 
 				case 1062:
 					echo '<h1>Correo duplicado</h1>';
-					return false;
-				case 1064:
-					echo '<h1>Error de sintaxis en la consulta SQL</h1>';
 					return false;
 				default:
 					echo '<h1>ERROR: ' . $e->getMessage() . '</h1>';
@@ -49,5 +44,6 @@ class Boletin_Usuario extends Conectar{
 			}
 		}
     }
+	
 }
 ?>

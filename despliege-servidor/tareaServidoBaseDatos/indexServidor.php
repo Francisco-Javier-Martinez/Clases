@@ -49,7 +49,7 @@
                 <!--Radio-->
                 <p>Seleccione idioma:</p>
                 <label>
-                    <input type="radio" name="idioma" value="espanol"/> Español
+                    <input type="radio" name="idioma" value="espanol" /> Español
                 </label>
                 <label>
                     <input type="radio" name="idioma" value="ingles"/> Inglés
