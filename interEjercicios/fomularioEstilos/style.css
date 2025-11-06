@@ -1,30 +1,30 @@
 /*Fuente*/
-/* Fuente de Google:Agbalumo */
+/* Fuente de Google: Agbalumo */
 @import url('https://fonts.googleapis.com/css2?family=Agbalumo&display=swap');
 
 /* Estilos Generales y Contenedor Principal */
 body{
     background: rgb(234, 232, 243);
-    width: 1300px; /* Ancho total del contenedor*/
+    width: 100%; /* Ancho total del contenedor 1300px*/
     margin: auto;
 }
 
 nav {
     background: rgb(60, 240, 204);
-    margin-bottom: 15px;
+    margin-bottom: 1.153846153846154%; /*15*100/1300=1.153846153846154*/
 }
 
 /* Centramos el contenido del ul */
 nav ul {
-    padding: 0px; /*le pongo 0 para quitarle el padding que sale por defecto*/
-    margin: 0px;
+    padding: 0; /*le pongo 0 para quitarle el padding que sale por defecto*/
+    margin: 0;
 }
 
-/*Una cja me ocupa 150px tengo 3 = 450px y tengo 1300px para usar
+/*Una caja me ocupa 150px tengo 3 = 450px y tengo 1300px para usar
 aun me caben 5 mas ya que la 6 se supera dando 1350px*/
 nav ul li {
     display: inline-block;
-    width: 150px;
+    width: 11.53846153846154%; /*150*100/1300= 11.53846153846154 */
     text-align: center;
 }
 
@@ -32,7 +32,7 @@ nav ul li a {
     display: block;
     text-decoration: none;
     color: rgb(8, 8, 8);
-    padding: 20px 0px; 
+    padding: 13.33333333333333% 0; /*20*100/150=13,33333333333333*/
 }
 nav ul li a:hover {
     background-color: darkcyan;
@@ -48,63 +48,62 @@ nav ul li a:hover {
     background-size: cover;
     background-position: center;
     /*..*/
-    color:rgb(255, 255, 255);
+    color: rgb(255, 255, 255);
     text-align: center;
-    padding-top:50px;
-    font-size: 50px;
+    padding-top: 3.846153846153846%; /*50*100/1300=3.846153846153846*/
+    font-size: 4em;
     text-shadow: 3px 3px 8px rgba(0,0,0,0.7), 0px 1px 0px #fff;
-    margin: 0px;
+    margin: 0;
 }
 
 /*De mis 1300px usable decido coger 500px para el primer div de la drc*/
-/*500+20(padding)=520px ancho total que ocupa*/
+/*500+20(padding)=520px ancho total que ocupa. Ancho de contenido: 480px.*/
 #lateral{
-    width: 500px;
+    width: 36.92307692307692%; /*480*100/1300=36.92307692307692*/
     background-color: blanchedalmond;
     float: left; /*lo pongo a la drc*/
-    padding: 10px;
-    margin: auto;
-    height: 453.5px;
+    /* 10px / 480px * 100 = 2.083333333333333% */
+    padding: 2.083333333333333%;
     position: relative;
 }
-/*Quiero que el siguiente me ocupe todo lo demas
-entoneces 1300px-520px=780px-30px(padding)=750px*/
+/*Quiero que el siguiente me ocupe todo lo demas.
+Ancho de contenido para #form (780px totales - 30px padding): 750px usables, pero necesitamos dejar un margen.
+*/
 #form{
-    width: 750px;
-    height: 443.5px; /* La primera caja tiene de altura 473.5px si yo tengo 15px de pading
-    por arriba y abajo se lo resto y son 443.5 para que tengan la misma altura*/
-    padding: 15px;
+    width: 54.61538461538461%; /*710*100/1300=54.61538461538461*/
+    padding: 2.112676056338028%; /*15*100/710=2.112676056338028*/
     background-color: rgb(240, 168, 168);
-    float: left;/*lo pongo a la drc*/
+    float: left; /*lo pongo a la drc*/
 }
 
-/*Caja contenedora cual dentr de ella tendra los demas div*/
+/*Caja contenedora cual dentro de ella tendra los demas div*/
 #cajaContenedoraPrincipal{
     background-color: rgb(154, 241, 194);
-    padding: 15px 0;
+    width: 100%;
+    padding: 1.153846153846154% 0; /*15*100/1300=1.153846153846154*/
     overflow: hidden;
+    display: flex;
 }
-
 
 
 /*Imagen*/
-/*Espacio usbale 500px-20px(padding)=480px*/
+/*Espacio usable 500px-20px(padding)=480px*/
 /*Poner en el medio 480/2=240*/
 #animales{
-    width: 450px; 
+    width: 90%; /*450*100/500=90 */
     border: 2px solid black; /*450+4=484px ocupa total ancho*/
-    border-radius: 10px; 
+    border-radius: 10px;
     display: block; /*Le digo que va a ser bloque un elemento en bloque para que me pille el margin auto*/
     margin: 0 auto;
 }
 
-/*Estilo del enlace del assaid*/
+/*Estilo del enlace del aside*/
 #quieresSaber{
-    font-size: 1.7em; /*con referencia al padre*/
+    font-size: 1em; /*con referencia al padre*/
     font-family: cursive;
     color: red;
     position: absolute;
-    bottom: 0px;
+    bottom: 0;
 }
 
 .aviso{
@@ -112,37 +111,37 @@ entoneces 1300px-520px=780px-30px(padding)=750px*/
     color: red;
 }
 /*Estilos del formu*/
-/*Espacio usbale 500-15-15=470px */
+/*Espacio usable 500-15-15=470px */
 #cajaFormulario{
-    width: 500px;
+    width: 66.66666666666667%; /*500*100/750=66.66666666666667*/
     background-color: rgb(197, 203, 207);
     border-radius: 5px;
-    padding: 15px;
-    margin:  0px auto;
+    padding: 2%; /*15*100/750=2*/
+    margin: 0 auto;
     overflow: hidden;
 }
 
 label{
     display: block;
-    margin: 10px 0px;
+    margin: 2.127659574468085% 0px; /*10*100/470=2.127659574468085*/
     text-align: center;
     font-family: "Agbalumo";
 }
-input,select{
+input, select{
     display: block;
-    margin:  0px auto;
+    margin: 0 auto;
 }
 
 /*Para no escribir pegado a la caja*/
 input[type="text"]{
-    padding-left: 10px;
-    color: blue;/*Color azul solicitado*/
+    padding-left: 2.127659574468085%;
+    color: blue; /*Color azul solicitado*/
 }
 
 
 /*En la indicacion me dice que ocupe todo el ancho*/
 input[type="submit"]{
-    width: 470px;
+    width: 100%; /*quiero que ocupe todo*/
     height: 30px;
     background-color: antiquewhite;
 }
@@ -152,12 +151,12 @@ input[type="submit"]:hover{
 }
 /* Estilos del Pie de Página (Footer) */
 .piePagina{
-    width: 1300px; /*Le doy el mismo tamaño que el body*/
-    bottom: 0px; /*Lo fijo abajo*/
+    width: 100%; /*Le doy el mismo tamaño que el body*/
+    bottom: 0; /*Lo fijo abajo*/
     position: sticky; /*Para el footer uso posicion sticky */
     background-color: black;
     color: white;
-    text-align: center;
     height: 50px;
-    padding-bottom: 40px;
+    text-align: center;
+    padding-bottom: 3.076923076923077%; /*40*100/1300=3.076923076923077*/
 }
