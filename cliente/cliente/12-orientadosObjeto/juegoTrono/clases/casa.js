@@ -61,7 +61,6 @@ export class Casa{
     }
 
     getMiembros(){
-        // Devolver copia para evitar modificaciones externas
-        return [...this.#miembros];
+        return this.#miembros;
     }
 }

@@ -9,13 +9,13 @@ const casaStark = new Casa("Stark", "El invierno se acerca");
 const casaLannister = new Casa("Lannister", "Oye mi rugido");
 
 // ARMAS
-const garra = new Arma("Espada de acero valyrio, obsequio de la Casa Stark", "Garra", 90, "Espada");
-const aguja = new Arma("Espada fina, perfecta para apuñalar", "Aguja", 70, "Estoque");
-const hacha = new Arma("Gran hacha para combate a dos manos", "Hacha del Norte", 80, "Hacha");
-const espadaLarga = new Arma("Espada reglamentaria de la caballería", "Espada Larga", 85, "Espada");
-const ballesta = new Arma("Arma de asedio personal de Tyrion", "Ballesta", 75, "Proyectil");
-const filoRojo = new Arma("Espada con borde carmesí, muy afilada", "Filo Rojo", 88, "Espada");
-const lanzaDeCaza = new Arma("Lanza diseñada para la caza mayor", "Lanza de Caza", 60, "Lanza");
+const garra = new Arma("Garra", 90);
+const aguja = new Arma("Aguja", 70);
+const hacha = new Arma("Hacha del Norte", 80);
+const espadaLarga = new Arma("Espada Larga", 85);
+const ballesta = new Arma("Ballesta", 75);
+const filoRojo = new Arma("Filo Rojo", 88);
+const lanzaDeCaza = new Arma("Lanza de Caza", 60);
 
 // GUERREROS DE LA CASA STARK
 const jon = new Guerrero("Jon Snow", 25, true, casaStark, garra);

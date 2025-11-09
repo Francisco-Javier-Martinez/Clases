@@ -7,7 +7,7 @@ export class Arma{
     constructor(info,nombre,danoo,tip){
         this.#informacion=info||"";
         this.#nombreArma=nombre||"";
-        this.#dano=danoo||0;
+        this.#dano=Number(danoo)||0;
         this.#tipo=tip||"";
     }
 

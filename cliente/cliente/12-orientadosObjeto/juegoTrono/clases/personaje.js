@@ -44,6 +44,12 @@ export class Personaje{
         console.log("Soy "+this.#nombrePersonaje+" y pertenezco a la casa: "+nombreCasa);
     }
 
+    //morir
+    morrir(){
+        this.#live=false;
+    }
+
+
     // Getters
     getNombrePersonaje(){
         return this.#nombrePersonaje;
