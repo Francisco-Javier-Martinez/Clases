@@ -50,4 +50,6 @@ casaLannister.visualizarMiembro();
 console.log("Iniciamos la lucha");
 const batalla = new Batalla();
 batalla.iniciarBatalla(casaStark,casaLannister);
+batalla.monstrarGuerrerosMuertos(); 
+
 console.log("Se acabo la pelea");

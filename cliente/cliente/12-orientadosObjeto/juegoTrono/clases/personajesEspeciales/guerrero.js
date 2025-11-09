@@ -48,6 +48,10 @@ export class Guerrero extends Personaje{
     entrenar(){
         console.log(this.getNombrePersonaje()+" Entrena sin descanso para la proxima batalla");
     }
+
+    getVida(){
+        return this.#vida;
+    }
     getArma(){
         return this.#arma;
     }
