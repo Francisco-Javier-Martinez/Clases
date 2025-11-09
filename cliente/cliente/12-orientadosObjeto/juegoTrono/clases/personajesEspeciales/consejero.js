@@ -2,9 +2,9 @@ import { Personaje } from "../personaje.js";
 export class Consejero extends Personaje{
     #especialidad;
 
-    constructor(){
-        super();
-        this.#especialidad="";
+    constructor(nombrePersonaje,edad,live,casaPerteneciente,especialida){
+        super(nombrePersonaje,edad,live,casaPerteneciente);
+        this.#especialidad=especialida||"";
     }
 
     set meterEspecialidad(espe){

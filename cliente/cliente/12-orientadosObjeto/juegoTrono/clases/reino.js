@@ -5,8 +5,8 @@ export class Reino{
     #casasReino;
     #rey;
 
-    constructor(){
-        this.#nombreReino="";
+    constructor(nombre){
+        this.#nombreReino=nombre || "";
         this.#casasReino=[];
         this.#rey="";
     }

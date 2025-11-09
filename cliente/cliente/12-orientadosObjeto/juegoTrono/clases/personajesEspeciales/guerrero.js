@@ -2,10 +2,21 @@ import { Arma } from "../arma.js";
 import { Personaje } from "../personaje.js";
 export class Guerrero extends Personaje{
     #arma;
+    #vida;
 
-    constructor(){
-        super();
-        this.#arma;
+    constructor(nombrePersonaje,edad,live,casaPerteneciente,arma){
+        super(nombrePersonaje,edad,live,casaPerteneciente);
+        if(this.getVido()){
+            this.#vida=100;
+        }else{
+            this.#vida=0;
+        }
+        if (!(arma instanceof Arma)) {
+            console.log("Advertencia: Se intentó asignar un valor que no es una instancia de Arma.");
+            this.#arma = null;
+        } else {
+            this.#arma = arma;
+        }
     }
 
     meterArma(arma_){

@@ -3,36 +3,18 @@ import { Personaje } from "./clases/personaje.js";
 import { Arma } from "./clases/arma.js";
 import { Reino } from "./clases/reino.js";
 
-const Reino1=new Reino();
-const CasaStark=new Casa();
-const CasaLannister=new Casa();
-
-const Garra=new Arma();
-const Aguja=new Arma();
-
-const JonSnow=new Personaje();
-const AryaStark=new Personaje();
-const JaimeLannister=new Personaje();
-
 //reino
-Reino1.meterReino="Poniente";
+const Reino1=new Reino("Poniente");
 //casa
-CasaStark.meterNombreCasa="Casa Stark";
-CasaLannister.meterNombreCasa="Casa Lannister";
-
+const CasaStark=new Casa("Casa Stark","Lema stakr");
+const CasaLannister=new Casa("Casa Lannister","Lema lannis");
 //armas
-Garra.meterNombreArma="Garra";
-Garra.meterTipo="espada";
-Garra.meterDano=25;
-
-Aguja.meterNombreArma ="Aguja";
-Aguja.meterTipo="espada"; 
-Aguja.meterDano=15;
-
-//personajes
-JonSnow.meterNombrePersonaje="Jon Snow";
-AryaStark.meterNombrePersonaje="Arya Stark";
-JaimeLannister.meterNombrePersonaje="Jaime Lannister";
+const Garra=new Arma("Garra mega fuerte","Garra",25,"Espada");
+const Aguja=new Arma("Aguja mega fuerte","Aguja",15,"Espada");
+//Personajes
+const JonSnow=new Personaje("Jon Snow",24,true,CasaStark);
+const AryaStark=new Personaje("Arya Stark",24,true,CasaStark);
+const JaimeLannister=new Personaje("Jaime Lannister",24,true,CasaLannister);
 
 //meter casas
 Reino1.meterCasa(CasaStark);      // La Casa Stark Reino de Poniente.
@@ -46,15 +28,13 @@ console.log("Jon Snow ha equipado el arma "+Garra.getNombreArma());
 console.log("Arya Stark ha equipado el arma "+Aguja.getNombreArma());
 
 //meter personajes a las casas
-JonSnow.meterCasa(CasaStark);
 CasaStark.meterMiembro(JonSnow); // lo meto a la lista de miembros de la Casa
 console.log("Jon Snow ha sido añadido a la Casa Stark");
 
-AryaStark.meterCasa(CasaStark);
+
 CasaStark.meterMiembro(AryaStark);
 console.log("Arya Stark ha sido añadido a la Casa Stark");
 
-JaimeLannister.meterCasa(CasaLannister);
 CasaLannister.meterMiembro(JaimeLannister);
 console.log("Jaime Lannister ha sido añadido a la Casa Lannister");
 

@@ -2,9 +2,9 @@ import { Personaje } from "../personaje.js";
 export class Rey extends Personaje{
     #anoReinados;
 
-    constructor(){
-        super();
-        this.#anoReinados=0;
+    constructor(nombrePersonaje,edad,live,casaPerteneciente,reinados){
+        super(nombrePersonaje,edad,live,casaPerteneciente);
+        this.#anoReinados=reinados||0;
     }
 
     set meterAnoReinado(anos){

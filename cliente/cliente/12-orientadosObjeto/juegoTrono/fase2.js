@@ -3,33 +3,20 @@ import { Casa } from "./clases/casa.js";
 import { Arma } from "./clases/arma.js";
 import { Consejero } from "./clases/personajesEspeciales/consejero.js";
 import { Rey } from "./clases/personajesEspeciales/rey.js";
+//casa
+const CasaStark=new Casa("Casa Stark","Lema stakr");
+const CasaLannister=new Casa("Casa Lannister","Lema lannis");
 
-const JonSwon = new Guerrero();
-const Tyrion = new Consejero();
-const RobertBaratheon = new Rey();
+//Armas
+const Garra=new Arma("Garra mega fuerte","Garra",25,"Espada");
 
-const CasaStark = new Casa();
-const CasaLannister = new Casa();
+//Personajes
+const JonSwon = new Guerrero("Jon Snow",24,true,CasaStark,Garra);
+const Tyrion = new Consejero("Tyrion",26,true,CasaLannister,"PHP");
+const RobertBaratheon = new Rey("Robert Baratheon",21,true,CasaLannister,15);
 
-const Garra = new Arma();
 
-CasaStark.meterNombreCasa="Casa Stark";
-CasaLannister.meterNombreCasa="Casa Lannister";
-JonSwon.meterNombrePersonaje="Jon Snow";
-Tyrion.meterNombrePersonaje="Tyrion";
-RobertBaratheon.meterNombrePersonaje="Robert Baratheon";
-
-JonSwon.meterCasa(CasaStark);
 JonSwon.presentarse();
-Tyrion.meterCasa(CasaLannister);
-RobertBaratheon.meterCasa(CasaLannister);
-Tyrion.meterEspecialidad="PHP";
-
-
-Garra.meterNombreArma="Garra";
-Garra.meterDano=25;
-
-JonSwon.meterArma(Garra);
 
 
 JonSwon.luchar();
@@ -38,8 +25,6 @@ JonSwon.entrenar();
 Tyrion.presentarse();
 Tyrion.aconsejar(RobertBaratheon);
 
-
-RobertBaratheon.meterAnoReinado=15;
 RobertBaratheon.presentarse();
 RobertBaratheon.gobernar();
 RobertBaratheon.luchar();

@@ -4,11 +4,11 @@ export class Arma{
     #dano;
     #tipo;
 
-    constructor(){
-        this.#informacion="";
-        this.#nombreArma="";
-        this.#dano=0;
-        this.#tipo="";
+    constructor(info,nombre,danoo,tip){
+        this.#informacion=info||"";
+        this.#nombreArma=nombre||"";
+        this.#dano=danoo||0;
+        this.#tipo=tip||"";
     }
 
     set meterNombreArma(arma){

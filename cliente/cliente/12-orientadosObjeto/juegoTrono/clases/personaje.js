@@ -6,12 +6,16 @@ export class Personaje{
     #live;
     #casaPerteneciente;
     /* #arma; */
-
-    constructor(){
-        this.#nombrePersonaje="";
-        this.#edad = 0;
-        this.#live = true;
-        this.#casaPerteneciente="";
+    constructor(nombre, edad, live, casa){
+        this.#nombrePersonaje=nombre || "";
+        this.#edad =edad ||0;
+        this.#live = live || true;
+        if (!(casa instanceof Casa)) {
+            console.log("Advertencia: Se intentó asignar un valor que no es una instancia de Casa.");
+            this.#casaPerteneciente = null;
+        } else {
+            this.#casaPerteneciente = casa;
+        }
     }
     //SET
     set meterNombrePersonaje(nombre){
@@ -43,6 +47,10 @@ export class Personaje{
     // Getters
     getNombrePersonaje(){
         return this.#nombrePersonaje;
+    }
+
+    getVido(){
+        return this.#live;
     }
 
     getEdad(){

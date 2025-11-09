@@ -4,9 +4,9 @@ export class Casa{
     #lema;
     #miembros;
 
-    constructor(){
-        this.#nombreCasa="";
-        this.#lema="";
+    constructor(casa,lem){
+        this.#nombreCasa=casa || "";
+        this.#lema=lem ||  "";
         this.#miembros=[];
     }
 
