@@ -18,7 +18,9 @@ export class Batalla{
             console.log("Turno "+turno+": "+guerreroA.getNombrePersonaje()+" | "+guerreroB.getNombrePersonaje());
             //Guerrero A ataca a guerrero B
             while(guerreroA.getVida()>0 && guerreroB.getVida()>0){
-                guerreroA.atacar(guerreroB);
+                if(guerreroA.getVida()>0){
+                    guerreroA.atacar(guerreroB);
+                }
                 if(guerreroB.getVida()>0){
                     guerreroB.atacar(guerreroA);
                 }
