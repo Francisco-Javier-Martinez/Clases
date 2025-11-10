@@ -19,7 +19,7 @@ export class Rey extends Personaje{
         console.log(this.getNombrePersonaje()+" gobierna con sabiduria desde hace "+this.#anoReinados);
     }
 
-    getRey(){
+    get Rey(){
         return this.#anoReinados;
     }
 

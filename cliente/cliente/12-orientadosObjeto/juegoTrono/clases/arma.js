@@ -32,19 +32,19 @@ export class Arma{
     }
     
     // Getters para acceder a las propiedades
-    getNombreArma(){
+    get NombreArma(){
         return this.#nombreArma;
     }
 
-    getInformacion(){
+    get Informacion(){
         return this.#informacion;
     }
 
-    getDano(){
+    get Dano(){
         return this.#dano;
     }
 
-    getTipo(){
+    get Tipo(){
         return this.#tipo;
     }
 }

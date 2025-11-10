@@ -52,15 +52,15 @@ export class Casa{
     }
     
     // Getters
-    getNombreCasa(){
+    get NombreCasa(){
         return this.#nombreCasa;
     }
 
-    getLema(){
+    get Lema(){
         return this.#lema;
     }
 
-    getMiembros(){
+    get Miembros(){
         return this.#miembros;
     }
 }

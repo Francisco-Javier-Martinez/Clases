@@ -24,7 +24,7 @@ export class Reino{
             console.log("Casa ya existente en el reino");
         }else{
             this.#casasReino.push(casa);
-            console.log("La Casa "+casa.getNombreCasa()+ "ha sido añadida al Reino de Poniente.");
+            console.log("La Casa "+casa.NombreCasa+ "ha sido añadida al Reino de Poniente.");
         }
     }
     proclamarRey(personaje) {
@@ -33,7 +33,7 @@ export class Reino{
             return;
         }
         this.#rey = personaje;
-        console.log(personaje.getNombrePersonaje()+" ha sido proclamado rey de Poniente."); // Salida de la imagen
+        console.log(personaje.NombrePersonaje+" ha sido proclamado rey de Poniente."); // Salida de la imagen
     }
     existeCasa(casa){
         let indice = this.#casasReino.indexOf(casa);
@@ -47,8 +47,8 @@ export class Reino{
     mostrarReyActual() {
         console.log("Rey actual:");
         if (this.#rey) {
-            const nombreRey = this.#rey.getNombrePersonaje();
-            const casaRey = this.#rey.getCasaPerteneciente().getNombreCasa();
+            const nombreRey = this.#rey.NombrePersonaje;
+            const casaRey = this.#rey.CasaPerteneciente.NombreCasa;
             console.log("El rey actual es "+nombreRey+" de la "+casaRey);
         } else {
             console.log("No hay rey");
@@ -58,19 +58,19 @@ export class Reino{
     visualizarCasas() {
         console.log("Casas del Reino de Poniente:");
         this.#casasReino.forEach(casa => {
-            console.log(casa.getNombreCasa());
+            console.log(casa.NombreCasa);
         });
     }
     // Getters
-    getNombreReino(){
+    get NombreReino(){
         return this.#nombreReino;
     }
 
-    getCasasReino(){
+    get CasasReino(){
         return [...this.#casasReino];
     }
 
-    getRey(){
+    get Rey(){
         return this.#rey;
     }
 }

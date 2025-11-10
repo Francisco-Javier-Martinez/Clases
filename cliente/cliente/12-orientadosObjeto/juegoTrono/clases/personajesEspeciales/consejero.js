@@ -19,7 +19,7 @@ export class Consejero extends Personaje{
         console.log(this.getNombrePersonaje()+" aconseja a "+rey.getNombrePersonaje()+" sobre "+this.#especialidad);
     }
 
-    getEspecialidad(){
+    get Especialidad(){
         return this.#especialidad;
     }
 

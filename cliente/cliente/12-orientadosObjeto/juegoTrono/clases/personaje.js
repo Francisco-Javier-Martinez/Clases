@@ -51,15 +51,15 @@ export class Personaje{
 
 
     // Getters
-    getNombrePersonaje(){
+    get NombrePersonaje(){
         return this.#nombrePersonaje;
     }
 
-    getVido(){
+    get Vido(){
         return this.#live;
     }
 
-    getEdad(){
+    get Edad(){
         return this.#edad;
     }
 
@@ -67,7 +67,7 @@ export class Personaje{
         return this.#live;
     }
 
-    getCasaPerteneciente(){
+    get CasaPerteneciente(){
         return this.#casaPerteneciente;
     }
 
