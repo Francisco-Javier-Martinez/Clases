@@ -12,14 +12,14 @@ export class Consejero extends Personaje{
     }
 
     luchar(){
-        console.log(this.getNombrePersonaje()+" no lucha con armas, sino con palabras e inteligencia.");
+        console.log(this.nombrePersonaje+" no lucha con armas, sino con palabras e inteligencia.");
     }
 
     aconsejar(rey){
-        console.log(this.getNombrePersonaje()+" aconseja a "+rey.getNombrePersonaje()+" sobre "+this.#especialidad);
+        console.log(this.nombrePersonaje+" aconseja a "+rey.nombrePersonaje+" sobre "+this.#especialidad);
     }
 
-    get Especialidad(){
+    get especialidad(){
         return this.#especialidad;
     }
 

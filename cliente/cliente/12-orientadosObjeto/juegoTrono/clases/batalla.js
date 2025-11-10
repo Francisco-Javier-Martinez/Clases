@@ -8,33 +8,31 @@ export class Batalla{
     }
     
     iniciarBatalla(casaA,casaB){
-        let guerreroCasaA=casaA.getMiembros().filter(guerrero => guerrero instanceof Guerrero);
-        let guerreroCasaB=casaB.getMiembros().filter(guerrero => guerrero instanceof Guerrero);
+        let guerreroCasaA=casaA.miembros.filter(guerrero => guerrero instanceof Guerrero);
+        let guerreroCasaB=casaB.miembros.filter(guerrero => guerrero instanceof Guerrero);
         let turno=1;
-        console.log("La batalla entre la casa "+casaA.getNombreCasa()+" y la casa "+casaB.getNombreCasa()+" ha comenzado!");
+        console.log("La batalla entre la casa "+casaA.nombreCasa+" y la casa "+casaB.nombreCasa+" ha comenzado");
         let maxsimoTurnos=1000; //Para evitar bucles infinitos
         while(turno<maxsimoTurnos &&guerreroCasaA.length>0 && guerreroCasaB.length>0){
             //Coger al primer guerrero de cada casa
             let guerreroA=guerreroCasaA[0];
             let guerreroB=guerreroCasaB[0];
-            console.log("Turno "+turno+": "+guerreroA.getNombrePersonaje()+" | "+guerreroB.getNombrePersonaje());
-            //Guerrero A ataca a guerrero B
-            while(guerreroA.getVida()>0 && guerreroB.getVida()>0){
-                if(guerreroA.getVida()>0){
-                    guerreroA.atacar(guerreroB);
-                }
-                if(guerreroB.getVida()>0){
-                    guerreroB.atacar(guerreroA);
-                }
-                console.log(guerreroA.getNombrePersonaje()+" "+guerreroA.getVida()+" | "+guerreroB.getNombrePersonaje()+" "+guerreroB.getVida());
+            console.log("Turno "+turno+": "+guerreroA.nombrePersonaje+" | "+guerreroB.nombrePersonaje);
+            //Los guerreros se atacan una vez por turno
+            if(guerreroA.vida>0){
+                guerreroA.atacar(guerreroB);
             }
-            if(guerreroA.getVida()<=0){
-                console.log(guerreroA.getNombrePersonaje()+" ha muerto en combate.");
+            if(guerreroB.vida>0){
+                guerreroB.atacar(guerreroA);
+            }
+            console.log(guerreroA.nombrePersonaje+" "+guerreroA.vida+" | "+guerreroB.nombrePersonaje+" "+guerreroB.vida);
+            if(guerreroA.vida<=0){
+                console.log(guerreroA.nombrePersonaje+" ha muerto en combate.");
                 this.#guerreroMuertos.push(guerreroA);
                 guerreroCasaA.splice(0,1);
             }
-            if(guerreroB.getVida()<=0){
-                console.log(guerreroB.getNombrePersonaje()+" ha muerto en combate.");
+            if(guerreroB.vida<=0){
+                console.log(guerreroB.nombrePersonaje+" ha muerto en combate.");
                 this.#guerreroMuertos.push(guerreroB);
                 guerreroCasaB.splice(0,1);
             }
@@ -45,17 +43,17 @@ export class Batalla{
             return;
         }
         if(guerreroCasaA.length===0){
-                console.log("La casa "+casaB.getNombreCasa()+" ha ganado la batalla");
+                console.log("La casa "+casaB.nombreCasa+" ha ganado la batalla");
             }
         if(guerreroCasaB.length===0){
-            console.log("La casa "+casaA.getNombreCasa()+" ha ganado la batalla");
+            console.log("La casa "+casaA.nombreCasa+" ha ganado la batalla");
         }
     }
 
     monstrarGuerrerosMuertos(){
         console.log("Guerreros muertos en la batalla:");
         this.#guerreroMuertos.forEach(guerrero => {
-            console.log(guerrero.getNombrePersonaje());
+            console.log(guerrero.nombrePersonaje);
         });
     }
 }

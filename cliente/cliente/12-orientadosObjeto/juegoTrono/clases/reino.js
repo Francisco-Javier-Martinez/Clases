@@ -62,15 +62,15 @@ export class Reino{
         });
     }
     // Getters
-    get NombreReino(){
+    get nombreReino(){
         return this.#nombreReino;
     }
 
-    get CasasReino(){
+    get casasReino(){
         return [...this.#casasReino];
     }
 
-    get Rey(){
+    get rey(){
         return this.#rey;
     }
 }

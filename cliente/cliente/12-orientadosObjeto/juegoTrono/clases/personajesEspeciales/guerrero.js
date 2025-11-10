@@ -6,7 +6,7 @@ export class Guerrero extends Personaje{
 
     constructor(nombrePersonaje,edad,live,casaPerteneciente,arma){
         super(nombrePersonaje,edad,live,casaPerteneciente);
-        if(this.getVido()){
+        if(this.vivo){
             this.#vida=100;
         }else{
             this.#vida=0;
@@ -36,23 +36,23 @@ export class Guerrero extends Personaje{
     }
 
     atacar(objetivo){
-        const daño = Math.floor(this.#arma.Dano*(0.7+Math.random()*0.6));
-        console.log(this.NombrePersonaje+" ataca a "+objetivo.NombrePersonaje+ " causando "+daño);
+        const daño = Math.floor(this.#arma.dano*(0.7+Math.random()*0.6));
+        console.log(this.nombrePersonaje+" ataca a "+objetivo.nombrePersonaje+ " causando "+daño);
         objetivo.recibirDano(daño);
     }
 
     luchar(){
-        console.log(this.NombrePersonaje+" ataca con su "+this.#arma.NombreArma+ ", causando "+this.#arma.Dano+" puntos");
+        console.log(this.nombrePersonaje+" ataca con su "+this.#arma.nombreArma+ ", causando "+this.#arma.dano+" puntos");
     }
 
     entrenar(){
-        console.log(this.getNombrePersonaje()+" Entrena sin descanso para la proxima batalla");
+        console.log(this.nombrePersonaje+" Entrena sin descanso para la proxima batalla");
     }
 
-    get Vida(){
+    get vida(){
         return this.#vida;
     }
-    get Arma(){
+    get arma(){
         return this.#arma;
     }
 

@@ -24,7 +24,7 @@ export class Casa{
             console.log("No hay miembros");
         }else{
             this.#miembros.forEach(element => {
-                console.log(element.getNombrePersonaje());
+                console.log(element.nombrePersonaje);
             });
         }
     }
@@ -52,15 +52,15 @@ export class Casa{
     }
     
     // Getters
-    get NombreCasa(){
+    get nombreCasa(){
         return this.#nombreCasa;
     }
 
-    get Lema(){
+    get lema(){
         return this.#lema;
     }
 
-    get Miembros(){
+    get miembros(){
         return this.#miembros;
     }
 }
