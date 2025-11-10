@@ -50,5 +50,6 @@ console.log("Iniciamos la lucha");
 const batalla = new Batalla();
 batalla.iniciarBatalla(casaStark,casaLannister);
 batalla.monstrarGuerrerosMuertos(); 
+batalla.monstrarVivos();
 
 console.log("Se acabo la pelea");

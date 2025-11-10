@@ -19,6 +19,9 @@ export class Guerrero extends Personaje{
         }
     }
 
+    set vida(vida_){
+        this.#vida=vida_;
+    }
     meterArma(arma_){
         if (!(arma_ instanceof Arma)) {
             console.log("Error: Solo se pueden añadir instancias de arma");

@@ -1,10 +1,11 @@
 import { Guerrero } from "./personajesEspeciales/guerrero.js";
-
 export class Batalla{
     #guerreroMuertos;
+    #guerrerosSobrebientes;
 
     constructor(){
         this.#guerreroMuertos=[];
+        this.#guerrerosSobrebientes=[];
     }
     
     iniciarBatalla(casaA,casaB){
@@ -29,11 +30,13 @@ export class Batalla{
             if(guerreroA.vida<=0){
                 console.log(guerreroA.nombrePersonaje+" ha muerto en combate.");
                 this.#guerreroMuertos.push(guerreroA);
+                guerreroA.morrir();
                 guerreroCasaA.splice(0,1);
             }
             if(guerreroB.vida<=0){
                 console.log(guerreroB.nombrePersonaje+" ha muerto en combate.");
                 this.#guerreroMuertos.push(guerreroB);
+                guerreroB.morrir();
                 guerreroCasaB.splice(0,1);
             }
             turno++;
@@ -44,9 +47,20 @@ export class Batalla{
         }
         if(guerreroCasaA.length===0){
                 console.log("La casa "+casaB.nombreCasa+" ha ganado la batalla");
+                guerreroCasaB.forEach(element => {
+                    // Comprobar usando la propiedad público 'vivo' del personaje
+                    if(element.vivo){
+                        this.#guerrerosSobrebientes.push(element);
+                    }
+                });
             }
         if(guerreroCasaB.length===0){
             console.log("La casa "+casaA.nombreCasa+" ha ganado la batalla");
+            guerreroCasaA.forEach(element => {
+                if(element.vivo){
+                    this.#guerrerosSobrebientes.push(element);
+                }
+            });
         }
     }
 
@@ -54,6 +68,13 @@ export class Batalla{
         console.log("Guerreros muertos en la batalla:");
         this.#guerreroMuertos.forEach(guerrero => {
             console.log(guerrero.nombrePersonaje);
+        });
+    }
+    
+    monstrarVivos(){
+        console.log("GUERREROS SOBREVIVIENTES:");
+        this.#guerrerosSobrebientes.forEach(element => {
+            console.log("Guerrero "+element.nombrePersonaje+" ha sobrevivido");
         });
     }
 }
