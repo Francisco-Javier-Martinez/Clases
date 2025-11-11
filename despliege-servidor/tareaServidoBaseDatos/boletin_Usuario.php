@@ -44,6 +44,99 @@ class Boletin_Usuario extends Conectar{
 			}
 		}
     }
+
+	public function sacarUsuarios(){
+		try{
+			$sql="SELECT * from boletin_usuario;";
+			$usuarios=$this->conexion->query($sql);
+			if($usuarios->num_rows>0){
+				return $usuarios;
+			}else{
+				echo '<h1>No hay registro de usuario disponibles<h1>';
+				return false;
+			}
+
+		}catch(mysqli_sql_exception $e){
+				echo '<h1>Error:'.$e->getCode().'</h1>'; 
+				echo '<h1>Error:'.$e->getMessage().'</h1>'; 
+		}
+	}
+
+	public function borrarUsuario(){
+		$usu=$_POST['usarios'];
+		try{
+			$sql="DELETE from boletin_usuario WHERE idUsuario=$usu;";
+			if($this->conexion->query($sql)){
+				echo '<h1><a href="indexServidor.php">Usuario borrado correctamente</a><h1>';
+			}else{
+				echo '<h1><a href="indexServidor.php">Tuvimos unos problemas para borrar al usuario</a></h1>';
+			}
+		}catch(mysqli_sql_exception $e){
+			echo '<h1>Error:'.$e->getCode().'</h1>'; 
+			echo '<h1>Error:'.$e->getMessage().'</h1>';
+		}
+	}
 	
+	public function monstrarTodasCaracteristacasUsuarioModificar($usu){
+		try{
+			$sql="SELECT  boletin_usuario.idUsuario,nombreUsuario,correo,idioma,sugerencias,recomendaciones.nombre as 'nombreRecomendacion' , nombreAnimal
+			from boletin_usuario INNER JOIN recomendaciones on boletin_usuario.idRecomendacion=recomendaciones.idRecomendacion
+			INNER join boletin_animales on boletin_usuario.idUsuario=boletin_animales.idUsuario 
+			inner JOIN animales on boletin_animales.idAnimales=animales.idAnimales where boletin_usuario.idUsuario=$usu; ";/* 
+			echo $sql; */
+		$usuarios=$this->conexion->query($sql);
+		if($usuarios->num_rows>0){
+			return $usuarios;
+		}else{
+			echo '<h1>Tuvimos un fallo</h1>';
+		}
+		}catch(mysqli_sql_exception $e){
+			echo '<h1>Error:'.$e->getCode().'</h1>'; 
+			echo '<h1>Error:'.$e->getMessage().'</h1>';
+		}
+	}
+
+	public function modificarUsuario($usu){
+		try{
+			//Pongo todos los campos aun que no se modifiquen todos porque de esta forma me aseguro que se actualicen todos los campos
+			//Recojo los datos del formulario
+			$nombre=$_POST['nombre'];
+			$correo=$_POST['correoElectronico'];
+			$idioma=$_POST['idioma'];
+			$idRecomendacion=$_POST['comoConocio'];
+			$sugerencia=$_POST['sugerencia'];
+
+			if($sugerencia!=null){
+				$sugerencia="'".$sugerencia."'";
+			}else{
+				$sugerencia="NULL";
+			}
+			//Consulta de modificacion
+			$sql="UPDATE boletin_usuario SET nombreUsuario='".$nombre."', correo='".$correo."', idioma='".$idioma."', idRecomendacion=".$idRecomendacion.", sugerencias=".$sugerencia." WHERE idUsuario=".$usu.";";
+			$sql2="DELETE FROM boletin_animales WHERE idUsuario=".$usu.";";
+			//Ejecuto la query
+			$this->conexion->query($sql2);
+			
+			//si es correcta la modificacion el usuario abra sido modificado
+			if($this->conexion->query($sql)){
+				if(isset($_POST['animales'])){
+					$animales=$_POST['animales'];
+					//Ahora hago la insercion de los animales seleccionados
+					foreach($animales as $animal){
+						$sqlAnimales="INSERT INTO boletin_animales (idUsuario,idAnimales) VALUES (".$usu.",".$animal.");";
+						$this->conexion->query($sqlAnimales);
+					}
+					echo '<h1><a href="indexServidor.php">Usuario modificado correctamente</a><h1>';
+				}else{
+					echo '<h1><a href="indexServidor.php">Usuario modificado pero tuvimos problemas al registro de animales</a><h1>';
+				}
+			}else{
+				echo '<h1><a href="indexServidor.php">Tuvimos unos problemas para modificar al usuario</a></h1>';
+			}
+		}catch(mysqli_sql_exception $e){
+			echo '<h1>Error:'.$e->getCode().'</h1>'; 
+			echo '<h1>Error:'.$e->getMessage().'</h1>';
+		}
+	}
 }
 ?>

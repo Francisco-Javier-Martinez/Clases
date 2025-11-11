@@ -47,3 +47,39 @@ INSERT INTO animales (nombreAnimal) VALUES ('Koala'),
 //Añadir un campo que permita NU ll 
 ALTER TABLE boletin_usuario
 	ADD COLUMN sugerencias VARCHAR(150) NULL;
+
+// Eliminar la restricción actual
+ALTER TABLE boletin_Usuario
+DROP FOREIGN KEY fk_idReco_Boletin;
+
+// Añadir la restricción con CASCADE
+ALTER TABLE boletin_Usuario
+ADD CONSTRAINT fk_idReco_Boletin 
+FOREIGN KEY (idRecomendacion) 
+REFERENCES recomendaciones(idRecomendacion) 
+ON DELETE CASCADE 
+ON UPDATE CASCADE;
+
+// Eliminar la restricción fk_usuario
+ALTER TABLE boletin_Animales
+DROP FOREIGN KEY fk_usuario;
+
+// Eliminar la restricción fk_animal
+ALTER TABLE boletin_Animales
+DROP FOREIGN KEY fk_animal;
+
+// Añadir la restricción fk_usuario con CASCADE
+ALTER TABLE boletin_Animales
+ADD CONSTRAINT fk_usuario 
+FOREIGN KEY (idUsuario) 
+REFERENCES boletin_usuario(idUsuario) 
+ON DELETE CASCADE 
+ON UPDATE CASCADE;
+
+// Añadir la restricción fk_animal con CASCADE
+ALTER TABLE boletin_Animales
+ADD CONSTRAINT fk_animal 
+FOREIGN KEY (idAnimales) 
+REFERENCES animales(idAnimales) 
+ON DELETE CASCADE 
+ON UPDATE CASCADE;
