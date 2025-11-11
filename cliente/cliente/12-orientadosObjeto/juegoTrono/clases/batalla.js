@@ -9,8 +9,8 @@ export class Batalla{
     }
     
     iniciarBatalla(casaA,casaB){
-        let guerreroCasaA=casaA.miembros.filter(guerrero => guerrero instanceof Guerrero);
-        let guerreroCasaB=casaB.miembros.filter(guerrero => guerrero instanceof Guerrero);
+        let guerreroCasaA=casaA.recogerGuerrero();
+        let guerreroCasaB=casaB.recogerGuerrero();
         let turno=1;
         console.log("La batalla entre la casa "+casaA.nombreCasa+" y la casa "+casaB.nombreCasa+" ha comenzado");
         let maxsimoTurnos=1000; //Para evitar bucles infinitos

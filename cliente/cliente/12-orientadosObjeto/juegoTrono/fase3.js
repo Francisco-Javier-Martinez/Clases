@@ -38,7 +38,7 @@ casaLannister.meterMiembro(jaime);
 casaLannister.meterMiembro(cersei);
 casaLannister.meterMiembro(tyrion);
 casaLannister.meterMiembro(gregor);
-
+casaLannister.meterMiembro(gregor);
 //Monstrar miembros
 console.log("Casa Stark: ");
 casaStark.visualizarMiembro();

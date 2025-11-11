@@ -1,4 +1,5 @@
 import { Personaje } from "./personaje.js";
+import { Guerrero } from "./personajesEspeciales/guerrero.js";
 export class Casa{
     #nombreCasa;
     #lema;
@@ -51,6 +52,12 @@ export class Casa{
         }
     }
     
+    recogerGuerrero(){
+        let guerreros=[];
+        guerreros=this.miembros.filter(guerrero => guerrero instanceof Guerrero);
+        return guerreros;
+    }
+
     // Getters
     get nombreCasa(){
         return this.#nombreCasa;
