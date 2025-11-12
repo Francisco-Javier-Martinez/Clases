@@ -1,11 +1,12 @@
-import { Personaje } from "../personaje.js";
+import { Guerrero } from "../guerrero.js";
 
-export class Mago extends Personaje{
+export class Mago extends Guerrero{
     poderMagico;
     hechizosPrincipal;
 
-    constructor(nombrePersonaje,edad,live,casaPerteneciente,poder,hechizo){
-        super(nombrePersonaje,edad,live,casaPerteneciente);
+    constructor(nombrePersonaje,edad,live,casaPerteneciente,arma,poder,hechizo){
+        // Pasamos el arma al constructor de Guerrero
+        super(nombrePersonaje,edad,live,casaPerteneciente,arma);
         this.poderMagico=poder||0;
         this.hechizosPrincipal=hechizo||"";
     }

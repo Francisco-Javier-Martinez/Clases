@@ -3,8 +3,8 @@ import { Arma } from "./clases/arma.js";
 import { Guerrero } from "./clases/personajesEspeciales/guerrero.js";
 import { Consejero } from "./clases/personajesEspeciales/consejero.js";
 import { Rey } from "./clases/personajesEspeciales/rey.js";
-import { Mago } from "./clases/personajesEspeciales/mago.js";
-import { Currandero } from "./clases/personajesEspeciales/curandero.js";
+import { Mago } from "./clases/personajesEspeciales/tiposGuerreros/mago.js";
+import { Currandero } from "./clases/personajesEspeciales/tiposGuerreros/curandero.js";
 import { Fuego } from "./clases/tipoDragones/fuego.js";
 import { Hielo } from "./clases/tipoDragones/hielo.js";
 import { Electrico } from "./clases/tipoDragones/electrico.js";
@@ -16,13 +16,15 @@ const CasaPapu =new Casa("Casa Papu","Lema papu");
 
 //Armas
 const Garra=new Arma("Garra mega fuerte","Garra",25,"Espada");
+const ArmaMataMuerto= new Arma("Mata muertos","Matanza",100,"Dios");
+
 
 //Personajes
 const JonSwon = new Guerrero("Jon Snow",24,true,CasaStark,Garra);
 const Tyrion = new Consejero("Tyrion",26,true,CasaLannister,"PHP");
 const RobertBaratheon = new Rey("Robert Baratheon",21,true,CasaLannister,15);
-const alberto = new Mago("Alberto el mago",40,true,CasaPapu,30,"Fuego");
-const victor = new Currandero("Victor el curandero",35,true,CasaStark,20);
+const alberto = new Mago("Alberto el mago",40,true,CasaPapu,ArmaMataMuerto,30,"Fuego");
+const victor = new Currandero("Victor el curandero",35,true,CasaStark,ArmaMataMuerto,40);
 
 alberto.presentarse();
 alberto.luchar();

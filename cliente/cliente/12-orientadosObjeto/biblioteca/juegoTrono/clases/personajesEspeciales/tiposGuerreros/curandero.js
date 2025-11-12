@@ -1,11 +1,11 @@
-import { Personaje } from "../personaje.js";
-import { Guerrero } from "./guerrero.js";
+import { Guerrero } from "../guerrero.js";
 
-export class Currandero extends Personaje{
+export class Currandero extends Guerrero{
     #CapacidadCuracion;
 
-    constructor(nombrePersonaje,edad,live,casaPerteneciente,capacidadCuracion){
-        super(nombrePersonaje,edad,live,casaPerteneciente);
+    constructor(nombrePersonaje,edad,live,casaPerteneciente,arma,capacidadCuracion){
+        // Pasamos el arma al constructor de Guerrero
+        super(nombrePersonaje,edad,live,casaPerteneciente,arma);
         this.#CapacidadCuracion=capacidadCuracion||0;
     }
 

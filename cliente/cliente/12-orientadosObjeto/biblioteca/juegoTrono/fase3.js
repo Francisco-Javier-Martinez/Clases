@@ -2,7 +2,7 @@ import { Guerrero } from "./clases/personajesEspeciales/guerrero.js";
 import { Arma } from "./clases/arma.js";
 import { Casa } from "./clases/casa.js";
 import { Batalla } from "./clases/batalla.js";
-
+import { Mago } from "./clases/personajesEspeciales/tiposGuerreros/mago.js";
 
 // CASAS
 const casaStark = new Casa("Stark", "El invierno se acerca");
@@ -16,6 +16,7 @@ const espadaLarga = new Arma("Espada reglamentaria de la caballería", "Espada L
 const ballesta = new Arma("Arma de asedio personal de Tyrion", "Ballesta", 75, "Proyectil");
 const filoRojo = new Arma("Espada con borde carmesí, muy afilada", "Filo Rojo", 88, "Espada");
 const lanzaDeCaza = new Arma("Lanza diseñada para la caza mayor", "Lanza de Caza", 60, "Lanza");
+const ArmaMataMuerto= new Arma("Mata muertos","Matanza",100,"Dios");
 
 // GUERREROS DE LA CASA STARK
 const jon = new Guerrero("Jon Snow", 25, true, casaStark, garra);
@@ -28,6 +29,8 @@ const jaime = new Guerrero("Jaime Lannister", 32, true, casaLannister, filoRojo)
 const cersei = new Guerrero("Cersei Lannister", 34, true, casaLannister, lanzaDeCaza);
 const tyrion = new Guerrero("Tyrion Lannister", 30, true, casaLannister, ballesta);
 const gregor = new Guerrero("Gregor Clegane", 38, true, casaLannister, hacha);
+const alberto = new Mago("Alberto el mago",40,true,casaLannister,ArmaMataMuerto,30,"Fuego");
+
 
 casaStark.meterMiembro(jon);
 casaStark.meterMiembro(arya);
@@ -38,7 +41,9 @@ casaLannister.meterMiembro(jaime);
 casaLannister.meterMiembro(cersei);
 casaLannister.meterMiembro(tyrion);
 casaLannister.meterMiembro(gregor);
-casaLannister.meterMiembro(gregor);
+casaLannister.meterMiembro(alberto);
+
+
 //Monstrar miembros
 console.log("Casa Stark: ");
 casaStark.visualizarMiembro();
