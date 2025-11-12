@@ -1,5 +1,5 @@
 <?php
-	define("SERVIDOR",'localhost');
+	define("SERVIDOR",'127.0.0.1:3307');
 	define("USUARIO",'root');
 	define("PASSWORD",'');
 	define("BBDD",'torneo_ajedrez');

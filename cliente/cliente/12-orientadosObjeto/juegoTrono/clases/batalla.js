@@ -1,11 +1,15 @@
 import { Guerrero } from "./personajesEspeciales/guerrero.js";
+import { NoMuerto } from "./personajesEspeciales/noMuerto.js";
+
 export class Batalla{
     #guerreroMuertos;
     #guerrerosSobrebientes;
+    #noMuertos;
 
     constructor(){
         this.#guerreroMuertos=[];
         this.#guerrerosSobrebientes=[];
+        this.#noMuertos=[];
     }
     
     iniciarBatalla(casaA,casaB){
@@ -76,5 +80,35 @@ export class Batalla{
         this.#guerrerosSobrebientes.forEach(element => {
             console.log("Guerrero "+element.nombrePersonaje+" ha sobrevivido");
         });
+    }
+
+    // Método para convertir los guerreros muertos en no-muertos
+    resucitarMuertosComoNoMuertos() {
+        console.log("\n=== RITUAL DE RESURRECCIÓN ===");
+        this.#guerreroMuertos.forEach(guerreroMuerto => {
+            const noMuerto = new NoMuerto(guerreroMuerto);
+            noMuerto.revivir();
+            this.#noMuertos.push(noMuerto);
+        });
+        console.log(`Se han creado ${this.#noMuertos.length} no-muertos`);
+        return this.#noMuertos;
+    }
+
+    // Método para obtener los no-muertos
+    obtenerNoMuertos() {
+        return this.#noMuertos;
+    }
+
+    // Método para mostrar información de los no-muertos
+    monstrarNoMuertos() {
+        console.log("\n=== NO-MUERTOS RESUCITADOS ===");
+        this.#noMuertos.forEach(noMuerto => {
+            noMuerto.mostrarCaracteristicas();
+        });
+    }
+
+    // Método para obtener muertos
+    obtenerMuertos() {
+        return this.#guerreroMuertos;
     }
 }

@@ -2,6 +2,9 @@
 /* Fuente de Google: Agbalumo */
 @import url('https://fonts.googleapis.com/css2?family=Agbalumo&display=swap');
 
+/* html{
+    width: 1300px;
+} */
 /* Estilos Generales y Contenedor Principal */
 body{
     background: rgb(234, 232, 243);
@@ -73,7 +76,7 @@ nav ul li a:hover {
 Ancho de contenido para #form (780px totales - 30px padding): 750px usables, pero necesitamos dejar un margen.
 */
 #form{
-    width: 54.61538461538461%; /*710*100/1300=54.61538461538461*/
+    width: 54.61538461538461%; /*750*100/1300=54.61538461538461*/
     padding: 2.112676056338028%; /*15*100/710=2.112676056338028*/
     background-color: rgb(240, 168, 168);
     float: left; /*lo pongo a la drc*/
@@ -174,6 +177,7 @@ input[type="submit"]:hover{
 
 
 /*Media query para 50% de resolucion */
+/*operacion 1300px / 2 = 650px*/
 @media (max-width: 650px) {
     body { 
         font-size: 18px; 
