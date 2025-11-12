@@ -7,6 +7,7 @@ export class JineteDeDragon extends Guerrero{
         super(nombrePersonaje,edad,live,casaPerteneciente,arma);
         if(!(dragon instanceof Dragon)){
             console.log("Error: El dragon debe ser una instancia de Dragon");
+            dragon=null;
         }else{
             this.dragon=dragon;
         }

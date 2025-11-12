@@ -1,4 +1,3 @@
-import { Personaje } from "./personaje.js";
 import { Guerrero } from "./personajesEspeciales/guerrero.js";
 
 export class Dragon{
@@ -14,8 +13,9 @@ export class Dragon{
         this.#nombre=nombre||"";
         this.#edad=Number(edad)||0;
         this.#tipo=tipo||"";
-        this.#vida=100;
+        this.#vida=1500;
         this.#fuerzaDeFuego=Number(fuerzaDeFuego)||50;
+        this.#jinete=null;
         this.#vivo=true;
     }
 
@@ -29,19 +29,23 @@ export class Dragon{
     }
 
     escupirFuego(obj){
-        if(!(obj instanceof Guerrero)){
-            console.log("Error: Solo se pueden atacar instancias de Guerrero");
+        if(!(obj instanceof Guerrero || obj instanceof Dragon)){
+            console.log("Error: Solo se pueden atacar instancias de Guerrero o Dragon");
         }else{
             if(obj.vivo==true){
-                if(obj.casaPerteneciente.nombreCasa==this.#jinete.casaPerteneciente.nombreCasa){
-                    console.log("Son de la misma casa no se pueden pegar");
-                }else{
-                    const dano = Math.floor(this.#fuerzaDeFuego * (0.5 + Math.random()));
-                    console.log(this.#nombre+" escupe fuego causando "+dano+" puntos de daño."+ " al guerrero: "+obj.nombrePersonaje);
-                    obj.recibirDano(dano);
-                    if(obj.vida<=0){
-                        console.log("El guerrero "+obj.nombrePersonaje +" ha sido derrotado.");
+                if(obj instanceof Dragon){
+                    if(obj.dragon==null){
+                        const dano = Math.floor(this.#fuerzaDeFuego * (0.5 + Math.random()));
+                        console.log(this.#nombre+" escupe fuego al dragón "+obj.nombre+" causando "+dano+" puntos de daño.");
+                        obj.recibirDano(dano);
+                        if(obj.vida<=0){
+                            console.log("El dragón "+obj.nombre+" ha sido derrotado.");
+                        }
+                    }else{
+                        console.log("No se puede atacar a un dragón que tiene jinete.");
                     }
+                }else{
+                    console.log("Debe ser un dragón para atacarlo con fuego.");
                 }
             }else{
                 console.log("Ese enemigo ya está muerto");
