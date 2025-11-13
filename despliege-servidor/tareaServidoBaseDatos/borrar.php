@@ -1,8 +1,8 @@
 <?php
     require_once 'boletin_Usuario.php';
     $boletinUsuario= new Boletin_Usuario();
-    
-    $boletinUsuario->borrarUsuario();
+    $usu=$_GET['idUsuario'];
+    $boletinUsuario->borrarUsuario($usu);
 
 ?>
 <!DOCTYPE html>

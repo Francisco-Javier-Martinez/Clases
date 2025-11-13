@@ -11,8 +11,9 @@
 
     $arrayAnimales = $animal->recogerAnimales(); //llamo a animales
 
-    $usu=$_POST['usarios'];
-    $arraiUsuario=$usuario->monstrarTodasCaracteristacasUsuarioModificar($usu);
+    //Recoger el id del usuario a modificar
+    $usu=$_GET['idUsuario'];
+    $arraiUsuario=$usuario->monstrarTodasCaracteristacasUsuario($usu);
 
 ?>
 <!DOCTYPE html>
@@ -26,21 +27,22 @@
 <body>
     <!--Cabecera -->
     <header>
-        <h1 id="titulo">MODIFICACIOn</h1>
+        <h1 id="titulo">MODIFICACION</h1>
     </header>
     <nav>
         <!--Menu -->
         <ul>
             <li><a href="#inicio" class="amenu">Inicio</a></li>
-            <li><a href="#formuIndice" class="amenu">Formulario</a></li>
-            <li><a href="ayudar.html" class="amenu">Como ayudar</a></li>
+            <li><a href=indexServidor.php  class="amenu">Formulario</a></li>
+            <li><a href="monstrarModificarBorrar.php" class="amenu">MODIFICAR/BORRAR</a></li>
+            <li><a href="sacarInner.php" class="amenu">Ver usuario/animales</a></li>
         </ul>
     </nav>
     <main>
         <!--formulario-->
         <div id="formu">
         <section id="formulario">
-            <h1  id="formuIndice" >Boletín de Noticias de Animales</h1>
+            <h1  id="formuIndice" >Modificaion de Noticias de Animales</h1>
             <form action="modificarFinal.php" method="post">
                 <!-- campo oculto para pasar el id del usuario -->
                 <input type="hidden" name="idUsuario" value="<?php echo $usu; ?>"/>
@@ -59,7 +61,9 @@
                 </label>
                 <!-- Sugurencias-->
                 <label>Sugerencia
-                    <input type="text" name="sugerencia" readonly/>
+                    <?php
+                        echo '<input type="text" name="sugerencia" value="'.$filaUsuario['sugerencias'].'" readonly/>';
+                    ?>
                 </label>
                 <!--Radio-->
                 <p>Idioma seleccionado:</p>

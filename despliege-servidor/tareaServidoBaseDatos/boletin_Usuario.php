@@ -62,8 +62,7 @@ class Boletin_Usuario extends Conectar{
 		}
 	}
 
-	public function borrarUsuario(){
-		$usu=$_POST['usarios'];
+	public function borrarUsuario($usu){
 		try{
 			$sql="DELETE from boletin_usuario WHERE idUsuario=$usu;";
 			if($this->conexion->query($sql)){
@@ -77,7 +76,7 @@ class Boletin_Usuario extends Conectar{
 		}
 	}
 	
-	public function monstrarTodasCaracteristacasUsuarioModificar($usu){
+	public function monstrarTodasCaracteristacasUsuario($usu){
 		try{
 			$sql="SELECT  boletin_usuario.idUsuario,nombreUsuario,correo,idioma,sugerencias,recomendaciones.nombre as 'nombreRecomendacion' , nombreAnimal
 			from boletin_usuario INNER JOIN recomendaciones on boletin_usuario.idRecomendacion=recomendaciones.idRecomendacion
