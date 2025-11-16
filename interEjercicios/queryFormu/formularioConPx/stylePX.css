@@ -1,0 +1,163 @@
+/*Fuente*/
+/* Fuente de Google:Agbalumo */
+@import url('https://fonts.googleapis.com/css2?family=Agbalumo&display=swap');
+
+/* Estilos Generales y Contenedor Principal */
+body{
+    background: rgb(234, 232, 243);
+    width: 1300px; /* Ancho total del contenedor*/
+    margin: auto;
+}
+
+nav {
+    background: rgb(60, 240, 204);
+    margin-bottom: 15px;
+}
+
+/* Centramos el contenido del ul */
+nav ul {
+    padding: 0px; /*le pongo 0 para quitarle el padding que sale por defecto*/
+    margin: 0px;
+}
+
+/*Una cja me ocupa 150px tengo 3 = 450px y tengo 1300px para usar
+aun me caben 5 mas ya que la 6 se supera dando 1350px*/
+nav ul li {
+    display: inline-block;
+    width: 150px;
+    text-align: center;
+}
+
+nav ul li a {
+    display: block;
+    text-decoration: none;
+    color: rgb(8, 8, 8);
+    padding: 20px 0px; 
+}
+nav ul li a:hover {
+    background-color: darkcyan;
+    box-shadow: 0px 0px 15px rgba(0, 0, 139, 0.8);
+}
+
+/* Estilos de la Cabecera/Título Principal */
+#titulo{
+    height: 250px;
+    /*poder poner una imagen de fondo sin que se repita y coga todo el ancho de la web*/
+    background-image: url("img/platita.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    /*..*/
+    color:rgb(255, 255, 255);
+    text-align: center;
+    padding-top:50px;
+    font-size: 50px;
+    text-shadow: 3px 3px 8px rgba(0,0,0,0.7), 0px 1px 0px #fff;
+    margin: 0px;
+}
+
+/*De mis 1300px usable decido coger 500px para el primer div de la drc*/
+/*500+20(padding)=520px ancho total que ocupa*/
+#lateral{
+    width: 500px;
+    background-color: blanchedalmond;
+    float: left; /*lo pongo a la drc*/
+    padding: 10px;
+    margin: auto;
+    height: 453.5px;
+    position: relative;
+}
+/*Quiero que el siguiente me ocupe todo lo demas
+entoneces 1300px-520px=780px-30px(padding)=750px*/
+#form{
+    width: 750px;
+    height: 443.5px; /* La primera caja tiene de altura 473.5px si yo tengo 15px de pading
+    por arriba y abajo se lo resto y son 443.5 para que tengan la misma altura*/
+    padding: 15px;
+    background-color: rgb(240, 168, 168);
+    float: left;/*lo pongo a la drc*/
+}
+
+/*Caja contenedora cual dentr de ella tendra los demas div*/
+#cajaContenedoraPrincipal{
+    background-color: rgb(154, 241, 194);
+    padding: 15px 0;
+    overflow: hidden;
+}
+
+
+
+/*Imagen*/
+/*Espacio usbale 500px-20px(padding)=480px*/
+/*Poner en el medio 480/2=240*/
+#animales{
+    width: 450px; 
+    border: 2px solid black; /*450+4=484px ocupa total ancho*/
+    border-radius: 10px; 
+    display: block; /*Le digo que va a ser bloque un elemento en bloque para que me pille el margin auto*/
+    margin: 0 auto;
+}
+
+/*Estilo del enlace del assaid*/
+#quieresSaber{
+    font-size: 1.7em; /*con referencia al padre*/
+    font-family: cursive;
+    color: red;
+    position: absolute;
+    bottom: 0px;
+}
+
+.aviso{
+    font-weight: bold;
+    color: red;
+}
+/*Estilos del formu*/
+/*Espacio usbale 500-15-15=470px */
+#cajaFormulario{
+    width: 500px;
+    background-color: rgb(197, 203, 207);
+    border-radius: 5px;
+    padding: 15px;
+    margin:  0px auto;
+    overflow: hidden;
+}
+
+label{
+    display: block;
+    margin: 10px 0px;
+    text-align: center;
+    font-family: "Agbalumo";
+}
+input,select{
+    display: block;
+    margin:  0px auto;
+}
+
+/*Para no escribir pegado a la caja*/
+input[type="text"]{
+    padding-left: 10px;
+    color: blue;/*Color azul solicitado*/
+}
+
+
+/*En la indicacion me dice que ocupe todo el ancho*/
+input[type="submit"]{
+    width: 470px;
+    height: 30px;
+    background-color: antiquewhite;
+}
+input[type="submit"]:hover{
+    background-color: red;
+    color: aliceblue;
+}
+/* Estilos del Pie de Página (Footer) */
+.piePagina{
+    width: 1300px; /*Le doy el mismo tamaño que el body*/
+    bottom: 0px; /*Lo fijo abajo*/
+    position: sticky; /*Para el footer uso posicion sticky */
+    background-color: black;
+    color: white;
+    text-align: center;
+    height: 50px;
+    padding-bottom: 40px;
+}
