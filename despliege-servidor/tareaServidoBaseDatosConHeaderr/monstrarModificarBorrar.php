@@ -18,9 +18,8 @@
             echo '<h1>Lista de usuarios</h1>';
             while($fila=$listaUsuarios->fetch_assoc()){
                 echo '<p>'.$fila['nombreUsuario'].'</p>';
-                echo '<a href="modificar.php?idUsuario='.$fila['idUsuario'].'">Modificar   </a>';
-                echo '<a href="confirmarBorrar.php?idUsuario='.$fila['idUsuario'].'">Borrar</a>';
-                echo'<br><br>';
+                echo '<a href="redireccion.php?idUsuario='.$fila['idUsuario'].'&tipo=modificar">Modificar     </a>';
+                echo '<a href="redireccion.php?idUsuario='.$fila['idUsuario'].'&tipo=borrar">Borrar</a>';
             }
         ?>
     </body>

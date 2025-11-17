@@ -1,0 +1,9 @@
+<?php
+    $idUsuario=$_GET['idUsuario'];
+    $tipo=$_GET['tipo'];
+    if($tipo=='modificar'){
+        header("Location:modificar.php?idUsuario=$idUsuario");
+    }elseif($tipo=='borrar'){
+        header("Location:confirmarBorrar.php?idUsuario=$idUsuario");
+    }
+?>
