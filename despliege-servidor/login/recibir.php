@@ -3,13 +3,14 @@
 
     $usuario=new Usuario();
     $resultado=$usuario->comprobarUsuario();
-
+    $mensaje="";
+    $mensaje1="";
     if($resultado!=false){
         $fila=$resultado->fetch_assoc();
-        echo '<h1>Bienvenido usuario: '.$fila['nombre'].'</h1>';
+        $mensaje= '<h1>Bienvenido usuario: '.$fila['nombre'].'</h1>';
     }else{
-        echo '<h1>Usuario o contraseña incorrectos</h1>';
-        echo '<h4>Se te redirigirá al formulario de login en 3 segundos</h4>';
+        $mensaje= '<h1>Usuario o contraseña incorrectos</h1>';
+        $mensaje1= '<h4>Se te redirigirá al formulario de login en 3 segundos</h4>';
         header("refresh:3;url=index.html");
     }
     
@@ -24,6 +25,13 @@
     <title>Inicio</title>
 </head>
 <body>
-    
+    <?php
+        if($mensaje1!=""){
+            echo $mensaje;
+            echo $mensaje1;
+        }else{
+            echo $mensaje;
+        }
+    ?>
 </body>
 </html>
