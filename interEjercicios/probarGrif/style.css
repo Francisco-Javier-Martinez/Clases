@@ -1,0 +1,36 @@
+
+body {
+    background-color: #c5b5b5;
+    width: 100%;/* Ancho fijo de 1300px */
+    margin: 0 auto;
+}
+
+#cuadricula {
+    display: grid; 
+    /* Crea 3 columnas de igual ancho (1fr) */
+    grid-template-columns: repeat(3, 1fr); 
+    
+    /* Crea 2 filas, cada una de 100px de alto */
+    grid-template-rows: repeat(2, 15.38vh); /*200*100/1300=15.38vh*/ 
+    /* Espacio entre las celdas */
+    gap: 1.53%;  /*espacio en % = 20*100/1300=1.53%*/
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 0.77%; /*10*100/1300=0.77%*/
+    border: 3px solid #007bff;
+}
+
+#cuadricula > div {
+    background-color: #89c0fa;
+    font-size: 1.5em;
+    font-weight: bold;
+    padding: 0.77%; /*10*100/1300=0.77%*/
+    border-radius: 5px;
+    text-align: center;
+}
+
+@media (max-width: 600px) {
+    #cuadricula {
+        background-color: rgb(219, 236, 194);    
+    }
+}
