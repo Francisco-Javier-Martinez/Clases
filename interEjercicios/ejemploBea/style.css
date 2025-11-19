@@ -1,0 +1,53 @@
+/* Estilos generales para mejor visualización */
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #f4f4f4;
+}
+
+.container > div {
+    /* Estilos de visualización para los items */
+    color: white;
+    text-align: center;
+    padding: 20px 10px;
+    font-size: 1.2em;
+    font-weight: bold;
+    border-radius: 8px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Colores de ejemplo */
+.item-a { background-color: #ff9933; } /* Naranja */
+.item-b { background-color: #33aaff; } /* Azul */
+.item-c { background-color: #ff5577; } /* Rojo/Rosa */
+.item-d { background-color: #66cc66; } /* Verde */
+
+/*Esto sirve para dar nombres*/
+.item-a {
+    grid-area: header;
+}
+.item-b {
+    grid-area: main;
+}
+.item-c {
+    grid-area: sidebar;
+}
+.item-d {
+    grid-area: footer;
+}
+
+/* 2. Definir el contenedor Grid y las áreas */
+.container {
+    display: grid;
+    /* 4 columnas de 50px de ancho */
+    grid-template-columns: 50px 50px 50px 50px;
+    /* 3 filas con altura automática */
+    grid-template-rows: auto;
+    gap: 10px; /* Espacio entre los ítems */
+    
+    /* Definición del layout de la cuadrícula con los nombres de área */
+    grid-template-areas:
+        "header header header header"  /* Fila 1: Todo el encabezado (4 columnas) */
+        "main main . sidebar"        /* Fila 2: Main (2 cols), vacío (1 col), Sidebar (1 col) */
+        "footer footer footer footer"; /* Fila 3: Todo el pie de página (4 columnas) */
+}
