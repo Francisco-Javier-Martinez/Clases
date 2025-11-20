@@ -6,7 +6,7 @@
     $usuarios = new Boletin_Usuario(); //Estancio el objeto Boletin_Usuario
     $animalUsuario = new Boletin_animales(); //Estancio el objeto Boletin_animal
     $mensaje = '';
-
+    $mensaje2 = [];
     if (empty($_POST['nombre'])) {
         $mensaje = '<h1>Se envió vacío el campo nombre</h1>';
         $error = true;

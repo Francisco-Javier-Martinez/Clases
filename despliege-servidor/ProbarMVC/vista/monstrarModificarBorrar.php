@@ -18,22 +18,14 @@
             </ul>
         </nav>
         <main>
-            <div id="formu">
-                <section id="formulario">
-                    <h1>Lista de usuarios</h1>
-                    <?php
-                        echo '<table border="1" cellpadding="10">';
-                        echo '<tr><th>Nombre</th><th>Acciones</th></tr>';
-                        while($fila=$listaUsuarios->fetch_assoc()){
-                            echo '<tr><td>'.$fila['nombreUsuario'].'</td><td>';
-                            echo '<a href="cModificar.php?idUsuario='.$fila['idUsuario'].'">Modificar</a> | ';
-                            echo '<a href="cConfirmarBorrar.php?idUsuario='.$fila['idUsuario'].'">Borrar</a>';
-                            echo '</td></tr>';
-                        }
-                        echo '</table>';
-                    ?>
-                </section>
-            </div>
+            <h1>Lista de usuarios</h1>
+            <?php
+                while($fila=$listaUsuarios->fetch_assoc()){
+                    echo '<p>'.$fila['nombreUsuario'].'</p>';
+                    echo '<a href="cModificar.php?idUsuario='.$fila['idUsuario'].'">Modificar  </a> ';
+                    echo '<a href="cConfirmarBorrar.php?idUsuario='.$fila['idUsuario'].'">Borrar</a>';
+                }
+            ?>
         </main>
     </body>
 </html>
