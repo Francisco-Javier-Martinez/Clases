@@ -8,7 +8,7 @@
 <body>
     <h1>
         <?php
-            echo $mensaje
+            echo $mensaje ;
         ?>
     </h1>
 </body>
