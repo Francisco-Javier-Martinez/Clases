@@ -15,6 +15,6 @@
             echo $mensaje ;
         ?>
     </h1>
-    <a href="<?php echo $enlace_volver ?>">Volver</a>
+    <a href="../index.php">Volver</a>
 </body>
 </html>

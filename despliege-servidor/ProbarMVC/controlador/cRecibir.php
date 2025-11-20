@@ -44,7 +44,6 @@
     }
 
     if ($error) {
-        $enlace_volver = '../index.php';
         require_once __DIR__ . '/../vista/error.php';
     }else{
 		$idUsu = $usuarios->meterUsuario();
@@ -55,7 +54,6 @@
 		require_once __DIR__ . '/../vista/existo.php';
 		}else{
 			$mensaje = '<h1>Ups algo fallo</h1>';
-			$enlace_volver = '../index.php';
 			require_once __DIR__ . '/../vista/error.php';
 		}
 	}
