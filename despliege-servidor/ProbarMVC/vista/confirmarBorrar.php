@@ -15,7 +15,7 @@
         echo '<h1>¿Estás seguro de que quieres borrar al usuario '.$filaUsuario['nombreUsuario'].' con este correo: '.$filaUsuario['correo'].'? </h1>';
         echo '<h4>No podrás revertir cambios al decir que si</h4>';
         echo '<a href="cBorrar.php?idUsuario='.$filaUsuario['idUsuario'].'">SI</a>   ';
-        echo '<a href="cMostrar.php">NO</a>';
     ?>
+    <a href="cMostrar.php">NO</a>
 </body>
 </html>
