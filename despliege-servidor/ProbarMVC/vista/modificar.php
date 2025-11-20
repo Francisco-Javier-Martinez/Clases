@@ -1,27 +1,9 @@
-<?php
-    require_once __DIR__ . '/../modelo/Mrecomendaciones.php';//He decido usar require_once ya que si el fichero ha sido ya incluido evita la inclusión del mismo fichero y asi no me da errores como me estaba dando en varios sitios
-    require_once __DIR__ . '/../modelo/Manimales.php';
-    require_once __DIR__ . '/../modelo/Mboletin_Usuario.php';
-
-    $recomendar = new Recomendaciones(); //instancio el objeto de Recomendaciones
-    $animal = new Animales(); //instanciar el objeto de animales
-    $usuario= new Boletin_Usuario();
-
-    $arrayRecomendados = $recomendar->recogerRecomendaciones(); //llamo a recogerRecomendaciones
-
-    $arrayAnimales = $animal->recogerAnimales(); //llamo a animales
-
-    //Recoger el id del usuario a modificar
-    $usu=$_GET['idUsuario'];
-    $arraiUsuario=$usuario->monstrarTodasCaracteristacasUsuario($usu);
-
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css"/>
+    <link rel="stylesheet" href="../style.css"/>
     <title>Configuracion</title>
 </head>
 <body>
@@ -33,9 +15,9 @@
         <!--Menu -->
         <ul>
             <li><a href="#inicio" class="amenu">Inicio</a></li>
-            <li><a href="index.php"  class="amenu">Formulario</a></li>
-            <li><a href="monstrarModificarBorrar.php" class="amenu">MODIFICAR/BORRAR</a></li>
-            <li><a href="sacarInner.php" class="amenu">Ver usuario/animales</a></li>
+            <li><a href="index.php?action=form"  class="amenu">Formulario</a></li>
+            <li><a href="index.php?action=list" class="amenu">MODIFICAR/BORRAR</a></li>
+            <li><a href="index.php?action=sacarInner" class="amenu">Ver usuario/animales</a></li>
         </ul>
     </nav>
     <main>
@@ -43,7 +25,7 @@
         <div id="formu">
         <section id="formulario">
             <h1  id="formuIndice" >Modificaion de Noticias de Animales</h1>
-            <form action="modificarFinal.php" method="post">
+            <form action="index.php?action=modificarFinal" method="post">
                 <!-- campo oculto para pasar el id del usuario -->
                 <input type="hidden" name="idUsuario" value="<?php echo $usu; ?>"/>
                 <!-- Text -->
