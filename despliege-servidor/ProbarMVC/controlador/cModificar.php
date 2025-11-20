@@ -1,5 +1,4 @@
 <?php
-// Controlador: Formulario de modificación
 require_once __DIR__ . '/../modelo/Mrecomendaciones.php';
 require_once __DIR__ . '/../modelo/Manimales.php';
 require_once __DIR__ . '/../modelo/Mboletin_Usuario.php';

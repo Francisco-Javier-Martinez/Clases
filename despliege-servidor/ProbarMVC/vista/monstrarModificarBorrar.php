@@ -21,7 +21,7 @@
             <h1>Lista de usuarios</h1>
             <?php
                 while($fila=$listaUsuarios->fetch_assoc()){
-                    echo '<p>'.$fila['nombreUsuario'].'</p>';
+                    echo '<p>'.$fila['nombreUsuario'].'   '.$fila['correo'].'</p>';
                     echo '<a href="cModificar.php?idUsuario='.$fila['idUsuario'].'">Modificar  </a> ';
                     echo '<a href="cConfirmarBorrar.php?idUsuario='.$fila['idUsuario'].'">Borrar</a>';
                 }

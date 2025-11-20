@@ -4,6 +4,6 @@
     $usu=$_GET['idUsuario'];
     $boletinUsuario->borrarUsuario($usu); 
 
-        require_once __DIR__ . '/../vista/borrar.php';
+    require_once __DIR__ . '/../vista/borrar.php';
 
 ?>

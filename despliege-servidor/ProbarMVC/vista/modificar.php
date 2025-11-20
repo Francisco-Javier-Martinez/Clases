@@ -90,7 +90,7 @@
                 <input class="botonesFormulario" type="reset" value="Resetar"/>
                 <input class="botonesFormulario" type="submit" value="Enviar"/>
             </form>
-            <img class="imagenesAnimales" src="img/losTres.png" alt="Los 3"/>
+            <img class="imagenesAnimales" src="../img/losTres.png" alt="Los 3"/>
         </section>
         </div>
     </main>

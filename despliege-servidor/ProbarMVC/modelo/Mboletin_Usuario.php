@@ -65,11 +65,6 @@ class Boletin_Usuario extends Conectar{
 	public function borrarUsuario($usu){
 		try{
 			$sql="DELETE from boletin_usuario WHERE idUsuario=$usu;";
-			if($this->conexion->query($sql)){
-				echo '<h1><a href="indexServidor.php">Usuario borrado correctamente</a><h1>';
-			}else{
-				echo '<h1><a href="indexServidor.php">Tuvimos unos problemas para borrar al usuario</a></h1>';
-			}
 		}catch(mysqli_sql_exception $e){
 			echo '<h1>Error:'.$e->getCode().'</h1>'; 
 			echo '<h1>Error:'.$e->getMessage().'</h1>';
@@ -125,12 +120,9 @@ class Boletin_Usuario extends Conectar{
 						$sqlAnimales="INSERT INTO boletin_animales (idUsuario,idAnimales) VALUES (".$usu.",".$animal.");";
 						$this->conexion->query($sqlAnimales);
 					}
-					echo '<h1><a href="indexServidor.php">Usuario modificado correctamente</a><h1>';
 				}else{
 					echo '<h1><a href="indexServidor.php">Usuario modificado pero tuvimos problemas al registro de animales</a><h1>';
 				}
-			}else{
-				echo '<h1><a href="indexServidor.php">Tuvimos unos problemas para modificar al usuario</a></h1>';
 			}
 		}catch(mysqli_sql_exception $e){
 			echo '<h1>Error:'.$e->getCode().'</h1>'; 

@@ -16,12 +16,12 @@
         ?>
     </h1>
     <?php
-        if (isset($mensaje2) && is_array($mensaje2)) {
+        if (isset($mensaje2)) {
             foreach ($mensaje2 as $msg) {
                 echo '<h4>'.$msg.'</h4>';
             }
         }
     ?>
-    <a href="<?php echo isset($enlace_volver) ? $enlace_volver : '../index.php'; ?>">Volver</a>
+    <a href="<?php echo $enlace_volver ?>">Volver</a>
 </body>
 </html>
