@@ -8,12 +8,12 @@
     $mensaje = '';
     $mensaje2 = [];
     if (empty($_POST['nombre'])) {
-        $mensaje = '<h1>Se envió vacío el campo nombre</h1>';
+        $mensaje2[] = '<h1>Se envió vacío el campo nombre</h1>';
         $error = true;
     }
 
     if (empty($_POST['correoElectronico'])) {
-        $mensaje = '<h1>Se envió vacío el campo correo electrónico</h1>';
+        $mensaje2[] = '<h1>Se envió vacío el campo correo electrónico</h1>';
         $error = true;
     }
     //Aqui voy a usar una variable porque la manejo mejor si esta vacio guardare el valor null si no el texto
@@ -24,22 +24,22 @@
     }
 
     if (!isset($_POST['idioma'])) {
-        $mensaje = '<h1>No ha seleccionado ningún idioma</h1>';
+        $mensaje2[] = '<h1>No ha seleccionado ningún idioma</h1>';
         $error = true;
     }
 
     if (!isset($_POST['animales']) || count($_POST['animales'])== 0) {
-        $mensaje = '<h1>No ha seleccionado ningún animal</h1>';
+        $mensaje2[] = '<h1>No ha seleccionado ningún animal</h1>';
         $error = true;
     }
 
     if (!isset($_POST['terminosCondicones'])) {
-        $mensaje = '<h1>No has aceptados los terminos</h1>';
+        $mensaje2[] = '<h1>No has aceptados los terminos</h1>';
         $error = true;
     }
 
     if (!isset($_POST['comoConocio'])) {
-        $mensaje = '<h1>No ha seleccionado ninguna recomendación</h1>';
+        $mensaje2[] = '<h1>No ha seleccionado ninguna recomendación</h1>';
         $error = true;
     }
 
@@ -52,8 +52,6 @@
 			foreach($_POST['animales'] as $valor){ //Realizo un foreach de los animales repitiendo la consulta por cada animal que haya recibido
 			$animalUsuario->meterAnimalUsuario($idUsu,$valor); //Llamo a meter animal
 		}
-		$mensaje = '<h1>¡Todo correcto!</h1>';
-		$enlace_volver = '../index.php';
 		require_once __DIR__ . '/../vista/existo.php';
 		}else{
 			$mensaje = '<h1>Ups algo fallo</h1>';

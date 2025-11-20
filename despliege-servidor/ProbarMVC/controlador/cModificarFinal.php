@@ -2,7 +2,7 @@
     require_once __DIR__ . '/../modelo/Mboletin_Usuario.php';
     $usuario = new Boletin_Usuario();
     $mensaje = '';
-    $enlace_volver = 'monstrarModificarBorrar.php';
+    $enlace_volver = 'cMostrar.php';
     
     if(!isset($_POST['idioma'])){
         $mensaje = '<h1>Debe seleccionar un idioma</h1>';

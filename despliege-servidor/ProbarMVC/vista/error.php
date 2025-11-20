@@ -15,6 +15,13 @@
             echo $mensaje ;
         ?>
     </h1>
-    <a href="<?php $enlace_volver ?>">Volver</a>
+    <?php
+        if (isset($mensaje2) && is_array($mensaje2)) {
+            foreach ($mensaje2 as $msg) {
+                echo '<h4>'.$msg.'</h4>';
+            }
+        }
+    ?>
+    <a href="<?php echo isset($enlace_volver) ? $enlace_volver : '../index.php'; ?>">Volver</a>
 </body>
 </html>
