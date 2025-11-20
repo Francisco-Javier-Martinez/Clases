@@ -15,8 +15,8 @@
         <ul>
             <li><a href="#inicio" class="amenu">Inicio</a></li>
             <li><a href="index.php" class="amenu">Formulario</a></li>
-            <li><a href="/controlador/" class="amenu">MODIFICAR/BORRAR</a></li>
-            <li><a href="sacarInner.php" class="amenu">Ver usuario/animales</a></li>
+            <li><a href="controlador/cMostrar.php" class="amenu">MODIFICAR/BORRAR</a></li>
+            <li><a href="controlador/CSacarInner.php" class="amenu">Ver usuario/animales</a></li>
         </ul>
     </nav>
     <main>

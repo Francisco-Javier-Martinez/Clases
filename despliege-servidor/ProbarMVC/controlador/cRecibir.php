@@ -44,7 +44,7 @@
     }
 
     if ($error) {
-        $enlace_volver = 'cFormulario.php';
+        $enlace_volver = '../index.php';
         require_once __DIR__ . '/../vista/error.php';
     }else{
 		$idUsu = $usuarios->meterUsuario();
@@ -53,11 +53,11 @@
 			$animalUsuario->meterAnimalUsuario($idUsu,$valor); //Llamo a meter animal
 		}
 		$mensaje = '<h1>¡Todo correcto!</h1>';
-		$enlace_volver = 'cFormulario.php';
-		require_once __DIR__ . '/../vista/exito.php';
+		$enlace_volver = '../index.php';
+		require_once __DIR__ . '/../vista/existo.php';
 		}else{
 			$mensaje = '<h1>Ups algo fallo</h1>';
-			$enlace_volver = 'cFormulario.php';
+			$enlace_volver = '../index.php';
 			require_once __DIR__ . '/../vista/error.php';
 		}
 	}
