@@ -1,6 +1,6 @@
 <?php
     /*pasar por un a los atributos del usuario y mostrarlos en un formulario para que se puedan modificar*/
-    require_once 'boletin_Usuario.php';
+    require_once __DIR__ . '/../modelo/Mboletin_Usuario.php';
     $usaurios= new Boletin_Usuario();
     $listaUsuarios = $usaurios->sacarUsuarios();
 

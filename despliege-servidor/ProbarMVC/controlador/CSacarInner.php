@@ -1,5 +1,5 @@
 <?php
-	require_once 'boletin_Animales.php';
+	require_once __DIR__ . '/../modelo/Mboletin_Animales.php';
 	
 	$animalesUsuarios= new Boletin_animales();
 	

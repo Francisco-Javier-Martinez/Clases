@@ -1,5 +1,5 @@
 <?php
-require_once 'conectar.php';//He decido usar require_once ya que si el fichero ha sido ya incluido evita la inclusión del mismo fichero y asi no me da errores como me estaba dando en varios sitios
+require_once __DIR__ . '/conectar.php';//He decido usar require_once ya que si el fichero ha sido ya incluido evita la inclusión del mismo fichero y asi no me da errores como me estaba dando en varios sitios
 
 class Boletin_Usuario extends Conectar{
     // Inserta un usuario y devuelve el id insertado

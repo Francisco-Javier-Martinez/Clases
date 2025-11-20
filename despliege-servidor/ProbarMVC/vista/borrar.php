@@ -1,5 +1,5 @@
 <?php
-    require_once 'boletin_Usuario.php';
+    require_once __DIR__ . '/../modelo/Mboletin_Usuario.php';
     $boletinUsuario= new Boletin_Usuario();
     $usu=$_GET['idUsuario'];
     $boletinUsuario->borrarUsuario($usu);

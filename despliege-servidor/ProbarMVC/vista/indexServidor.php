@@ -14,9 +14,9 @@
         <!--Menu -->
         <ul>
             <li><a href="#inicio" class="amenu">Inicio</a></li>
-            <li><a href=indexServidor.php class="amenu">Formulario</a></li>
+              <li><a href="index.php" class="amenu">Formulario</a></li>
             <li><a href="monstrarModificarBorrar.php" class="amenu">MODIFICAR/BORRAR</a></li>
-            <li><a href="sacarInner.php" class="amenu">Ver usuario/animales</a></li>
+              <li><a href="sacarInner.php" class="amenu">Ver usuario/animales</a></li>
         </ul>
     </nav>
     <main>
