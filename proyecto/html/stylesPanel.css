@@ -1,0 +1,148 @@
+/* Titulos */
+@import url('https://fonts.googleapis.com/css2?family=Bitcount+Grid+Single:wght@100..900&family=Permanent+Marker&display=swap');
+
+/* Parrafos y titulos secundarios */
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Narrow:ital,wght@0,400..700;1,400..700&display=swap');
+
+/* Botones y formularios */
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Narrow:ital,wght@0,400..700;1,400..700&family=Bitcount+Grid+Single:wght@100..900&family=News+Cycle:wght@400;700&family=Permanent+Marker&display=swap');
+
+:root{
+    --color-fondo: linear-gradient(to bottom right, #000000, #2F0B4A);
+    --color-secundario: #2F0B4A;
+    --color-boton: #7943A4;
+}
+
+body{
+    width: 100%;/*1512px*/
+    min-height: 100vh;
+    background: var(--color-fondo);
+    color: white;
+    margin: 0 auto;
+}
+
+/* Imágenes */
+img {
+    width: auto;
+    height:5.95vh;/*90*100/1512px=5,95*/
+}
+
+/* Header */
+header {
+    position: relative;/*El header lo voy hacer relativo para poner el h1 siempre en el medio*/
+    display: flex;
+    align-items: center;
+    padding: 0.66%; /*10*100/1512px=0,66*/
+    background-color: rgb(10, 8, 82);
+}
+
+/* usables 1512-10-10= 1.492*/
+header h1 {
+    position: absolute;
+    left: 49.33%;/*1.992/2=746*100/1492= 49,33 */
+    margin: 0;
+    font-family: "Bitcount Grid Single"; /*Titul*/
+    font-size: 1.2em;
+}
+/*Menu de navegacion*/
+nav{
+    background-color: rgb(10, 8, 82);
+}
+
+nav ul{
+    list-style: none;
+    display: flex;
+    padding: 0;
+    margin: 0;
+}
+
+nav li{
+    flex-basis: 16.53%; /*250*100/1512=16,53*/
+    flex-grow: 1;      /* Para que no crezca más allá de 16.53% */
+    flex-shrink: 1;    /* Para que no se encoja si hay poco espacio */
+}
+nav ul li a{
+    text-decoration: none;
+    text-align: center;
+    color: white; 
+    font-size: 1.5em;
+    display: block;
+    white-space: nowrap;
+    /*Tenia problemas cuando se bajabaº las letras se me iba la altura y los botones quedaban feos
+    asi que busque y encontre el white-space que sirve para que nunca debe crear un salto de línea
+    y por eso esto esta ahi*/
+}
+nav a:hover{ 
+    background-color: #3b5f77;
+    color: white;
+}
+
+main h1{
+    font-family: "Bitcount Grid Single"; /*Titul*/
+    text-align: center;
+}
+/*Tarjetas*/
+
+#tarjetas{
+    display: grid;
+    /*250*100/412=17.70%*/
+    grid-template-columns: 17.70% 17.70% 17.70% 17.70% 17.70%;
+    /*El gap en total si quiero va a ocupar 20 por lado (20*5)-1512=1.412*/
+    /*una caja en total es 250+20=270px ancho total
+    250*5=1.250 de los 412 esto nos dice que en una sola linea
+    podremos tener 5 tajetas la 6 ira abajo lo maquetare con grid*/
+    gap: 3.30%;/*50*100/1512=3,30*/
+    padding: 1.32% 0;/*20*100/1512=1,32*/
+}
+.encabezadoTarjeta{
+    display: flex;
+    justify-content: space-between;
+}
+/*250+20=270 total*/
+.contenedorEtiqueta{
+    margin: 0 20px;
+    padding:0 10px;
+    width: 250px;
+    background-color: #2F0B4A;
+    border-radius: 10px;
+}
+.contenedorEtiqueta:hover{
+    background-color: #391a50;
+}
+.estadoJuego{
+    background-color: rgb(134, 193, 241);
+    width: 100px;
+    height: 30px;
+    text-align: center;
+    border-radius: 10px;
+    font-family: "Archivo Narrow", sans-serif;
+    margin: 5px;
+    padding: 5px 0;
+}
+
+.contenedorTemas{
+    padding: 15px 0;
+    display: grid;
+    grid-template-columns: 100px 100px;
+    gap:50px;
+}
+
+.contenedorTemas>div{
+    text-align: center;
+    border-radius: 15px;
+}
+
+.contenedorTemas>div:nth-child(even){
+    background-color: royalblue;
+}
+.contenedorTemas>div:nth-child(odd){
+    background-color: rgb(240, 129, 221);
+}
+
+footer{
+    background-color: #000000;
+    margin-top:1.32%;/*20*100/1512= 1,32*/
+    padding: 1.32%; /*20*100/1512= 1,32*/
+    text-align: center;
+    font-size: 1.5em;
+}
