@@ -15,7 +15,7 @@
 }
 
 body{
-    width: 100%; /*1512 es el 100%*/
+    width: 1512px; /*1512 es el 100%*/
     min-height: 100vh;
     font-size: 16px; /* Base para em */
     background: var(--color-fondo);
