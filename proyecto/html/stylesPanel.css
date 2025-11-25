@@ -40,23 +40,25 @@ body{
 
 /* Imágenes */
 img {
-    width: 83.92px;
+    width: 5.55%; /*83.92*100/1512=5,55*/
 }
 
 /* Header */
 header {
+    width: 98.67%;/*1492*100/1512=98,67*/
     grid-area: Encabezado;
     position: relative;/*Aqui uso relativo para poder centrar el h1 con
     posicion absoluta en el medio a mi gusto*/
     display: flex;
     align-items: center;
-    padding: 10px;
+    padding: 0.66%; /*10*100/1512=0,66*/
     background-color: rgb(10, 8, 82);
 }
 /*218.89 es lo que ocupa de ancho el h1*/
 header h1 {
     position: absolute;
-    left: 636.55px; /*los 1512-20(paddig) = 1492/2=746
+    left:43.22%; /*636.55*100/1512=43,22*/
+    /*los 1512-20(paddig) = 1492/2=746
     pero como el h1 ocupa 218.89 de ancho realmente
     para que quede centrado le resto la mitad 109.44
     operacionalmente 746-109.44=636.55px*/
@@ -83,7 +85,9 @@ nav ul{
 nav li{
     /*he decido usar 250px si yo no usase el flex-grow y flex-shrink
     solo me cabería 6 elementos li en el nav 250*6=1500px uno mas y me pasaria*/
-    flex-basis: 250px; /*el flex basis es el width*/
+    flex-basis: 16.53%; 
+    /*250*100/1512=16,53*/
+    /*el flex basis es el width*/
     flex-grow: 1;
     flex-shrink: 1;
 }
@@ -115,14 +119,14 @@ main h1{
 si pusiera una 7 se saldria*/
 #tarjetas {
     display: grid;
-    grid-template-columns: repeat(6, 220px); 
-    gap: 30px;
+    grid-template-columns: repeat(6, 13.22%);  /*220*100/1512=13,22*/
+    gap: 1.98%; /*30*100/1512=1,98*/
 }
 
 /* Contenedor de la Tarjeta el ancho total es 220px +40 de padding=260px*/
 .contenedorEtiqueta {
     margin: 0; 
-    padding: 20px; /* 8% de 220px ≈ 18px */
+    padding: 1.32%; /*20*100/1512=1,32*/
     background-color: #2F0B4A;
     border-radius: 10px;
 }

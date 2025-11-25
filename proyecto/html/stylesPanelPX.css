@@ -53,7 +53,7 @@ header {
     padding: 10px;
     background-color: rgb(10, 8, 82);
 }
-/*218.89 es lo que ocupa de ancho el h1*/
+/*218.89 es lo que ocupa de ancho el h1 le tuve que dar al f12 para verlo*/
 header h1 {
     position: absolute;
     left: 636.55px; /*los 1512-20(paddig) = 1492/2=746
@@ -122,7 +122,7 @@ si pusiera una 7 se saldria*/
 /* Contenedor de la Tarjeta el ancho total es 220px +40 de padding=260px*/
 .contenedorEtiqueta {
     margin: 0; 
-    padding: 20px; /* 8% de 220px ≈ 18px */
+    padding: 20px;
     background-color: #2F0B4A;
     border-radius: 10px;
 }
