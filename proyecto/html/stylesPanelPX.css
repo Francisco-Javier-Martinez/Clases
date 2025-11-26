@@ -130,12 +130,15 @@ footer{
 /* Tarjetas */
 #tarjetas {
     display: grid;
-    grid-template-columns: repeat(6, 226px);
+    grid-template-columns: repeat(6, 226px);/* 226 porque 6*226=1356 + 5*30(gap)=1506px asi que caben
+    esto sera el total pero usables seran 226-40(padding)=186px*/
     gap: 30px;
 }
 
-/* Contenedor de la Tarjeta: 226px de base */
+/* Contenedor de la Tarjeta: 226px de base
+pero usable 226-40(padding)=186px*/
 .contenedorEtiqueta{
+    width: 186px;
     margin: 0; 
     padding: 20px;
     background-color: #2F0B4A;
@@ -160,7 +163,7 @@ footer{
 .estadoJuego {
     float: right;
     background-color: rgb(134, 193, 241);
-    width: 100px; /*ancho que selecione teniendo encuneta el h3*/
+    width: 100px; /*ancho que selecione teniendo encuneta el hs3*/
     height: 30px;
     text-align: center;
     border-radius: 10px;
@@ -169,14 +172,13 @@ footer{
     padding: 5px 0;
 }
 
-/* tengo 226px para usar */
+/* tengo 226px-40(padding)=186 usables para usar */
 .contenedorTemas{
     clear: both;
     padding: 15px 0; 
     display: grid;
-    /*decido poner dos columnas de 85px cada una (85*2=170)
-    y un gap de 20px (170+20=190) me sobran 36px*/
-    grid-template-columns: 85px 85px; 
+    /* 186-208(gap)=166/2=83px */
+    grid-template-columns: 83px 83px;
     gap: 20px; 
 }
 

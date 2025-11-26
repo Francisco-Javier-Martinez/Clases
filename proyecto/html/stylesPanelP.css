@@ -32,7 +32,7 @@ body{
     /*Maquetar con grid*/
     display: grid;  
     /*grid template de 4 filas y 1 columna*/
-    grid-template-columns: 100% 100% 100% 100%;
+    grid-template-columns: 100%;
     grid-template-rows: auto;
     grid-template-areas: 
         "Encabezado"
@@ -138,14 +138,18 @@ footer{
 /*226*6=1356px+30px*5(gap)=150px esto es 1506px total cabe en 1512px me sobran unos 6px*/
 #tarjetas {
     display: grid;
+    /* 226 porque 6*226=1356 + 5*30(gap)=1506px asi que caben
+    esto sera el total pero usables seran 226-40(padding)=186px*/
     grid-template-columns: repeat(6, 15%);  /* 226*100/1512 = 14.94%  voy a redondear a 15 por los 6 que me sobraron*/
     gap: 1.98%; /* 30*100/1512 = 1.98% */
 }
 
-/* Contenedor de la Tarjeta: 226px de base */
+
+/* Contenedor de la Tarjeta: 226px total pero usabes 226-40(padding)=186px*/
 .contenedorEtiqueta {
+    width: 82.3%; /*186*100/226=82.3%*/
     margin: 0; 
-    padding: 8.84%; /* 20*100/226 = 8.84% */
+    padding: 8.84%;/*20*100/226=8.84%*/
     background-color: #2F0B4A;
     border-radius: 10px;
     &:hover{
@@ -173,16 +177,15 @@ footer{
 }
 
 
-/* tengo 226px para usar */
+/* tengo 226px-40(padding)=186 usables para usar para pasar las cajas
+de temas a  % debo usar 186px como base de calculo*/
 .contenedorTemas{
     clear: both;
-    padding: 6.63% 0; /* 15*100/226 = 6.63% */
-    display: grid;/*decido poner dos columnas de 85px cada una (85*2=170)
-    y un gap de 20px (170+20=190) me sobran 30px*/
-    /*170= 85*100/226 = 37.61% */
-    grid-template-columns: 37.61% 37.61%;
-    /* 20*100/226 = 8.84% */
-    gap: 8.84%;
+    padding: 6.64% 0; /*15*100/226=6.64% en este uso 226 porque el padding es externo a las cajas de tema*/
+    display: grid;
+    /* 186-208(gap)=166/2=83px */
+    grid-template-columns: 44.62% 44.62%; /*83*100/186=44.62%*/
+    gap: 10.75%; /*20*100/186=10.75% */
 }
 
 
