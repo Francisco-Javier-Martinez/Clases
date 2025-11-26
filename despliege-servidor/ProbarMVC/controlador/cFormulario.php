@@ -1,4 +1,5 @@
 <?php
+    /*El __DIR__ obtiene la ruta completa al directorio actual*/
     require_once __DIR__ . '/../modelo/Mrecomendaciones.php';//He decido usar require_once ya que si el fichero ha sido ya incluido evita la inclusión del mismo fichero y asi no me da errores como me estaba dando en varios sitios
     require_once __DIR__ . '/../modelo/Manimales.php';
 
