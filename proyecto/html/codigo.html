@@ -23,14 +23,13 @@
         </ul>
     </nav>
     <main>
-        <h1>Tu cuenta</h1>
+        <h1>Recuperar contraseña</h1>
+        <p id="infoCodigo">Introduce el codigo que te ha llegado al correo</p>
         <section>
-            <form action="" method="post" id="formulario">
-                <label for="nombre">NOMBRE DE USUARIO</label>
-                <input type="text" id="nombre" name="nombre" placeholder="javierAdmin" readonly>
-                <label for="correo">CORREO</label>
-                <input type="email" id="correo" name="correo" placeholder="javiAdmin@gmail.com" readonly>
-                <a href="codigo.html">¿Has olvidado tu contraseña?</a>
+            <form action="modificarContraseña.html" method="post" id="formulario">
+                <label for="codigo">Codigo</label>
+                <input type="text" id="codigo" name="codigo" placeholder="12414">
+                <input type="submit" value="Enviar codigo">
             </form>
         </section>
     </main>

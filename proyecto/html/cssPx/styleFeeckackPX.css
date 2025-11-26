@@ -16,9 +16,9 @@
 
 /* Estilos Generales */
 body {
-    width: 100%; /*820px*/
+    width: 820px; /*820px*/
     height: auto;
-    margin: 0;
+    margin: auto;
     background: var(--color-fondo); 
     color: white;
     background-repeat: no-repeat;
@@ -32,7 +32,7 @@ body {
 /* Imágenes */
 img {
     width: auto;
-    height:7.31vh;/*60*100/820=7,31*/
+    height: 60px; /*60*100/820=7,31*/
 }
 
 /* Header */
@@ -40,7 +40,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 2.43%; /*20*100/8202.43%*/
+    padding: 20px; /*20*100/8202.43%*/
 }
 
 /* Contenedor perfil */
@@ -49,7 +49,7 @@ header div {
     no tengo que poner nada si no usase el flex se podria usar display inline block en 
     los dos elementos*/
     align-items: center;
-    gap: 1.21%;/*10*100/820=1.21%*/
+    gap: 10px;/*10*100/820=1.21%*/
 }
 
 header p {
@@ -65,34 +65,34 @@ h1, h2 {
 }
 /*Caja de falso o correcto*/
 #correctoFalso{
-    width: 60.98%; /*500*100/820=60.98%*/
+    width: 500px; /*500*100/820=60.98%*/
     background-color: #2E8B57;
-    padding:2.43%;/*20*100/820=2,43*/
+    padding: 20px;/*20*100/820=2,43*/
     border-radius: 10px;
     box-shadow: 3px 5px #2F0B4A;
-    margin: 2.43% auto;/*20*100/820=2,43*/
+    margin: 20px auto;/*20*100/820=2,43*/
 }
 /*Caja de explicacion*/
 #porquePregunta{
-    width: 60.98%; /*500*100/820=60.98%*/
+    width: 500px; /*500*100/820=60.98%*/
     margin: 0 auto;
     background-color: rgb(28, 80, 156);
-    padding:2.43%;/*20*100/820=2,43*/
+    padding: 20px;/*20*100/820=2,43*/
     border-radius: 10px;
     box-shadow: 3px 5px #2F0B4A;
 }
 
 /* Botones y enlaces */
 main a{
-    width: 63.41%; /*520*100/820=63.41%*/
+    width: 520px; /*520*100/820=63.41%*/
     display: block;
-    padding: 1.21%; /*10*100/820=1,21*/
+    padding: 10px; /*10*100/820=1,21*/
     background-color: rgb(57, 122, 243);
     text-align: center;
     text-decoration: none;
     color: #000000;
     font-size: 2em;
-    margin: 2.43% auto;/*20*100/820=2,43*/
+    margin: 20px auto;/*20*100/820=2,43*/
     /* Fuente para botones y formularios */
     font-family: 'News Cycle', sans-serif;
 }
