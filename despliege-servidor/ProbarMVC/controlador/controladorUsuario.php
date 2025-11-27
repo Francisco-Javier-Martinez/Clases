@@ -19,18 +19,23 @@ class ControladorUsuario{
         }
     public function formularioRegistro(){
         $arrayRecomendados=$this->recomendacionesModelo->recogerRecomendaciones();
+        //Pregunto si lo que viene del metodo es un string porque si lo es
+        //Significa que lo que me ha llegado es un mensaje de error del modelo asi que
+        //llamo a la vista de erro y muesntro el mensaje con el enlace para ir patras
         if(is_string($arrayRecomendados)){
             $mensaje = $arrayRecomendados;
             $enlace_volver = 'index.php?accion=formulario';
             require_once __DIR__ . '/../vista/error.php';
-            return;
         }
         $arrayAnimales=$this->animalesModelo->recogerAnimales();
+        //Pregunto si lo que viene del metodo es un string porque si lo es
+        //Significa que lo que me ha llegado es un mensaje de error del modelo asi que
+        //llamo a la vista de erro y muesntro el mensaje con el enlace para ir patras
+        // asi todo rato en los deams metodos
         if(is_string($arrayAnimales)){
             $mensaje = $arrayAnimales;
             $enlace_volver = 'index.php?accion=formulario';
             require_once __DIR__ . '/../vista/error.php';
-            return;
         }
         require_once __DIR__ . '/../vista/indexServidor.php'; //incluyo la vista
     }
@@ -41,7 +46,6 @@ class ControladorUsuario{
             $mensaje = $arrayAnimalesUsuario;
             $enlace_volver = 'index.php?accion=sacarInner';
             require_once __DIR__ . '/../vista/error.php';
-            return;
         }
         // Mostrar la vista
         require_once __DIR__ . '/../vista/sacarInner.php';
@@ -52,7 +56,6 @@ class ControladorUsuario{
             $mensaje = $listaUsuarios;
             $enlace_volver = 'index.php?accion=formulario';
             require_once __DIR__ . '/../vista/error.php';
-            return;
         }
         require_once __DIR__ . '/../vista/monstrarModificarBorrar.php';
     }
@@ -76,7 +79,6 @@ class ControladorUsuario{
             $mensaje = $resultado;
             $enlace_volver = 'index.php?accion=listar';
             require_once __DIR__ . '/../vista/error.php';
-            return;
         }
         require_once __DIR__ . '/../vista/borrar.php'; 
     }
@@ -92,7 +94,6 @@ class ControladorUsuario{
             if(is_string($resultado)){
                 $mensaje = $resultado;
                 require_once __DIR__ . '/../vista/error.php';
-                return;
             }
             $mensaje = '<h1>¡Usuario modificado correctamente!</h1>';
             require_once __DIR__ . '/../vista/existo.php';
