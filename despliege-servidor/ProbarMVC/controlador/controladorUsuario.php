@@ -17,7 +17,8 @@ class ControladorUsuario{
         $this->recomendacionesModelo=new Recomendaciones();
         $this->boletinAnimalesModelo=new Boletin_animales();
     }
-        //Este lo he creado para poderme moverme entre vistas 
+        //Este metodo lo he creado para poderme moverme entre vistas porque si no 
+        //no podia de otra forma y habria tenido que sacar mis controladores afuera como antes lo tenia
     public function ejecutar(){
         $accion = 'formulario'; //por defecto llevare siempre a mi pagina principal que es el formulario para esta aplicaicon
         //Pero si accion que es mi variable que se envia por url tiene algo significa que he de cargar otra vista prra llamar al modelo que necesite esa vista
@@ -59,8 +60,8 @@ class ControladorUsuario{
         //Significa que lo que me ha llegado es un mensaje de error del modelo asi que
         //llamo a la vista de erro y muesntro el mensaje con el enlace para ir patras
         if(is_string($arrayRecomendados)){
-            $mensaje = $arrayRecomendados;
-            $enlace_volver = 'index.php?accion=formulario';
+            $mensaje=$arrayRecomendados;
+            $enlace_volver='index.php?accion=formulario';
             require_once __DIR__ . '/../vista/error.php';
         }
         $arrayAnimales=$this->animalesModelo->recogerAnimales();
@@ -69,8 +70,8 @@ class ControladorUsuario{
         //llamo a la vista de erro y muesntro el mensaje con el enlace para ir patras
         // asi todo rato en los deams
         if(is_string($arrayAnimales)){
-            $mensaje = $arrayAnimales;
-            $enlace_volver = 'index.php?accion=formulario';
+            $mensaje=$arrayAnimales;
+            $enlace_volver='index.php?accion=formulario';
             require_once __DIR__ . '/../vista/error.php';
         }
         require_once __DIR__ . '/../vista/indexServidor.php';
@@ -79,8 +80,8 @@ class ControladorUsuario{
         // Usamos la instancia creada en el constructor
         $arrayAnimalesUsuario=$this->boletinAnimalesModelo->sacarUsuarioAnimal();
         if(is_string($arrayAnimalesUsuario)){
-            $mensaje = $arrayAnimalesUsuario;
-            $enlace_volver = 'index.php?accion=sacarInner';
+            $mensaje=$arrayAnimalesUsuario;
+            $enlace_volver='index.php?accion=sacarInner';
             require_once __DIR__ . '/../vista/error.php';
         }
         // Mostrar la vista
@@ -89,8 +90,8 @@ class ControladorUsuario{
     public function monstrarUsuarioModificarBorrar(){
         $listaUsuarios=$this->usuarioModelo->sacarUsuarios();
         if(is_string($listaUsuarios)){
-            $mensaje = $listaUsuarios;
-            $enlace_volver = 'index.php?accion=formulario';
+            $mensaje=$listaUsuarios;
+            $enlace_volver='index.php?accion=formulario';
             require_once __DIR__ . '/../vista/error.php';
         }
         require_once __DIR__ . '/../vista/monstrarModificarBorrar.php';
@@ -112,8 +113,8 @@ class ControladorUsuario{
         $usu=$_GET['idUsuario'];
         $resultado = $this->usuarioModelo->borrarUsuario($usu);
         if(is_string($resultado)){
-            $mensaje = $resultado;
-            $enlace_volver = 'index.php?accion=listar';
+            $mensaje=$resultado;
+            $enlace_volver='index.php?accion=listar';
             require_once __DIR__ . '/../vista/error.php';
         }
         require_once __DIR__ . '/../vista/borrar.php'; 
@@ -125,13 +126,13 @@ class ControladorUsuario{
             $mensaje = '<h1>Debe seleccionar un idioma y al menos un animal</h1>';
             require_once __DIR__ . '/../vista/error.php';
         }else{
-            $usu = $_POST['idUsuario'];
-            $resultado = $this->usuarioModelo->modificarUsuario($usu);
+            $usu=$_POST['idUsuario'];
+            $resultado=$this->usuarioModelo->modificarUsuario($usu);
             if(is_string($resultado)){
                 $mensaje = $resultado;
                 require_once __DIR__ . '/../vista/error.php';
             }
-            $mensaje = '<h1>¡Usuario modificado correctamente!</h1>';
+            $mensaje='<h1>¡Usuario modificado correctamente!</h1>';
             require_once __DIR__ . '/../vista/existo.php';
         }
     }

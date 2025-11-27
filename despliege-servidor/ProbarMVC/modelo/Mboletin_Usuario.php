@@ -36,7 +36,7 @@ class Boletin_Usuario extends Conectar{
 		}catch(mysqli_sql_exception $e){
 			switch ($e->getCode()) { 
 				case 1062:
-					return '<h1>Correo duplicado</h1>';
+					return '<h1>Correo duplicado</h1>'; ///devuelvo el mensaje cual quiero monstrar 
 				default:
 					return '<h1>ERROR: ' . $e->getMessage() . '</h1>';
 			}
@@ -50,7 +50,7 @@ class Boletin_Usuario extends Conectar{
 			if($usuarios->num_rows>0){
 				return $usuarios;
 			}else{
-				return '<h1>No hay registro de usuario disponibles</h1>';
+				return '<h1>No hay registro de usuario disponibles</h1>'; ///devuelvo el mensaje cual quiero monstrar 
 			}
 
 		}catch(mysqli_sql_exception $e){
@@ -65,7 +65,7 @@ class Boletin_Usuario extends Conectar{
 			if($this->conexion->affected_rows>0){
 				return true;
 			}
-			return '<h1>No se pudo borrar el usuario</h1>';
+			return '<h1>No se pudo borrar el usuario</h1>'; ///devuelvo el mensaje cual quiero monstrar 
 		}catch(mysqli_sql_exception $e){
 			return '<h1>Error:'.$e->getCode().' - '.$e->getMessage().'</h1>';
 		}
@@ -82,7 +82,7 @@ class Boletin_Usuario extends Conectar{
 		if($usuarios->num_rows>0){
 			return $usuarios;
 		}else{
-			return '<h1>Tuvimos un fallo</h1>';
+			return '<h1>Tuvimos un fallo</h1>'; ///devuelvo el mensaje cual quiero monstrar 
 		}
 		}catch(mysqli_sql_exception $e){
 			return '<h1>Error:'.$e->getCode().' - '.$e->getMessage().'</h1>';
@@ -120,12 +120,12 @@ class Boletin_Usuario extends Conectar{
 						$this->conexion->query($sqlAnimales);
 					}
 				}else{
-					return '<h1><a href="indexServidor.php">Usuario modificado pero tuvimos problemas al registro de animales</a></h1>';
+					return '<h1><a href="indexServidor.php">Usuario modificado pero tuvimos problemas al registro de animales</a></h1>'; ///devuelvo el mensaje cual quiero monstrar 
 				}
 			}
 			return true;
 		}catch(mysqli_sql_exception $e){
-			return '<h1>Error:'.$e->getCode().' - '.$e->getMessage().'</h1>';
+			return '<h1>Error:'.$e->getCode().' - '.$e->getMessage().'</h1>'; ///devuelvo el mensaje cual quiero monstrar 
 		}
 	}
 }
