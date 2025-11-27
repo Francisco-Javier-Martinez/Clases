@@ -1,5 +1,5 @@
 <?php
-/*El __DIR__ obtiene la ruta completa al directorio actual*/
+//El __DIR__ obtiene la ruta completa al directorio actual
     require_once __DIR__ . '/../modelo/Mboletin_Usuario.php';
     require_once __DIR__ . '/../modelo/Manimales.php';
     require_once __DIR__ . '/../modelo/Mrecomendaciones.php';
