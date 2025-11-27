@@ -5,18 +5,54 @@
     require_once __DIR__ . '/../modelo/Mrecomendaciones.php';
     require_once __DIR__ . '/../modelo/Mboletin_Animales.php';
 class ControladorUsuario{
-        // Declaramos las propiedades para guardar las instancias de los Modelos
-        private $usuarioModelo;
-        private $animalesModelo;
-        private $recomendacionesModelo;
-        private $boletinAnimalesModelo;
-        //Para ya tenerlas inicializadas
-        public function __construct() {
-            $this->usuarioModelo=new Boletin_Usuario();
-            $this->animalesModelo=new Animales();
-            $this->recomendacionesModelo=new Recomendaciones();
-            $this->boletinAnimalesModelo=new Boletin_animales();
+    // Declaramos las propiedades para guardar las instancias de los Modelos
+    private $usuarioModelo;
+    private $animalesModelo;
+    private $recomendacionesModelo;
+    private $boletinAnimalesModelo;
+    //Para ya tenerlas inicializadas
+    public function __construct() {
+        $this->usuarioModelo=new Boletin_Usuario();
+        $this->animalesModelo=new Animales();
+        $this->recomendacionesModelo=new Recomendaciones();
+        $this->boletinAnimalesModelo=new Boletin_animales();
+    }
+        //Este lo he creado para poderme moverme entre vistas 
+    public function ejecutar(){
+        $accion = 'formulario'; //por defecto llevare siempre a mi pagina principal que es el formulario para esta aplicaicon
+        //Pero si accion que es mi variable que se envia por url tiene algo significa que he de cargar otra vista prra llamar al modelo que necesite esa vista
+        if(isset($_GET['accion'])) {
+            $accion = $_GET['accion'];
         }
+        switch($accion) {
+            case 'formulario':
+                $this->formularioRegistro();
+                break;
+            case 'recibir':
+                $this->recibir();
+                break;
+            case 'listar':
+                $this->monstrarUsuarioModificarBorrar();
+                break;
+            case 'sacarInner':
+                $this->sacarInner();
+                break;
+            case 'modificar':
+                $this->modificar();
+                break;
+            case 'confirmarBorrar':
+                $this->confirmarBorrar();
+                break;
+            case 'borrar':
+                $this->borrar();
+                break;
+            case 'modificarFinal':
+                $this->modificarFinal();
+                break;
+            default:
+                $this->formularioRegistro();
+        }
+    }
     public function formularioRegistro(){
         $arrayRecomendados=$this->recomendacionesModelo->recogerRecomendaciones();
         //Pregunto si lo que viene del metodo es un string porque si lo es
@@ -31,13 +67,13 @@ class ControladorUsuario{
         //Pregunto si lo que viene del metodo es un string porque si lo es
         //Significa que lo que me ha llegado es un mensaje de error del modelo asi que
         //llamo a la vista de erro y muesntro el mensaje con el enlace para ir patras
-        // asi todo rato en los deams metodos
+        // asi todo rato en los deams
         if(is_string($arrayAnimales)){
             $mensaje = $arrayAnimales;
             $enlace_volver = 'index.php?accion=formulario';
             require_once __DIR__ . '/../vista/error.php';
         }
-        require_once __DIR__ . '/../vista/indexServidor.php'; //incluyo la vista
+        require_once __DIR__ . '/../vista/indexServidor.php';
     }
     public function sacarInner(){
         // Usamos la instancia creada en el constructor
