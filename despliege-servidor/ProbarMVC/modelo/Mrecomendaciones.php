@@ -10,22 +10,18 @@
 					if($recomendacionArray->num_rows>0){
 						return $recomendacionArray;//si hay filas devuelbo array de objetos
 					}else{
-						return null;//Retorno null porque no hay filas;
+						return '<h1>No hay recomendaciones disponibles</h1>';//Retorno mensaje porque no hay filas;
 					}	
 				}catch(mysqli_sql_exception $e){
 					switch ($e->getCode()) {
 						case 1146:
-							echo '<h1>La tabla no existe</h1>';
-							return null; 
+							return '<h1>La tabla no existe</h1>';
 						case 1062:
-							echo '<h1>Correo duplicado</h1>';
-							return null;
+							return '<h1>Correo duplicado</h1>';
 						case 1064:
-							echo '<h1>Error de sintaxis en la consulta SQL</h1>';
-							return null;
+							return '<h1>Error de sintaxis en la consulta SQL</h1>';
 						default:
-							echo '<h1>ERROR: ' . $e->getMessage() . '</h1>';
-							return null;
+							return '<h1>ERROR: ' . $e->getMessage() . '</h1>';
 					}
 				}
             }

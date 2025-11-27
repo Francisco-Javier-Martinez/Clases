@@ -11,20 +11,17 @@
 				if($animales->num_rows>0){ //si hay filas pa lante
 					return $animales;
 				}else{
-					return null;
+						return '<h1>No hay animales disponibles</h1>';
 				}
 				
 			}catch(mysqli_sql_exception $e){
 				switch ($e->getCode()) {
 					case 1146:
-						echo '<h1>La tabla no existe</h1>';
-						return null; 
+							return '<h1>La tabla no existe</h1>';
 					case 1064:
-						echo '<h1>Error de sintaxis en la consulta SQL</h1>';
-						return null;
+							return '<h1>Error de sintaxis en la consulta SQL</h1>';
 					default:
-						echo '<h1>ERROR: ' . $e->getMessage() . '</h1>';
-						return null;
+							return '<h1>ERROR: ' . $e->getMessage() . '</h1>';
 				}
 			}
         }

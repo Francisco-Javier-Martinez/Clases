@@ -19,17 +19,41 @@ class ControladorUsuario{
         }
     public function formularioRegistro(){
         $arrayRecomendados=$this->recomendacionesModelo->recogerRecomendaciones();
+        if(is_string($arrayRecomendados)){
+            $mensaje = $arrayRecomendados;
+            $enlace_volver = 'index.php?accion=formulario';
+            require_once __DIR__ . '/../vista/error.php';
+            return;
+        }
         $arrayAnimales=$this->animalesModelo->recogerAnimales();
+        if(is_string($arrayAnimales)){
+            $mensaje = $arrayAnimales;
+            $enlace_volver = 'index.php?accion=formulario';
+            require_once __DIR__ . '/../vista/error.php';
+            return;
+        }
         require_once __DIR__ . '/../vista/indexServidor.php'; //incluyo la vista
     }
     public function sacarInner(){
         // Usamos la instancia creada en el constructor
         $arrayAnimalesUsuario=$this->boletinAnimalesModelo->sacarUsuarioAnimal();
+        if(is_string($arrayAnimalesUsuario)){
+            $mensaje = $arrayAnimalesUsuario;
+            $enlace_volver = 'index.php?accion=sacarInner';
+            require_once __DIR__ . '/../vista/error.php';
+            return;
+        }
         // Mostrar la vista
         require_once __DIR__ . '/../vista/sacarInner.php';
     }
     public function monstrarUsuarioModificarBorrar(){
         $listaUsuarios=$this->usuarioModelo->sacarUsuarios();
+        if(is_string($listaUsuarios)){
+            $mensaje = $listaUsuarios;
+            $enlace_volver = 'index.php?accion=formulario';
+            require_once __DIR__ . '/../vista/error.php';
+            return;
+        }
         require_once __DIR__ . '/../vista/monstrarModificarBorrar.php';
     }
     public function modificar(){
@@ -38,8 +62,6 @@ class ControladorUsuario{
         // Recoger el id del usuario a modificar
         $usu=$_GET['idUsuario'];
         $arraiUsuario=$this->usuarioModelo->monstrarTodasCaracteristacasUsuario($usu);
-        $arraiUsuario=$usuario->monstrarTodasCaracteristacasUsuario($usu);
-
         require_once __DIR__ . '/../vista/modificar.php';
     }
     public function confirmarBorrar(){
@@ -49,8 +71,13 @@ class ControladorUsuario{
     }
     public function borrar(){
         $usu=$_GET['idUsuario'];
-        $this->usuarioModelo->borrarUsuario($usu);
-
+        $resultado = $this->usuarioModelo->borrarUsuario($usu);
+        if(is_string($resultado)){
+            $mensaje = $resultado;
+            $enlace_volver = 'index.php?accion=listar';
+            require_once __DIR__ . '/../vista/error.php';
+            return;
+        }
         require_once __DIR__ . '/../vista/borrar.php'; 
     }
     public function modificarFinal(){
@@ -61,7 +88,12 @@ class ControladorUsuario{
             require_once __DIR__ . '/../vista/error.php';
         }else{
             $usu = $_POST['idUsuario'];
-            $this->usuarioModelo->modificarUsuario($usu);
+            $resultado = $this->usuarioModelo->modificarUsuario($usu);
+            if(is_string($resultado)){
+                $mensaje = $resultado;
+                require_once __DIR__ . '/../vista/error.php';
+                return;
+            }
             $mensaje = '<h1>¡Usuario modificado correctamente!</h1>';
             require_once __DIR__ . '/../vista/existo.php';
         }
@@ -109,10 +141,21 @@ class ControladorUsuario{
     if ($error) {
         require_once __DIR__ . '/../vista/error.php';
     }else{
-            $idUsu=$this->usuarioModel->meterUsuario(); 
+            $idUsu=$this->usuarioModelo->meterUsuario();
+            if(is_string($idUsu)){
+                $mensaje = $idUsu;
+                require_once __DIR__ . '/../vista/error.php';
+                return;
+            }
             if($idUsu){ 
                 foreach($_POST['animales'] as $valor){ 
-                    $this->boletinAnimalesModel->meterAnimalUsuario($idUsu,$valor);
+                    $resultadoAnimal = $this->boletinAnimalesModelo->meterAnimalUsuario($idUsu,$valor);
+                    if(is_string($resultadoAnimal)){
+                        $mensaje = $resultadoAnimal;
+                        $enlace_volver = 'index.php?accion=formulario';
+                        require_once __DIR__ . '/../vista/error.php';
+                        return;
+                    }
                 }
                 $mensaje='<h1>¡Todo correcto!</h1>';
                 require_once __DIR__ . '/../vista/existo.php';
