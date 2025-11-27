@@ -5,12 +5,12 @@
     require_once __DIR__ . '/../modelo/Mrecomendaciones.php';
     require_once __DIR__ . '/../modelo/Mboletin_Animales.php';
 class ControladorUsuario{
-    // Declaramos las propiedades para guardar las instancias de los Modelos
+    // Declaramos las propiedades de las instancias de los Modelos
     private $usuarioModelo;
     private $animalesModelo;
     private $recomendacionesModelo;
     private $boletinAnimalesModelo;
-    //Para ya tenerlas inicializadas
+    //Para ya tenerlas inicializadas me creo un constructor y asi no tengo que ponerlo todo el rato
     public function __construct() {
         $this->usuarioModelo=new Boletin_Usuario();
         $this->animalesModelo=new Animales();

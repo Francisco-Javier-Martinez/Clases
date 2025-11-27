@@ -11,9 +11,11 @@
         <h1 id="titulo">ERROR</h1>
     </header>
     <?php
+    //si hubo el mensaje de error del modelo se muenstra aqui
         if(isset($mensaje)) {
             echo '<h2>'.$mensaje.'</h2>';
         }
+    //si no es este
         if (isset($mensaje2)) {
             foreach ($mensaje2 as $msg) {
                 echo '<h4>'.$msg.'</h4>';
