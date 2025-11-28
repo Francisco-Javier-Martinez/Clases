@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css"/>
+    <link rel="stylesheet" href="../style.css"/>
     <title>Configuracion</title>
 </head>
 <body>
@@ -15,9 +15,9 @@
         <!--Menu -->
         <ul>
             <li><a href="#inicio" class="amenu">Inicio</a></li>
-            <li><a href="index.php?accion=formulario"  class="amenu">Formulario</a></li>
-            <li><a href="index.php?accion=listar" class="amenu">MODIFICAR/BORRAR</a></li>
-            <li><a href="index.php?accion=sacarInner" class="amenu">Ver usuario/animales</a></li>
+            <li><a href="../index.php"  class="amenu">Formulario</a></li>
+            <li><a href="../cMostrar.php" class="amenu">MODIFICAR/BORRAR</a></li>
+            <li><a href="../cSacarInner.php" class="amenu">Ver usuario/animales</a></li>
         </ul>
     </nav>
     <main>
@@ -25,7 +25,7 @@
         <div id="formu">
         <section id="formulario">
             <h1  id="formuIndice" >Modificaion de Noticias de Animales</h1>
-            <form action="index.php?accion=modificarFinal" method="post">
+            <form action="../cModificarFinal.php" method="post">
                 <!-- campo oculto para pasar el id del usuario -->
                 <input type="hidden" name="idUsuario" value="<?php echo $usu; ?>"/>
                 <!-- Text -->
