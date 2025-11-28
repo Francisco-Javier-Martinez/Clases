@@ -11,6 +11,6 @@
         <h1 id="titulo">USUARIO BORRADO</h1>
     </header>
     <h1>El usuario ha sido borrado correctamente</h1>
-    <a href="../cMostrar.php">Volver a la lista</a>
+    <a href="./cMostrar.php">Volver a la lista</a>
 </body>
 </html>

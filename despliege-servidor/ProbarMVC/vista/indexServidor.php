@@ -14,9 +14,9 @@
         <!--Menu -->
         <ul>
             <li><a href="#inicio" class="amenu">Inicio</a></li>
-            <li><a href="../index.php" class="amenu">Formulario</a></li>
-            <li><a href="../cMostrar.php" class="amenu">MODIFICAR/BORRAR</a></li>
-            <li><a href="../cSacarInner.php" class="amenu">Ver usuario/animales</a></li>
+            <li><a href="./index.php" class="amenu">Formulario</a></li>
+            <li><a href="./cMostrar.php" class="amenu">MODIFICAR/BORRAR</a></li>
+            <li><a href="./cSacarInner.php" class="amenu">Ver usuario/animales</a></li>
         </ul>
     </nav>
     <main>
@@ -24,7 +24,7 @@
         <div id="formu">
         <section id="formulario">
             <h1  id="formuIndice" >Boletín de Noticias de Animales</h1>
-            <form action="../cRecibir.php" method="post">
+            <form action="./cRecibir.php" method="post">
                 <!-- Text -->
                 <label class="texlabel">Nombre:
                     <input type="text" name="nombre"/>

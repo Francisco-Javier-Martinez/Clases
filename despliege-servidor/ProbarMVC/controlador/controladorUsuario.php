@@ -24,7 +24,7 @@ class ControladorUsuario{
         //llamo a la vista de erro y muesntro el mensaje con el enlace para ir patras
         if(is_string($arrayRecomendados)){
             $mensaje=$arrayRecomendados;
-            $enlace_volver='../index.php';
+            $enlace_volver='./index.php';
             require_once __DIR__ . '/../vista/error.php';
         }
         $arrayAnimales=$this->animalesModelo->recogerAnimales();
@@ -34,7 +34,7 @@ class ControladorUsuario{
         // asi todo rato en los deams
         if(is_string($arrayAnimales)){
             $mensaje=$arrayAnimales;
-            $enlace_volver='../index.php';
+            $enlace_volver='./index.php';
             require_once __DIR__ . '/../vista/error.php';
         }
         require_once __DIR__ . '/../vista/indexServidor.php';
@@ -44,7 +44,7 @@ class ControladorUsuario{
         $arrayAnimalesUsuario=$this->boletinAnimalesModelo->sacarUsuarioAnimal();
         if(is_string($arrayAnimalesUsuario)){
             $mensaje=$arrayAnimalesUsuario;
-            $enlace_volver='../cSacarInner.php';
+            $enlace_volver='./cSacarInner.php';
             require_once __DIR__ . '/../vista/error.php';
         }
         // Mostrar la vista
@@ -54,7 +54,7 @@ class ControladorUsuario{
         $listaUsuarios=$this->usuarioModelo->sacarUsuarios();
         if(is_string($listaUsuarios)){
             $mensaje=$listaUsuarios;
-            $enlace_volver='../index.php';
+            $enlace_volver='./index.php';
             require_once __DIR__ . '/../vista/error.php';
         }
         require_once __DIR__ . '/../vista/monstrarModificarBorrar.php';
@@ -77,14 +77,14 @@ class ControladorUsuario{
         $resultado = $this->usuarioModelo->borrarUsuario($usu);
         if(is_string($resultado)){
             $mensaje=$resultado;
-            $enlace_volver='../cMostrar.php';
+            $enlace_volver='./cMostrar.php';
             require_once __DIR__ . '/../vista/error.php';
         }
         require_once __DIR__ . '/../vista/borrar.php'; 
     }
     public function modificarFinal(){
         $mensaje = '';
-        $enlace_volver = '../cMostrar.php';
+        $enlace_volver = './cMostrar.php';
         if(!isset($_POST['idioma']) || !isset($_POST['animales'])){
             $mensaje = '<h1>Debe seleccionar un idioma y al menos un animal</h1>';
             require_once __DIR__ . '/../vista/error.php';
@@ -102,7 +102,7 @@ class ControladorUsuario{
     public function recibir(){
     $error=false; 
     $mensaje2=[];
-    $enlace_volver='../index.php';
+    $enlace_volver='./index.php';
     if (empty($_POST['nombre'])) {
         $mensaje2[]='<h1>Se envió vacío el campo nombre</h1>';
         $error=true;
@@ -153,7 +153,7 @@ class ControladorUsuario{
                     $resultadoAnimal = $this->boletinAnimalesModelo->meterAnimalUsuario($idUsu,$valor);
                     if(is_string($resultadoAnimal)){
                         $mensaje = $resultadoAnimal;
-                        $enlace_volver = '../index.php';
+                        $enlace_volver = './index.php';
                         require_once __DIR__ . '/../vista/error.php';
                         return;
                     }

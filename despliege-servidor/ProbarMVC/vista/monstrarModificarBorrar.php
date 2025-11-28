@@ -12,9 +12,9 @@
         </header>
         <nav>
             <ul>
-                <li><a href="../index.php" class="amenu">Formulario</a></li>
-                <li><a href="../cMostrar.php" class="amenu">MODIFICAR/BORRAR</a></li>
-                <li><a href="../cSacarInner.php" class="amenu">Ver usuario/animales</a></li>
+                <li><a href="./index.php" class="amenu">Formulario</a></li>
+                <li><a href="./cMostrar.php" class="amenu">MODIFICAR/BORRAR</a></li>
+                <li><a href="./cSacarInner.php" class="amenu">Ver usuario/animales</a></li>
             </ul>
         </nav>
         <main>
@@ -22,8 +22,8 @@
             <?php
                 while($fila=$listaUsuarios->fetch_assoc()){
                     echo '<p>'.$fila['nombreUsuario'].'   '.$fila['correo'].'</p>';
-                    echo '<a href="../cModificar.php?idUsuario='.$fila['idUsuario'].'">Modificar  </a> ';
-                    echo '<a href="../cConfirmarBorrar.php?idUsuario='.$fila['idUsuario'].'">Borrar</a>';
+                    echo '<a href="./cModificar.php?idUsuario='.$fila['idUsuario'].'">Modificar  </a> ';
+                    echo '<a href="./cConfirmarBorrar.php?idUsuario='.$fila['idUsuario'].'">Borrar</a>';
                 }
             ?>
         </main>
