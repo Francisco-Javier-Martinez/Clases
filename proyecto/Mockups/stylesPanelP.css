@@ -143,7 +143,7 @@ footer{
     display: grid;
     /* 226 porque 6*226=1356 + 5*30(gap)=1506px asi que caben
     esto sera el total pero usables seran 226-40(padding)=186px*/
-    grid-template-columns: repeat(6, 1fr);  /* 226*100/1512 = 14.94%*/
+    grid-template-columns: repeat(6, 15%);  /* 226*100/1512 = 14.94%  voy a redondear a 15 por los 6 que me sobraron*/
     gap: 1.98%; /* 30*100/1512 = 1.98% */
 }
 
@@ -270,7 +270,7 @@ de temas a  % debo usar 186px como base de calculo*/
         font-size: 18px;
     }
     main h1 {
-        font-family: 'Permanent Marker', cursive; 
+        font-family: 'Permanent Marker', cursive;
         font-size: 1.8em;
     }
     #tarjetas {
