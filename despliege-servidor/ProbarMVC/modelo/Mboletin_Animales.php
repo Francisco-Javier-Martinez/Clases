@@ -24,20 +24,5 @@
 				}
 			}
         }
-		
-		public function sacarUsuarioAnimal(){
-			try{
-				$sql="SELECT boletin_usuario.nombreUsuario as 'nomUsu', animales.nombreAnimal as 'nomAni' from boletin_animales inner join boletin_usuario on boletin_animales.idUsuario=boletin_usuario.idUsuario INNER join animales on animales.idAnimales=boletin_animales.idAnimales
-				ORDER by boletin_usuario.idUsuario;";
-				$usuariosAnimal=$this->conexion->query($sql);
-				if($usuariosAnimal->num_rows>0){
-					return $usuariosAnimal;
-				}else{
-					return '<h1>No hay registros en nuestra app aun</h1>';
-				}
-			}catch(mysqli_sql_exception $e){
-					return '<h1>Error:'.$e->getMessage().'</h1>'; 
-			}
-		}
     }
 ?>

@@ -8,7 +8,11 @@
 					//echo $sql;
 					$recomendacionArray=$this->conexion->query($sql);
 					if($recomendacionArray->num_rows>0){
-						return $recomendacionArray;//si hay filas devuelbo array de objetos
+						$listaRecomendaciones=[];
+						while($fila=$recomendacionArray->fetch_assoc()){
+							$listaRecomendaciones[]=$fila;
+						}
+						return $listaRecomendaciones;
 					}else{
 						return '<h1>No hay recomendaciones disponibles</h1>';//Retorno mensaje porque no hay filas;
 					}	

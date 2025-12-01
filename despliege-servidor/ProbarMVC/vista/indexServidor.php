@@ -14,9 +14,8 @@
         <!--Menu -->
         <ul>
             <li><a href="#inicio" class="amenu">Inicio</a></li>
-            <li><a href="./index.php" class="amenu">Formulario</a></li>
+            <li><a href="./cFormulario.php" class="amenu">Formulario</a></li>
             <li><a href="./cMostrar.php" class="amenu">MODIFICAR/BORRAR</a></li>
-            <li><a href="./cSacarInner.php" class="amenu">Ver usuario/animales</a></li>
         </ul>
     </nav>
     <main>
@@ -48,14 +47,12 @@
                 <!--Checkbox-->
                 <p>Información a recibir:</p>
                 <?php
-                    //Si es diferente a null es que tenemos filas si no muestro mensaje
-                    if($arrayAnimales!=null){
-                        while($fila=$arrayAnimales->fetch_row()){ //Uso el fetch_row para sacar mediante indices ya que me resulta mas facil y sencillo
-                        echo '<label>
-                                <input type="checkbox" name="animales[]" value='.$fila[0].'>'.$fila[1].'</label>';
-                        }
-                    }else{
-                        echo '<p>No tenemos animales para recibir informacion de ellos</p>';
+                    foreach($arrayanimalesUsuario as $fila){ //fetch_array esto se recorrera hasta que no queden filas y devuelva false
+                        // fetch_array() me devolvera un array de la fila donde este el puntero.
+                        // Cada vez que se llama, avanza a la siguiente fila
+                        echo '<label>';
+                        echo '<input type="checkbox" name="animales[]" value="'.$fila['idAnimales'] .'"/>'.$fila['nombreAnimal'];
+                        echo '</label>';
                     }
                 ?>
                 <!--Checkbox solo 1-->
@@ -66,18 +63,11 @@
                 <!--Select-->
                 <p>¿Cómo nos has conocido?:</p>
                 <?php
-                    //Si es diferente a null es que tenemos filas si no muestro mensaje
-                    if($arrayRecomendados!=null){
-                        echo '<select id="comoConocio" name="comoConocio">';
-                        while($fila=$arrayRecomendados->fetch_row()){ //fetch_array esto se recorrera hasta que no queden filas y devuelva false
-                        // fetch_array() me devolvera un array de la fila donde este el puntero.
-                        // Cada vez que se llama, avanza a la siguiente fila
-                        echo '<option value="'.$fila[0] .'">'. $fila[1] .'</option>';
-                        }
-                        echo '</select>';
-                    }else{
-                        echo '<p>No tenemos recomendados disponibles</p>';
+                    echo '<select id="comoConocio" name="comoConocio">';
+                    foreach($arrayRecomendaciones as $fila){ 
+                        echo '<option value="'.$fila['idRecomendacion'].'">'.$fila['nombre'].'</option>';
                     }
+                    echo '</select>';
                 ?>
                 
                 <!--Envicar y Resetear-->

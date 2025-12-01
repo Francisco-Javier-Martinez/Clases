@@ -71,23 +71,19 @@ class Boletin_Usuario extends Conectar{
 		}
 	}
 	
-	public function monstrarTodasCaracteristacasUsuario($usu){
-		try{
-			$sql="SELECT  boletin_usuario.idUsuario,nombreUsuario,correo,idioma,sugerencias,recomendaciones.nombre as 'nombreRecomendacion' , nombreAnimal
-			from boletin_usuario INNER JOIN recomendaciones on boletin_usuario.idRecomendacion=recomendaciones.idRecomendacion
-			INNER join boletin_animales on boletin_usuario.idUsuario=boletin_animales.idUsuario 
-			inner JOIN animales on boletin_animales.idAnimales=animales.idAnimales where boletin_usuario.idUsuario=$usu; ";/* 
-			echo $sql; */
-		$usuarios=$this->conexion->query($sql);
-		if($usuarios->num_rows>0){
-			return $usuarios;
-		}else{
-			return '<h1>Tuvimos un fallo</h1>'; ///devuelvo el mensaje cual quiero monstrar 
-		}
-		}catch(mysqli_sql_exception $e){
-			return '<h1>Error:'.$e->getCode().' - '.$e->getMessage().'</h1>';
-		}
-	}
+	public function sacarUsuarioSimple($usu){
+    try{
+        $sql="SELECT idUsuario, nombreUsuario, correo from boletin_usuario WHERE idUsuario=$usu;";
+        $resultado=$this->conexion->query($sql);
+        
+        if($resultado->num_rows == 1){
+            return $resultado->fetch_assoc();
+        }
+        return null;
+    }catch(mysqli_sql_exception $e){
+        return '<h1>Error:'.$e->getCode().' - '.$e->getMessage().'</h1>';
+    }
+}
 
 	public function modificarUsuario($usu){
 		try{

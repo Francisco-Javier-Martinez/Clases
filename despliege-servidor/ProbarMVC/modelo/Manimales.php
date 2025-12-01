@@ -9,7 +9,10 @@
 				//echo $sql;
 				$animales=$this->conexion->query($sql);
 				if($animales->num_rows>0){ //si hay filas pa lante
-					return $animales;
+					while($fila=$animales->fetch_assoc()){
+						$listaAnimales[]=$fila;
+					}
+					return $listaAnimales;
 				}else{
 						return '<h1>No hay animales disponibles</h1>'; ///devuelvo el mensaje cual quiero monstrar 
 				}
