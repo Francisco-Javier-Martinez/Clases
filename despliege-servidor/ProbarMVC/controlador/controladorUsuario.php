@@ -24,7 +24,7 @@ class ControladorUsuario{
         //llamo a la vista de erro y muesntro el mensaje con el enlace para ir patras
         if(is_string($arrayRecomendados)){
             $mensaje=$arrayRecomendados;
-            $enlace_volver='./index.php';
+            $enlace_volver='/cFormulario.php';
             require_once __DIR__ . '/../vista/error.php';
         }
         $arrayAnimales=$this->animalesModelo->recogerAnimales();
@@ -34,10 +34,14 @@ class ControladorUsuario{
         // asi todo rato en los deams
         if(is_string($arrayAnimales)){
             $mensaje=$arrayAnimales;
-            $enlace_volver='./index.php';
+            $enlace_volver='/cFormulario.php';
+
             require_once __DIR__ . '/../vista/error.php';
         }
-        require_once __DIR__ . '/../vista/indexServidor.php';
+        return [
+            "arrayAnimales"     => $arrayAnimales,
+            "arrayRecomendados" => $arrayRecomendados
+        ];
     }
     public function sacarInner(){
         // Usamos la instancia creada en el constructor
@@ -54,7 +58,8 @@ class ControladorUsuario{
         $listaUsuarios=$this->usuarioModelo->sacarUsuarios();
         if(is_string($listaUsuarios)){
             $mensaje=$listaUsuarios;
-            $enlace_volver='./index.php';
+            $enlace_volver='/cFormulario.php';
+
             require_once __DIR__ . '/../vista/error.php';
         }
         require_once __DIR__ . '/../vista/monstrarModificarBorrar.php';
@@ -102,7 +107,8 @@ class ControladorUsuario{
     public function recibir(){
     $error=false; 
     $mensaje2=[];
-    $enlace_volver='./index.php';
+    $enlace_volver='/cFormulario.php';
+
     if (empty($_POST['nombre'])) {
         $mensaje2[]='<h1>Se envió vacío el campo nombre</h1>';
         $error=true;
@@ -147,13 +153,14 @@ class ControladorUsuario{
                 $mensaje = $idUsu;
                 require_once __DIR__ . '/../vista/error.php';
                 return;
-            }
+            }// esto 
             if($idUsu){ 
                 foreach($_POST['animales'] as $valor){ 
                     $resultadoAnimal = $this->boletinAnimalesModelo->meterAnimalUsuario($idUsu,$valor);
                     if(is_string($resultadoAnimal)){
                         $mensaje = $resultadoAnimal;
-                        $enlace_volver = './index.php';
+            $enlace_volver='/cFormulario.php';
+
                         require_once __DIR__ . '/../vista/error.php';
                         return;
                     }
