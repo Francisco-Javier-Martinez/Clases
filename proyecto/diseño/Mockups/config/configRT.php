@@ -1,4 +1,4 @@
 <?php
 //ruta relativa de las im genes
-    $rutaImg="../img/";
+    define('RUTA_IMAGENES_PREGUNTAS', 'vistas/img/');
 ?>

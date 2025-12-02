@@ -3,24 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/jc.css">
+    <link rel="stylesheet" href="./vistas/css/jc.css">
     <title>Creación de preguntas</title>
 </head>
 <body id="gestionPreguntas">
     <header>
-        <img id="logo" src="img/preguntadawLogo.png" alt="Logo preguntadaw">
+        <img id="logo" src="./vistas/img/preguntadawLogo.png" alt="Logo preguntadaw">
         <h1>Preguntas/Respuestas</h1>
     </header>
     <main >
-        <form action="gestiontemas.html" method="post">
-            <label for="titulo">Título de la pregunta</label>
+            <form action="index.php?c=PreguntasRespuestas&m=meterPreguntas" method="post" id="formCrearPregunta" enctype="multipart/form-data">            <label for="titulo">Título de la pregunta</label>
             <input type="text" id="titulo" name="titulo">
 
             <label for="imagen">Puntos</label>
             <input type="number" id="puntuacion" name="puntuacion">
 
             <label for="imagen">Imagen</label>
-            <input type="file" id="imagen" name="imagen">
+            <input type="file" id="imagen" name="imagenPregunta">
 
             <label for="explicacionPregunta">Explicación de la pregunta</label>
             <textarea name="explicacionPregunta" id="explicacionPregunta"></textarea>
@@ -37,20 +36,20 @@
             <input type="text" id="respuesta4" name="respuestas[]">
             <div id="contenedorRespuestas">
                 <div>
-                    <input type="radio" id="opcion1" name="opcion" value="respuestaCorrecta">
+                    <input type="radio" id="opcion1" name="opcion" value="a">
                     <label for="opcion1">Respuesta1</label>
                 </div>
                 <div>
 
-                    <input type="radio" id="opcion2" name="opcion" value="respuestaCorrecta">
+                    <input type="radio" id="opcion2" name="opcion" value="b">
                     <label for="opcion2">Respuesta2</label>
                 </div>
                 <div>
-                    <input type="radio" id="opcion3" name="opcion" value="respuestaCorrecta">
+                    <input type="radio" id="opcion3" name="opcion" value="c">
                     <label for="opcion3">Respuesta3</label>
                 </div>
                 <div>
-                    <input type="radio" id="opcion4" name="opcion" value="respuestaCorrecta">
+                    <input type="radio" id="opcion4" name="opcion" value="d">
                     <label for="opcion4">Respuesta4</label>
                 </div>
             </div>
