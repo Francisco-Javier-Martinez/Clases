@@ -12,10 +12,11 @@
         <h2>Ha ocurrido un problema al procesar tu solicitud.</h2>
         
         <?php 
-        // Mostrar el mensaje de error del controlador si está disponible
-        if (isset($mensaje_error_a_mostrar) && !empty($mensaje_error_a_mostrar)) {
+        // Mostrar el mensaje de error del controlador si está disponible (mensaje amigable)
+        if (isset($mensaje_error_a_mostrar) && $mensaje_error_a_mostrar !== '') {
             echo '<div>';
-            echo '<h3>Detalle del Error:</h3> ' . htmlspecialchars($mensaje_error_a_mostrar);
+            echo '<h3>Detalle del Error:</h3>';
+            echo '<p>' . nl2br(htmlspecialchars($mensaje_error_a_mostrar)) . '</p>';
             echo '</div>';
         } else {
             echo '<p>No se pudo obtener el detalle del error.</p>';

@@ -5,7 +5,6 @@
     $metodo=$_GET['m'] ?? METDEF;
 
     // ruta del controlador
-    // Su controlador se llama cPreguntasRespuestas.php. Si $controlador es 'PreguntasRespuestas', 
     $rutaControlador=__DIR__ . '/controlador/c' . $controlador . '.php';
 
     if (!file_exists($rutaControlador)) {
@@ -22,6 +21,8 @@
     // llamar a la vista
     $vista = $objControlador->vistaCargar;
     if(!empty($objControlador->mensajeError)){
+        // Loguear tipo y contenido antes de mostrar la vista de error (depuración)
+        error_log("index.php: mensajeError type=" . gettype($objControlador->mensajeError) . " value=" . var_export($objControlador->mensajeError, true));
         $mensaje_error_a_mostrar = $objControlador->mensajeError;
         $vista = 'error';
     }

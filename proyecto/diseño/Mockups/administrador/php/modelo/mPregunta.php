@@ -6,10 +6,10 @@
             try{
                 //Sacar el numero de la pregunta
                 $nPregunta=$this->sacarNpregunta($idTema);
-                if($nPregunta>10){
+                /* if($nPregunta>10){
                     $this->mensajeError="No se pueden insertar mas de 10 preguntas por tema";
                     return $this->mensajeError;
-                }
+                } */
                 //Recoger datos del formulario
                 $titulo=$_POST['titulo'];
                 $explicacion=$_POST['explicacionPregunta'];
@@ -36,7 +36,7 @@
                 //Ejecutar consulta
                 $stmt->execute();
                 if($stmt->rowCount()>0){//Si se ha insertado correctamente
-                    return $nPregunta;
+                    return (int)$nPregunta; // asegurar que devolvemos un entero
                 }else{
                     return $this->mensajeError="Error al insertar la pregunta";
                 }
@@ -54,7 +54,7 @@
                 $stmt->execute();//Ejecutar consulta
                 $resultado=$stmt->fetch(PDO::FETCH_ASSOC);
                 if($resultado){
-                    return $resultado['nPregunta'] + 1; //Devolver el numero de la siguiente pregunta
+                    return (int)$resultado['nPregunta'] + 1; //Devolver el numero de la siguiente pregunta (int)
                 }else{
                     return 1; //Si no hay preguntas, devolver 1
                 }
