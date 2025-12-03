@@ -2,6 +2,7 @@
     require_once 'conexion.php';
     require_once __DIR__ . '/../../../config/configRT.php';
     class mPregunta extends Conexion{
+        public $mensajeError;
         public function meterPreguntas($idTema){
             try{
                 //Sacar el numero de la pregunta

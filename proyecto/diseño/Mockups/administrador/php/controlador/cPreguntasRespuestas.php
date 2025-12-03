@@ -84,28 +84,22 @@ class cPreguntasRespuestas{
 
     // Método que llama al modelo para guardar las respuestas
     public function meterRespuestas($idTema, $nPregunta){
-        if(!isset($_POST['respuestas']) || count($_POST['respuestas']) != 4){
+        if(!isset($_POST['respuestas']) || !is_array($_POST['respuestas']) || count($_POST['respuestas']) != 4){
             $this->mensajeError = "Deben ser 4 respuestas obligatoriamente";
             return false;
         }
+        
         $letras = ['a','b','c','d'];
-        $respuestas = array_values($_POST['respuestas']);
-        if(!isset($_POST['opcion']) || !in_array($_POST['opcion'], $letras)){
-            $this->mensajeError = "Opción correcta inválida";
-            return false;
-        }
-        $opcionCorrecta = $_POST['opcion']; // 'a','b','c' o 'd'
-
+        $respuestas = $_POST['respuestas'];
+        $opcionCorrecta = $_POST['opcion']; // letra de la respuesta correcta
         foreach($respuestas as $indice => $respuesta){
-            if(!isset($letras[$indice])){
-                $this->mensajeError = "Índice de respuesta inválido: " . $indice;
-                return false;
-            }
             $letraC = $letras[$indice]; // 'a','b','c' o 'd'
             $esCorrecta = 0; // por defecto no es correcta
+            //si la opcion correcta no es nula y la letra coincide con la opcion correcta
             if($opcionCorrecta !== null && $letraC === $opcionCorrecta){
-                $esCorrecta = 1; // si la letra coincide con la opcion marcada, es correcta
+                $esCorrecta = 1; // es correcta
             }
+            // Llamar al modelo para insertar la respuesta
             $resultado = $this->modeloRespuestas->meterRespuestas($idTema, $nPregunta, $respuesta, $letraC, $esCorrecta);
             if($resultado !== true){
                 if(is_string($resultado)){
