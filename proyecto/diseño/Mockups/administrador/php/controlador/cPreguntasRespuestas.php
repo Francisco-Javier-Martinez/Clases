@@ -58,7 +58,20 @@ class cPreguntasRespuestas{
             return false;
         }
 
-        // Insertar la pregunta
+        /* Validar que la imagen sea .png, .jpg o .jpeg */
+        $extensionesPermitidas = ['png', 'jpg', 'jpeg'];
+        //[nmae] devuelve el nombre del archivo subido
+        $nombreArchivo = $_FILES['imagenPregunta']['name'];
+        //en extension guardo la extension del archivo en minusculas 
+        //el pathinfo devuelve un array con informacion del archivo
+        // el PATHINFO_EXTENSION devuelve solo la extension
+        //con el strtolower lo paso a minusculas
+        $extension = strtolower(pathinfo($nombreArchivo, PATHINFO_EXTENSION));
+        if(!in_array($extension, $extensionesPermitidas)){
+            $this->mensajeError = "Solo se permiten archivos .png, .jpg o .jpeg";
+            $this->vistaCargar = 'creación_Preguntas.html';
+            return false;
+        }
         $nPregunta = $this->modeloPreguntas->meterPreguntas($idTema);
         if(is_numeric($nPregunta) && (int)$nPregunta > 0){
             if($this->meterRespuestas($idTema, (int)$nPregunta)){
