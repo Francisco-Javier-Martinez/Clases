@@ -89,15 +89,32 @@ class cPreguntasRespuestas{
             return false;
         }
         $letras = ['a','b','c','d'];
-        $opcionCorrecta = $_POST['opcion'];
-        foreach($_POST['respuestas'] as $indice => $respuesta){
-            $letraC = $letras[$indice];//letra vale a en la primera vuelta, b en la segunda
-            if($letraC === $opcionCorrecta){//Si la letra coincide con la opcion correcta
-                $esCorrecta = 1;//significa que es la respuesta correcta
-            } else {
-                $esCorrecta = 0;//significa que no es la respuesta correcta
+        $respuestas = array_values($_POST['respuestas']);
+        if(!isset($_POST['opcion']) || !in_array($_POST['opcion'], $letras)){
+            $this->mensajeError = "Opción correcta inválida";
+            return false;
+        }
+        $opcionCorrecta = $_POST['opcion']; // 'a','b','c' o 'd'
+
+        foreach($respuestas as $indice => $respuesta){
+            if(!isset($letras[$indice])){
+                $this->mensajeError = "Índice de respuesta inválido: " . $indice;
+                return false;
             }
-            $this->modeloRespuestas->meterRespuestas($idTema, $nPregunta, $respuesta, $letraC, $esCorrecta);
+            $letraC = $letras[$indice]; // 'a','b','c' o 'd'
+            $esCorrecta = 0; // por defecto no es correcta
+            if($opcionCorrecta !== null && $letraC === $opcionCorrecta){
+                $esCorrecta = 1; // si la letra coincide con la opcion marcada, es correcta
+            }
+            $resultado = $this->modeloRespuestas->meterRespuestas($idTema, $nPregunta, $respuesta, $letraC, $esCorrecta);
+            if($resultado !== true){
+                if(is_string($resultado)){
+                    $this->mensajeError .= "Error al guardar la respuesta " . $letraC . ": " . $resultado . " ";
+                } else {
+                    $this->mensajeError .= "Error desconocido al guardar la respuesta " . $letraC . ". ";
+                }
+                return false;
+            }
         }
 
         return true;
