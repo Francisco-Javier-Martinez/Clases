@@ -31,6 +31,22 @@
                         return $this->mensajeError;
                 }   
         }  
+
+        // Eliminar todas las respuestas de una pregunta
+        public function borrarRespuestas($idTema, $nPregunta){
+            try{
+                $sql = "DELETE FROM respuestas WHERE idTema = :idTema AND nPregunta = :nPregunta";
+                $stmt = $this->conexion->prepare($sql);
+                $stmt->bindValue(':idTema', (int)$idTema, PDO::PARAM_INT);
+                $stmt->bindValue(':nPregunta', (int)$nPregunta, PDO::PARAM_INT);
+                $stmt->execute();
+                // Aunque no existan filas, consideramos la operación exitosa
+                return true;
+            }catch(PDOException $e){
+                $this->mensajeError = 'Code error: ' . $e->getCode() . ' Mensaje error: ' . $e->getMessage();
+                return $this->mensajeError;
+            }
+        }
     } 
 
 ?>

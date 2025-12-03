@@ -64,6 +64,42 @@
                 return $this->mensajeError;
             }
         }
-    }
 
+    public function sacarNombrePregunta($idTema){
+        try{
+            $sql="SELECT titulo FROM preguntas WHERE idTema=:idTema"; 
+            $stmt=$this->conexion->prepare($sql);
+            $stmt->bindParam(':idTema', $idTema);
+            $stmt->execute();
+            $resultado=$stmt->fetchAll(PDO::FETCH_ASSOC);
+            if($resultado){
+                return $resultado;
+            }else{
+                return [];
+            }
+        }catch(PDOException $e){
+            $this->mensajeError='Code error: ' . $e->getCode() . ' Mensaje error: ' . $e->getMessage();
+            return $this->mensajeError;
+        }
+    }
+    public function borrarPregunta($idTema, $nPregunta){
+        try{
+            $sql="DELETE FROM preguntas WHERE idTema=:idTema AND nPregunta=:nPregunta";
+            $stmt=$this->conexion->prepare($sql);
+            $stmt->bindParam(':idTema', $idTema);
+            $stmt->bindParam(':nPregunta', $nPregunta);
+            $stmt->execute();
+            if($stmt->rowCount()>0){
+                return true;
+            }else{
+                $this->mensajeError="No se encontró la pregunta para borrar";
+                return false;
+            }
+        }catch(PDOException $e){
+            $this->mensajeError='Code error: ' . $e->getCode() . ' Mensaje error: ' . $e->getMessage();
+            return false;
+        }
+    }
+}
+    
 ?>

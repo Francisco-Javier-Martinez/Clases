@@ -51,47 +51,35 @@
         <div class="container">
             <h3>Preguntas</h3>
             <p class="subtitle">Lista de preguntas del tema (vista previa)</p>
-            <div class="temas-box">
-                <div class="tema-item">
-                    <a class="tema-link" href="Modificar_Preguntas.html">Pregunta 1</a>
-                    <button class="delete-btn" type="button">🗑</button>
-                </div>
-                <div class="tema-item">
-                    <a class="tema-link" href="Modificar_Preguntas.html">Pregunta 2</a>
-                    <button class="delete-btn" type="button">🗑</button>
-                </div>
-                <div class="tema-item">
-                    <a class="tema-link" href="Modificar_Preguntas.html">Pregunta 3</a>
-                    <button class="delete-btn" type="button">🗑</button>
-                </div>
-                <div class="tema-item">
-                    <a class="tema-link" href="Modificar_Preguntas.html">Pregunta 4</a>
-                    <button class="delete-btn" type="button">🗑</button>
-                </div>
-                <div class="tema-item">
-                    <a class="tema-link" href="Modificar_Preguntas.html">Pregunta 5</a>
-                    <button class="delete-btn" type="button">🗑</button>
-                </div>
-                <div class="tema-item">
-                    <a class="tema-link" href="Modificar_Preguntas.html">Pregunta 6</a>
-                    <button class="delete-btn" type="button">🗑</button>
-                </div>
-                <div class="tema-item">
-                    <a class="tema-link" href="Modificar_Preguntas.html">Pregunta 7</a>
-                    <button class="delete-btn" type="button">🗑</button>
-                </div>
-                <div class="tema-item">
-                    <a class="tema-link" href="Modificar_Preguntas.html">Pregunta 8</a>
-                    <button class="delete-btn" type="button">🗑</button>
-                </div>
-                <div class="tema-item">
-                    <a class="tema-link" href="Modificar_Preguntas.html">Pregunta 9</a>
-                    <button class="delete-btn" type="button">🗑</button>
-                </div>
-                <div class="tema-item">
-                    <a class="tema-link" href="Modificar_Preguntas.html">Pregunta 10</a>
-                    <button class="delete-btn" type="button">🗑</button>
-                </div>
+            <?php
+                // Incluir el controlador y obtener las preguntas para mostrar sus títulos
+                require_once __DIR__ . '/../controlador/cPreguntasRespuestas.php';
+                $controller = new cPreguntasRespuestas();
+                $idTema = 1; // ID del tema para el cual se quieren obtener las preguntas
+                $preguntas = $controller->sacarNombrePregunta($idTema);
+                if(!empty($preguntas)){
+                    echo '<div class="temas-box">';
+                    foreach($preguntas as $index => $pregunta){
+                        $titulo = $pregunta['titulo'];
+                        if(isset($pregunta['nPregunta'])){
+                            $nPregunta = (int)$pregunta['nPregunta'];
+                        } else {
+                            $nPregunta = $index + 1;
+                        }
+                        echo '<div class="tema-item">';
+                        echo '<a class="tema-link" href="Modificar_Preguntas.html?idTema=' . $idTema . '&nPregunta=' . $nPregunta . '">' . $titulo . '</a>';
+                        echo '<form method="post" action="borrarPregunta.php" style="display:inline-block;margin-left:8px;">';
+                        echo '<input type="hidden" name="idTema" value="' . $idTema . '">';
+                        echo '<input type="hidden" name="nPregunta" value="' . $nPregunta . '">';
+                        echo '<button type="submit" class="delete-btn">🗑️</button>';
+                        echo '</form>';
+                        echo '</div>';
+                    }
+                    echo '</div>';
+                } else {
+                    echo '<p>No hay preguntas en este tema.</p>';
+                }
+            ?>
             </div>
             <div style="margin-top:16px;">
                 <a href="creación_Preguntas.html"><button class="save-btn" type="button">+ Crear pregunta</button></a>

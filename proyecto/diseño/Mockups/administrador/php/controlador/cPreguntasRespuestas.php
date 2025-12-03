@@ -26,6 +26,13 @@ class cPreguntasRespuestas{
         return true;
     }
 
+    public function sacarNombrePregunta($idTema){
+        return $resul=$this->modeloPreguntas->sacarNombrePregunta($idTema);
+    }
+
+    public function borrarPregunta($idTema, $nPregunta){
+        return $this->modeloPreguntas->borrarPregunta($idTema, $nPregunta);
+    }
     // Método que llama al modelo para guardar las preguntas
     public function meterPreguntas(){
         $idTema = 1; // Temporalmente para pruebas
