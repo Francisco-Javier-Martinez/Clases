@@ -28,7 +28,7 @@
         </div>
         <div class="container">
             <h3>Editar Tema</h3>
-            <form action="Modificar_Preguntas.html" method="post">
+            <form action="Modificar_Preguntas.php" method="post">
                 <div class="form-box">
                     <label>Nombre del Tema</label>
                     <input type="text" value="Nombre del tema seleccionado">
@@ -67,7 +67,7 @@
                             $nPregunta = $index + 1;
                         }
                         echo '<div class="tema-item">';
-                        echo '<a class="tema-link" href="Modificar_Preguntas.html?idTema=' . $idTema . '&nPregunta=' . $nPregunta . '">' . $titulo . '</a>';
+                        echo '<a class="tema-link" href="Modificar_Preguntas.php?idTema=' . $idTema . '&nPregunta=' . $nPregunta . '">' . $titulo . '</a>';
                         echo '<form method="post" action="borrarPregunta.php" style="display:inline-block;margin-left:8px;">';
                         echo '<input type="hidden" name="idTema" value="' . $idTema . '">';
                         echo '<input type="hidden" name="nPregunta" value="' . $nPregunta . '">';

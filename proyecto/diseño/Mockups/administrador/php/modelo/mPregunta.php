@@ -67,7 +67,8 @@
 
     public function sacarNombrePregunta($idTema){
         try{
-            $sql="SELECT titulo FROM preguntas WHERE idTema=:idTema"; 
+            // Devolver información completa de la pregunta para mostrar en la vista
+            $sql="SELECT nPregunta, titulo, explicacion, imagen, puntuacion FROM preguntas WHERE idTema=:idTema ORDER BY nPregunta ASC"; 
             $stmt=$this->conexion->prepare($sql);
             $stmt->bindParam(':idTema', $idTema);
             $stmt->execute();
@@ -100,6 +101,24 @@
             return false;
         }
     }
+
+    public function obtenerDatosPregunta($idTema, $nPregunta){
+        try{
+            $sql="SELECT * FROM preguntas WHERE idTema=:idTema AND nPregunta=:nPregunta";
+            $stmt=$this->conexion->prepare($sql);
+            $stmt->bindParam(':idTema', $idTema);
+            $stmt->bindParam(':nPregunta', $nPregunta);
+            $stmt->execute();
+            $resultado=$stmt->fetch(PDO::FETCH_ASSOC);
+            if($resultado){
+                return $resultado;
+            }else{
+                return null;
+            }
+        }catch(PDOException $e){
+            $this->mensajeError='Code error: ' . $e->getCode() . ' Mensaje error: ' . $e->getMessage();
+            return null;
+        }
+    }
 }
-    
 ?>

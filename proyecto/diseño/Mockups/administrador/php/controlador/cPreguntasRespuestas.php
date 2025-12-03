@@ -30,6 +30,26 @@ class cPreguntasRespuestas{
         return $resul=$this->modeloPreguntas->sacarNombrePregunta($idTema);
     }
 
+    // Devuelve un array de preguntas con sus respuestas
+    public function obtenerPreguntasConRespuestas($idTema){
+        $preguntas = $this->modeloPreguntas->sacarNombrePregunta($idTema);
+        if(!is_array($preguntas)){
+            $this->mensajeError = is_string($preguntas) ? $preguntas : 'Error al obtener preguntas';
+            return [];
+        }
+        foreach($preguntas as $idx => $preg){
+            $nPregunta = isset($preg['nPregunta']) ? (int)$preg['nPregunta'] : ($idx + 1);
+            $respuestas = $this->modeloRespuestas->obtenerRespuestas($idTema, $nPregunta);
+            // Si devolver mensajes de error desde el modelo
+            if(is_string($respuestas)){
+                $this->mensajeError .= ' ' . $respuestas;
+                $respuestas = [];
+            }
+            $preguntas[$idx]['respuestas'] = $respuestas;
+        }
+        return $preguntas;
+    }
+
     public function borrarPregunta($idTema, $nPregunta){
         return $this->modeloPreguntas->borrarPregunta($idTema, $nPregunta);
     }

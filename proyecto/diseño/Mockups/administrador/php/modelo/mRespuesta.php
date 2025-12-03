@@ -47,6 +47,25 @@
                 return $this->mensajeError;
             }
         }
+
+        public function obtenerRespuestas($idTema, $nPregunta){
+            try{
+                $sql = "SELECT nLetra, texto, es_correcta FROM respuestas WHERE idTema = :idTema AND nPregunta = :nPregunta ORDER BY nLetra ASC";
+                $stmt = $this->conexion->prepare($sql);
+                $stmt->bindValue(':idTema', (int)$idTema, PDO::PARAM_INT);
+                $stmt->bindValue(':nPregunta', (int)$nPregunta, PDO::PARAM_INT);
+                $stmt->execute();
+                $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                if($resultado){
+                    return $resultado;
+                }else{
+                    return [];
+                }
+            }catch(PDOException $e){
+                $this->mensajeError = 'Code error: ' . $e->getCode() . ' Mensaje error: ' . $e->getMessage();
+                return $this->mensajeError;
+            }
+        }
     } 
 
 ?>
