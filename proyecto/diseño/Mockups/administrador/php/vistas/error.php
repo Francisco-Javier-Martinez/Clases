@@ -16,7 +16,7 @@
         if (isset($mensaje_error_a_mostrar) && $mensaje_error_a_mostrar !== '') {
             echo '<div>';
             echo '<h3>Detalle del Error:</h3>';
-            echo '<p>' . nl2br(htmlspecialchars($mensaje_error_a_mostrar)) . '</p>';
+            echo '<p>' . $mensaje_error_a_mostrar. '</p>';
             echo '</div>';
         } else {
             echo '<p>No se pudo obtener el detalle del error.</p>';

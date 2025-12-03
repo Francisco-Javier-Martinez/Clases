@@ -82,7 +82,7 @@ CREATE TABLE respuestas (
     idTema SMALLINT UNSIGNED NOT NULL,
     nPregunta TINYINT UNSIGNED NOT NULL,
     nLetra CHAR(1) NOT NULL CHECK (nLetra IN('a','b','c','d')),
-    texto VARCHAR(500) NOT NULL,  -- AÑADIDO: falta el texto de la respuesta
+    texto VARCHAR(500) NOT NULL,
     es_correcta BIT NOT NULL DEFAULT 0,  -- AÑADIDO: para identificar cuál es la correcta
 
     CONSTRAINT idRespuesta PRIMARY KEY (idTema, nPregunta, nLetra),

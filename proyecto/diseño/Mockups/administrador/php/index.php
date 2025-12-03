@@ -22,7 +22,6 @@
     $vista = $objControlador->vistaCargar;
     if(!empty($objControlador->mensajeError)){
         // Loguear tipo y contenido antes de mostrar la vista de error (depuración)
-        error_log("index.php: mensajeError type=" . gettype($objControlador->mensajeError) . " value=" . var_export($objControlador->mensajeError, true));
         $mensaje_error_a_mostrar = $objControlador->mensajeError;
         $vista = 'error';
     }

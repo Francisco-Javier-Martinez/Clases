@@ -28,7 +28,7 @@ class cPreguntasRespuestas{
 
     // Método que llama al modelo para guardar las preguntas
     public function meterPreguntas(){
-        $idTema = 2; // Temporalmente para pruebas
+        $idTema = 1; // Temporalmente para pruebas
         $this->mensajeError = '';
 
         // Validaciones básicas
@@ -88,25 +88,16 @@ class cPreguntasRespuestas{
             $this->mensajeError = "Deben ser 4 respuestas obligatoriamente";
             return false;
         }
-
         $letras = ['a','b','c','d'];
         $opcionCorrecta = $_POST['opcion'];
         foreach($_POST['respuestas'] as $indice => $respuesta){
-            $letraC = $letras[$indice];
-            if($letraC === $opcionCorrecta){
-                $esCorrecta = 1;
+            $letraC = $letras[$indice];//letra vale a en la primera vuelta, b en la segunda
+            if($letraC === $opcionCorrecta){//Si la letra coincide con la opcion correcta
+                $esCorrecta = 1;//significa que es la respuesta correcta
             } else {
-                $esCorrecta = 0;
+                $esCorrecta = 0;//significa que no es la respuesta correcta
             }
-            $resultado = $this->modeloRespuestas->meterRespuestas($idTema, $nPregunta, $respuesta, $letraC, $esCorrecta);
-            if($resultado != true){
-                if(is_string($resultado)){
-                    $this->mensajeError .= "Error al guardar la respuesta " . $letraC . ": " . $resultado . " ";
-                } else {
-                    $this->mensajeError .= "Error desconocido al guardar la respuesta " . $letraC . ". ";
-                }
-                return false;
-            }
+            $this->modeloRespuestas->meterRespuestas($idTema, $nPregunta, $respuesta, $letraC, $esCorrecta);
         }
 
         return true;

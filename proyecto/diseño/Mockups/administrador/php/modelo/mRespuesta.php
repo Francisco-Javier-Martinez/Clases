@@ -8,14 +8,15 @@
                     $sql = "INSERT INTO respuestas (idTema, nPregunta, nLetra, texto, es_correcta) 
                             VALUES (:idTema, :nPregunta, :nLetra, :texto, :es_correcta)";
                     $stmt = $this->conexion->prepare($sql);
-                    $params = [
-                        ':idTema' => (int)$idTema,
-                        ':nPregunta' => (int)$nPregunta,
-                        ':nLetra' => (string)$letra,
-                        ':texto' => (string)$respuesta,
-                        ':es_correcta' => (int)$esCorrecta
-                    ];
-                    $stmt->execute($params);
+                    //Vincular parametros
+                    $stmt->bindParam(':idTema', $idTema);
+                    $stmt->bindParam(':nPregunta', $nPregunta);
+                    $stmt->bindParam(':nLetra', $letra);
+                    $stmt->bindParam(':texto', $respuesta);
+                    $stmt->bindParam(':es_correcta', $esCorrecta);
+                    //Ejecutar consulta
+                    
+                    $stmt->execute();
                     if($stmt->rowCount() > 0){
                         return true;
                     }else{
