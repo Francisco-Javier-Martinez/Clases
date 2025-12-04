@@ -12,8 +12,8 @@
         <h2>Ha ocurrido un problema al procesar tu solicitud.</h2>
         
         <?php 
-        // Mostrar el mensaje de error del controlador si está disponible (mensaje amigable)
-        if (isset($mensaje_error_a_mostrar) && $mensaje_error_a_mostrar !== '') {
+        // si existe el mensaje de error lo muestro
+        if (isset($mensaje_error_a_mostrar)) {
             echo '<div>';
             echo '<h3>Detalle del Error:</h3>';
             echo '<p>' . $mensaje_error_a_mostrar. '</p>';

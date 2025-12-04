@@ -22,10 +22,10 @@
             <input type="number" id="puntuacion" name="puntuacion" value="<?php echo $datos['pregunta']['puntuacion']; ?>">
 
             <label for="imagen">Imagen actual</label>
-            <div><img src="<?php echo $datos['imagenPregunta']; ?>" alt="Imagen de la pregunta" style="max-width: 200px;"></div>
+            <div><img src="<?php echo $datos['imagenPregunta']; ?>" alt="Imagen de la pregunta" id="imgenPregunta"></div>
             <h2>Imagen que estaba guardada</h2>
-            <label for="imagen">Cambiar imagen de la pregunta</label>
-            <input type="file" id="imagen" name="imagen" accept="image/*">
+            <label for="imagen">Cambiar imagen de la pregunta, si no deseas se quedara guardada la que estaba</label>
+            <input type="file" id="imagen" name="imagen">
 
             <label for="explicacionPregunta">Explicación de la pregunta</label>
             <textarea name="explicacionPregunta" id="explicacionPregunta"><?php echo $datos['pregunta']['explicacion']; ?></textarea>
@@ -52,20 +52,39 @@
             <input type="text" id="respuesta4" name="respuestas[]" value="<?php echo $textoRespuestas['d'] ?? ''; ?>">
             <div id="contenedorRespuestas">
                 <div>
-                    <input type="radio" id="opcion1" name="opcion" value="a" <?php echo (isset($esCorrecta['a']) && $esCorrecta['a'] ? 'checked' : ''); ?>>
-                    <label for="opcion1"><?php echo $textoRespuestas['a'] ?? ''; ?></label>
+                    <input type="radio" id="opcion1" name="opcion" value="a" <?php 
+                        //si la respuesta a es correcta la marco como checked
+                        if($esCorrecta['a']) { 
+                            echo 'checked'; 
+                        }
+                    ?>>
+                    <label for="opcion1"><?php echo $textoRespuestas['a']; ?></label>
                 </div>
                 <div>
-                    <input type="radio" id="opcion2" name="opcion" value="b" <?php echo (isset($esCorrecta['b']) && $esCorrecta['b'] ? 'checked' : ''); ?>>
-                    <label for="opcion2"><?php echo $textoRespuestas['b'] ?? ''; ?></label>
+                    <input type="radio" id="opcion2" name="opcion" value="b" <?php 
+                        if($esCorrecta['b']) 
+                            { 
+                                echo 'checked'; 
+                            } 
+                    ?>>
+                    <label for="opcion2"><?php echo $textoRespuestas['b'];?>
+                    </label>
                 </div>
                 <div>
-                    <input type="radio" id="opcion3" name="opcion" value="c" <?php echo (isset($esCorrecta['c']) && $esCorrecta['c'] ? 'checked' : ''); ?>>
-                    <label for="opcion3"><?php echo $textoRespuestas['c'] ?? ''; ?></label>
+                    <input type="radio" id="opcion3" name="opcion" value="c" <?php 
+                        if($esCorrecta['c']) { 
+                            echo 'checked'; 
+                        } 
+                    ?>>
+                    <label for="opcion3"><?php echo $textoRespuestas['c'];  ?></label>
                 </div>
                 <div>
-                    <input type="radio" id="opcion4" name="opcion" value="d" <?php echo (isset($esCorrecta['d']) && $esCorrecta['d'] ? 'checked' : ''); ?>>
-                    <label for="opcion4"><?php echo $textoRespuestas['d'] ?? ''; ?></label>
+                    <input type="radio" id="opcion4" name="opcion" value="d" <?php 
+                        if($esCorrecta['d']) { 
+                            echo 'checked'; 
+                            } 
+                    ?>>
+                    <label for="opcion4"><?php echo $textoRespuestas['d']; ?></label>
                 </div>
             </div>
 

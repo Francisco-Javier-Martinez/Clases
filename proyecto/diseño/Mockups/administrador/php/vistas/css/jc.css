@@ -245,6 +245,11 @@ que es 320+25+25= 370*/
 
 }
 
+#gestionPreguntas div>img{
+    width:35.71%; /*250*100 / 700 = 35.71%*/
+    height:auto;
+}
+
 #gestionPreguntas form input[type="number"]{
     width:14.28%; /*100px *100/700 =14.28%; */
 

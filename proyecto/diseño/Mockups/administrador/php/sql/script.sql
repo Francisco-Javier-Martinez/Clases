@@ -88,3 +88,14 @@ CREATE TABLE respuestas (
     CONSTRAINT idRespuesta PRIMARY KEY (idTema, nPregunta, nLetra),
     CONSTRAINT fk_pregunta FOREIGN KEY (idTema, nPregunta) REFERENCES preguntas(idTema, nPregunta)
 );
+
+-- 1. Elimina la clave foránea existente (ya que no podemos modificar directamente sus acciones ON DELETE/ON UPDATE)
+ALTER TABLE respuestas
+DROP FOREIGN KEY fk_pregunta;
+
+-- 2. Vuelve a crear la clave foránea con la acción ON DELETE CASCADE
+ALTER TABLE respuestas
+ADD CONSTRAINT fk_pregunta FOREIGN KEY (idTema, nPregunta)
+REFERENCES preguntas(idTema, nPregunta)
+ON DELETE CASCADE
+ON UPDATE CASCADE;

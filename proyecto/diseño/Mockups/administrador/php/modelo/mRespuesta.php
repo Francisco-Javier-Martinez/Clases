@@ -3,7 +3,7 @@
     require_once 'conexion.php';
     class mRespuesta extends Conexion{
         public $mensajeError;
-
+        //metodo para insertar respuestas
         public function meterRespuestas($idTema,$nPregunta,$respuesta,$letra, $esCorrecta){            
                 try{
                     // Preparar consulta usando los nombres de columna reales (script.sql usa 'texto')
@@ -30,24 +30,9 @@
                         $this->mensajeError='Code error: ' . $e->getCode() . ' Mensaje error: ' . $e->getMessage();
                         return $this->mensajeError;
                 }   
-        }  
+        } 
 
-        // Eliminar todas las respuestas de una pregunta
-        public function borrarRespuestas($idTema, $nPregunta){
-            try{
-                $sql = "DELETE FROM respuestas WHERE idTema = :idTema AND nPregunta = :nPregunta";
-                $stmt = $this->conexion->prepare($sql);
-                $stmt->bindValue(':idTema', (int)$idTema, PDO::PARAM_INT);
-                $stmt->bindValue(':nPregunta', (int)$nPregunta, PDO::PARAM_INT);
-                $stmt->execute();
-                // Aunque no existan filas, consideramos la operación exitosa
-                return true;
-            }catch(PDOException $e){
-                $this->mensajeError = 'Code error: ' . $e->getCode() . ' Mensaje error: ' . $e->getMessage();
-                return $this->mensajeError;
-            }
-        }
-
+        // Modificar una respuesta específica
         public function modificarRespuesta($idTema, $nPregunta, $letra, $texto, $esCorrecta){
             try{
                 $sql = "UPDATE respuestas SET texto = :texto, es_correcta = :es_correcta 
@@ -60,17 +45,16 @@
                 $stmt->bindValue(':nPregunta', (int)$nPregunta, PDO::PARAM_INT);
                 $stmt->bindValue(':nLetra', (string)$letra, PDO::PARAM_STR);
                 $stmt->execute();
-                if($stmt->rowCount() > 0){
+                //si el usuario no toco las respuestas no habra filas afectadas por eso pongo >=0
+                if($stmt->rowCount() >= 0){
                     return true;
-                }else{
-                    $this->mensajeError="No se pudo modificar la respuesta";
-                    return $this->mensajeError;
                 }
             }catch(PDOException $e){
                 $this->mensajeError = 'Code error: ' . $e->getCode() . ' Mensaje error: ' . $e->getMessage();
                 return $this->mensajeError;
             }
         }
+        // Obtener todas las respuestas de una pregunta
         public function obtenerRespuestas($idTema, $nPregunta){
             try{
                 $sql = "SELECT * FROM respuestas WHERE idTema = :idTema AND nPregunta = :nPregunta ORDER BY nLetra ASC";

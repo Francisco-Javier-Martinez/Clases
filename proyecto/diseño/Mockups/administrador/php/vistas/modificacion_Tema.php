@@ -50,7 +50,7 @@
         <!-- Sección de preguntas: reutiliza estilos .container, .temas-box y .tema-item -->
         <div class="container">
             <h3>Preguntas</h3>
-            <p class="subtitle">Lista de preguntas del tema (vista previa)</p>
+            <p class="subtitle">Lista de preguntas del tema clica en el nombre para modificar</p>
             <div class="temas-box">
                 <?php
                     if(!empty($datos)){
@@ -58,13 +58,23 @@
                             echo '<div class="tema-item">';
                             // Enlace hacia el controlador que carga la vista de modificar pregunta
                             echo '<a class="tema-link" href="index.php?c=PreguntasRespuestas&m=editarPregunta&idTema=' .$pregunta['idTema'].'&nPregunta='.$pregunta['nPregunta']. '"> '. $pregunta['titulo']. '</a>';
-                            echo '<button class="delete-btn" type="button">🗑</button>';
+                            echo '<a href="index.php?c=PreguntasRespuestas&m=borrarPregunta&idTema='.$pregunta['idTema'].'&nPregunta='.$pregunta['nPregunta']. '"><button class="delete-btn" type="button">🗑</button></a>';
                             echo '</div>';
                         }
                     } else {
                         echo '<p>No hay preguntas disponibles para este tema.</p>';
                     }
                 ?>
+        </div>
+        <!-- Botón para agregar nueva pregunta -->
+        <?php
+            // Asegurarse de tener un idTema disponible
+            $idTemaLink = isset($idTema) ? $idTema : (isset($datos[0]['idTema']) ? $datos[0]['idTema'] : '');
+        ?>
+        <div class="tema-item">
+            <a class="tema-link" href="index.php?c=PreguntasRespuestas&m=mostrarNuevaPregunta&idTema=<?php echo $idTemaLink; ?>">
+                <p>+ Agregar Nueva Pregunta</p>
+            </a>
         </div>
     </main>
     <footer>

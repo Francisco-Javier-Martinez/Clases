@@ -259,7 +259,11 @@ h3 {
 .tema-item:hover {
     transform: scale(1.05);
 }
-
+.tema-link{
+    p{
+        text-align: center  ;
+    }
+}
 /* Botón de cancelar */
 #cancel {
     background-color: rgb(169, 27, 27);
