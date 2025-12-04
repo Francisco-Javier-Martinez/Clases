@@ -48,9 +48,32 @@
             }
         }
 
+        public function modificarRespuesta($idTema, $nPregunta, $letra, $texto, $esCorrecta){
+            try{
+                $sql = "UPDATE respuestas SET texto = :texto, es_correcta = :es_correcta 
+                        WHERE idTema = :idTema AND nPregunta = :nPregunta AND nLetra = :nLetra";
+                //recoger la variable texto y esCorrecta
+                $stmt = $this->conexion->prepare($sql);
+                $stmt->bindValue(':texto', (string)$texto, PDO::PARAM_STR);
+                $stmt->bindValue(':es_correcta', (int)$esCorrecta, PDO::PARAM_INT);
+                $stmt->bindValue(':idTema', (int)$idTema, PDO::PARAM_INT);
+                $stmt->bindValue(':nPregunta', (int)$nPregunta, PDO::PARAM_INT);
+                $stmt->bindValue(':nLetra', (string)$letra, PDO::PARAM_STR);
+                $stmt->execute();
+                if($stmt->rowCount() > 0){
+                    return true;
+                }else{
+                    $this->mensajeError="No se pudo modificar la respuesta";
+                    return $this->mensajeError;
+                }
+            }catch(PDOException $e){
+                $this->mensajeError = 'Code error: ' . $e->getCode() . ' Mensaje error: ' . $e->getMessage();
+                return $this->mensajeError;
+            }
+        }
         public function obtenerRespuestas($idTema, $nPregunta){
             try{
-                $sql = "SELECT nLetra, texto, es_correcta FROM respuestas WHERE idTema = :idTema AND nPregunta = :nPregunta ORDER BY nLetra ASC";
+                $sql = "SELECT * FROM respuestas WHERE idTema = :idTema AND nPregunta = :nPregunta ORDER BY nLetra ASC";
                 $stmt = $this->conexion->prepare($sql);
                 $stmt->bindValue(':idTema', (int)$idTema, PDO::PARAM_INT);
                 $stmt->bindValue(':nPregunta', (int)$nPregunta, PDO::PARAM_INT);

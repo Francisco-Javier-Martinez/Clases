@@ -22,7 +22,7 @@
             echo '<p>No se pudo obtener el detalle del error.</p>';
         }
         ?>
-        <p><a href="index.php?c=PreguntasRespuestas&m=mostrarCreacion">Volver al formulario de creación de preguntas</a></p>
+        <p><a href="index.php">Volver al inicio</a></p>
     </div>
 </body>
 </html>

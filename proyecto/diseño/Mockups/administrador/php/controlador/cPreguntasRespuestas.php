@@ -26,30 +26,80 @@ class cPreguntasRespuestas{
         return true;
     }
 
-    public function sacarNombrePregunta($idTema){
-        return $resul=$this->modeloPreguntas->sacarNombrePregunta($idTema);
+    // Método que llama al modelo para obtener las preguntas de un tema
+    public function sacarNombrePregunta(){
+        $this->vistaCargar = 'modificacion_Tema.php';
+        $idTema = $_GET['idTema'] ?? 1; // Recibir idTema desde GET
+        return $this->modeloPreguntas->sacarNombrePregunta($idTema);
     }
 
-    // Devuelve un array de preguntas con sus respuestas
-    public function obtenerPreguntasConRespuestas($idTema){
-        $preguntas = $this->modeloPreguntas->sacarNombrePregunta($idTema);
-        if(!is_array($preguntas)){
-            $this->mensajeError = is_string($preguntas) ? $preguntas : 'Error al obtener preguntas';
-            return [];
-        }
-        foreach($preguntas as $idx => $preg){
-            $nPregunta = isset($preg['nPregunta']) ? (int)$preg['nPregunta'] : ($idx + 1);
-            $respuestas = $this->modeloRespuestas->obtenerRespuestas($idTema, $nPregunta);
-            // Si devolver mensajes de error desde el modelo
-            if(is_string($respuestas)){
-                $this->mensajeError .= ' ' . $respuestas;
-                $respuestas = [];
+    // Cargar una pregunta y sus respuestas para modificarla
+    public function editarPregunta(){
+        // Preparar vista y datos para edición
+        $this->vistaCargar = 'Modificar_Preguntas.php';
+        $idTema = $_GET['idTema'];
+        $nPregunta = $_GET['nPregunta'];
+
+        $pregunta = $this->modeloPreguntas->obtenerDatosPregunta($idTema, $nPregunta);
+        $respuestas = $this->modeloRespuestas->obtenerRespuestas($idTema, $nPregunta);
+        //crear un array con todos los datos porque tengo que llamar a 2 metodos del modelo
+        //para saccar la pregunta y las respuestas porque son 1 vista
+        $datos = [
+            'idTema' => $idTema,
+            'nPregunta' => $nPregunta,
+            'pregunta' => $pregunta,
+            'respuestas' => $respuestas,
+            'imagenPregunta' => RUTA_IMAGENES_PREGUNTAS . $pregunta['imagen']
+        ];
+
+        return $datos;
+    }
+
+    // Método que llama al modelo para modificar una pregunta
+    public function modificarPregunta(){
+        $idTema = $_POST['idTema'] ?? null;
+        $nPregunta = $_POST['nPregunta'] ?? null;
+        $respuesta= $_POST['respuestas'] ?? [];
+        $resultadoPregunta = $this->modeloPreguntas->modificarPregunta($idTema, $nPregunta);
+        if($resultadoPregunta === true){
+            //modificamos las respuestas
+            $resultadoRespuestas = $this->modificarRespuestas($idTema, $nPregunta, $respuesta);
+            if($resultadoRespuestas === true){
+                return true;
+            } else {
+                // Error al modificar respuestas
+                $this->mensajeError = "No se pudieron modificar las respuestas: " . $resultadoRespuestas;
+                return false;
             }
-            $preguntas[$idx]['respuestas'] = $respuestas;
+        } else {
+            $this->mensajeError = "No se pudo modificar la pregunta: " . $resultadoPregunta;
+            return false;
         }
-        return $preguntas;
     }
 
+    // Método que llama al modelo para modificar las respuestas
+    private function modificarRespuestas($idTema, $nPregunta, $respuestas){
+        //reutilizo el mismo codigo que en meter respuestas pero llamando al metodo modificar
+        $this->vistaCargar = 'panelAdministrador.html';
+        $letras = ['a','b','c','d'];
+        $respuestas = $_POST['respuestas'];
+        $opcionCorrecta = $_POST['opcion']; // letra de la respuesta correcta
+        foreach($respuestas as $indice => $respuesta){
+            $letraC = $letras[$indice]; // 'a','b','c' o 'd'
+            $esCorrecta = 0; // por defecto no es correcta
+            //si la opcion correcta no es nula y la letra coincide con la opcion correcta
+            if($opcionCorrecta !== null && $letraC === $opcionCorrecta){
+                $esCorrecta = 1; // es correcta
+            }
+            // Llamar al modelo para modificar la respuesta
+            $resultado = $this->modeloRespuestas->modificarRespuesta($idTema, $nPregunta, $letraC, $respuesta, $esCorrecta);
+            if($resultado !== true){
+                return $resultado; // retornar el error
+            }            
+        }
+        return true; // todas las respuestas se modificaron exitosamente
+    }
+    // Método que llama al modelo para borrar una pregunta
     public function borrarPregunta($idTema, $nPregunta){
         return $this->modeloPreguntas->borrarPregunta($idTema, $nPregunta);
     }
