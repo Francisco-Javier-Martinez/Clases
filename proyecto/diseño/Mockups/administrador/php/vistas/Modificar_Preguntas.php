@@ -43,13 +43,13 @@
                 }
             ?>
             <label for="respuesta1">Respuesta 1</label>
-            <input type="text" id="respuesta1" name="respuestas[]" value="<?php echo $textoRespuestas['a'] ?? ''; ?>">
+            <input type="text" id="respuesta1" name="respuestas[]" value="<?php echo $textoRespuestas['a']; ?>">
             <label for="respuesta2">Respuesta 2</label>
-            <input type="text" id="respuesta2" name="respuestas[]" value="<?php echo $textoRespuestas['b'] ?? ''; ?>">
+            <input type="text" id="respuesta2" name="respuestas[]" value="<?php echo $textoRespuestas['b']; ?>">
             <label for="respuesta3">Respuesta 3</label>
-            <input type="text" id="respuesta3" name="respuestas[]" value="<?php echo $textoRespuestas['c'] ?? ''; ?>">
+            <input type="text" id="respuesta3" name="respuestas[]" value="<?php echo $textoRespuestas['c']; ?>">
             <label for="respuesta4">Respuesta 4</label>
-            <input type="text" id="respuesta4" name="respuestas[]" value="<?php echo $textoRespuestas['d'] ?? ''; ?>">
+            <input type="text" id="respuesta4" name="respuestas[]" value="<?php echo $textoRespuestas['d']; ?>">
             <div id="contenedorRespuestas">
                 <div>
                     <input type="radio" id="opcion1" name="opcion" value="a" <?php 
