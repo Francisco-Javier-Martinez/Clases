@@ -71,6 +71,10 @@ class cPreguntasRespuestas{
             return false;
 
         }
+        if($_POST['respuestas'][0]=='' || $_POST['respuestas'][1]=='' || $_POST['respuestas'][2]=='' || $_POST['respuestas'][3]==''){
+            $this->mensajeError = "Todas las respuestas son obligatorias meterlas";
+            return false;
+        }
         // Verificar si se subió una nueva imagen porque si no se sube hay que mantener la que ya estaba
             //si el input file tiene algo es que se ha subido una imagen nueva
         if(isset($_FILES['imagen'])){
