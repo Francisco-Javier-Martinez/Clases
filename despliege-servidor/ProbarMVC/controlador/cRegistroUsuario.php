@@ -26,7 +26,7 @@ class cRegistroUsuario {
         //recoger los datos de recomendaciones y animales
         $arrayRecomendados = $this->recomendacionesModelo->recogerRecomendaciones();
         $arrayAnimales = $this->animalesModelo->recogerAnimales();
-        $this->vistaCargar = 'indexServidor.php';
+        $this->vistaCargar = 'formularioRegistro.php';
         // Devolver las variables con los nombres que la vista espera
         return [
             // nombre de todas las cosas que necesita la vista
@@ -74,7 +74,7 @@ class cRegistroUsuario {
     $usu = $_GET['idUsuario'];
     if (!$usu) {
         $this->vistaCargar = 'error.php';
-        $this->mensaje = '<h1>Error: Falta el ID de usuario.</h1>';
+        $this->mensaje = 'Ha fallado algo en el proceso.';
         return false;
     }
 
@@ -112,7 +112,7 @@ class cRegistroUsuario {
             $this->mensaje = $resultado;
         }
         $this->vistaCargar = 'existo.php';
-        $this->mensaje = '<h1>¡Usuario borrado correctamente!</h1>';
+        $this->mensaje = '¡Usuario borrado correctamente!';
         
     }
 
@@ -120,16 +120,16 @@ class cRegistroUsuario {
     public function modificarFinal() {
         $errores = [];
         if (empty($_POST['nombre'])) {
-            $errores[] = '<h1>El nombre no puede estar vacío.</h1>';
+            $errores[] = 'El nombre no puede estar vacío.';
         }
         if (empty($_POST['correoElectronico'])) {
-            $errores[] = '<h1>El correo electrónico no puede estar vacío.</h1>';
+            $errores[] = 'El correo electrónico no puede estar vacío.';
         }
         if (!isset($_POST['idioma'])) {
-            $errores[] = '<h1>Debe seleccionar un idioma.</h1>';
+            $errores[] = 'Debe seleccionar un idioma.';
         }
         if (!isset($_POST['animales']) || count($_POST['animales'])==0) {
-            $errores[] = '<h1>Debe seleccionar al menos un animal.</h1>';
+            $errores[] = 'Debe seleccionar al menos un animal.';
         }
 
         // 2. Si hay errores, detener y cargar la vista de error
@@ -146,7 +146,7 @@ class cRegistroUsuario {
             
         }
         $this->vistaCargar = 'existo.php';
-        $this->mensaje = '<h1>¡Usuario modificado correctamente!</h1>';
+        $this->mensaje = '¡Usuario modificado correctamente!';
         
     }
 
@@ -154,24 +154,24 @@ class cRegistroUsuario {
     public function recibir() {
         $errores = [];
         if (empty($_POST['nombre'])) {
-            $errores[] = '<h1>Se envió vacío el campo nombre</h1>';
+            $errores[] = 'Se envió vacío el campo nombre';
             
         }
         if (empty($_POST['correoElectronico'])) {
-            $errores[] = '<h1>Se envió vacío el campo correo electrónico</h1>';
+            $errores[] = 'Se envió vacío el campo correo electrónico';
         }
         $sugerencia = empty($_POST['sugerencia']) ? null : $_POST['sugerencia'];
         if (!isset($_POST['idioma'])) {
-            $errores[] = '<h1>No ha seleccionado ningún idioma</h1>';
+            $errores[] = 'No ha seleccionado ningún idioma';
         }
         if (!isset($_POST['animales']) || count($_POST['animales']) == 0) {
-            $errores[] = '<h1>No ha seleccionado ningún animal</h1>';
+            $errores[] = 'No ha seleccionado ningún animal';
         }
         if (!isset($_POST['terminosCondicones'])) {
-            $errores[] = '<h1>No has aceptados los terminos</h1>';
+            $errores[] = 'No has aceptado los términos';
         }
         if (!isset($_POST['comoConocio'])) {
-            $errores[] = '<h1>No ha seleccionado ninguna recomendación</h1>';
+            $errores[] = 'No ha seleccionado ninguna recomendación';
         }
 
         //si algo fallo de las validaciones de arriba
@@ -198,13 +198,13 @@ class cRegistroUsuario {
                         return $resultadoAnimal;
                 }
             }
-            $this->vistaCargar = 'existo.php';
-            $this->mensaje = '<h1>¡Registro completado con éxito!</h1>';
+                $this->vistaCargar = 'existo.php';
+                $this->mensaje = '¡Registro completado con éxito!';
             return $idUsu;
         }
         // Si llegamos aquí es porque no se creó el usuario entonces envio a la pgina de error
         $this->vistaCargar = 'error.php';
-        $this->mensaje = '<h1>Ups algo fallo</h1>';
+            $this->mensaje = 'Ups, algo falló';
         return false;
     }
 }

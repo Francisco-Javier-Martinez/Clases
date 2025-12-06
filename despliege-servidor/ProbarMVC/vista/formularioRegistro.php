@@ -52,9 +52,7 @@
                 <p>Información a recibir:</p>
                 <?php
                     
-                    foreach($arrayanimalesUsuario as $fila){ //fetch_array esto se recorrera hasta que no queden filas y devuelva false
-                        // fetch_array() me devolvera un array de la fila donde este el puntero.
-                        // Cada vez que se llama, avanza a la siguiente fila
+                    foreach($arrayanimalesUsuario as $fila){ 
                         echo '<label>';
                         echo '<input type="checkbox" name="animales[]" value="'.$fila['idAnimales'] .'"/>'.$fila['nombreAnimal'];
                         echo '</label>';
@@ -67,9 +65,8 @@
                 </label>
                 <!--Select-->
                 <p>¿Cómo nos has conocido?:</p>
+                <select id="comoConocio" name="comoConocio">';
                 <?php
-                    
-                    echo '<select id="comoConocio" name="comoConocio">';
                     foreach($arrayRecomendaciones as $fila){ 
                         echo '<option value="'.$fila['idRecomendacion'].'">'.$fila['nombre'].'</option>';
                     }

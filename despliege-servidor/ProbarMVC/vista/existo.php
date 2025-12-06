@@ -11,7 +11,9 @@
         <h1 id="titulo">ÉXITO</h1>
     </header>
     <?php
-        echo $mensaje;
+        if (isset($mensaje)) {
+            echo '<h1>'.$mensaje.'</h1>';
+        }
     ?>
     <a href="index.php">Volver</a>
 </body>

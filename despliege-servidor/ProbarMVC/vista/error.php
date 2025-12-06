@@ -14,10 +14,10 @@
             if (isset($mensaje)) {
                 if (is_array($mensaje)) {
                     foreach ($mensaje as $listaMensajes) {
-                        echo $listaMensajes;
+                        echo '<p">'.$listaMensajes.'</p>';
                     }
                 } else {
-                    echo $mensaje;
+                    echo '<p>'.$mensaje.'</p>';
                 }
             }
         ?>
