@@ -19,16 +19,16 @@
 
     //Concateno con c porque mis controladores aunque solo tenga 1 ahora empiezan con c si tuviese la gestion de otro cosa empezaria con c tambien
     $nombreControlador = 'c' . $controlador;
-    $objControlador = new $nombreControlador();
+    $controladorObjeto = new $nombreControlador();
 
     // llamar al metodo del controlador
     //$datos va a tener todo lo que me devuelva el metodo del controlador que he llamado
-    $datos = $objControlador->$metodo();
+    $datos = $controladorObjeto->$metodo();
 
     // determinar la vista a cargar
-    $vista = $objControlador->vistaCargar;
+    $vista = $controladorObjeto->vistaCargar;
     //mensaje
-    $mensaje = $objControlador->mensaje;
+    $mensaje = $controladorObjeto->mensaje;
 
     // cargar la vista
     $rutaVista = __DIR__ . '/vista/' . $vista;

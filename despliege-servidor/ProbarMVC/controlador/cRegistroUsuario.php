@@ -26,7 +26,6 @@ class cRegistroUsuario {
         //recoger los datos de recomendaciones y animales
         $arrayRecomendados = $this->recomendacionesModelo->recogerRecomendaciones();
         $arrayAnimales = $this->animalesModelo->recogerAnimales();
-        // Usar la vista existente `indexServidor.php` que contiene el formulario
         $this->vistaCargar = 'indexServidor.php';
         // Devolver las variables con los nombres que la vista espera
         return [
@@ -39,7 +38,7 @@ class cRegistroUsuario {
     public function recibirAnimalesUsuario() {
         $lista = $this->animalesModelo->recogerAnimales();
         if (is_string($lista)) {
-            // Error desde el modelo: mostrar vista de error
+            // si es un string es que ha habido un error
             $this->vistaCargar = 'error.php';
             $this->mensaje = $lista;
             
@@ -188,8 +187,9 @@ class cRegistroUsuario {
             $this->mensaje = $idUsu;
             return $idUsu;
         }
-
+        //si se ha creado el usuario correctamente
         if ($idUsu) {
+            //recorro los animales seleccionados y los inserto en la tabla boletin_animales
             foreach ($_POST['animales'] as $valor) {
                 $resultadoAnimal = $this->boletinAnimalesModelo->meterAnimalUsuario($idUsu, $valor);
                 if (is_string($resultadoAnimal)) {
@@ -202,7 +202,7 @@ class cRegistroUsuario {
             $this->mensaje = '<h1>¡Registro completado con éxito!</h1>';
             return $idUsu;
         }
-        // Si llegamos aquí es porque no se creó el usuario, marcar error
+        // Si llegamos aquí es porque no se creó el usuario entonces envio a la pgina de error
         $this->vistaCargar = 'error.php';
         $this->mensaje = '<h1>Ups algo fallo</h1>';
         return false;

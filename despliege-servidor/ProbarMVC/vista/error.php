@@ -11,11 +11,10 @@
         <h1 id="titulo">ERROR</h1>
         </header>
         <?php
-            // Mostrar mensaje: puede ser string o array de mensajes
             if (isset($mensaje)) {
                 if (is_array($mensaje)) {
-                    foreach ($mensaje as $m) {
-                        echo $m;
+                    foreach ($mensaje as $listaMensajes) {
+                        echo $listaMensajes;
                     }
                 } else {
                     echo $mensaje;

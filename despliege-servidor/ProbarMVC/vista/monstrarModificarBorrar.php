@@ -21,9 +21,9 @@
             <h1>Lista de usuarios</h1>
             <?php
                 foreach($datos as $usuario){
-                    echo '<p>Nombre: '.$usuario['nombreUsuario'].' - Correo: '.$usuario['correo'].'
-                    - <a href="index.php?c=RegistroUsuario&m=modificar&idUsuario='.$usuario['idUsuario'].'">Modificar</a>
-                    - <a href="index.php?c=RegistroUsuario&m=confirmarBorrar&idUsuario='.$usuario['idUsuario'].'">Borrar</a>
+                    echo '<p>Nombre: '.$usuario['nombreUsuario'].' Correo: '.$usuario['correo'].'
+                    <a href="index.php?c=RegistroUsuario&m=modificar&idUsuario='.$usuario['idUsuario'].'">Modificar</a>
+                    <a href="index.php?c=RegistroUsuario&m=confirmarBorrar&idUsuario='.$usuario['idUsuario'].'">Borrar</a>
                     </p>';
                 }
             ?>
