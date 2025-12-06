@@ -13,11 +13,11 @@
     <main>
         <?php 
             echo '<h2>¿Estás seguro de que quieres borrar al usuario 
-                ' . $arraiUsuario['nombreUsuario'] . 'con el correo ' . $arraiUsuario['correo'] . '?
+                ' . $datos['nombreUsuario'] . 'con el correo ' . $datos['correo'] . '?
             </h2>';
         ?>
-        <a href="./cBorrar.php?idUsuario=<?php echo $_GET['idUsuario']; ?>">SÍ</a>
-        <a href="./cMostrar.php" class="boton-cancelar">NO</a>
+        <a href="index.php?c=RegistroUsuario&m=borrar&idUsuario=<?php echo $datos['idUsuario']; ?>" class="boton-confirmar">SI</a>
+        <a href="index.php?c=RegistroUsuario&m=monstrarUsuarioModificarBorrar" class="boton-cancelar">NO</a>
     </main>
 </body>
 </html>

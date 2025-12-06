@@ -13,9 +13,9 @@
     <nav>
         <!--Menu -->
         <ul>
-            <li><a href="#inicio" class="amenu">Inicio</a></li>
-            <li><a href="./cFormulario.php" class="amenu">Formulario</a></li>
-            <li><a href="./cMostrar.php" class="amenu">MODIFICAR/BORRAR</a></li>
+            <li><a href="index.php" class="amenu">Inicio</a></li>
+            <li><a href="index.php?c=RegistroUsuario&m=monstrarFormularioRegistro" class="amenu">Formulario</a></li>
+            <li><a href="index.php?c=RegistroUsuario&m=monstrarUsuarioModificarBorrar" class="amenu">Modificar/Borrar</a></li>
         </ul>
     </nav>
     <main>
@@ -23,7 +23,11 @@
         <div id="formu">
         <section id="formulario">
             <h1  id="formuIndice" >Boletín de Noticias de Animales</h1>
-            <form action="./cRecibir.php" method="post">
+            <form action="index.php?c=RegistroUsuario&m=recibir" method="post">
+                <?php
+                    //extraer los arrays pasados desde el controlador
+                    extract($datos);//tengo que hacer esto porque ahora los datos vienen en un array 
+                ?>
                 <!-- Text -->
                 <label class="texlabel">Nombre:
                     <input type="text" name="nombre"/>
@@ -47,6 +51,7 @@
                 <!--Checkbox-->
                 <p>Información a recibir:</p>
                 <?php
+                    
                     foreach($arrayanimalesUsuario as $fila){ //fetch_array esto se recorrera hasta que no queden filas y devuelva false
                         // fetch_array() me devolvera un array de la fila donde este el puntero.
                         // Cada vez que se llama, avanza a la siguiente fila
@@ -63,6 +68,7 @@
                 <!--Select-->
                 <p>¿Cómo nos has conocido?:</p>
                 <?php
+                    
                     echo '<select id="comoConocio" name="comoConocio">';
                     foreach($arrayRecomendaciones as $fila){ 
                         echo '<option value="'.$fila['idRecomendacion'].'">'.$fila['nombre'].'</option>';

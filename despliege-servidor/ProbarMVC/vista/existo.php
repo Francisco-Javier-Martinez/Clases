@@ -13,5 +13,6 @@
     <?php
         echo $mensaje;
     ?>
-    <a href="<?php echo $enlace_volver; ?>">Volver</a></body>
+    <a href="index.php">Volver</a>
+</body>
 </html>

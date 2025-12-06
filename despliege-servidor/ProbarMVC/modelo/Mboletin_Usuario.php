@@ -84,7 +84,22 @@ class Boletin_Usuario extends Conectar{
         return '<h1>Error:'.$e->getCode().' - '.$e->getMessage().'</h1>';
     }
 }
+	public function monstrarTodasCaracteristacasUsuario($usu){
+		try{
+			$sql="SELECT * from boletin_usuario WHERE idUsuario=$usu;";
+			$usuario=$this->conexion->query($sql);
+			
 
+			if($usuario->num_rows>0){
+				return $usuario;
+			}else{
+				return '<h1>No hay registro de usuario disponibles</h1>';
+			}
+
+		}catch(mysqli_sql_exception $e){
+				return '<h1>Error:'.$e->getCode().' - '. $e->getMessage().'</h1>';
+			}
+	}
 	public function modificarUsuario($usu){
 		try{
 			//Pongo todos los campos aun que no se modifiquen todos porque de esta forma me aseguro que se actualicen todos los campos

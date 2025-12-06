@@ -14,9 +14,9 @@
     <nav>
         <!--Menu -->
         <ul>
-            <li><a href="#inicio" class="amenu">Inicio</a></li>
-            <li><a href="./cFormulario.php"  class="amenu">Formulario</a></li>
-            <li><a href="./cMostrar.php" class="amenu">MODIFICAR/BORRAR</a></li>
+            <li><a href="index.php" class="amenu">Inicio</a></li>
+            <li><a href="index.php?c=RegistroUsuario&m=monstrarFormularioRegistro" class="amenu">Formulario</a></li>
+            <li><a href="index.php?c=RegistroUsuario&m=monstrarUsuarioModificarBorrar" class="amenu">Modificar/Borrar</a></li>
         </ul>
     </nav>
     <main>
@@ -24,66 +24,59 @@
         <div id="formu">
         <section id="formulario">
             <h1  id="formuIndice" >Modificaion de Noticias de Animales</h1>
-            <form action="./cModificarFinal.php" method="post">
-                <!-- campo oculto para pasar el id del usuario -->
-                <input type="hidden" name="idUsuario" value="<?php echo $usu; ?>"/>
+            <?php
+                    extract($datos);
+                ?>
+            <form action="index.php?c=RegistroUsuario&m=modificarFinal" method="post">
+                <!--Input oculto para el idUsuario-->
+                <input type="hidden" name="idUsuario" value="<?php echo $usuario['idUsuario']; ?>"/>
                 <!-- Text -->
                 <label class="texlabel">Nombre:
-                    <?php
-                        $filaUsuario=$arraiUsuario->fetch_assoc();
-                        echo '<input type="text" name="nombre" value="'.$filaUsuario['nombreUsuario'].'" readonly/>';
-                    ?>
+                    <input type="text" name="nombre" value="<?php echo $usuario['nombreUsuario']; ?>"/>
                 </label>
-
                 <label class="texlabel" >Correo:  
-                    <?php
-                        echo '<input type="text" name="correoElectronico" value="'.$filaUsuario['correo'].'"/>';
-                    ?>
+                    <input type="text" name="correoElectronico" value="<?php echo $usuario['correo']; ?>"/>
                 </label>
                 <!-- Sugurencias-->
                 <label>Sugerencia
-                    <?php
-                        echo '<input type="text" name="sugerencia" value="'.$filaUsuario['sugerencias'].'" readonly/>';
-                    ?>
+                    <input type="text" name="sugerencia" value="<?php echo $usuario['sugerencias']; ?>"/>
                 </label>
                 <!--Radio-->
-                <p>Idioma seleccionado:</p>
+                <p>Seleccione idioma:</p>
                 <label>
-                    <input type="radio" name="idioma" value="espanol" /> Español
+                    <input type="radio" name="idioma" value="espanol" 
+                    <?php if($usuario['idioma']=='espanol') 
+                        echo 'checked'; 
+                    ?>/> Español
                 </label>
                 <label>
-                    <input type="radio" name="idioma" value="ingles"/> Inglés
+                    <input type="radio" name="idioma" value="ingles" 
+                    <?php if($usuario['idioma']=='ingles') 
+                        echo 'checked'; 
+                    ?>/> Inglés
                 </label>
                 <!--Checkbox-->
-                <!--Debe salir por defecto los animales que tiene seleccionado el usuario-->
                 <p>Información a recibir:</p>
                 <?php
-                    //Si es diferente a null es que tenemos filas si no muestro mensaje
-                    if($arrayAnimales!=null){
-                        while($fila=$arrayAnimales->fetch_assoc()){ 
-                            echo '<label>
-                                    <input type="checkbox" name="animales[]" value='.$fila['idAnimales'].'>'.$fila['nombreAnimal'].'</label>';
-                            }
-                    }else{
-                        echo '<p>No tenemos animales para recibir informacion de ellos</p>';
+                    foreach($arrayanimalesUsuario as $fila){
+                        echo '<label>';
+                        echo '<input type="checkbox" name="animales[]" value="'.$fila['idAnimales'] .'"/>'.$fila['nombreAnimal'];
+                        echo '</label>';
                     }
-
                 ?>
-                <!--Select-->
+                <p>Acepto los terminos y condiciones: </p>
+                <label>
+                    <input type="checkbox" name="terminosCondicones" value="1" checked/>Aceptar
+                </label>
                 <p>¿Cómo nos has conocido?:</p>
                 <?php
-                    //Si es diferente a null es que tenemos filas si no muestro mensaje
-                    if($arrayRecomendados!=null){
-                        echo '<select id="comoConocio" name="comoConocio">';
-                        while($fila=$arrayRecomendados->fetch_assoc()){ 
-                            echo '<option value="'.$fila['idRecomendacion'].'">'.$fila['nombre'].'</option>';
-                        }
-                        echo '</select>';
-                    }else{
-                        echo '<p>No tenemos recomendados disponibles</p>';
+                    
+                    echo '<select id="comoConocio" name="comoConocio">';
+                    foreach($arrayRecomendaciones as $fila){ 
+                        echo '<option value="'.$fila['idRecomendacion'].'">'.$fila['nombre'].'</option>';
                     }
+                    echo '</select>';
                 ?>
-                
                 <!--Envicar y Resetear-->
                 <p>¿Has terminado de rellenar?</p>
                 <input class="botonesFormulario" type="reset" value="Resetar"/>

@@ -12,18 +12,19 @@
         </header>
         <nav>
             <ul>
-                <li><a href="./cFormulario.php" class="amenu">Formulario</a></li>
-                <li><a href="./cMostrar.php" class="amenu">MODIFICAR/BORRAR</a></li>
-                <li><a href="./cSacarInner.php" class="amenu">Ver usuario/animales</a></li>
+            <li><a href="index.php" class="amenu">Inicio</a></li>
+            <li><a href="index.php?c=RegistroUsuario&m=monstrarFormularioRegistro" class="amenu">Formulario</a></li>
+            <li><a href="index.php?c=RegistroUsuario&m=monstrarUsuarioModificarBorrar" class="amenu">Modificar/Borrar</a></li>
             </ul>
         </nav>
         <main>
             <h1>Lista de usuarios</h1>
             <?php
-                foreach($listaUsuarios as $usuario){
+                foreach($datos as $usuario){
                     echo '<p>Nombre: '.$usuario['nombreUsuario'].' - Correo: '.$usuario['correo'].'
-                    - <a href="./cModificar.php?idUsuario='.$usuario['idUsuario'].'">Modificar</a> 
-                    - <a href="./cConfirmarBorrar.php?idUsuario='.$usuario['idUsuario'].'">Borrar</a></p>';
+                    - <a href="index.php?c=RegistroUsuario&m=modificar&idUsuario='.$usuario['idUsuario'].'">Modificar</a>
+                    - <a href="index.php?c=RegistroUsuario&m=confirmarBorrar&idUsuario='.$usuario['idUsuario'].'">Borrar</a>
+                    </p>';
                 }
             ?>
         </main>
