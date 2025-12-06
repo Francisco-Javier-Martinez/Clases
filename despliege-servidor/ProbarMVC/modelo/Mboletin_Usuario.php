@@ -36,9 +36,9 @@ class Boletin_Usuario extends Conectar{
 		}catch(mysqli_sql_exception $e){
 			switch ($e->getCode()) { 
 				case 1062:
-					return '<h1>Correo duplicado</h1>'; ///devuelvo el mensaje cual quiero monstrar 
+					return 'Correo duplicado';
 				default:
-					return '<h1>ERROR: ' . $e->getMessage() . '</h1>';
+					return 'ERROR: ' . $e->getMessage();
 			}
 		}
     }
@@ -49,12 +49,12 @@ class Boletin_Usuario extends Conectar{
 			$usuarios=$this->conexion->query($sql);
 			if($usuarios->num_rows>0){
 				return $usuarios;
-			}else{
-				return '<h1>No hay registro de usuario disponibles</h1>'; ///devuelvo el mensaje cual quiero monstrar 
-			}
+				}else{
+					return 'No hay registro de usuario disponibles';
+				}
 
 		}catch(mysqli_sql_exception $e){
-				return '<h1>Error:'.$e->getCode().' - '. $e->getMessage().'</h1>';
+				return 'Error:'.$e->getCode().' - '. $e->getMessage();
 			}
 	}
 
@@ -65,9 +65,9 @@ class Boletin_Usuario extends Conectar{
 			if($this->conexion->affected_rows>0){
 				return true;
 			}
-			return '<h1>No se pudo borrar el usuario</h1>'; ///devuelvo el mensaje cual quiero monstrar 
+			return 'No se pudo borrar el usuario';
 		}catch(mysqli_sql_exception $e){
-			return '<h1>Error:'.$e->getCode().' - '.$e->getMessage().'</h1>';
+			return 'Error:'.$e->getCode().' - '.$e->getMessage();
 		}
 	}
 	
@@ -80,9 +80,9 @@ class Boletin_Usuario extends Conectar{
             return $resultado->fetch_assoc();
         }
         return null;
-    }catch(mysqli_sql_exception $e){
-        return '<h1>Error:'.$e->getCode().' - '.$e->getMessage().'</h1>';
-    }
+	}catch(mysqli_sql_exception $e){
+		return 'Error:'.$e->getCode().' - '.$e->getMessage();
+	}
 }
 	public function monstrarTodasCaracteristacasUsuario($usu){
 		try{
@@ -92,12 +92,12 @@ class Boletin_Usuario extends Conectar{
 
 			if($usuario->num_rows>0){
 				return $usuario;
-			}else{
-				return '<h1>No hay registro de usuario disponibles</h1>';
-			}
+				}else{
+					return 'No hay registro de usuario disponibles';
+				}
 
 		}catch(mysqli_sql_exception $e){
-				return '<h1>Error:'.$e->getCode().' - '. $e->getMessage().'</h1>';
+				return 'Error:'.$e->getCode().' - '. $e->getMessage();
 			}
 	}
 	public function modificarUsuario($usu){
@@ -131,12 +131,12 @@ class Boletin_Usuario extends Conectar{
 						$this->conexion->query($sqlAnimales);
 					}
 				}else{
-					return '<h1><a href="indexServidor.php">Usuario modificado pero tuvimos problemas al registro de animales</a></h1>'; ///devuelvo el mensaje cual quiero monstrar 
+					return 'Usuario modificado pero tuvimos problemas al registrar los animales. Revise.';
 				}
 			}
 			return true;
 		}catch(mysqli_sql_exception $e){
-			return '<h1>Error:'.$e->getCode().' - '.$e->getMessage().'</h1>'; ///devuelvo el mensaje cual quiero monstrar 
+			return 'Error:'.$e->getCode().' - '.$e->getMessage();
 		}
 	}
 }

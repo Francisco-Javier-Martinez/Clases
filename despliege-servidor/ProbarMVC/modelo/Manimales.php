@@ -14,13 +14,13 @@
 					}
 					return $listaAnimales;
 				}else{
-						return '<h1>No hay animales disponibles</h1>'; ///devuelvo el mensaje cual quiero monstrar 
+					return 'No hay animales disponibles';
 				}
 				
 			}catch(mysqli_sql_exception $e){
 				switch ($e->getCode()) {
 					default:
-							return '<h1>ERROR: ' . $e->getMessage() . '</h1>';
+							return 'ERROR: ' . $e->getMessage();
 				}
 			}
         }

@@ -9,14 +9,14 @@
 				if($bien && $this->conexion->affected_rows>0){
 					return true;
 				}else{
-					return '<h1>No se pudo insertar el animal del usuario</h1>';
+					return 'No se pudo insertar el animal del usuario';
 				}
 			}catch(mysqli_sql_exception $e){
 				switch ($e->getCode()) {
 					case 1062:
-						return '<h1>Correo duplicado</h1>'; ///devuelvo el mensaje cual quiero monstrar 
+						return 'Correo duplicado';
 					default:
-						return '<h1>ERROR: ' . $e->getMessage() . '</h1>';
+						return 'ERROR: ' . $e->getMessage();
 				}
 			}
         }
