@@ -1,0 +1,4 @@
+2025-12-06 14:39:10 - EXC insertar respuesta idTema=1 nPregunta=2 letra=fas error=SQLSTATE[23000]: Integrity constraint violation: 4025 CONSTRAINT `respuestas.nLetra` failed for `preguntadaw`.`respuestas`
+2025-12-06 14:39:19 - EXC insertar respuesta idTema=1 nPregunta=3 letra=fas error=SQLSTATE[23000]: Integrity constraint violation: 4025 CONSTRAINT `respuestas.nLetra` failed for `preguntadaw`.`respuestas`
+2025-12-06 14:39:30 - EXC insertar respuesta idTema=1 nPregunta=4 letra=3f2 error=SQLSTATE[23000]: Integrity constraint violation: 4025 CONSTRAINT `respuestas.nLetra` failed for `preguntadaw`.`respuestas`
+2025-12-06 14:39:39 - EXC insertar respuesta idTema=1 nPregunta=5 letra=32f error=SQLSTATE[23000]: Integrity constraint violation: 4025 CONSTRAINT `respuestas.nLetra` failed for `preguntadaw`.`respuestas`

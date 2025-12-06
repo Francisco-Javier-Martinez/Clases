@@ -19,19 +19,15 @@
     $datos=$objControlador->$metodo();
     
     // llamar a la vista
-    $vista = $objControlador->vistaCargar;
-    if(!empty($objControlador->mensajeError)){
-        // Loguear tipo y contenido antes de mostrar la vista de error (depuración)
-        $mensaje_error_a_mostrar = $objControlador->mensajeError;
-        $vista = 'error';
+    $vista = $objControlador->vista;
+    $mensaje = $objControlador->mensaje;
+
+    // ruta de la vista
+    $rutaVista=__DIR__ . '/vistas/' . $vista;
+    //verificar que la vista existe
+    if (!file_exists($rutaVista)) {
+        die("Error FATAL: La vista '$vista' no se pudo encontrar en la ruta: $rutaVista");
     }
-    if ($vista) {
-        if($vista=='error'){
-            $rutaVista = __DIR__ . '/vistas/error.php';
-            require_once $rutaVista;
-            exit();
-        }
-        $rutaVista = __DIR__ . '/vistas/' . $vista;
-        require_once $rutaVista;
-    }
+    //incluir la vista
+    require_once $rutaVista;
 ?>

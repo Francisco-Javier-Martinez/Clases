@@ -2,34 +2,38 @@
 //PDO
     require_once 'conexion.php';
     class mRespuesta extends Conexion{
-        public $mensajeError;
         //metodo para insertar respuestas
-        public function meterRespuestas($idTema,$nPregunta,$respuesta,$letra, $esCorrecta){            
-                try{
-                    // Preparar consulta usando los nombres de columna reales (script.sql usa 'texto')
-                    $sql = "INSERT INTO respuestas (idTema, nPregunta, nLetra, texto, es_correcta) 
-                            VALUES (:idTema, :nPregunta, :nLetra, :texto, :es_correcta)";
-                    $stmt = $this->conexion->prepare($sql);
-                    //Vincular parametros
-                    $stmt->bindValue(':idTema', (int)$idTema, PDO::PARAM_INT);
-                    $stmt->bindValue(':nPregunta', (int)$nPregunta, PDO::PARAM_INT);
-                    $stmt->bindValue(':nLetra', (string)$letra, PDO::PARAM_STR);
-                    $stmt->bindValue(':texto', (string)$respuesta, PDO::PARAM_STR);
-                    // Es importante pasar como entero para la columna BIT
-                    $stmt->bindValue(':es_correcta', (int)$esCorrecta, PDO::PARAM_INT);
-                    //Ejecutar consulta
-                    
-                    $stmt->execute();
-                    if($stmt->rowCount() > 0){
-                        return true;
-                    }else{
-                        $this->mensajeError="Error al insertar la respuesta";
-                        return $this->mensajeError;
-                    }
-                }catch(PDOException $e){
-                        $this->mensajeError='Code error: ' . $e->getCode() . ' Mensaje error: ' . $e->getMessage();
-                        return $this->mensajeError;
-                }   
+        public function meterRespuestas($idTema, $nPregunta, $letra, $respuesta, $esCorrecta){
+            try{
+                //transacion para asegurar que si falla una parte no se inserte nada
+                $this->conexion->beginTransaction();
+                // Preparar consulta usando los nombres de columna reales (script.sql usa 'texto')
+                $sql = "INSERT INTO respuestas (idTema, nPregunta, nLetra, texto, es_correcta) 
+                        VALUES (:idTema, :nPregunta, :nLetra, :texto, :es_correcta)";
+                $stmt = $this->conexion->prepare($sql);
+                //Vincular parametros (asegurar orden correcto)
+                $stmt->bindValue(':idTema', (int)$idTema, PDO::PARAM_INT);
+                $stmt->bindValue(':nPregunta', (int)$nPregunta, PDO::PARAM_INT);
+                $stmt->bindValue(':nLetra', (string)$letra, PDO::PARAM_STR);
+                $stmt->bindValue(':texto', (string)$respuesta, PDO::PARAM_STR);
+                // Es importante pasar como entero para la columna BIT
+                $stmt->bindValue(':es_correcta', (int)$esCorrecta, PDO::PARAM_INT);
+                //Ejecutar consulta
+                $stmt->execute();
+                //el commmit lo que hace es confirmar la transaccion
+                $this->conexion->commit();
+                if($stmt->rowCount() > 0){
+                    return true;
+                }else{
+                    $this->mensaje="Error al insertar la respuesta";
+                    return $this->mensaje;
+                }
+            }catch(PDOException $e){
+                //si hay error hago rollback para que no se inserte nada
+                $this->conexion->rollBack();
+                $this->mensaje='Code error: ' . $e->getCode() . ' Mensaje error: ' . $e->getMessage();
+                return $this->mensaje;
+            }
         } 
 
         // Modificar una respuesta específica
@@ -50,8 +54,8 @@
                     return true;
                 }
             }catch(PDOException $e){
-                $this->mensajeError = 'Code error: ' . $e->getCode() . ' Mensaje error: ' . $e->getMessage();
-                return $this->mensajeError;
+                $this->mensaje = 'Code error: ' . $e->getCode() . ' Mensaje error: ' . $e->getMessage();
+                return $this->mensaje;
             }
         }
         // Obtener todas las respuestas de una pregunta
@@ -69,8 +73,23 @@
                     return [];
                 }
             }catch(PDOException $e){
-                $this->mensajeError = 'Code error: ' . $e->getCode() . ' Mensaje error: ' . $e->getMessage();
-                return $this->mensajeError;
+                $this->mensaje = 'Code error: ' . $e->getCode() . ' Mensaje error: ' . $e->getMessage();
+                return $this->mensaje;
+            }
+        }
+
+        // Borrar todas las respuestas de una pregunta (útil para limpiar inserciones parciales)
+        public function borrarRespuestasPorPregunta($idTema, $nPregunta){
+            try{
+                $sql = "DELETE FROM respuestas WHERE idTema = :idTema AND nPregunta = :nPregunta";
+                $stmt = $this->conexion->prepare($sql);
+                $stmt->bindValue(':idTema', (int)$idTema, PDO::PARAM_INT);
+                $stmt->bindValue(':nPregunta', (int)$nPregunta, PDO::PARAM_INT);
+                $stmt->execute();
+                return true;
+            }catch(PDOException $e){
+                $this->mensaje = 'Code error: ' . $e->getCode() . ' Mensaje error: ' . $e->getMessage();
+                return $this->mensaje;
             }
         }
     } 

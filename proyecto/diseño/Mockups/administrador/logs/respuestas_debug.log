@@ -1,0 +1,60 @@
+---- 2025-12-06 14:36:14 ----
+idTema=1 nPregunta=1 opcion=c
+POST_respuestas=array (
+  0 => 'c1',
+  1 => 'c12',
+  2 => 'c421',
+  3 => '4c21',
+)
+---- 2025-12-06 14:39:10 ----
+idTema=1 nPregunta=2 opcion=c
+POST_respuestas=array (
+  0 => 'fas',
+  1 => 'asf',
+  2 => 'fsa',
+  3 => 'fsa',
+)
+FALLO INSERT idTema=1 nPregunta=2 letra=a indice=0 respuesta='fas' resultado='Code error: 23000 Mensaje error: SQLSTATE[23000]: Integrity constraint violation: 4025 CONSTRAINT `respuestas.nLetra` failed for `preguntadaw`.`respuestas`'
+---- 2025-12-06 14:39:19 ----
+idTema=1 nPregunta=3 opcion=d
+POST_respuestas=array (
+  0 => 'fas',
+  1 => 'afs',
+  2 => 'asf',
+  3 => 'fas',
+)
+FALLO INSERT idTema=1 nPregunta=3 letra=a indice=0 respuesta='fas' resultado='Code error: 23000 Mensaje error: SQLSTATE[23000]: Integrity constraint violation: 4025 CONSTRAINT `respuestas.nLetra` failed for `preguntadaw`.`respuestas`'
+---- 2025-12-06 14:39:30 ----
+idTema=1 nPregunta=4 opcion=b
+POST_respuestas=array (
+  0 => '3f2',
+  1 => 'f32',
+  2 => 'f32',
+  3 => 'f32',
+)
+FALLO INSERT idTema=1 nPregunta=4 letra=a indice=0 respuesta='3f2' resultado='Code error: 23000 Mensaje error: SQLSTATE[23000]: Integrity constraint violation: 4025 CONSTRAINT `respuestas.nLetra` failed for `preguntadaw`.`respuestas`'
+---- 2025-12-06 14:39:39 ----
+idTema=1 nPregunta=5 opcion=c
+POST_respuestas=array (
+  0 => '32f',
+  1 => '32f',
+  2 => '32f',
+  3 => '32f',
+)
+FALLO INSERT idTema=1 nPregunta=5 letra=a indice=0 respuesta='32f' resultado='Code error: 23000 Mensaje error: SQLSTATE[23000]: Integrity constraint violation: 4025 CONSTRAINT `respuestas.nLetra` failed for `preguntadaw`.`respuestas`'
+---- 2025-12-06 14:42:09 ----
+idTema=1 nPregunta=6 opcion=c
+POST_respuestas=array (
+  0 => '23',
+  1 => '423',
+  2 => '423',
+  3 => '432',
+)
+---- 2025-12-06 14:42:27 ----
+idTema=1 nPregunta=7 opcion=c
+POST_respuestas=array (
+  0 => 'f32',
+  1 => 'f23',
+  2 => 'f32',
+  3 => 'g32',
+)
