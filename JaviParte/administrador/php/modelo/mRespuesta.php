@@ -1,7 +1,7 @@
 <?php
 //PDO
     require_once 'conexion.php';
-    class mRespuesta extends Conexion{
+    class MRespuesta extends Conexion{
         //metodo para insertar respuestas
         public function meterRespuestas($idTema, $nPregunta, $letra, $respuesta, $esCorrecta){
             try{
@@ -25,14 +25,12 @@
                 if($stmt->rowCount() > 0){
                     return true;
                 }else{
-                    $this->mensaje="Error al insertar la respuesta";
-                    return $this->mensaje;
+                    return "Error al insertar la respuesta";
                 }
             }catch(PDOException $e){
                 //si hay error hago rollback para que no se inserte nada
-                $this->conexion->rollBack();
-                $this->mensaje='Code error: ' . $e->getCode() . ' Mensaje error: ' . $e->getMessage();
-                return $this->mensaje;
+                    $this->conexion->rollBack();
+                    return 'Code error: ' . $e->getCode() . ' Mensaje error: ' . $e->getMessage();
             }
         } 
 
@@ -54,8 +52,7 @@
                     return true;
                 }
             }catch(PDOException $e){
-                $this->mensaje = 'Code error: ' . $e->getCode() . ' Mensaje error: ' . $e->getMessage();
-                return $this->mensaje;
+                return 'Code error: ' . $e->getCode() . ' Mensaje error: ' . $e->getMessage();
             }
         }
         // Obtener todas las respuestas de una pregunta
@@ -73,8 +70,7 @@
                     return [];
                 }
             }catch(PDOException $e){
-                $this->mensaje = 'Code error: ' . $e->getCode() . ' Mensaje error: ' . $e->getMessage();
-                return $this->mensaje;
+                return 'Code error: ' . $e->getCode() . ' Mensaje error: ' . $e->getMessage();
             }
         }
 
@@ -88,8 +84,7 @@
                 $stmt->execute();
                 return true;
             }catch(PDOException $e){
-                $this->mensaje = 'Code error: ' . $e->getCode() . ' Mensaje error: ' . $e->getMessage();
-                return $this->mensaje;
+                return 'Code error: ' . $e->getCode() . ' Mensaje error: ' . $e->getMessage();
             }
         }
     } 

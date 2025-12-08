@@ -9,8 +9,8 @@ class cPreguntasRespuestas{
     public $vista;
 
     public function __construct(){
-        $this->modeloRespuestas = new mRespuesta();
-        $this->modeloPreguntas = new mPregunta();
+        $this->modeloRespuestas = new MRespuesta();
+        $this->modeloPreguntas = new MPregunta();
         $this->mensaje = '';
         $this->vista = '';
     }
@@ -85,8 +85,9 @@ class cPreguntasRespuestas{
             $nombreImagenNueva = $this->meterImagenCarpeta($idTema, $nPregunta, $_FILES['imagen']);
             //si ha habido un error al subir la imagen
             if($nombreImagenNueva == false){
-                $this->mensaje = $this->modeloPreguntas->mensaje;
+                // meterImagenCarpeta ya debe haber establecido $this->mensaje
                 $this->vista = 'error.php';
+                return false;
             }
             // Borrar la imagen anterior sólo si existe y es distinta
             if($preguntaActual && !empty($preguntaActual['imagen']) && $preguntaActual['imagen'] !== $nombreImagenNueva){
@@ -220,8 +221,7 @@ class cPreguntasRespuestas{
     }
     // Método que llama al modelo para guardar las preguntas
     public function meterPreguntas(){
-        // Obtener idTema desde POST (o dejar 1 si no viene)
-        $idTema = isset($_POST['idTema']) ? intval($_POST['idTema']) : 1;
+        $idTema = 1;
 
         // validar los datos recibidos
         if(isset($_POST['puntuacion']) && $_POST['puntuacion'] < 200){

@@ -1,7 +1,7 @@
 <?php
     require_once 'conexion.php';
     require_once __DIR__ . '/../../../config/configRT.php';
-    class mPregunta extends Conexion{
+    class MPregunta extends Conexion{
         public function meterPreguntas($idTema, $nPregunta, $nombreImagen){
             try{
                 //transacion para asegurar que si falla una parte no se inserte nada
@@ -35,14 +35,12 @@
                 if($stmt->rowCount()>0){
                     return $nPregunta;
                 }else{
-                    $this->mensaje = "Error al insertar la pregunta";
-                    return $this->mensaje;
+                    return "Error al insertar la pregunta";
                 }
             }catch(PDOException $e){
                 //si hay error hago rollback para que no se inserte nada
                 $this->conexion->rollBack();
-                $this->mensaje = 'Code error: ' . $e->getCode() . ' Mensaje error: ' . $e->getMessage();
-                return $this->mensaje;
+                return 'Code error: ' . $e->getCode() . ' Mensaje error: ' . $e->getMessage();
             }
         }
         //metodo para sacar el numero de la siguiente pregunta
@@ -60,8 +58,7 @@
                     return 1; // si no hay preguntas devuelvo 1
                 }
             }catch(PDOException $e){
-                $this->mensaje = 'Code error: ' . $e->getCode() . ' Mensaje error: ' . $e->getMessage();
-                return $this->mensaje;
+                return 'Code error: ' . $e->getCode() . ' Mensaje error: ' . $e->getMessage();
             }
         }
 
@@ -82,8 +79,7 @@
                 return false;
             }
         }catch(PDOException $e){
-            $this->mensaje='Code error: ' . $e->getCode() . ' Mensaje error: ' . $e->getMessage();
-            return $this->mensaje;
+            return 'Code error: ' . $e->getCode() . ' Mensaje error: ' . $e->getMessage();
         }
     }
     //borrar una pregunta si se borrar una pregunta se borran tambien sus respuestas por la fk con on delete cascade
@@ -97,12 +93,10 @@
             if($stmt->rowCount()>0){
                 return true;
             }else{
-                $this->mensaje="No se encontró la pregunta para borrar";
-                return false;
+                return "No se encontró la pregunta para borrar";
             }
         }catch(PDOException $e){
-            $this->mensaje='Code error: ' . $e->getCode() . ' Mensaje error: ' . $e->getMessage();
-            return false;
+            return 'Code error: ' . $e->getCode() . ' Mensaje error: ' . $e->getMessage();
         }
     }
 
@@ -128,12 +122,10 @@
             if($stmt->rowCount()>0){
                 return true;
             }else{
-                $this->mensaje="No se pudo modificar la pregunta";
-                return $this->mensaje;
+                return "No se pudo modificar la pregunta";
             }
         }catch(PDOException $e){
-            $this->mensaje='Code error: ' . $e->getCode() . ' Mensaje error: ' . $e->getMessage();
-            return $this->mensaje;
+            return 'Code error: ' . $e->getCode() . ' Mensaje error: ' . $e->getMessage();
         }
     }
     public function obtenerDatosPregunta($idTema, $nPregunta){
@@ -150,8 +142,7 @@
                 return null;
             }
         }catch(PDOException $e){
-            $this->mensaje='Code error: ' . $e->getCode() . ' Mensaje error: ' . $e->getMessage();
-            return null;
+            return 'Code error: ' . $e->getCode() . ' Mensaje error: ' . $e->getMessage();
         }
     }
 }

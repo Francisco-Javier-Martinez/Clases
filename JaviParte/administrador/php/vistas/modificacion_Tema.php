@@ -68,11 +68,15 @@
         </div>
         <!-- Botón para agregar nueva pregunta -->
         <?php
-            // Asegurarse de tener un idTema disponible
-            $idTemaLink = isset($idTema) ? $idTema : (isset($datos[0]['idTema']) ? $datos[0]['idTema'] : '');
+            $idTemaNueva = '';
+            if (isset($idTema)) {
+                $idTemaNueva = $idTema;
+            } elseif (isset($datos[0]['idTema'])) {
+                $idTemaNueva = $datos[0]['idTema'];
+            }
         ?>
         <div class="tema-item">
-            <a class="tema-link" href="index.php?c=PreguntasRespuestas&m=mostrarNuevaPregunta&idTema=<?php echo $idTemaLink; ?>">
+            <a class="tema-link" href="index.php?c=PreguntasRespuestas&m=mostrarNuevaPregunta&idTema=<?php echo $idTemaNueva; ?>">
                 <p>+ Agregar Nueva Pregunta</p>
             </a>
         </div>
