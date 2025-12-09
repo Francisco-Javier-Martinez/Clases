@@ -15,12 +15,15 @@ export class VanadirProfesores {
         this.formCrearUsuario = document.getElementById('crearUsuario');
 
         //si el formulario se envia, llamo a manejarEnvio
+        //e es lo que recoge el evento de submit del formulario ejemplo la contraseña , el email etc
         this.formCrearUsuario.addEventListener('submit', (e) => this.manejarEnvio(e));
     }
-
+    
     // Método auxiliar para mostrar el error visualmente
-    _mostrarError(inputElement, errorElement, mensaje) {
+    mostrarError(inputElement, errorElement, mensaje) {
         inputElement.style.border = '2px solid red';
+        errorElement.style.color = 'red';
+        errorElement.style.paddingTop = '15px';
         errorElement.textContent = mensaje;
     }
 
@@ -53,17 +56,17 @@ export class VanadirProfesores {
 
         //Usuario este podra tener max 50 y min 2
         if (this.inputUserName.value.trim().length < 2 || this.inputUserName.value.trim().length > 50) {
-            this._mostrarError(
+            this.mostrarError(
                 this.inputUserName,
                 this.errorUserName,
                 'El nombre de usuario debe tener entre 2 y 50 caracteres.'
             );
             formularioValido = false;
         }
-        //Email
+        //Email sacado de internet
         const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailPattern.test(this.inputEmail.value.trim())) {
-            this._mostrarError(
+            this.mostrarError(
                 this.inputEmail, 
                 this.errorEmail, 
                 'El correo electrónico no es válido.'
@@ -72,9 +75,10 @@ export class VanadirProfesores {
         }
 
         //Contraseña min 8 max 15 y debe contener al menos una mayuscula, una minuscula, un numero y un caracter especial
-        const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,15}$/;
+        //Reutilizado de la parte de registro
+        const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&+*-])[A-Za-z\d@$!%*?&+*-]{8,15}$/;
         if (!passwordPattern.test(this.inputPassword.value)) {
-            this._mostrarError(
+            this.mostrarError(
                 this.inputPassword, 
                 this.errorPassword,
                 'La contraseña debe tener entre 8 y 15 caracteres, incluyendo al menos una mayúscula, una minúscula, un número y un carácter especial.'
@@ -84,7 +88,7 @@ export class VanadirProfesores {
 
         //validar que las contraseñas coincidan
         if (this.inputPassword.value !== this.inputPasswordConfirm.value) {
-            this._mostrarError(
+            this.mostrarError(
                 this.inputPasswordConfirm, 
                 this.errorPasswordConfirm, 
                 'Las contraseñas no coinciden.'

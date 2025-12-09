@@ -274,6 +274,9 @@ h3 {
     background-color: rgb(214, 49, 49);
 }
 
+#enclaceSinBarra{
+    text-decoration: none;
+}
 /* Contenedor para botones en grid */
 .buttons-box {
     display: grid;

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0,">
     <title>Panel Administrador</title>
-    <link rel="stylesheet" href="php/views/css/stylesPanelP.css">
+    <link rel="stylesheet" href="php/views/css/usuario.css" />
 </head>
 <body>
     <header>
@@ -18,7 +18,7 @@
         <ul>
             <li><a href="verDatos.html">Tu cuenta</a></li>
             <li><a href="creacion_Juegos.html">Crear juego</a></li>
-            <li><a href="gestion_Usuarios.html">Gestionar Usuarios</a></li>
+            <li><a href="./index.php?action=monstrarRegistroUsuario&controller=Usuario">Gestionar Usuarios</a></li>
             <li><a href="./index.php?action=listarTemas&controller=Temas">Temas</a></li>
             <li><a href="gestion_Avatares.html">Avatares</a></li>
             <li><a href="./index.php?action=cerrarSesion&controller=Administrador">Cerrar sesion</a></li>

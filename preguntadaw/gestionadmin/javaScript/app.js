@@ -7,8 +7,10 @@ import { VTemas } from './views/VTemas.js';
 import { CTemas } from './controllers/CTemas.js';
 
 import { VanadirProfesores } from './views/vanadirProfesores.js';
+import { VmodificarProfesores } from './views/vmodificarProfesor.js';
 
-let page = document.body.id; //Toma el id del body de la pagina para hacer el switchs
+// Detectar la página actual mediante el ID del body
+const page = document.body.id;
 
 switch(page){
     case 'creacionJuegos':
@@ -28,6 +30,11 @@ switch(page){
     case 'profesores':
         const vanadirProfesores = new VanadirProfesores();        
         break;
+    //caso para modificar profesores
+    case 'modificarProfesor':
+        const modificarProfesores = new VmodificarProfesores();
+        break;
+
     default:
         console.log('Página no reconocida por la aplicación MVC');
         break;

@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Gestión de Administradores</title>
-    <link rel="stylesheet" href="css/usuario.css" />
+    <link rel="stylesheet" href="php/views/css/usuario.css" />
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -12,7 +12,7 @@
   </head>
   <body id="profesores">    
     <header>
-          <img id="logo" src="img/preguntadawLogo.png" alt="Logo preguntadaw">
+          <img id="logo" src="php/views/img/preguntadawLogo.png" alt="Logo preguntadaw">
           <h1>Usuarios</h1>
       </header>
     <nav>
@@ -59,7 +59,6 @@
     <button type="submit" class="save-btn">Crear Administrador</button>
   </form>
 </div>
-
     <div class="container">
       <h2>Administradores Registrados (3)</h2>
       <p class="subtitle">
@@ -67,7 +66,7 @@
         eliminarlo
       </p>
 
-      <div class="admin-list">
+      <a href="./index.php?action=monstrarModificarUsuario&controller=Usuario" id="enclaceSinBarra"><div class="admin-list">
         <div class="admin-box">
           <div class="admin-info">
             <h3>admin_carlos</h3>
@@ -80,7 +79,7 @@
               <span>25 Nov 2025</span>
             </p>
           </div>
-        </div>
+        </div></a>
 
         <div class="admin-box">
           <div class="admin-info">
