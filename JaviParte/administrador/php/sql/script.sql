@@ -14,7 +14,7 @@ CREATE TABLE personajes (
 CREATE TABLE usuarios (
     idUsuario SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
     nombre VARCHAR(50) NOT NULL,
-    contrasenia CHAR(15) NOT NULL,
+    contrasenia CHAR(60) NOT NULL,
     email VARCHAR(150) NOT NULL,
     tipo bit NOT NULL DEFAULT 0,
     PRIMARY KEY (idUsuario),
