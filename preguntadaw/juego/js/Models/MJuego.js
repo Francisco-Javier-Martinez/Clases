@@ -1,10 +1,15 @@
 export class MJuego {
     constructor() {
-        this.baseUrl = 'https://24.daw.esvirgua.com/JosephParte/juego/api';
+        // Usar `window.API_BASE` si está definido (flexible para despliegues),
+        // si no, por defecto usar una ruta relativa al directorio `api`.
+        // Esto evita peticiones a hosts externos cuando trabajas en local.
+        this.baseUrl = (typeof window !== 'undefined' && window.API_BASE)
+            ? window.API_BASE.replace(/\/+$/,'')
+            : '../api';
     }
 
     async obtenerPreguntasConRespuestas(idTema) {
-        const response = await fetch(`${this.baseUrl}/consultarPreguntas.php?idTema=${idTema}`);
+        const response = await fetch(`../api/preguntas_con_respuestas.php?tema=${encodeURIComponent(idTema)}`);
         const preguntas = await response.json(); 
         
         console.log(' Preguntas recibidas:', preguntas.length, 'preguntas');

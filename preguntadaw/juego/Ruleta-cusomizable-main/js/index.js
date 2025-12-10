@@ -130,10 +130,30 @@ ruleta.addEventListener("animationend", ()=>{
 	ganadorTextoElement.textContent = ganador;
 	clearInterval(animacionCarga);
 
-	    setTimeout(() => {
-		    const param = ganadorId !== null ? ganadorId : ganador;
-		    window.location.href = `../seleccion_Preguntas.html?tema=${encodeURIComponent(param)}`;
-	    }, 1500);
+		setTimeout(async () => {
+				const param = ganadorId !== null ? ganadorId : ganador;
+				// Rutas candidatas (de más a menos relativas). Probamos con HEAD antes de navegar
+				const candidates = [
+					new URL('../seleccion_Preguntas.html', window.location.href).href,
+					`${window.location.origin}/clases/preguntadaw/juego/seleccion_Preguntas.html`,
+					`${window.location.origin}/clases/juego/seleccion_Preguntas.html`,
+					`${window.location.origin}/clases/preguntadaw/seleccion_Preguntas.html`
+				];
+				for (const baseUrl of candidates) {
+					try {
+						const checkUrl = baseUrl.includes('?') ? `${baseUrl}&tema=${encodeURIComponent(param)}` : `${baseUrl}?tema=${encodeURIComponent(param)}`;
+						const resp = await fetch(checkUrl, { method: 'HEAD' });
+						if (resp && resp.ok) {
+							window.location.href = checkUrl;
+							return;
+						}
+					} catch (e) {
+						// Ignorar errores de fetch y probar siguiente candidato
+					}
+				}
+				// Fallback: navegar a la ruta relativa original (puede mostrar 404 si no existe)
+				window.location.href = `../seleccion_Preguntas.html?tema=${encodeURIComponent(param)}`;
+		}, 1500);
 })
 
 

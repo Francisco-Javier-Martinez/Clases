@@ -1,6 +1,12 @@
 <?php
-    define("host","24.daw.esvirgua.com");
-    define("user","daw_userbd24");
-    define("password","BbXC45=73VD9Z-(S");
-    define("database","daw_24_BD1");
+	/*define ('SERVIDOR', 'daw.esvirgua.com');
+	define ('USUARIO', 'daw_userbd24');
+	define ('PASSWORD', 'BbXC45=73VD9Z-(S');
+	define ('BBDD', 'daw_24_BD1');*/
+
+    define("SERVIDOR",'localhost');
+    define("USUARIO",'root');
+    define("PASSWORD",'');
+    define("BBDD",'preguntadaw');
+
 ?>
