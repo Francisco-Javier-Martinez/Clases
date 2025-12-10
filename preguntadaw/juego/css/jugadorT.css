@@ -34,8 +34,10 @@ body {
 =========================== */
 
 header img.logo-principal {
-    width: 14.63%; 
-    margin: 3.05% auto 1.22%; 
+    width: 11%;
+    max-width: 160px;
+    height: auto;
+    margin: 2% auto 1%;
     display: block;
 }
 
@@ -68,27 +70,47 @@ main.avatares h2 {
 
 input {
     width: 80%;
-    height: 4.88%; 
+    height: 4.88%;
     border: none;
     border-radius: 8px;
     background: #3c2453;
-    padding: 1.22%; 
+    padding: 1.22%;
     color: #fff;
-    margin-top: 1.22%; 
-    font-size: 0.9375em; 
+    margin-top: 1.22%;
+    font-size: 0.9375em;
 }
 
-button {
+/* Botón principal mejorado */
+button, button#entrar {
     width: 70%;
-    height: 5.49%; 
-    margin-top: 2.44%; 
-    background: #ff79c9;
+    max-width: 260px;
+    padding: 0.7rem 1rem;
+    margin-top: 2.44%;
+    background: linear-gradient(135deg, #ff6fa8 0%, #ff4da6 100%);
     border: none;
-    border-radius: 10px;
-    font-weight: bold;
+    border-radius: 12px;
+    font-weight: 700;
     cursor: pointer;
-    color: #000;
-    font-size: 1em; 
+    color: #fff;
+    font-size: 1.05em;
+    letter-spacing: 0.4px;
+    box-shadow: 0 8px 20px rgba(255,77,166,0.18);
+    transition: transform .12s ease, box-shadow .12s ease, opacity .12s ease;
+}
+
+button:hover, button#entrar:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 34px rgba(255,77,166,0.24);
+}
+
+button:active, button#entrar:active {
+    transform: translateY(0);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.18);
+}
+
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
 }
 
 /* ===========================

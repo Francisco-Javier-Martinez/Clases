@@ -7,16 +7,15 @@ class CJuegos{
     public $vista;
     public $juegos = [];
     public $codigoStatus;
-    public $codigoMessage;
     public $temasRuleta = [];
-    public $codigoSearched = '';
+    public $codigoBuscar = '';
 
     public function __construct(){
         $this->modeloJuegos = new Mjuegos();
         $this->mensaje = '';
         $this->vista = '';
     }
-    
+    //metodo para cargar los juegos publicos
     public function cargarJuegosPublicos(){
         $this->juegos = $this->modeloJuegos->obtenerJuegosPublicos();
         if(empty($this->juegos)) {
@@ -33,7 +32,6 @@ class CJuegos{
 
         // Inicializar estado
         $this->codigoStatus = null;
-        $this->codigoMessage = '';
 
         // Cargar lista de juegos públicos para mostrar por defecto
         $this->juegos = $this->modeloJuegos->obtenerJuegosPublicos();
@@ -41,7 +39,7 @@ class CJuegos{
         // Validación básica: no vacío y longitud máxima 7
         if ($codigo === '' || strlen($codigo) > 7) {
             $this->codigoStatus = 'invalid-length';
-            $this->codigoMessage = 'Ha de ser máximo 7 caracteres';
+            $this->mensaje = 'Ha de ser máximo 7 caracteres';
             $this->vista = 'seleccionJuego.php';
             return null;
         }
@@ -52,8 +50,8 @@ class CJuegos{
         if ($juego && !empty($juego)) {
             // El juego existe: redirigir al servidor para cargar la ruleta usando MVC
             $this->codigoStatus = 'existente';
-            $this->codigoMessage = 'Código existente';
-            $this->codigoSearched = $codigo;
+            $this->mensaje = 'Código existente';
+            $this->codigoBuscar = $codigo;
             // Si conocemos el idJuego, redirigimos a la página de la ruleta con el id
             if (isset($juego['idJuego']) && (int)$juego['idJuego'] > 0) {
                 $id = (int)$juego['idJuego'];
@@ -66,7 +64,7 @@ class CJuegos{
             return $juego;
         } else {
             $this->codigoStatus = 'no-existe';
-            $this->codigoMessage = 'Código de juego no existente';
+            $this->mensaje = 'Código de juego no existente';
             $this->vista = 'seleccionJuego.php';
             return null;
         }

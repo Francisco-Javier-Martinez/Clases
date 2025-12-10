@@ -22,14 +22,14 @@
     if(file_exists($rutaControlador)){
         include $rutaControlador;
     }else{
-        die("Error: Controlador no encontrado: " . htmlspecialchars($controlador));
+        die("Error: Controlador no encontrado: " . $controlador);
     }
 
     //ponemos la clase del controlador concatenada
     $nombreClase= "C".$controlador;
     
     if(!class_exists($nombreClase)){
-        die("Error: Clase no encontrada: " . htmlspecialchars($nombreClase));
+        die("Error: Clase no encontrada: " . $nombreClase);
     }
     
     $controlador = new $nombreClase();
@@ -54,7 +54,7 @@
     
     $vistaPath = __DIR__ . "/" . $controlador->vista;
     if(!file_exists($vistaPath)){
-        die("Error: Vista no encontrada: " . htmlspecialchars($controlador->vista));
+        die("Error: Vista no encontrada: " . $controlador->vista);
     }
     require_once $vistaPath;
 ?>

@@ -1,25 +1,12 @@
 <?php
-// La carga de temas se realiza desde el controlador (MVC).
-// Este archivo espera que el controlador establezca `temasRuleta` en
-// `$controlador->temasRuleta` antes de renderizar la vista.
-// Si se abre directamente (sin pasar por el index MVC), intentamos
-// usar la variable local por compatibilidad mínima.
-if (!isset($controlador)) {
-    $controlador = null;
-}
-$temas = [];
-if ($controlador !== null && isset($controlador->temasRuleta) && is_array($controlador->temasRuleta)) {
-    $temas = $controlador->temasRuleta;
-} else {
-    // Fallback si alguien abre la vista directamente (no recomendado)
-    if (isset($_GET['idJuego'])) {
-        require_once __DIR__ . '/../php/models/mJuegos.php';
-        $idJuego = (int)$_GET['idJuego'];
-        $modelo = new Mjuegos();
-        $temas = $modelo->obtenerTemasPorJuego($idJuego);
-        $temas = array_slice($temas, 0, 4);
+//este trozo es para recoger los temas que vienen del controlador
+    $temas = [];
+    if (isset($datos) && is_array($datos) && isset($datos['temasRuleta']) && is_array($datos['temasRuleta'])) {
+        $temas = $datos['temasRuleta'];
+    } elseif (isset($controlador) && is_object($controlador) && isset($controlador->temasRuleta) && is_array($controlador->temasRuleta)) {
+        // Compatibilidad legacy: el controlador antiguo podía exponer la propiedad.
+        $temas = $controlador->temasRuleta;
     }
-}
 ?>
 <!DOCTYPE html>
 <html lang="es">

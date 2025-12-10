@@ -12,7 +12,7 @@ class CJuego{
         $this->mensaje = '';
         $this->vista = '';
     }
-    
+    //metodo para iniciar el juego y cargar la vista de seleccionJuego.php
     public function iniciarJuego(){
         // Cargar juegos públicos
         $this->juegos = $this->modeloJuegos->obtenerJuegosPublicos();

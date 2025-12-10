@@ -3,20 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Juegos Disponibles</title>
+    
     <link rel="stylesheet" href="css/seleccionJuego.css">
 </head>
-
-<?php
-    // Preparar atributos data en body para que el JS los lea sin inyectar scripts
-    $bodyAttrs = '';
-    if (isset($controlador->codigoStatus) && $controlador->codigoStatus !== null) {
-        $bodyAttrs .= ' data-codigo-status="' . htmlspecialchars($controlador->codigoStatus) . '"';
-        if (isset($controlador->codigoSearched)) {
-            $bodyAttrs .= ' data-codigo-searched="' . htmlspecialchars($controlador->codigoSearched) . '"';
-        }
-    }
-?>
-<body id="elegirJuego" <?php echo $bodyAttrs; ?>>
+<body id="elegirJuego">
 
 <header>
     <h1>BIENVENIDO, +nombreJugador</h1>
@@ -40,9 +30,8 @@
                 echo "<section class='grid-juegos'>";
                 foreach($controlador->juegos as $juego){
                     $temas = explode('|', $juego['temas_nombres']);
-                    $idJ = isset($juego['idJuego']) ? (int)$juego['idJuego'] : 0;
-                    $codigoAttr = isset($juego['codigo']) ? htmlspecialchars($juego['codigo']) : '';
-                    echo "<div class='tarjeta' data-idjuego='" . $idJ . "' data-codigo='" . $codigoAttr . "'>";
+                    $idJ = isset($juego['idJuego']);
+                    echo "<div class='tarjeta'>";
                     echo "  <div class='tarjeta-header'>";
                     echo "    <h3>" . $juego['titulo'] . "</h3>";
                     echo "    <span class='estado'>Público</span>";
@@ -63,18 +52,6 @@
 
 
 </main>
-
-<?php
-    // Mostrar solo mensaje inline sobre el código (no inyectamos lógica JS aquí)
-    if (isset($controlador->codigoStatus) && $controlador->codigoStatus !== null) {
-        $jsMsg = json_encode($controlador->codigoMessage);
-        $jsStatus = json_encode($controlador->codigoStatus);
-        echo "<script>window.addEventListener('DOMContentLoaded', function(){ var el = document.getElementById('mensajeCodigo'); if(el){ el.style.display='block'; el.textContent = " . $jsMsg . "; if(" . $jsStatus . " === 'existente'){ el.style.color = '#2b8f2b'; } else { el.style.color = '#ff5555'; } } });</script>";
-    }
-?>
-
 <script type="module" src="./js/app.js"></script>
-
-<!-- Depuración eliminada: ahora la ruleta usa el flujo MVC del servidor -->
 </body>
 </html>
