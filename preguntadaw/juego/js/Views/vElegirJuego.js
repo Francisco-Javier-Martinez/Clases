@@ -7,18 +7,18 @@ export class VelegirJuego {
         this.configurarManejadorFormulario();
     }
 
+    //Este metodo configura el manejador de eventos para el formulario de selección de juego
     configurarManejadorFormulario() {
         if (this.form) {
             this.form.addEventListener('submit', (e) => this.manejarEnvioCodigo(e));
         }
     }
-
+    //Este metodo maneja el envio del formulario de selección de juego
     manejarEnvioCodigo(evento) {
         evento.preventDefault(); // Detener el envío normal del formulario
-        
+        // Obtener el código ingresado por el usuario
         const codigo = this.inputCodigo.value.trim();
         
-        // **Validación de cliente: Máximo 7 caracteres**
         // Mostrar mensaje inline si la longitud no es correcta
         const cont = document.getElementById('mensajeCodigo');
         if (codigo.length !== 7) {
