@@ -6,7 +6,17 @@
     <link rel="stylesheet" href="css/seleccionJuego.css">
 </head>
 
-<body id="elegirJuego">
+<?php
+    // Preparar atributos data en body para que el JS los lea sin inyectar scripts
+    $bodyAttrs = '';
+    if (isset($controlador->codigoStatus) && $controlador->codigoStatus !== null) {
+        $bodyAttrs .= ' data-codigo-status="' . htmlspecialchars($controlador->codigoStatus) . '"';
+        if (isset($controlador->codigoSearched)) {
+            $bodyAttrs .= ' data-codigo-searched="' . htmlspecialchars($controlador->codigoSearched) . '"';
+        }
+    }
+?>
+<body id="elegirJuego" <?php echo $bodyAttrs; ?>>
 
 <header>
     <h1>BIENVENIDO, +nombreJugador</h1>
@@ -30,7 +40,9 @@
                 echo "<section class='grid-juegos'>";
                 foreach($controlador->juegos as $juego){
                     $temas = explode('|', $juego['temas_nombres']);
-                    echo "<div class='tarjeta'>";
+                    $idJ = isset($juego['idJuego']) ? (int)$juego['idJuego'] : 0;
+                    $codigoAttr = isset($juego['codigo']) ? htmlspecialchars($juego['codigo']) : '';
+                    echo "<div class='tarjeta' data-idjuego='" . $idJ . "' data-codigo='" . $codigoAttr . "'>";
                     echo "  <div class='tarjeta-header'>";
                     echo "    <h3>" . $juego['titulo'] . "</h3>";
                     echo "    <span class='estado'>Público</span>";
@@ -40,7 +52,8 @@
                         echo "<button>" . $tema . "</button>";
                     }
                     echo "  </div>";
-                    echo "  <button class='jugar'>Jugar</button>";
+                    // Usar enlace MVC hacia el index para que el controlador cargue la ruleta
+                    echo "  <a class='jugar' href='index.php?controller=Juegos&action=mostrarRuleta&idJuego=" . $idJ . "'>Jugar</a>";
                     echo "</div>";
                 }
                 echo "</section>";
@@ -52,7 +65,7 @@
 </main>
 
 <?php
-    // Si el controlador ha establecido un estado de código, pasarlo al cliente para mostrar inline
+    // Mostrar solo mensaje inline sobre el código (no inyectamos lógica JS aquí)
     if (isset($controlador->codigoStatus) && $controlador->codigoStatus !== null) {
         $jsMsg = json_encode($controlador->codigoMessage);
         $jsStatus = json_encode($controlador->codigoStatus);
@@ -61,5 +74,7 @@
 ?>
 
 <script type="module" src="./js/app.js"></script>
+
+<!-- Depuración eliminada: ahora la ruleta usa el flujo MVC del servidor -->
 </body>
 </html>

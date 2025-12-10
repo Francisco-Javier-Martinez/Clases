@@ -21,13 +21,13 @@
 
             // Los placeholders :nombre, :contrasenia, :email, :tipo se reemplazan por los valores reales pasados por parámetros. Se dice su tipo de dato
 
-             $preparacion->bindValue(':nombre', $nombre, PDO::PARAM_STR);
-             $preparacion->bindValue(':publico', (int)$publico, PDO::PARAM_INT); // forzamos a entero
-             $preparacion->bindValue(':abreviatura', $abreviatura, PDO::PARAM_STR);
-             $preparacion->bindValue(':descripcion', $descripcion, PDO::PARAM_STR);
-             $preparacion->bindValue(':idUsuario', (int)$idUsuario, PDO::PARAM_INT); // también entero
+            $preparacion->bindValue(':nombre', $nombre, PDO::PARAM_STR);
+            $preparacion->bindValue(':publico', (int)$publico, PDO::PARAM_INT); // forzamos a entero
+            $preparacion->bindValue(':abreviatura', $abreviatura, PDO::PARAM_STR);
+            $preparacion->bindValue(':descripcion', $descripcion, PDO::PARAM_STR);
+            $preparacion->bindValue(':idUsuario', (int)$idUsuario, PDO::PARAM_INT); // también entero
 
-             /*la ejecución*/
+            /*la ejecución*/
             $preparacion->execute();
 
             if ($preparacion->rowCount() > 0) {

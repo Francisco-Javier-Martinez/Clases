@@ -5,7 +5,9 @@ export class VelegirJuego {
         this.form = document.getElementById('seleccionJuegoForm');
         this.inputCodigo = document.getElementById('codigoJuego');
         this.configurarManejadorFormulario();
+        this.configurarBotonesJugar();
     }
+
 
     //Este metodo configura el manejador de eventos para el formulario de selección de juego
     configurarManejadorFormulario() {
@@ -28,4 +30,23 @@ export class VelegirJuego {
         //si todo es correcto, enviar el formulario
         this.form.submit();
     }
+
+    configurarBotonesJugar(){
+        // Delegación: buscar botones .jugar dentro de tarjetas y asignar comportamiento
+        const tarjetas = Array.from(document.querySelectorAll('.tarjeta'));
+        console.log('VelegirJuego: tarjetas encontradas =', tarjetas.length);
+        tarjetas.forEach(tarjeta => {
+            const btn = tarjeta.querySelector('.jugar');
+            if(!btn) return;
+            // No interceptamos la navegación: el enlace <a href="Ruleta-cusomizable-main/ruleta.php?idJuego=..."> realizará
+            // la navegación al servidor y este inyectará los temas vía MVC (window.ruletaTemas).
+            btn.addEventListener('click', (e) => {
+                console.log('Jugar: navegación permitida al servidor para cargar la ruleta (MVC)');
+                // dejar que el <a> funcione normalmente
+            });
+        });
+    }
+
+    // El servidor ahora redirige directamente a la página de la ruleta cuando el código es válido.
+    // No es necesario que el cliente haga peticiones adicionales aquí.
 }

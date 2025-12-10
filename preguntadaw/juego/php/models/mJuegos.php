@@ -63,5 +63,27 @@
                 return false; 
             }
         }
+        /**
+         * Obtener los temas asociados a un juego.
+         * Devuelve un array de temas con campos idTema y nombre.
+         */
+        public function obtenerTemasPorJuego($idJuego){
+            $sql = "
+                SELECT t.idTema, t.nombre
+                FROM tema t
+                JOIN temas_juegos tj ON t.idTema = tj.idTema
+                WHERE tj.idJuego = :idJuego
+                ORDER BY t.nombre
+            ";
+            try{
+                $stmt = $this->conexion->prepare($sql);
+                $stmt->bindValue(':idJuego', (int)$idJuego, PDO::PARAM_INT);
+                $stmt->execute();
+                return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            } catch (PDOException $e){
+                error_log("Error al obtener temas por juego: " . $e->getMessage());
+                return [];
+            }
+        }
     }
 ?>

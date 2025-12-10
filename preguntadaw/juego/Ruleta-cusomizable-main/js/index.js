@@ -13,6 +13,7 @@ const ganadorTextoElement = document.getElementById("ganadorTexto");
 
 /** Texto de la opción ganadora */
 let ganador = "";
+let ganadorId = null;
 /** Para el setInterval que hace que el cartel de ganador anime los "..." */
 let animacionCarga;
 /** Estado actual de la ruleta true => Bloquea el mouse; */
@@ -51,6 +52,40 @@ const cuatro = {
 
 let conceptos = [uno,dos,tres,cuatro];
 
+async function init(){
+	// Priorizar datos inyectados por servidor (MVC)
+	if (window.ruletaTemas && Array.isArray(window.ruletaTemas) && window.ruletaTemas.length > 0) {
+		console.log('Ruleta: usando temas inyectados por servidor (window.ruletaTemas)');
+		const temas = window.ruletaTemas.slice(0, 4);
+		const n = temas.length;
+		const baseProb = Math.floor(100 / n);
+		const conceptosTemp = temas.map(t => {
+			// Normalizar distintas formas que puede tener el objeto tema desde PHP/BD
+			const id = (t.idTema !== undefined && t.idTema !== null) ? t.idTema : ((t.id !== undefined && t.id !== null) ? t.id : (t[0] !== undefined ? t[0] : null));
+			// Intentar varias propiedades posibles para el nombre
+			let nombre = null;
+			if (t.nombre && String(t.nombre).trim() !== '') nombre = String(t.nombre);
+			else if (t.Nombre && String(t.Nombre).trim() !== '') nombre = String(t.Nombre);
+			else if (t[1] !== undefined && String(t[1]).trim() !== '') nombre = String(t[1]);
+			else if (t.nombre_tema && String(t.nombre_tema).trim() !== '') nombre = String(t.nombre_tema);
+			else nombre = id !== null ? ('Tema ' + String(id)) : 'Tema';
+			return { id: id, nombre: nombre, probabilidad: baseProb };
+		});
+		let sumaProb = conceptosTemp.reduce((s, c) => s + c.probabilidad, 0);
+		let i = 0;
+		while (sumaProb < 100) { conceptosTemp[i % conceptosTemp.length].probabilidad += 1; sumaProb++; i++; }
+		conceptos = conceptosTemp;
+		console.log('Conceptos (server):', conceptos);
+		ajustarRuleta();
+		return;
+	}
+
+	// Si no hay datos del servidor, informar y usar valores por defecto
+	console.warn('No se han recibido temas desde el servidor (window.ruletaTemas). Mostrando valores por defecto.');
+	if (ganadorTextoElement) ganadorTextoElement.textContent = 'No hay temas del servidor.';
+	ajustarRuleta();
+}
+
 
 /** Pone a girar la ruleta y hace el sorteo del resultado */
 function sortear(){
@@ -81,7 +116,7 @@ function sortear(){
 	conceptos.forEach(concepto => {
 		if(nSorteo*100 > pAcumulada && nSorteo*100 <= pAcumulada+concepto.probabilidad){
 			ganador = concepto.nombre;
-			//console.log("Ganador", nSorteo*100, concepto.nombre, "porque está entre ",pAcumulada, "y",pAcumulada+concepto.probabilidad)
+			ganadorId = concepto.id !== undefined && concepto.id !== null ? concepto.id : concepto.nombre;
 		};
 		pAcumulada +=concepto.probabilidad;
 	})
@@ -95,9 +130,10 @@ ruleta.addEventListener("animationend", ()=>{
 	ganadorTextoElement.textContent = ganador;
 	clearInterval(animacionCarga);
 
-	setTimeout(() => {
-            window.location.href = `../seleccion_Preguntas.html?tema=${ganador}`;
-    }, 1500);
+	    setTimeout(() => {
+		    const param = ganadorId !== null ? ganadorId : ganador;
+		    window.location.href = `../seleccion_Preguntas.html?tema=${encodeURIComponent(param)}`;
+	    }, 1500);
 })
 
 
@@ -272,7 +308,7 @@ function getPosicionParaProbabilidad(probabilidad){
 
 
 /** Inicia ejecución */
-ajustarRuleta();
+init();
 
 /** Cómo dibujar ángulos en CSS */
 // Al final no lo usé.

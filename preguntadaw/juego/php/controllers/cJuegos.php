@@ -6,8 +6,10 @@ class CJuegos{
     public $mensaje;
     public $vista;
     public $juegos = [];
-    public $codigoStatus; // 'existente'|'no-existe'|'invalid-length'|null
+    public $codigoStatus;
     public $codigoMessage;
+    public $temasRuleta = [];
+    public $codigoSearched = '';
 
     public function __construct(){
         $this->modeloJuegos = new Mjuegos();
@@ -36,9 +38,10 @@ class CJuegos{
         // Cargar lista de juegos públicos para mostrar por defecto
         $this->juegos = $this->modeloJuegos->obtenerJuegosPublicos();
 
-        if ($codigo === '' || strlen($codigo) !== 7) {
+        // Validación básica: no vacío y longitud máxima 7
+        if ($codigo === '' || strlen($codigo) > 7) {
             $this->codigoStatus = 'invalid-length';
-            $this->codigoMessage = 'Ha de ser máximo 7';
+            $this->codigoMessage = 'Ha de ser máximo 7 caracteres';
             $this->vista = 'seleccionJuego.php';
             return null;
         }
@@ -46,18 +49,43 @@ class CJuegos{
         // Búsqueda en la BD
         $juego = $this->modeloJuegos->buscarJuegoPorCodigo($codigo);
 
-        if ($juego) {
-            // El juego existe: marcar estado y dejar que la vista lo muestre
+        if ($juego && !empty($juego)) {
+            // El juego existe: redirigir al servidor para cargar la ruleta usando MVC
             $this->codigoStatus = 'existente';
             $this->codigoMessage = 'Código existente';
+            $this->codigoSearched = $codigo;
+            // Si conocemos el idJuego, redirigimos a la página de la ruleta con el id
+            if (isset($juego['idJuego']) && (int)$juego['idJuego'] > 0) {
+                $id = (int)$juego['idJuego'];
+                header('Location: ruleta.php?idJuego=' . $id);
+                exit();
+            }
+            // Si por alguna razón no hay id, dejamos que la vista muestre el estado
             $this->vista = 'seleccionJuego.php';
-            return null;
+            return $juego;
         } else {
             $this->codigoStatus = 'no-existe';
             $this->codigoMessage = 'Código de juego no existente';
             $this->vista = 'seleccionJuego.php';
             return null;
         }
+    }
+
+    /**
+     * Cargar la vista de la ruleta para un juego concreto.
+     * Espera recibir `idJuego` en la petición (GET/POST). Carga los temas
+     * y muestra la vista `Ruleta-cusomizable-main/ruleta.php`.
+     */
+    public function mostrarRuleta(){
+        $idJuego = isset($_REQUEST['idJuego']) ? (int)$_REQUEST['idJuego'] : 0;
+        $this->temasRuleta = [];
+        if ($idJuego > 0) {
+            $this->temasRuleta = $this->modeloJuegos->obtenerTemasPorJuego($idJuego);
+            // limitar a 4 temas por si acaso
+            $this->temasRuleta = array_slice($this->temasRuleta, 0, 4);
+        }
+        $this->vista = 'Ruleta-cusomizable-main/ruleta.php';
+        return $this->temasRuleta;
     }
 }
 
