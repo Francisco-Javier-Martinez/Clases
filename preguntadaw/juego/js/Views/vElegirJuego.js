@@ -25,9 +25,7 @@ export class VelegirJuego {
             if(cont){ cont.style.display = 'block'; cont.style.color = '#ff5555'; cont.textContent = 'Ha de ser máximo 7'; }
             return; 
         }
-
-        // Si pasa validación cliente, limpiar mensaje y enviar formulario al servidor
-        if(cont){ cont.style.display = 'none'; cont.textContent = ''; }
+        //si todo es correcto, enviar el formulario
         this.form.submit();
     }
 }

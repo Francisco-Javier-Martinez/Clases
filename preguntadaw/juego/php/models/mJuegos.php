@@ -50,7 +50,6 @@
                 WHERE
                     codigo = :codigo;
             ";
-
             try {
                 $stmt = $this->conexion->prepare($sql);
                 // Usamos bindParam para prevenir inyecciones SQL
