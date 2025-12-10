@@ -3,6 +3,7 @@ import { VJuego } from './Views/VJuego.js';
 import { CJuego } from './Controllers/CJuego.js';
 import { VFeedback } from './Views/VFeedback.js';
 import { VInicio } from './Views/VInicio.js';
+import { VelegirJuego } from './Views/vElegirJuego.js';
 
 // Inicializar la aplicación cuando el DOM esté listo
 document.addEventListener('DOMContentLoaded', () => {
@@ -19,6 +20,9 @@ document.addEventListener('DOMContentLoaded', () => {
             break;
         case 'feedback':
             const vistaFeedback = new VFeedback();
+            break;
+        case 'elegirJuego':
+            const vistaElegirJuego = new VelegirJuego();
             break;
         case 'inicioJugador':
             const vistaInicio = new VInicio();

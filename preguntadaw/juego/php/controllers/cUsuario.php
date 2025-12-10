@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/../models/mJuegos.php';
 
-class cJuegos{
+class CUsuario{
     private $modeloJuegos;
     public $mensaje;
     public $vista;

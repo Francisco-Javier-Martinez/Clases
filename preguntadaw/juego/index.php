@@ -39,7 +39,8 @@
         die("Error: Acción '$action' no encontrada en controlador '$nombreClase'");
     }
     
-    $datos=$controlador->$action();
+    // Ejecutar la acción del controlador
+    $datos = $controlador->$action();
     
     if(isset($controlador->mensaje) && $controlador->mensaje!=''){
         $mensajeError = $controlador->mensaje;

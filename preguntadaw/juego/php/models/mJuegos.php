@@ -38,5 +38,31 @@
                 return []; // Retorna un array vacío en caso de error
             }
         }
+        public function buscarJuegoPorCodigo($codigo){
+            $sql = "
+                SELECT
+                    idJuego,
+                    descripcion AS titulo,
+                    codigo,
+                    publico
+                FROM
+                    juego
+                WHERE
+                    codigo = :codigo;
+            ";
+
+            try {
+                $stmt = $this->conexion->prepare($sql);
+                // Usamos bindParam para prevenir inyecciones SQL
+                $stmt->bindParam(':codigo', $codigo, PDO::PARAM_STR); 
+                $stmt->execute();
+                
+                // Devuelve la primera fila como array asociativo o false si no la encuentra
+                return $stmt->fetch(PDO::FETCH_ASSOC);
+            } catch (PDOException $e) {
+                error_log("Error al buscar juego por código: " . $e->getMessage());
+                return false; 
+            }
+        }
     }
 ?>
