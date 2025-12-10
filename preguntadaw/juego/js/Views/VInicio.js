@@ -3,12 +3,16 @@ export class VInicio{
         this.cajaAvatares = document.getElementById("avatares");
         this.avatarSeleccionado = null;
         this.inputNombre = document.getElementById("jugadorNombre");
-        this.cargarAvatares();
-        this.botonIniciar = document.getElementById("entrar");
-        
-        this.botonIniciar.addEventListener("click", () => {
-            this.validarYContinuar();
-        });
+            this.form = document.getElementById("inicioForm");
+            this.cargarAvatares();
+
+            // Escuchar el envío del formulario para validar antes de enviar
+            if(this.form){
+                this.form.addEventListener("submit", (e) => {
+                    e.preventDefault();
+                    this.validarYContinuar();
+                });
+            }
     }
 
     validarYContinuar(){
@@ -26,8 +30,18 @@ export class VInicio{
             alert("¡Selecciona un avatar!");
             return;
         }
-        // Continua
-        window.location.href = "./seleccionJuego.html";
+
+        // Rellenar avatar hidden y enviar el formulario
+        const avatarInput = document.getElementById('avatarInput');
+        if(avatarInput && this.avatarSeleccionado){
+            avatarInput.value = this.avatarSeleccionado.src;
+        }
+        if(this.form){
+            this.form.submit();
+        } else {
+            // Fallback
+            window.location.href = "./index.php?controller=Juego&action=iniciarJuego";
+        }
     }
 
     cargarAvatares(){

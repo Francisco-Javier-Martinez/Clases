@@ -17,11 +17,16 @@
             
         </div>
 
-        <p>INTRODUCE NOMBRE DE JUGADOR</p>
-        <input type="text" id="jugadorNombre" placeholder="Escribe tu nombre">
+        <form id="inicioForm" method="get">
+            <input type="hidden" name="controller" value="Juego">
+            <input type="hidden" name="action" value="iniciarJuego">
+            <input type="hidden" name="avatar" id="avatarInput" value="">
 
-        
-            <button id="entrar">ENTRAR</button>
+            <p>INTRODUCE NOMBRE DE JUGADOR</p>
+            <input type="text" id="jugadorNombre" name="nombre" placeholder="Escribe tu nombre">
+
+            <button id="entrar" type="submit">ENTRAR</button>
+        </form>
         
     </main>
 

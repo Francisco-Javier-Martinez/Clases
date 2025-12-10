@@ -6,6 +6,7 @@ import { MTemas } from './models/MTemas.js';
 import { VTemas } from './views/VTemas.js';
 import { CTemas } from './controllers/CTemas.js';
 
+import { CProfesores } from './controllers/cProfesores.js';
 import { VanadirProfesores } from './views/vanadirProfesores.js';
 import { VmodificarProfesores } from './views/vmodificarProfesor.js';
 
@@ -26,11 +27,14 @@ switch(page){
         const vistaT = new VTemas();
         const controladorT = new CTemas(modeloT, vistaT);
         break;
-    //caso para añadir profesores
+    // Caso para gestión de profesores (MVC completo)
     case 'profesores':
-        const vanadirProfesores = new VanadirProfesores();        
+        const controladorProfesores = new CProfesores();
+        const modeloProfesores = new Mprofesores();
+        const vistaProfesores = new VanadirProfesores();
+        console.log('Controlador de Profesores inicializado');
         break;
-    //caso para modificar profesores
+    // Caso para modificar profesores
     case 'modificarProfesor':
         const modificarProfesores = new VmodificarProfesores();
         break;

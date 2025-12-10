@@ -1,5 +1,5 @@
-import { Modelo } from "../Models/model.js";
-import { Vista } from "../Views/view.js";
+import { Modelo } from "../models/model.js";
+import { Vista } from "../views/view.js";
 
 document.addEventListener("DOMContentLoaded", () => {
 

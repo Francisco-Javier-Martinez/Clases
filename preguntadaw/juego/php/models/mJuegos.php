@@ -1,0 +1,42 @@
+<?php
+    require_once __DIR__ .'/../models/conexion.php';
+    
+    class Mjuegos extends Conexion{
+        // En tu esquema, el 'Título' de la interfaz parece ser la 'descripcion' de la tabla 'juego'.
+        // Los 'Tema 1', 'Tema 2', etc., son los 'nombre' de la tabla 'tema'.
+        public function obtenerJuegosPublicos(){
+            // Consulta SQL que selecciona la descripción del juego, su ID y los nombres de sus temas.
+            // Se asume que solo quieres juegos que tengan TEMAS y que estén marcados como PÚBLICOS.
+            $sql = "
+                SELECT
+                    j.idJuego,
+                    j.descripcion AS titulo,
+                    j.publico,
+                    GROUP_CONCAT(t.nombre ORDER BY t.nombre SEPARATOR '|') AS temas_nombres
+                FROM
+                    juego j
+                JOIN
+                    temas_juegos tj ON j.idJuego = tj.idJuego
+                JOIN
+                    tema t ON tj.idTema = t.idTema
+                WHERE
+                    j.publico = 1
+                GROUP BY
+                    j.idJuego, j.descripcion, j.publico
+                ORDER BY
+                    j.idJuego;
+            ";
+
+            try {
+                $stmt = $this->conexion->prepare($sql);
+                $stmt->execute();
+                // Devuelve todos los juegos públicos con sus temas concatenados.
+                return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            } catch (PDOException $e) {
+                // Manejo de errores
+                error_log("Error al obtener juegos públicos: " . $e->getMessage());
+                return []; // Retorna un array vacío en caso de error
+            }
+        }
+    }
+?>
