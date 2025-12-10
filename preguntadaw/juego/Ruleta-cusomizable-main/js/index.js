@@ -204,14 +204,11 @@ document.getElementById("sortear").addEventListener("click", () => {
 })
 
 function onOpcionClicked(i){
-	// Borro los elementos de la lista
-	Array.from(formContainer.children).forEach(element => formContainer.removeChild(element))
-	// Creo items de lista para cada probabilidad
-	conceptos.forEach(concepto =>{
-		agregarConfiguracionProbabilidad(concepto);
-	})
-	modal.showModal();
-	verificarValidezFormulario()
+	// Modal deshabilitado por petición del usuario.
+	// Antes aquí se construía el formulario y se llamaba a `modal.showModal()`.
+	// Para no mostrar nunca el diálogo, simplemente ignoramos el click.
+	console.log('onOpcionClicked: modal deshabilitado (click en opción ignorado). Opción index:', i);
+	return;
 }
 
 botonAceptar.addEventListener("click",()=> {

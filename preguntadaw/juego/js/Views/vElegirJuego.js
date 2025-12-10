@@ -17,18 +17,20 @@ export class VelegirJuego {
     }
     //Este metodo maneja el envio del formulario de selección de juego
     manejarEnvioCodigo(evento) {
-        evento.preventDefault(); // Detener el envío normal del formulario
         // Obtener el código ingresado por el usuario
         const codigo = this.inputCodigo.value.trim();
-        
+
         // Mostrar mensaje inline si la longitud no es correcta
         const cont = document.getElementById('mensajeCodigo');
-        if (codigo.length !== 7) {
-            if(cont){ cont.style.display = 'block'; cont.style.color = '#ff5555'; cont.textContent = 'Ha de ser máximo 7'; }
-            return; 
+        if (codigo === '' || codigo.length > 7) {
+            // Evitar envío si inválido
+            evento.preventDefault();
+            if (cont) { cont.style.display = 'block'; cont.style.color = '#ff5555'; cont.textContent = 'Ha de ser máximo 7 caracteres'; }
+            return;
         }
-        //si todo es correcto, enviar el formulario
-        this.form.submit();
+
+        // Código válido: permitir envío normal del formulario al controlador MVC.
+        // El servidor buscará el `idJuego` asociado al código y redirigirá a la ruleta.
     }
 
     configurarBotonesJugar(){

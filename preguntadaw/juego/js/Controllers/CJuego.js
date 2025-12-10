@@ -16,7 +16,8 @@ export class CJuego {
             this.vista.mostrarPreguntas(preguntasCompletas);
             console.log("Controlador: Preguntas enviadas a la Vista");
         } catch (error) {
-            this.vista.mostrarError("Fallo al cargar las preguntas con respuestas.");
+            console.error('Error en controlador cargarPreguntasConRespuestas:', error);
+            this.vista.mostrarError("Fallo al cargar las preguntas con respuestas. " + (error && error.message ? error.message : ''));
         }
     }
 

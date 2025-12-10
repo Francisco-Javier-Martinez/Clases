@@ -3,24 +3,24 @@
 require_once "configdb.php";
 
 class Conexion {
-    public $conexion;  // Cambiado de protected a public
-    
+    public $conexion;
+
     public function __construct() {
-        $this->conexion = new mysqli(host, user, password, database);
-        
+        // Usar las constantes definidas en configdb.php
+        $this->conexion = new mysqli(SERVIDOR, USUARIO, PASSWORD, BBDD);
+
         if ($this->conexion->connect_error) {
-            // Devuelve error en JSON
-            die(json_encode([
-                'success' => false,
-                'error' => 'MySQLi Error: ' . $this->conexion->connect_error
-            ]));
+            // Lanzar una excepción para que el controlador/llamador lo gestione
+            throw new Exception('MySQLi Error: ' . $this->conexion->connect_error);
         }
-        
+
         $this->conexion->set_charset("utf8");
     }
-    
+
     public function cerrarConexion() {
-        $this->conexion->close();
+        if ($this->conexion) {
+            $this->conexion->close();
+        }
     }
 }
 ?>

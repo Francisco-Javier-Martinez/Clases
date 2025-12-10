@@ -57,7 +57,8 @@ class CJuegos{
             // Si conocemos el idJuego, redirigimos a la página de la ruleta con el id
             if (isset($juego['idJuego']) && (int)$juego['idJuego'] > 0) {
                 $id = (int)$juego['idJuego'];
-                header('Location: ruleta.php?idJuego=' . $id);
+                // Redirigir al front controller para que cargue la vista de la ruleta
+                header('Location: index.php?controller=Juegos&action=mostrarRuleta&idJuego=' . $id);
                 exit();
             }
             // Si por alguna razón no hay id, dejamos que la vista muestre el estado
