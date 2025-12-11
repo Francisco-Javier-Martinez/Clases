@@ -15,7 +15,7 @@
 <main>
     
     <section class="codigo">
-        <form action="index.php?controller=Juegos&action=validarYBuscarJuegoPorCodigo" id="seleccionJuegoForm" method="post">
+        <form action="index.php?controller=Juego&action=validarYBuscarJuegoPorCodigo" id="seleccionJuegoForm" method="post">
             <h2>¿Tienes un código de juego?</h2>
             <input type="text" name="codigoJuego" placeholder="Introduce tu código" id="codigoJuego">
             <input type="submit" value="Enviar">
@@ -29,8 +29,8 @@
                 echo "<h2>JUEGOS DISPONIBLES</h2>";
                 echo "<section class='grid-juegos'>";
                 foreach($controlador->juegos as $juego){
-                    $temas = explode('|', $juego['temas_nombres']);
-                    $idJ = isset($juego['idJuego']);
+                    $temas = isset($juego['temas']) ? $juego['temas'] : [];
+                    $idJ = isset($juego['idJuego']) ? $juego['idJuego'] : '';
                     echo "<div class='tarjeta'>";
                     echo "  <div class='tarjeta-header'>";
                     echo "    <h3>" . $juego['titulo'] . "</h3>";
@@ -42,7 +42,7 @@
                     }
                     echo "  </div>";
                     // Usar enlace MVC hacia el index para que el controlador cargue la ruleta
-                    echo "  <a class='jugar' href='index.php?controller=Juegos&action=mostrarRuleta&idJuego=" . $idJ . "'>Jugar</a>";
+                    echo "  <a class='jugar' href='index.php?controller=Juego&action=mostrarRuleta&idJuego=" . $idJ . "'>Jugar</a>";
                     echo "</div>";
                 }
                 echo "</section>";

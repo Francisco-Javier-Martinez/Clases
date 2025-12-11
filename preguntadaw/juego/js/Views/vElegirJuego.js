@@ -1,4 +1,3 @@
-// Asegúrate de que este archivo JS esté siendo cargado en tu HTML
 export class VelegirJuego {
     constructor() {
         console.log("Vista: Constructor ejecutado..."); 
@@ -22,15 +21,12 @@ export class VelegirJuego {
 
         // Mostrar mensaje inline si la longitud no es correcta
         const cont = document.getElementById('mensajeCodigo');
-        if (codigo === '' || codigo.length > 7) {
+        if (codigo.length !== 7 || codigo.length<7) {
             // Evitar envío si inválido
             evento.preventDefault();
-            if (cont) { cont.style.display = 'block'; cont.style.color = '#ff5555'; cont.textContent = 'Ha de ser máximo 7 caracteres'; }
+            if (cont) { cont.style.display = 'block'; cont.style.color = '#ff5555'; cont.textContent = 'Ha de ser exactamente 7 caracteres'; }
             return;
         }
-
-        // Código válido: permitir envío normal del formulario al controlador MVC.
-        // El servidor buscará el `idJuego` asociado al código y redirigirá a la ruleta.
     }
 
     configurarBotonesJugar(){
