@@ -1,4 +1,6 @@
 /* --- FUENTES Y RESET --- */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
+
 * {
   box-sizing: border-box;
 }
@@ -10,12 +12,14 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  /* CORRECCIÓN: flex-start y padding evitan que el contenido se corte por arriba */
+  justify-content: flex-start;
+  padding: 2rem 0; 
   min-height: 100vh;
+  
   /* Fondo animado de Espacio Profundo */
   background: radial-gradient(circle at center, #2b004d 0%, #000000 100%);
   background-size: 200% 200%;
-
   animation: bg-pulse 10s ease infinite;
   overflow-x: hidden;
 }
@@ -23,14 +27,16 @@ body {
 /* Efecto de rejilla (Grid) estilo Tron en el fondo */
 body::before {
   content: '';
-  position: absolute;
-  top: 0; left: 0; width: 100%; height: 100%;
+  /* CORRECCIÓN: fixed para que la rejilla cubra toda la página al hacer scroll */
+  position: fixed; 
+  top: 0; 
+  left: 0; 
+  width: 100%; 
+  height: 100%;
   background-image: 
     linear-gradient(rgba(0, 255, 234, 0.1) 1px, transparent 1px),
     linear-gradient(90deg, rgba(0, 255, 234, 0.1) 1px, transparent 1px);
   background-size: 50px 50px;
-  perspective: 1000px;
-  transform-style: preserve-3d;
   z-index: -1;
   pointer-events: none;
 }
@@ -44,7 +50,8 @@ body::before {
 /* --- HEADER --- */
 header {
   text-align: center;
-  margin-top: 3rem;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
   text-shadow: 0 0 20px #d400ff;
 }
 
@@ -78,13 +85,11 @@ header p {
 #search-section2,
 #result-section,
 #collection-section {
-  /* Fondo de cristal semitransparente */
   background: rgba(18, 2, 34, 0.7);
-  backdrop-filter: blur(15px); /* El efecto borroso detrás */
+  backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
-  padding: 2rem;
+  padding: 2.5rem;
   border-radius: 20px;
-  /* Borde de neón */
   border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 
     0 0 20px rgba(132, 0, 255, 0.3),
@@ -97,7 +102,7 @@ header p {
 }
 
 #search-section:hover, #result-section:hover {
-  transform: translateY(-5px); /* Flota un poco al pasar el mouse */
+  transform: translateY(-5px);
   box-shadow: 0 0 40px rgba(132, 0, 255, 0.6);
 }
 
@@ -131,7 +136,7 @@ input[type="text"]:focus {
   transform: scale(1.02);
 }
 
-/* --- BOTONES ESTÁNDAR (Búsqueda y Ver Colección) --- */
+/* --- BOTONES ESTÁNDAR --- */
 #search-btn, 
 #search-btn2, 
 #view-collection-btn,
@@ -143,13 +148,13 @@ input[type="text"]:focus {
   color: #000;
   background: #00f7ff;
   border: none;
-  border-radius: 5px; /* Bordes más rectos para look tech */
+  border-radius: 5px;
   cursor: pointer;
   position: relative;
   overflow: hidden;
   transition: all 0.3s;
   text-transform: uppercase;
-  margin-left: 10px;
+  margin-top: 10px;
   box-shadow: 0 0 15px rgba(0, 247, 255, 0.5);
 }
 
@@ -159,10 +164,10 @@ input[type="text"]:focus {
   background: #fff;
   color: #00f7ff;
   box-shadow: 0 0 30px #00f7ff;
-  letter-spacing: 2px; /* El texto se expande */
+  letter-spacing: 2px;
 }
 
-/* --- EL BOTÓN LOQUÍSIMO (Tu RGB Masterpiece) --- */
+/* --- EL BOTÓN RGB --- */
 @keyframes glowing-rgb {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
@@ -185,7 +190,6 @@ input[type="text"]:focus {
   z-index: 1;
   overflow: hidden;
   margin-top: 20px;
-  
   background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
   background-size: 400%;
   animation: glowing-rgb 20s linear infinite;
@@ -207,27 +211,13 @@ input[type="text"]:focus {
   animation: glowing-rgb 20s linear infinite;
 }
 
-#add-favorite-btn::after {
-  content: '';
-  position: absolute;
-  top: 0; left: -100%;
-  width: 100%; height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
-  transform: skewX(-25deg);
-  transition: 0.5s;
-  z-index: 2;
-}
-
 #add-favorite-btn:hover {
   transform: scale(1.1) translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.5);
 }
 
 #add-favorite-btn:hover::before { opacity: 1; }
-#add-favorite-btn:hover::after { left: 100%; }
-#add-favorite-btn:active { transform: scale(0.95) translateY(2px); }
 
-/* --- CARTAS POKEMON (Estilo Holográfico) --- */
+/* --- CARTAS POKEMON (Holográficas) --- */
 .pokemon-card {
   background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0));
   backdrop-filter: blur(10px);
@@ -242,15 +232,6 @@ input[type="text"]:focus {
   overflow: hidden;
 }
 
-.pokemon-card::before {
-  content: "";
-  position: absolute;
-  top: -50%; left: -50%; width: 200%; height: 200%;
-  background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
-  transform: rotate(30deg);
-  pointer-events: none;
-}
-
 .pokemon-card:hover {
   transform: translateY(-10px) scale(1.05);
   box-shadow: 0 15px 40px rgba(0, 247, 255, 0.3);
@@ -258,21 +239,9 @@ input[type="text"]:focus {
 }
 
 .pokemon-card img {
-  width: 120px;
-  height: 120px;
+  width: 140px;
+  height: 140px;
   filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
-  transition: transform 0.3s;
-}
-
-.pokemon-card:hover img {
-  transform: scale(1.2) rotate(5deg);
-}
-
-.pokemon-card h2, .pokemon-card h3 {
-  font-size: 1.2rem;
-  color: #fff;
-  margin-top: 10px;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.8);
 }
 
 /* --- COLECCIÓN --- */
@@ -281,19 +250,5 @@ input[type="text"]:focus {
   flex-wrap: wrap;
   justify-content: center;
   gap: 20px;
-}
-
-.collection-item {
-  background: rgba(0, 0, 0, 0.6);
-  border: 1px solid #ffd700;
-  padding: 10px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
-  transition: all 0.3s;
-}
-
-.collection-item:hover {
-  background: rgba(255, 215, 0, 0.2);
-  transform: scale(1.1);
-  box-shadow: 0 0 20px #ffd700;
+  padding: 20px;
 }
