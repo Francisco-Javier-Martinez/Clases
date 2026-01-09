@@ -24,6 +24,7 @@ async function buscarPokemon() {
             //si es correcto le saco una tarjeta con los datos del pokemon
             //Aqui como ya tenemos hecho el fetch arriba recogemos los datos con .json() 
             let data=await respuesta.json();
+            //El json es leido por mi gran amigo el geminis que me dio palo estan puesto los shinys
             tarjetaPokemon.innerHTML =`
                 <h2>ID: ${data.id}</h2>
                 <h2>${data.name.toUpperCase()}</h2>
@@ -34,6 +35,8 @@ async function buscarPokemon() {
                 <button id="add-favorite-btn">Agregar a la colección</button>
             `;
             //Agregar evento al botón para agregar a favoritos
+            //En este le pasaremos los vaolores para poderlos guardar en nuestra pokedex le pasaremos solamente
+            //el nombre y el sprite.
             document.getElementById('add-favorite-btn').addEventListener('click', function() {
                 agregarAPokemonFavoritos(data.name, data.sprites.front_shiny);
             });
@@ -95,20 +98,27 @@ Ejercicio 3: Búsqueda de Pokémon con jQuery AJAX
         return;
     }
     $.ajax({
+        //en ajax debemos poner la url, el metodo, y las funciones de exito y error
+        //esto eslo similar al fetch
         url: "https://pokeapi.co/api/v2/pokemon/" + pokemonNombre,
-        method: "GET",
+        method: "GET",//aqui el get es por que queremos obtener datos
+        //cuando ponemos success es cuando la respuesta es correcta
         success: function(datosPokemon) {
+            //Muenstro la tarjeta de pokemon
             tarjetaPokemon.innerHTML =`
                 <h2>ID: ${datosPokemon.id}</h2>
                 <h2>${datosPokemon.name.toUpperCase()}</h2>
                 <img src="${datosPokemon.sprites.front_default}" alt="${datosPokemon.name}">
             `;
         },
+        //si no es correcta la respuesta pasa por aqui
         error: function() {
             alert("No se ha encontrado el pokemon: " + pokemonNombre);
         }
     });
 }
+//esto estaba comentado pero segun sirve para hacer que el boton funcione con jquery
+//pero como ya lo tengo con addEventListener no hace falta a si q lo podemos comentar
 $(document).ready(function(){
     $('#search-btn').on('click', buscarPokemonJQueryAJAX);
 });  */
@@ -161,6 +171,7 @@ function filtrarPokemon() {
     //Realizo el fetch
     fetch(`https://pokeapi.co/api/v2/type/${tipo}`)
         .then(res => {//aqui compruebo si la respuesta es correcta
+            //Si falla muenstro un mensaje diciendo que el pokemon no se encontro
             if (!res.ok){
                 alert("No se ha encontrado el tipo de pokemon: " + tipo);
                 return;
