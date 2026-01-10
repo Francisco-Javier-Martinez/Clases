@@ -1,0 +1,220 @@
+/*CSS EN PIXELES*/
+/*Body*/
+body{
+    width: 100%;
+    height: auto;
+    margin: auto;
+    background-color: lightsteelblue;
+    font-size: 12px;
+}
+
+/*Layaout*/
+/*Header*/
+header {
+    height: 200px;
+    background-image: url("../img/marioLogo.png");
+    /*Esta 3 son para que la imagen no se repita y ocupe todo el contenedor*/
+    /*como la imagen esta sacada de internet no va ocupar todo asi que le pongo color de fondo para
+    que se rellene */
+    background-size: contain; 
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: #ce310d;
+}
+/*Nav*/
+nav{
+    height: 50px;
+    margin-bottom: 4.5vh;
+    background-color: #333333;
+}
+
+nav>ul{
+    /*Quito los estilos a la lista para hacer la barra de navegacion*/
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+nav>ul>li{
+    float: left;/*floto a la deecha todos los <li>*/
+    width: 15.87%;
+    /*200*100/1260=15.87%*/
+    /*tengo un total de 1260px, si pongo 6 elementos de 200px 1260*6=1200px y me sobran 60px*/
+    height: 50px;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.2em;
+}
+/*Aqui le digo que le de el right al ultimo <li>*/
+nav>ul>li:last-child {
+    float: right;
+    a{
+        color: rgb(238, 150, 150);
+    }
+}
+
+nav>ul>li>a{
+    font-size: 1.5em;
+    text-decoration: none;
+    color: white;
+    line-height: 50px; /*para centrar verticalmente el texto*/
+    display: block; /*para que ocupe todo el contenedor*/
+}
+nav>ul>li>a:hover{
+    background-color: #555555;
+}
+
+/*Main*/ /*aqui le pongo un color diferete al body para que 
+veamos como si no se pone el color de fondo del main no se ve*/
+main{
+    width: 100%;
+    background-color: rgb(183, 245, 201);
+    overflow: hidden; /*para que no se salga nada de los contenedores flotantes*/
+}
+
+/*aside y section*/
+/*Ancho total de este section es 800px*/
+section{
+    /*780*100/1260=61.9%*/
+    width: 61.9%;
+    /* width: 780px; *//*800-20px de padding=780px*/
+    height: 370px;
+ /*+400-30px de padding=370px*/
+    /*20*100/1260=1.59%*/
+    margin: 0 1.59%;
+    /*10*100/1260=0.79%*/
+    padding: 3vh 0.79% 0 0.79%;
+    float: left;
+    background-color: rgb(231, 171, 171);
+}
+
+section>p{
+    font-size: 1.3em;
+}
+/*800 +400 = 1200+ 60 de margenes =1260px por eso cabe perfecto*/
+/*Ancho total de este aside es 420px*/
+aside{
+    float: left;
+    /*370*100/1260=29.36%*/
+    width: 29.36%;
+/*     width: 370px; /*400-30=370px*/
+    height: 350px;
+/*400-50=350px*/
+    /*30*100/16260=2.38%*/
+    /*50*100/1260=3.97%*/
+    padding: 3.97% 0 0 2.38%;
+    /*20*100/1260=1.59%*/
+    margin-right: 1.59%;
+    background-color: rgb(233, 215, 167);
+}
+
+/*Footer*/
+footer{
+    font-size: 1.5em;
+    padding: 5px;
+    color: white;
+    height: 100px;
+    background-color: #333333;
+    /*Aqui el clear both ya no hace falta porque esta fuera*/
+/*     clear: both; /*Tengo que roper el flotamiento si no se sube*/
+    
+}
+
+
+/*Estilos de elemenotos del section*/
+/*Formulario*/
+form{
+    /*70*100/780=8.97%*/
+    padding-left: 8.97%;
+    /*Separación del texto (encima del formulario) y el borde superior del formulario: 4 veces el tamaño de letra de su
+contenedor.*/
+    margin-top: 4em;
+}
+label{
+    font-size: 1.5em;
+}
+label, input{
+    padding: 0.2em 0;
+    display: block; /*para que cada uno este en una linea*/
+}
+/*input tipo tex*/
+input[type="text"]{
+    /*484*100/780=62.05%*/
+    width: 62.05%; /*500-10px de padding-left=490px- 2px de padding por defecto de la drc y los 4 de borde = 484*/
+    padding-left: 1.28%;/*10*100/780=1.28%*/
+}
+
+/*boton*/
+/*Este tiene por defecto box-sizing:border-box*/
+input[type="submit"]{
+    margin: 1.28% auto;
+    /*150*100/780=19.23%*/
+    width: 19.23%; /*150px*/
+/*     width: 150px;
+ */    height: 2em;
+    background-color: #D8D8D8;
+}
+
+/*imagen aside*/
+#imagenAside>img{
+    width: 37.5%;/*150*100/400=37.5%*/
+    height: auto;
+}
+
+/*Query*/
+
+/* Esta query servira para que cuando minimicemos la 
+pantalla el menu envez de estar en horizontal se ponga en vertical y cambio
+el sentido de las cajas*/
+@media (max-width: 800px) {
+    nav {
+        height: auto;
+        background-color: #1a1a1a; 
+    }
+
+    nav>ul>li {
+        float: none;/*Quitamos el flotado a la izquierda*/
+        width: 100%;/*Ahora cada botón ocupa toda la linea*/
+    }
+
+    nav>ul>li:last-child {
+        float: none;/*Quitamos el flotado a la derecha del ultimo botón*/
+    }
+    /*Agrando el tamaño de la imagen pa que se vea mejor*/
+    #imagenAside>img{
+        width: 20%;/*150*100/800=20%*/
+    }
+
+    /*quitar flotamiento aside y section*/
+    section{
+        float: none;
+        margin: 0;
+        width: 100%;
+        background-color: rgb(231, 201, 171);
+    }
+    aside{
+        float: none;
+        margin: auto;
+        width: 100%;
+        background-color: rgb(233, 215, 200);
+    }
+}
+
+/*Esta sera para que cuando la pantalla sea muy grande
+se vea mejor el contenido*/
+@media (min-width: 1400px) {
+    body{
+        font-size: 17px;
+    }
+
+    section{
+        height: 32.14%;/*450*100/1400=32.14%*/
+    } 
+}
+
+/*Esta es para pantallas muy grandes y hago que la imagen se minimize*/
+@media (min-width: 2500px) {
+        /*Minimizo el tamaño de la imagen pa que se vea mejor*/
+    #imagenAside>img{
+        width: 15%;/*150*100/1000=15%*/
+    }
+}

@@ -1,0 +1,147 @@
+/*CSS EN PIXELES*/
+/*Body*/
+body{
+    width: 1260px;
+    margin: auto;
+    background-color: lightsteelblue;
+    font-size: 12px;
+}
+
+/*Layaout*/
+/*Header*/
+header {
+    width: 1260px;
+    height: 200px;
+    background-image: url("../img/marioLogo.png");
+    /*Esta 3 son para que la imagen no se repita y ocupe todo el contenedor*/
+    /*como la imagen esta sacada de internet no va ocupar todo asi que le pongo color de fondo para
+    que se rellene */
+    background-size: contain; 
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: #ce310d;
+}
+/*Nav*/
+nav{
+    width: 1260px;
+    height: 50px;
+        margin-bottom: 45px;
+
+    background-color: #333333;
+}
+
+nav>ul{
+    /*Quito los estilos a la lista para hacer la barra de navegacion*/
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+nav>ul>li{
+    float: left;/*floto a la deecha todos los <li>*/
+    width: 200px;/*tengo un total de 1260px, si pongo 6 elementos de 200px 1260*6=1200px y me sobran 60px*/
+    height: 50px;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.2em;
+}
+/*Aqui le digo que le de el right al ultimo <li>*/
+nav>ul>li:last-child {
+    float: right;
+    a{
+        color: rgb(238, 150, 150);
+    }
+}
+
+nav>ul>li>a{
+    font-size: 1.5em;
+    text-decoration: none;
+    color: white;
+    line-height: 50px; /*para centrar verticalmente el texto*/
+    display: block; /*para que ocupe todo el contenedor*/
+}
+nav>ul>li>a:hover{
+    background-color: #555555;
+}
+
+/*Main*/ /*aqui le pongo un color diferete al body para que 
+veamos como si no se pone el color de fondo del main no se ve*/
+main{
+    width: 1260px;
+    background-color: rgb(183, 245, 201);
+    overflow: hidden; /*para que no se salga nada de los contenedores flotantes*/
+}
+
+/*aside y section*/
+/*Ancho total de este section es 800px*/
+section{
+    width: 780px;/*800-20px de padding=780px*/
+    height: 370px; /*+400-30px de padding=370px*/
+    margin: 0 20px;
+    padding: 30px 10px 0 10px;
+    float: left;
+    background-color: rgb(231, 171, 171);
+}
+
+section>p{
+    font-size: 1.3em;
+}
+/*800 +400 = 1200+ 60 de margenes =1260px por eso cabe perfecto*/
+/*Ancho total de este aside es 420px*/
+aside{
+    float: left;
+    width: 370px; /*400-30=370px*/
+    height: 350px;/*400-50=350px*/
+    padding: 50px 0 0 30px;
+    margin-right: 20px;
+    background-color: rgb(233, 215, 167);
+}
+
+/*Footer*/
+footer{
+    font-size: 1.5em;
+    padding: 5px;
+    color: white;
+    width: 1260px;
+    height: 100px;
+    background-color: #333333;
+    /*Aqui el clear both ya no hace falta porque esta fuera*/
+/*     clear: both; /*Tengo que roper el flotamiento si no se sube*/
+}
+
+
+/*Estilos de elemenotos del section*/
+/*Formulario*/
+form{
+    padding-left: 70px;
+    /*Separación del texto (encima del formulario) y el borde superior del formulario: 4 veces el tamaño de letra de su
+contenedor.*/
+    margin-top: 4em;
+}
+label{
+    font-size: 1.5em;
+}
+label, input{
+    padding: 0.2em 0;
+    display: block; /*para que cada uno este en una linea*/
+}
+/*input tipo tex*/
+input[type="text"]{
+    width: 484px; /*500-10px de padding-left=490px- 2px de padding por defecto de la drc y los 4 de borde = 484*/
+    padding-left: 10px;
+}
+
+/*boton*/
+/*Este tiene por defecto box-sizing:border-box*/
+input[type="submit"]{
+    margin: 10px auto;
+    width: 150px;
+    height: 2em;
+    background-color: #D8D8D8;
+}
+
+/*imagen aside*/
+#imagenAside>img{
+    width: 150px;
+    height: auto;
+}
+
