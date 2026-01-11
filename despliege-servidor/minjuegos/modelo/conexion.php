@@ -13,5 +13,8 @@
                 die("Error conexión BD: " . $e->getMessage());
             }
         }
+        public function getConexion() {
+            return $this->conexion;
+        }
     }
 ?>
