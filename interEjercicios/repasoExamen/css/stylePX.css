@@ -30,6 +30,40 @@ nav{
     background-color: #333333;
 }
 
+/*aside y section*/
+/*Ancho total de este section es 800px*/
+section{
+    width: 780px;/*800-20px de padding=780px*/
+    height: 370px; /*+400-30px de padding=370px*/
+    margin: 0 20px;
+    padding: 30px 10px 0 10px;
+    float: left;
+    background-color: rgb(231, 171, 171);
+}
+
+/*800 +400 = 1200+ 60 de margenes =1260px por eso cabe perfecto*/
+/*Ancho total de este aside es 420px*/
+aside{
+    float: left;
+    width: 370px; /*400-30=370px*/
+    height: 350px;/*400-50=350px*/
+    padding: 50px 0 0 30px;
+    margin-right: 20px;
+    background-color: rgb(233, 215, 167);
+}
+
+/*Footer*/
+footer{
+    font-size: 1.5em;
+    padding: 5px;
+    color: white;
+    width: 1260px;
+    height: 100px;
+    background-color: #333333;
+    clear: both; /*Tengo que roper el flotamiento si no se sube*/
+}
+
+/*Estilos de elementos dentro del NAV*/
 nav>ul{
     /*Quito los estilos a la lista para hacer la barra de navegacion*/
     list-style: none;
@@ -64,44 +98,11 @@ nav>ul>li>a:hover{
 }
 
 
-/*aside y section*/
-/*Ancho total de este section es 800px*/
-section{
-    width: 780px;/*800-20px de padding=780px*/
-    height: 370px; /*+400-30px de padding=370px*/
-    margin: 0 20px;
-    padding: 30px 10px 0 10px;
-    float: left;
-    background-color: rgb(231, 171, 171);
-}
 
+/*Estilos de elemenotos del section*/
 section>p{
     font-size: 1.3em;
 }
-/*800 +400 = 1200+ 60 de margenes =1260px por eso cabe perfecto*/
-/*Ancho total de este aside es 420px*/
-aside{
-    float: left;
-    width: 370px; /*400-30=370px*/
-    height: 350px;/*400-50=350px*/
-    padding: 50px 0 0 30px;
-    margin-right: 20px;
-    background-color: rgb(233, 215, 167);
-}
-
-/*Footer*/
-footer{
-    font-size: 1.5em;
-    padding: 5px;
-    color: white;
-    width: 1260px;
-    height: 100px;
-    background-color: #333333;
-    clear: both; /*Tengo que roper el flotamiento si no se sube*/
-}
-
-
-/*Estilos de elemenotos del section*/
 /*Formulario*/
 form{
     padding-left: 70px;
