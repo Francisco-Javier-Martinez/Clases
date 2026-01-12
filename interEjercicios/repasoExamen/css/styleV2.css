@@ -128,7 +128,7 @@ label, input{
 }
 /*input tipo tex*/
 input[type="text"]{
-    width: 484px; /*500-10px de padding-left=490px- 2px de padding por defecto de la drc y los 4 de borde = 484*/
+    width: 487px; /*500-1,5-1,5-(borde)-10=487px*/
     padding-left: 10px;
 }
 
