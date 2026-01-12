@@ -164,3 +164,60 @@ input[type="submit"]{
 }
 
 /*Query*/
+
+/* Esta query servira para que cuando minimicemos la 
+pantalla el menu envez de estar en horizontal se ponga en vertical y cambio
+el sentido de las cajas*/
+@media (max-width: 800px) {
+    nav {
+        height: auto;
+        background-color: #1a1a1a; 
+    }
+
+    nav>ul>li {
+        float: none;/*Quitamos el flotado a la izquierda*/
+        width: 100%;/*Ahora cada botón ocupa toda la linea*/
+    }
+
+    nav>ul>li:last-child {
+        float: none;/*Quitamos el flotado a la derecha del ultimo botón*/
+    }
+    /*Agrando el tamaño de la imagen pa que se vea mejor*/
+    #imagenAside>img{
+        width: 20%;/*150*100/800=20%*/
+    }
+
+    /*quitar flotamiento aside y section*/
+    section{
+        float: none;
+        margin: 0;
+        width: 100%;
+        background-color: rgb(231, 201, 171);
+    }
+    aside{
+        float: none;
+        margin: auto;
+        width: 100%;
+        background-color: rgb(233, 215, 200);
+    }
+}
+
+/*Esta sera para que cuando la pantalla sea muy grande
+se vea mejor el contenido*/
+@media (min-width: 1400px) {
+    body{
+        font-size: 17px;
+    }
+
+    section{
+        height: 32.14%;/*450*100/1400=32.14%*/
+    } 
+}
+
+/*Esta es para pantallas muy grandes y hago que la imagen se minimize*/
+@media (min-width: 2500px) {
+        /*Minimizo el tamaño de la imagen pa que se vea mejor*/
+    #imagenAside>img{
+        width: 15%;/*150*100/1000=15%*/
+    }
+}
