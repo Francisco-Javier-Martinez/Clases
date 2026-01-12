@@ -1,0 +1,122 @@
+body{
+    width: 1260px;
+    height: auto;
+    margin: auto;
+    background-color: lightsteelblue;
+    font-size: 12px;
+}
+
+/*Layaout*/
+/*Header*/
+header {
+    width: 1260px;
+    height: 200px;
+    background-image: url("img/pokemon-extra.jpg");
+    /*Esta 3 son para que la imagen no se repita y ocupe todo el contenedor*/
+    /*como la imagen esta sacada de internet no va ocupar todo asi que le pongo color de fondo para
+    que se rellene */
+    background-size: contain; 
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: rgb(255, 255, 255);
+}
+/*Nav*/
+nav{
+    width: 1260px;
+    height: 115px;
+    background-color: #857d7d;
+}
+
+main{
+    background-color: rgb(183, 245, 201);
+    display: flow-root;
+}
+
+/*aside y section*/
+section{
+    height: 370px;
+    padding: 30px 10px 0 10px;
+    float: left;
+    background-color: rgb(227, 241, 200);
+}
+
+/*Footer*/
+footer{
+    font-size: 1.5em;
+    padding: 5px;
+    color: white;
+    height: 100px;
+    background-color: #333333;
+}
+
+
+/*Estilos de elementos dentro del NAV*/
+nav>ul{
+    display: flex; /*Hago que los elementos dentro del ul sean flexibles*/
+    /*Quito los estilos a la lista para hacer la barra de navegacion*/
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+nav>ul>li{
+    /*ahora le digo el width con fled-basis que es lo que equivaldria a width en flexbox*/
+    /* flex-basis: 200px; */
+    /*Lo cometo para poder probar flex-grow y flex-shrink y notar la diferencia*/
+    /*flex-grow hace que los elementos puedan crecer si hay espacio disponible*/
+    flex-grow: 1;/*Le voy a decir que se repartan en 1 pero despues al ultimo le voy a poner 3 para que ocupe mas espacio*/
+    /*flex-shrink hace que los elementos puedan encogerse si no hay espacio suficiente*/
+    flex-shrink: 1;/*por defecto es 1, si no hay espacio se encogen todos por igual*/
+
+    /* width: 200px; *//*tengo un total de 1260px, si pongo 6 elementos de 200px 1260*6=1200px y me sobran 60px*/
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.5em;
+}
+/*Aqui voy a decirle que el ultimo que es el de iniciar sesion ocupe 2 para ver la diferencia*/
+nav>ul>li:last-child {
+    flex-grow: 3; /* Este ocupa 3 partes del espacio total */
+    background-color: rgb(214, 141, 141);
+}
+/*el segundo enlace va a reducir su tamaño*/
+nav>ul>li:nth-child(2){
+    flex-shrink: 3; /* Este se encoge 3 veces mas que los demas */
+    background-color: rgb(214, 214, 141);
+}
+
+/*Pagina 2 estilos del nav*/
+
+#pag2>nav>ul>li:nth-child(even){
+    flex-grow: 4; /* Este ocupa 4 partes del espacio total */
+    background-color: rgb(141, 214, 141);
+}
+
+#pag2>nav>ul>li:nth-child(odd){
+    flex-grow: 2; /* Este ocupa 2 partes del espacio total */
+    background-color: rgb(141, 141, 214);
+}
+
+
+
+nav>ul>li>a{
+    font-size: 1.5em;
+    text-decoration: none;
+    color: white;
+    line-height: 115px; /*para centrar verticalmente el texto*/
+    display: block; /*para que ocupe todo el contenedor*/
+}
+nav>ul>li>a:hover{
+    background-color: #555555;
+}
+
+nav>ul>li>a>img{
+    width: 60px;
+    vertical-align: middle;
+}
+
+
+
+
+/*Estilos de elementos dentro del MAIN*/
+section>p{
+    font-size: 1.3em;
+}
