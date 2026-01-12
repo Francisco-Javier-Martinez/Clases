@@ -189,6 +189,7 @@ Realiza una media query para resoluciones iguales o menores de 1024:
         padding: 0;
     }
     /*Imagen a 60%*/
+    
     #imagenAside>img{
         width: 60%;
         height: auto;
