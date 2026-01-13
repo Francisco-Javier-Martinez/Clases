@@ -53,6 +53,7 @@ footer{
 /*Estilos de elementos dentro del NAV*/
 nav>ul{
     display: flex; /*Hago que los elementos dentro del ul sean flexibles*/
+    flex-wrap: wrap;
     /*Quito los estilos a la lista para hacer la barra de navegacion*/
     list-style: none;
     padding: 0;
