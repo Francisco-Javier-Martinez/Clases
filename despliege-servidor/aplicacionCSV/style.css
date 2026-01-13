@@ -1,0 +1,164 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Fondo general */
+body {
+    background-color: #f4f6f8;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Navegación superior */
+nav {
+    background-color: #2c3e50;
+    padding: 15px;
+    text-align: center;
+}
+
+nav h1 {
+    color: #ffffff;
+    font-size: 1.8rem;
+}
+
+/* Cabecera */
+header {
+    background-color: #3498db;
+    padding: 20px;
+    text-align: center;
+}
+
+header h1 {
+    color: #ffffff;
+    font-size: 2rem;
+}
+
+/* Contenido principal */
+main {
+    max-width: 800px;
+    margin: 30px auto;
+    background-color: #ffffff;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Secciones */
+section h2 {
+    color: #2c3e50;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 5px;
+}
+
+/* Lista de participaciones */
+section h1 {
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+    color: #34495e;
+}
+
+section p {
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #27ae60;
+}
+
+/* Texto de participaciones */
+section br {
+    line-height: 2;
+}
+
+/* Responsive básico */
+@media (max-width: 600px) {
+    main {
+        margin: 15px;
+        padding: 15px;
+    }
+
+    header h1,
+    nav h1 {
+        font-size: 1.5rem;
+    }
+}
+/* Contenedor principal de herramientas */
+.botones-csv {
+    display: flex;
+    flex-direction: column; /* Cambiamos a columna para separar secciones */
+    gap: 25px;
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+}
+
+/* Sección de descarga (Botón individual) */
+.botones-csv .btn.obtener {
+    align-self: flex-start; /* Alineado a la izquierda */
+    box-shadow: 0 4px 6px -1px rgba(39, 174, 96, 0.2);
+}
+
+/* Línea divisoria estética */
+.botones-csv hr {
+    border: 0;
+    border-top: 1px solid #cbd5e1;
+    margin: 5px 0;
+}
+
+/* Formulario de importación */
+.botones-csv form {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 15px;
+}
+
+.botones-csv label {
+    font-weight: bold;
+    color: #475569;
+    font-size: 0.95rem;
+}
+
+/* Estilo del input de archivo */
+.botones-csv input[type="file"] {
+    padding: 8px;
+    background: #fff;
+    border: 1px dashed #cbd5e1;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.botones-csv input[type="file"]::-webkit-file-upload-button {
+    background: #2c3e50;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+/* Botón de subir */
+.botones-csv .btn.exportar {
+    border: none; /* Quitar borde por defecto del button */
+    padding: 10px 24px;
+    box-shadow: 0 4px 6px -1px rgba(41, 128, 185, 0.2);
+}
+
+/* Responsive: en móviles todo en una sola columna */
+@media (max-width: 600px) {
+    .botones-csv form {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .botones-csv .btn.obtener {
+        align-self: stretch;
+    }
+}

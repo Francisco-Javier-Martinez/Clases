@@ -37,6 +37,8 @@ create table compras(
 
 );
 
+
+
 alter TABLE usuario
 	MODIFY nombre char(10) null;
 
