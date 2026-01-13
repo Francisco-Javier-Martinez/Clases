@@ -54,7 +54,7 @@
 
         //meter nueva inscripción desde CSV
         public function nuevaInscripcion(){
-
+        
         }
     }
 ?>
