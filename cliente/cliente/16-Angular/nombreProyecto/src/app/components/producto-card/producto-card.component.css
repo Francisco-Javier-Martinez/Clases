@@ -1,0 +1,82 @@
+:root {
+  --primary-glow: #00d2ff;
+  --secondary-glow: #3a7bd5;
+  --text-color: #ffffff;
+  --bg-card: rgba(255, 255, 255, 0.05);
+}
+
+/* Contenedor Principal con Efecto Cristal */
+.card-premium {
+  position: relative;
+  width: 300px;
+  padding: 20px;
+  background: var(--bg-card);
+  backdrop-filter: blur(15px); /* Desenfoque de fondo */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+  overflow: hidden;
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+  font-family: 'Segoe UI', Roboto, sans-serif;
+  cursor: pointer;
+}
+
+/* Efecto Hover: Elevación y Brillo */
+.card-premium:hover {
+  transform: translateY(-10px) scale(1.02);
+  border-color: var(--primary-glow);
+  box-shadow: 0 20px 40px rgba(0, 210, 255, 0.2);
+}
+
+/* Contenedor de Imagen */
+.image-container {
+  width: 100%;
+  height: 200px;
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.card-premium:hover img {
+  transform: scale(1.1); /* Zoom suave al entrar */
+}
+
+/* Título (h1) con Gradiente */
+.title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin: 0;
+  background: linear-gradient(90deg, #fff, #adadad);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -0.5px;
+}
+
+/* Precio (h2) Estilo Neon */
+.price {
+  font-size: 1.2rem;
+  margin-top: 8px;
+  color: var(--primary-glow);
+  font-weight: 600;
+  text-shadow: 0 0 10px rgba(0, 210, 255, 0.5);
+}
+
+/* Decoración: Círculo de luz detrás */
+.card-premium::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(0, 210, 255, 0.1) 0%, transparent 70%);
+  z-index: -1;
+  transition: 0.5s;
+}
