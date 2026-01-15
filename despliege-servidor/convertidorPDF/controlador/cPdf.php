@@ -27,13 +27,14 @@
             //el tercer parametro es el texto a mostrar
             //el cuarto parametro es el borde (0 sin borde, 1 con borde)
             //el quinto parametro es el salto de linea (0 sin salto, 1 con salto)
+            //el sexto parametro es la alineación (L izquierda, C centro, R derecha)
             $this->Cell(30,10,'Minijuegos',1,0,'C');
             //Salto de línea
             $this->Ln(20);
         }
 
         //metodo para el pie de pagina
-        function Footer(){
+        public function Footer(){
             // Posición: a 1,5 cm del final
             $this->SetY(-15);
             // Arial italic 8
