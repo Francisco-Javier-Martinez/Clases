@@ -63,7 +63,7 @@
             //imprimir los minijuegos
             if(is_array($resultado)){
                 foreach($resultado as $minijuego){
-                    $this->Cell(0,10,'Nombre: '.$minijuego['nombre'],0,1);
+                    $this->Cell(0,10,'Nombre: '.utf8_decode($minijuego['nombre']),0,1);
                     //salto de línea entre minijuegos
                     $this->Ln(10);
                 }
@@ -95,11 +95,11 @@
             //imprimir los minijuegos
             if(is_array($resultado)){
                 foreach($resultado as $minijuego){
-                    $this->Cell(0,10,'Nombre: '.$minijuego['nombre'],1,1);
-                    $this->Cell(0,10,'Genero: '.$minijuego['genero'],1,1);
-                    $this->Cell(0,10,'Tematica: '.$minijuego['tematica'],1,1);
-                    $this->Cell(0,10,'Desarrollador: '.$minijuego['desarrollador'],1,1);
-                    $this->Cell(0,10,'Clasificacion: PEGI '.$minijuego['clasificacion'],1,1);
+                    $this->Cell(0,10,'Nombre: '.utf8_decode($minijuego['nombre']),1,1);
+                    $this->Cell(0,10,'Genero: '.utf8_decode($minijuego['genero']),1,1);
+                    $this->Cell(0,10,'Tematica: '.utf8_decode($minijuego['tematica']),1,1);
+                    $this->Cell(0,10,'Desarrollador: '.utf8_decode($minijuego['desarrollador']),1,1);
+                    $this->Cell(0,10,'Clasificacion: PEGI '.utf8_decode($minijuego['clasificacion']),1,1);
                     $modo=($minijuego['cooperativo']=='1') ? 'Single Player' : 'Multiplayer';
                     $this->Cell(0,10,'Modo: '.$modo,1,1);
                     //salto de línea entre minijuegos
