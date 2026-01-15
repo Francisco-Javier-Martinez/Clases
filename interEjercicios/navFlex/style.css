@@ -51,49 +51,35 @@ footer{
 
 
 /*Estilos de elementos dentro del NAV*/
+nav>div>img{
+    float: left;
+    width: 200px;
+    height: 115px;
+    margin-right: 14px;
+}
 nav>ul{
     display: flex; /*Hago que los elementos dentro del ul sean flexibles*/
-    flex-wrap: wrap;
-    /*Quito los estilos a la lista para hacer la barra de navegacion*/
+/*     flex-wrap: wrap;
+ */    /*Quito los estilos a la lista para hacer la barra de navegacion*/
     list-style: none;
     padding: 0;
     margin: 0;
 }
 nav>ul>li{
     /*ahora le digo el width con fled-basis que es lo que equivaldria a width en flexbox*/
-    /* flex-basis: 200px; */
+    flex-basis: 200px;
+    margin-right: 14px;
     /*Lo cometo para poder probar flex-grow y flex-shrink y notar la diferencia*/
     /*flex-grow hace que los elementos puedan crecer si hay espacio disponible*/
     flex-grow: 1;/*Le voy a decir que se repartan en 1 pero despues al ultimo le voy a poner 3 para que ocupe mas espacio*/
     /*flex-shrink hace que los elementos puedan encogerse si no hay espacio suficiente*/
-    flex-shrink: 1;/*por defecto es 1, si no hay espacio se encogen todos por igual*/
+    /*aqui le digo que si no hay especio las cajas se enconjan los px necesarios para que quepan todas proporcionalmente*/
+    flex-shrink: 3;/*por defecto es 1, si no hay espacio se encogen todos por igual*/
 
     /* width: 200px; *//*tengo un total de 1260px, si pongo 6 elementos de 200px 1260*6=1200px y me sobran 60px*/
     text-align: center;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 1.5em;
-}
-/*Aqui voy a decirle que el ultimo que es el de iniciar sesion ocupe 2 para ver la diferencia*/
-nav>ul>li:last-child {
-    flex-grow: 3; /* Este ocupa 3 partes del espacio total */
-    background-color: rgb(214, 141, 141);
-}
-/*el segundo enlace va a reducir su tamaño*/
-nav>ul>li:nth-child(2){
-    flex-shrink: 3; /* Este se encoge 3 veces mas que los demas */
-    background-color: rgb(214, 214, 141);
-}
-
-/*Pagina 2 estilos del nav*/
-
-#pag2>nav>ul>li:nth-child(even){
-    flex-grow: 4; /* Este ocupa 4 partes del espacio total */
-    background-color: rgb(141, 214, 141);
-}
-
-#pag2>nav>ul>li:nth-child(odd){
-    flex-grow: 2; /* Este ocupa 2 partes del espacio total */
-    background-color: rgb(141, 141, 214);
 }
 
 
@@ -109,13 +95,38 @@ nav>ul>li>a:hover{
     background-color: #555555;
 }
 
-nav>ul>li>a>img{
-    width: 60px;
-    vertical-align: middle;
+
+#ejem2{
+    flex-basis: 190px;
+    padding: 0 5px;
+}
+
+/*ultimo estilo flex-bas*/
+nav>ul>li:last-child{
+    background-color: rgb(237, 152, 152);
+    /*en la ultima caja hago que ocupe mas espacio*/
+    /*Entonces le digo q esta especifico se encoja menos y crezca mas*/
+    flex-shrink: 1;
+    /*Aqui con el espacio sobrante le digo que lo ocupe 3 veces mas que los demas*/
+    /*En total dividi el espacio sobrante en 5 partes, 1 para cada uno de los otros 5 elementos y 3 para este*/
+    flex-grow: 3;
+}
+
+/*Como con el flex-basic de 200 no podia notar la diferencia entre flex-grow y flex-shrink
+voy a hacer otro ejemplo diciendole que tenga ancho auto y asi pueda ver la diferencia de tamaño entre el shrink y el grow*/
+#pag2 > nav > ul > li{
+    flex-basis: auto;
 }
 
 
 
+/* los impares va a crecer mas y encoger menos*/
+/*en este el espacio sobrante son 3 partes de 3*3=9 +2*1=2 9+2=11 partes en total*/
+#pag2 > nav > ul > li:nth-child(odd){
+    flex-grow: 3;
+    flex-shrink: 1;
+    background-color: rgb(150, 150, 250);
+}
 
 /*Estilos de elementos dentro del MAIN*/
 section>p{
