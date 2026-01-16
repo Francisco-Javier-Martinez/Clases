@@ -5,12 +5,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ComponentePruebaComponent } from './components/componente-prueba/componente-prueba.component';
 import { ProductoCardComponent } from './components/producto-card/producto-card.component';
-
+import { ComponentePadreComponent } from './components/componente-padre/componente-padre.component';
+import { ComponenteHijoComponent } from './components/componente-hijo/componente-hijo.component';
 @NgModule({
   declarations: [
     AppComponent,
     ComponentePruebaComponent,
-    ProductoCardComponent
+    ProductoCardComponent,
+    ComponentePadreComponent,
+    ComponenteHijoComponent,
   ],
   imports: [
     BrowserModule,
