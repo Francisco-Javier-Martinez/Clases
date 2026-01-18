@@ -1,4 +1,9 @@
-<p>componente-padre works!</p>
+<!-- <p>componente-padre works!</p>
 <p>Contador: {{ valorContador }}</p>
 <button (click)="incrementarContador()">Incrementar</button>
-<button (click)="decrementarContador()">Decrementar</button>
+<button (click)="decrementarContador()">Decrementar</button> -->
+<!-- //lamar hijo -->
+<!-- <app-componente-hijo [recibeHijo]="mensajePadre"></app-componente-hijo> -->
+<app-componente-hijo (mensajeDelHijo)="recibirMensaje($event)"></app-componente-hijo>
+
+<h5>Mensaje recibido del hijo es :   {{ reciboMensaje }}</h5>

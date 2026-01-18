@@ -7,6 +7,7 @@ import { ComponentePruebaComponent } from './components/componente-prueba/compon
 import { ProductoCardComponent } from './components/producto-card/producto-card.component';
 import { ComponentePadreComponent } from './components/componente-padre/componente-padre.component';
 import { ComponenteHijoComponent } from './components/componente-hijo/componente-hijo.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,7 +18,9 @@ import { ComponenteHijoComponent } from './components/componente-hijo/componente
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
