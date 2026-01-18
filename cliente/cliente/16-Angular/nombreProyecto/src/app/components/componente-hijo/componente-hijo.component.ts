@@ -10,6 +10,16 @@ export class ComponenteHijoComponent {
   @Input() mensajeDesdePadre: string = ""; */
   
   @Output() mensajeDelHijo = new EventEmitter<string>();
+  @Output() incrementarContador = new EventEmitter<void>();
+  @Output() decrementarContador = new EventEmitter<void>();
+
+  emitirIncrementar() {
+    this.incrementarContador.emit();
+  }
+
+  emitirDecrementar() {
+    this.decrementarContador.emit();
+  }
 
   mensaje: string='';
 

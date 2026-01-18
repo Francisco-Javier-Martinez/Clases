@@ -4,6 +4,13 @@
 <button (click)="decrementarContador()">Decrementar</button> -->
 <!-- //lamar hijo -->
 <!-- <app-componente-hijo [recibeHijo]="mensajePadre"></app-componente-hijo> -->
-<app-componente-hijo (mensajeDelHijo)="recibirMensaje($event)"></app-componente-hijo>
+<app-componente-hijo 
+    (mensajeDelHijo)="recibirMensaje($event)"
+    (incrementarContador)="incrementarContador()"
+    (decrementarContador)="decrementarContador()">
+</app-componente-hijo>
 
 <h5>Mensaje recibido del hijo es :   {{ reciboMensaje }}</h5>
+
+<h1>Contador:</h1>
+<p>{{ valorContador }}</p>
