@@ -8,6 +8,7 @@
                 $contrasena=$_POST['contrasena'];
 
                 $sql="SELECT * from usuario where correo='".$correo."' && contraseña='".$contrasena."';";
+                echo $sql;
                 $usuarioBuscado=$this->conexion->query($sql);
                 if($usuarioBuscado->num_rows>0){
                     return $usuarioBuscado;

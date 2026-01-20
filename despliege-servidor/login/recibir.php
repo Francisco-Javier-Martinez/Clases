@@ -12,10 +12,8 @@
     if($resultado!=false){
         $fila=$resultado->fetch_assoc();
         $mensaje= '<h1>Bienvenido usuario: '.$fila['nombre'].'</h1>';
-        if($fila['tipo']==0){
             $mensaje1= '<h4>Eres administrador. Se te redirigirá al panel de administración
             mira el contenido exclusivo para administradores</h4>';
-        }
     }else{
         $mensaje= '<h1>Usuario o contraseña incorrectos</h1>';
         $mensaje1= '<h4>Se te redirigirá al formulario de login en 3 segundos</h4>';
