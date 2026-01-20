@@ -2,10 +2,11 @@
 
 <p>{{ recibeHijo }}</p> -->
 
-<div>
+<div appSergiMierder>
     <label for="entrada">Escribe un mensaje para el padre:</label>
-    <input type="text" id="entrada" [(ngModel)]="mensaje">
-    <button type="button" (click)="enviarMensajeAlPadre()">Enviar al padre</button>
+    <input  type="text" id="entrada" [(ngModel)]="mensaje">
+    <br>
+    <button  type="button" (click)="enviarMensajeAlPadre()">Enviar al padre</button>
 </div>
 
 <div>

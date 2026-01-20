@@ -8,6 +8,8 @@ import { ProductoCardComponent } from './components/producto-card/producto-card.
 import { ComponentePadreComponent } from './components/componente-padre/componente-padre.component';
 import { ComponenteHijoComponent } from './components/componente-hijo/componente-hijo.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SergiMierderDirective } from './directives/sergi-mierder.directive';
+import { NuevapipePipe } from './pipes/nuevapipe.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -15,6 +17,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ProductoCardComponent,
     ComponentePadreComponent,
     ComponenteHijoComponent,
+    SergiMierderDirective,
+    NuevapipePipe,
   ],
   imports: [
     BrowserModule,
