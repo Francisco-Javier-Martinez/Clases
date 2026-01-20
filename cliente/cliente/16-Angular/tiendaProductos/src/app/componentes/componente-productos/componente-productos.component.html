@@ -9,5 +9,6 @@
     -->
     <li *ngFor="let product of productos">
         {{product.nombre}} - {{product.precio}} €
+        <img [src]="product.img" alt="{{product.nombre}}" width="100">
     </li>
 </ul>
