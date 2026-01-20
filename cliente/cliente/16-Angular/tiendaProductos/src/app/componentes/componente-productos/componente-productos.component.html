@@ -1,1 +1,13 @@
-<h1>Tienda de productos</h1>
+<h1>OFERTA EN KIKOMARK</h1>
+<h2>La mejores ofertas del día</h2>
+
+<ul>
+    <!-- 
+        *ngFor es para recorrer el array de productos
+        el primer parametro es el nombre que le damos a cada elemento
+        el segundo parametro es el array que queremos recorrer 
+    -->
+    <li *ngFor="let product of productos">
+        {{product.nombre}} - {{product.precio}} €
+    </li>
+</ul>
