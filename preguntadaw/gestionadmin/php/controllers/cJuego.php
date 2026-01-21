@@ -13,6 +13,17 @@ class CJuego {
         $this->mensaje = null;
     }
 
+    //Buscar si el juego existe
+    public function buscarJuego() {
+        $titulo=$_POST['titulo'];
+        $juego = $this->modeloJuego->buscarJuegoPorTitulo($titulo);
+        if( $juego ) {
+            $this->vista='monstrarJuego.php';
+            return $juego;
+        } else {
+            return null;
+        }
+    }
     // SOLO maneja POST (creación del juego)
     function crearJuego() {
         $this->vista = "creacion_Juegos.php";

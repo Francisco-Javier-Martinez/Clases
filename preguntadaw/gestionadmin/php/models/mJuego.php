@@ -2,6 +2,21 @@
 require_once __DIR__ .'/../models/conexion.php';
 class mJuego extends Conexion {
     
+    //metodo para buscar juego por titulo sin consultas preparadas
+        public function buscarJuegoPorTitulo($titulo) {
+        $sql = "SELECT * FROM juego WHERE descripcion = '" . $titulo . "'";
+        echo $sql;
+        $stmt = $this->conexion->prepare($sql);
+        $stmt->execute();
+
+        if ($stmt->rowCount() > 0) {
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } else {
+            return [];
+        }
+    }
+
+
     public function crearJuegoConTemas($descripcion, $publico, $temasIds, $habilitado, $idUsuario) {
      try {
         // Generar código único

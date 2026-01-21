@@ -39,8 +39,13 @@
         </ul>
     </nav>
     <main>
+		<h1>Buscar Juego por Título</h1>
+		<form method="POST" action="index.php?controller=Juego&action=buscarJuego">
+			<input type="text" name="titulo" placeholder="Introduce el título del juego" required>
+			<button type="submit">Buscar</button>
+		</form>
         <h1>Juegos Creados</h1>
-        
+	
         <section>
 
             <?php 
