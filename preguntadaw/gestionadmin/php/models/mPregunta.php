@@ -3,6 +3,22 @@
     require_once __DIR__ . '/../config/configrt.php';
     class Mpregunta extends Conexion{
 
+        //monstrar preguntas de un tema sin consultas preparadas
+        public function buscarPregunta($nombre){
+        try{
+            $sql="SELECT * FROM preguntas WHERE titulo='$nombre'";
+            echo $sql;
+            $resultado=$this->conexion->query($sql);
+            if($resultado->rowCount()>0){
+                return $resultado->fetchAll(PDO::FETCH_ASSOC);
+            }else{
+                return false;
+            }
+        }catch(PDOException $e){
+            die('Code error: ' . $e->getCode() . ' Mensaje error: ' . $e->getMessage());
+        }
+    }
+
         //metodo para insertar preguntas sin preparadas
         public function meterPreguntasNoSegura($idTema, $nPregunta, $nombreImagen){
             try{

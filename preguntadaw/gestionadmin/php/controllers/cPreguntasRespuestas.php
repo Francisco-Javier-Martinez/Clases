@@ -15,6 +15,26 @@ class cPreguntasRespuestas{
         $this->vista = '';
     }
 
+    public function buscarPregunta(){
+    $nombreBuscar = $_POST['buscarPregunta'] ?? '';
+    
+    if(empty($nombreBuscar)){
+        $this->mensaje = "Debe ingresar un término de búsqueda";
+        $this->vista = 'error.php';
+        return false;
+    }
+    
+    $resultado = $this->modeloPreguntas->buscarPregunta($nombreBuscar);
+    if($resultado && is_array($resultado)){
+        $this->vista = 'monstrarPregunas.php';
+        return $resultado;
+    }else{
+        $this->mensaje = "No se encontraron preguntas para: " . htmlspecialchars($nombreBuscar);
+        $this->vista = 'error.php';
+        return false;
+    }
+}
+
     public function mostrarNuevaPregunta(){
         $idTema = $_GET['idTema'];
         // Usar el mismo nombre de fichero que existe en la carpeta vistas

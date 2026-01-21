@@ -1,6 +1,12 @@
 <h1>OFERTA EN KIKOMARK</h1>
 <h2>La mejores ofertas del día</h2>
 
+<!-- añadir un nuevo producto -->
+<input type="text" placeholder="Nombre del producto" [(ngModel)]="marcaNuevoProducto">
+<input type="number" placeholder="Precio del producto" [(ngModel)]="precioNuevoProducto">
+<input type="text" placeholder="URL de la imagen" [(ngModel)]="imgNuevoProducto">
+<button (click)="addProducto()">Añadir producto</button>
+
 <ul>
     <!-- 
         *ngFor es para recorrer el array de productos
@@ -10,5 +16,7 @@
     <li *ngFor="let product of productos">
         {{product.nombre}} - {{product.precio}} €
         <img [src]="product.img" alt="{{product.nombre}}" width="100">
+        <!-- Boton borrar -->
+        <button (click)="borrarProducto(product.id)">Borrar</button>
     </li>
 </ul>
