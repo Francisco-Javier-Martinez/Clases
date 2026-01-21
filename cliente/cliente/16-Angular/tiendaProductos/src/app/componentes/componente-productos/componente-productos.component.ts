@@ -32,4 +32,13 @@ export class ComponenteProductosComponent {
       alert("Por favor, rellena todos los campos correctamente.");
     }
   }
+
+  //borrar producto
+  borrarProducto(id: number){
+    this.productos.forEach((producto, indice) => {
+      if(producto.id == id){
+        this.productos.splice(indice, 1);
+      }
+    });
+  }
 }
