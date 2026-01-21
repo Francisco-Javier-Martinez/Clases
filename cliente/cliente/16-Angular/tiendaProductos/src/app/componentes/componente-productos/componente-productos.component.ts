@@ -11,10 +11,25 @@ export class ComponenteProductosComponent {
 
   //recogerProductos
   productos: any[] = []; //array vacio
+  marcaNuevoProducto: string = '';
+  precioNuevoProducto: number = 0;
+  imgNuevoProducto: string = '';
 
   //Este metodo inicializa la vida del componente
   ngOnInit() {
     this.productos = this.servicioProductos.getProductos();
   }
 
+  //metodo para añadir un nuevo producto
+  addProducto(){
+    if(this.marcaNuevoProducto.length>2 && this.precioNuevoProducto>5 && this.imgNuevoProducto.length>5){
+      this.servicioProductos.addProducto(this.marcaNuevoProducto, this.precioNuevoProducto, this.imgNuevoProducto);
+      //limpiar los campos
+      this.marcaNuevoProducto = '';
+      this.precioNuevoProducto = 0;
+      this.imgNuevoProducto = '';
+    }else{
+      alert("Por favor, rellena todos los campos correctamente.");
+    }
+  }
 }
