@@ -69,8 +69,12 @@ $preguntas = $datos['pregunta']; // Lista de preguntas del tema
             <h3>Preguntas</h3>
             <p class="subtitle">Lista de preguntas del tema. Haz clic en el nombre para modificar.</p>
             <div class="preguntas-box">
+                <form action="index.php?controller=PreguntasRespuestas&action=buscarPregunta" method="post" id="form-buscar-pregunta">
+                    <input type="text" name="buscarPregunta" id="buscarPregunta" placeholder="Buscar pregunta...">
+                    <input type="submit" value="Buscar" class="search-btn">
+                </form>
                 <?php
-                    if (!empty($preguntas)) {
+                    /* if (!empty($preguntas)) {
                         foreach ($preguntas as $preg) {
                             echo '<div class="pregunta-item">';
                             echo '<a class="pregunta-link" href="./index.php?controller=PreguntasRespuestas&action=vistaEditarPregunta&idTema=' . $tema['idTema'] . '&nPregunta=' . $preg['nPregunta'] . '">';
@@ -81,7 +85,7 @@ $preguntas = $datos['pregunta']; // Lista de preguntas del tema
                             echo '</a>';
                             echo '</div>';
                         }
-                    }
+                    } */
                 ?>
                                         
                 <a class="agregar-pregunta-link" href="index.php?controller=PreguntasRespuestas&action=mostrarNuevaPregunta&idTema=<?=$tema['idTema']?>">

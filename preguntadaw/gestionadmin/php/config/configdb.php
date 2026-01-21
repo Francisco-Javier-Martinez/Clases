@@ -2,7 +2,7 @@
     define("host","localhost");
     define("user","root");
     define("password","");
-    define("database","preguntadawv2");
+    define("database","preguntadaw2");
 
     // Alias con las constantes usadas por la aplicación
     if (!defined('SERVIDOR')) define('SERVIDOR', host);
