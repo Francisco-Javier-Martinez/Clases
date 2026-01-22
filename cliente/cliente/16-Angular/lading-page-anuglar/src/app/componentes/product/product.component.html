@@ -1,0 +1,33 @@
+<h1>Productos</h1>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Producto</th>
+      <th scope="col">Precio</th>
+      <th scope="col">Detalle</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">2</th>
+      <td>Lavandina</td>
+      <td>$100</td>
+      <button type="button" class="btn btn-primary btn-sm" [routerLink]="['/products','lavandina']">Ver detalle</button>
+
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td>Limpia vidrio</td>
+      <td>$80</td>
+      <button type="button" class="btn btn-primary btn-sm" [routerLink]="['/products','limpia-vidrio']">Ver detalle</button>
+
+    </tr><tr>
+      <th scope="row">1</th>
+      <td>Detergente</td>
+      <td>$200</td>
+      <button type="button" class="btn btn-primary btn-sm" [routerLink]="['/products','detergente']">Ver detalle</button>
+
+    </tr>
+  </tbody>
+</table>
