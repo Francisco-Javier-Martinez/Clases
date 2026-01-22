@@ -1,7 +1,7 @@
 <?php
     define("host","localhost");
-    define("user","root");
-    define("password","");
+    define("user","User_Lectura");
+    define("password","password");
     define("database","preguntadaw2");
 
     // Alias con las constantes usadas por la aplicación
