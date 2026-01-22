@@ -5,9 +5,9 @@ GRANT ALL PRIVILEGES ON preguntadaw2.* TO 'Admin'@'localhost';
 FLUSH PRIVILEGES; -- esto es para que los cambios tengan efecto inmediato
 
 -- usuario con permisos limitados para solo leer y escribir en la base de datos preguntadaw2
-CREATE USER 'User_Lec_Escri'@'localhost' IDENTIFIED BY 'password';
+CREATE USER 'UserCrearTablas'@'localhost' IDENTIFIED BY 'password';
 -- darle permisos de solo lectura y escritura en la base de datos preguntadaw2
-GRANT SELECT, INSERT, UPDATE, DELETE ON preguntadaw2.* TO 'User_Lec_Escri'@'localhost';
+GRANT SELECT, CREATE ON preguntadaw2.* TO 'UserCrearTablas'@'localhost';
 FLUSH PRIVILEGES; -- esto es para que los cambios tengan efecto inmediato
 
 -- usuario con permisos limitados para solo leer
@@ -16,11 +16,12 @@ CREATE USER 'User_Lectura'@'localhost' IDENTIFIED BY 'password';
 GRANT SELECT ON preguntadaw2.* TO 'User_Lectura'@'localhost';
 FLUSH PRIVILEGES; -- esto es para que los cambios tengan efecto inmediato
 
--- usuario con permisos limitados para solo escribir y leer pero no borrar
-CREATE USER 'UserNoBorrar'@'localhost' IDENTIFIED BY 'password';
+-- usuario con permisos limitados para solo escribir y leer pero no actualizar
+CREATE USER 'UserUpdate'@'localhost' IDENTIFIED BY 'password';
 -- darle permisos de lectura y escritura pero no borrar en la base de datos preguntadaw2
-GRANT SELECT, INSERT, UPDATE ON preguntadaw2.* TO 'UserNoBorrar'@'localhost';
+GRANT SELECT, INSERT, UPDATE ON preguntadaw2.* TO 'UserUpdate'@'localhost';
 FLUSH PRIVILEGES; -- esto es para que los cambios tengan efecto inmediato
+
 
 -- usuario sin permisos para pruebas
 CREATE USER 'UserSinPermisos'@'localhost' IDENTIFIED BY 'password';
