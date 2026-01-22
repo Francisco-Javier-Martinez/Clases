@@ -16,7 +16,8 @@
     <li *ngFor="let product of productos">
         {{product.nombre}} - {{product.precio}} €
         <img [src]="product.img" alt="{{product.nombre}}" width="100">
-        <button (click)="borrarProducto(product.id)">Borrar</button>
-        <button (click)="editarProducto(product.id)">Editar</button>
+
+        <button class="btn-delete" (click)="borrarProducto(product.id)">Borrar</button>
+        <button  (click)="editarProducto(product.id)">Editar</button>
     </li>
 </ul>

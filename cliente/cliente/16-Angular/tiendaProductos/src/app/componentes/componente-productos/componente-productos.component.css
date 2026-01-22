@@ -112,3 +112,83 @@ li span {
 }
 
 /* Eliminado el "::after" que ponía el mensaje de compra */
+/* 1. BOTÓN AÑADIR (Efecto RGB / Cyberpunk) */
+.btn-add {
+  position: relative;
+  padding: 15px 35px;
+  background: #000;
+  color: #fff;
+  font-family: 'Arial Black', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  z-index: 1;
+  overflow: hidden;
+  transition: 0.3s;
+}
+
+.btn-add::before {
+  content: '';
+  position: absolute;
+  top: -2px; left: -2px;
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+  background-size: 400%;
+  z-index: -1;
+  animation: bg-animation 20s linear infinite;
+  filter: blur(5px);
+  opacity: 0.8;
+}
+
+/* 2. BOTÓN EDITAR (Efecto Cristal de Neón) */
+.btn-edit {
+  padding: 12px 25px;
+  background: rgba(52, 152, 219, 0.1);
+  color: #3498db;
+  border: 2px solid #3498db;
+  border-radius: 50px;
+  font-weight: bold;
+  box-shadow: 0 0 10px rgba(52, 152, 219, 0.5), inset 0 0 10px rgba(52, 152, 219, 0.3);
+  text-shadow: 0 0 5px #3498db;
+  transition: all 0.3s ease;
+}
+
+.btn-edit:hover {
+  background: #3498db;
+  color: white;
+  box-shadow: 0 0 30px #3498db;
+  transform: scale(1.1);
+}
+
+/* 3. BOTÓN BORRAR (Efecto Fuego / Magma) */
+.btn-delete {
+  padding: 12px 25px;
+  background: linear-gradient(to bottom, #e74c3c, #c0392b);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 5px 0 #922b21; /* Efecto 3D abajo */
+  font-weight: 900;
+  transition: all 0.1s;
+}
+
+.btn-delete:hover {
+  filter: brightness(1.2);
+  transform: translateY(2px);
+  box-shadow: 0 3px 0 #922b21;
+}
+
+.btn-delete:active {
+  transform: translateY(5px);
+  box-shadow: 0 0 0 #922b21;
+}
+
+/* ANIMACIÓN PARA EL BOTÓN AÑADIR */
+@keyframes bg-animation {
+  0% { background-position: 0 0; }
+  50% { background-position: 400% 0; }
+  100% { background-position: 0 0; }
+}

@@ -35,26 +35,11 @@ export class ComponenteProductosComponent {
 
   //borrar producto
   borrarProducto(id: number){
-    this.productos.forEach((producto, indice) => {
-      if(producto.id == id){
-        this.productos.splice(indice, 1);
-      }
-    });
+    this.servicioProductos.deleteProducto(id);
   }
 
   //editar producto
   editarProducto(id: number){
-    let nombreProducto = prompt("Ingrese el nuevo nombre del producto:");
-    let precioProducto = parseInt(prompt("Ingrese el nuevo precio del producto:") || '0');
-    if(!nombreProducto  || precioProducto <= 0){
-      alert(" El nombre no puede estar vacio y el precio debe ser mayor que 0.");
-      return;
-    }
-    this.productos.forEach((producto) => {
-      if(producto.id==id){
-        producto.nombre=nombreProducto;
-        producto.precio=precioProducto;
-      }
-    });
+    this.servicioProductos.updateProducto(id);
   }
 }
