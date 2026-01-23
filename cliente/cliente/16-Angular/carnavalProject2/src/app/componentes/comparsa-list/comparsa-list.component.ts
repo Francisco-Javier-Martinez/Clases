@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ComparsaService } from 'src/app/services/comparsa.service';
+import { ComparsaService } from 'src/app/servicios/comparsa.service';
 
 @Component({
   selector: 'app-comparsa-list',
@@ -9,6 +9,7 @@ import { ComparsaService } from 'src/app/services/comparsa.service';
 export class ComparsaListComponent {
 
   constructor(private comparsaService: ComparsaService) { }
+
   //array de comparsas
   comparsas: any[] = [];
 
@@ -37,7 +38,7 @@ export class ComparsaListComponent {
   borrarComparsa(nombre:string){
     this.comparsaService.eliminarComparsa(nombre);
   }
-
+  
   editarComparsa(nombre:string){
     this.comparsaService.actualizarComparsa(nombre);
   }
