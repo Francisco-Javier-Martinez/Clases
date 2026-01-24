@@ -1,10 +1,12 @@
 <h1> El kikonaval</h1>
 <h2> Lista de Comparsas</h2>
 <ul>
-  <li *ngFor="let comparsa of comparsas" appDComparsa>
-    Nombre: {{ comparsa.nombre }}
-    Población: {{ comparsa.poblacion | pComparsa }}
+  <li *ngFor="let comparsa of comparsas" appDComparsas>
+    Nombre: {{ comparsa.nombre}}
+    Población: {{ comparsa.problacion  | pComparsas}}
     Integrantes: {{ comparsa.integrantes }}
+    <button (click)="borrarComparsa(comparsa.nombre)">Borrar comparsa</button>
+    <button (click)="editarComparsa(comparsa.nombre)">Editar Comparsa</button>
   </li>
 </ul>
 <!-- añadir una nueva comparsa -->
