@@ -41,3 +41,23 @@ INSERT INTO minijuegos (nombre, tematica, desarrollador, cooperativo, clasificac
 ('Mundo Bloque', 'Construcción', 'CubeCraft', b'1', 7, 'Sandbox'),
 ('Zombi Apocalypse', 'Post-apocalíptico', 'Survival HQ', b'1', 18, 'Acción'),
 ('Código Enigma', 'Misterio', 'PuzzleMind', b'0', 7, 'Puzzle');
+
+
+CREATE TABLE partidas (
+    idPartida SMALLINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    idUsuario SMALLINT UNSIGNED,
+    idMinijuego SMALLINT UNSIGNED,
+    fecha DATE,
+    FOREIGN KEY (idUsuario) REFERENCES usuarios(idUsuario),
+    FOREIGN KEY (idMinijuego) REFERENCES minijuegos(idMinijuego)
+);
+
+
+INSERT INTO partidas (idUsuario, idMinijuego, fecha) VALUES
+(1, 3, '2024-01-10'),
+(1, 5, '2024-01-12'),
+(2, 2, '2024-01-15'),
+(2, 3, '2024-01-16'),
+(3, 1, '2024-01-17'),
+(4, 7, '2024-01-18'),
+(5, 9, '2024-01-19');
