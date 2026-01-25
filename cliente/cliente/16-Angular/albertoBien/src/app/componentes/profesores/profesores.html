@@ -8,3 +8,7 @@
         <button (click)="actualzarProfe(profe.id)">Actualizar</button>
     </li>
 </ul>
+
+<input type="text" placeholder="Nombre" [(ngModel)]="nuevoPorfeNombre">
+<input type="text" placeholder="Asignatura" [(ngModel)]="nuevoProfeAsigntura">
+<button (click)="agregarProfe()">Agregar Profesor</button>

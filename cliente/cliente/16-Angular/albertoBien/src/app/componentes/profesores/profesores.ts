@@ -26,4 +26,8 @@ constructor(private objProfe: Profesore){};
   actualzarProfe(id:number){
     this.objProfe.editar(id);
   }
+
+  agregarProfe(){
+    this.objProfe.meterNuevoProfe(this.nuevoPorfeNombre,this.nuevoProfeAsigntura);
+  }
 }
