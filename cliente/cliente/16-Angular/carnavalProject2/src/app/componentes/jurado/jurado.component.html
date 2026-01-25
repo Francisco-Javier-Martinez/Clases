@@ -1,3 +1,5 @@
 <h1>Jurado Component</h1>
-<p>Jurado ID: {{ id }}</p>
-<p>Puntuación: {{ puntuacion }}</p>
+<ul *ngFor="let jurados of jurado">
+    <li>ID: {{jurados.id}}</li>
+    <li>puntuacion: {{jurados.puntuacion}}</li>
+</ul>
