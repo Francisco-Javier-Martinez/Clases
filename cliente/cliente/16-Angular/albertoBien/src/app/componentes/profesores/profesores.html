@@ -1,0 +1,10 @@
+<h1>Profesores de programacion:</h1>
+<ul>
+    <li  *ngFor="let profe of profes">
+        id: {{profe.id}}
+        Nombre: {{profe.nombre}}
+        Asignatura: {{profe.asignatura}}
+        <button (click)="borrarProfe(profe.id)">Eliminar</button>
+        <button (click)="actualzarProfe(profe.id)">Actualizar</button>
+    </li>
+</ul>

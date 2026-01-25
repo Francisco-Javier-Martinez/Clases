@@ -7,9 +7,19 @@
   },
   "newProjectRoot": "projects",
   "projects": {
-    "albertoRepaso": {
+    "albertoBien": {
       "projectType": "application",
-      "schematics": {},
+      "schematics": {
+        "@schematics/angular:component": {
+          "standalone": false
+        },
+        "@schematics/angular:directive": {
+          "standalone": false
+        },
+        "@schematics/angular:pipe": {
+          "standalone": false
+        }
+      },
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
@@ -27,12 +37,7 @@
             ],
             "styles": [
               "src/styles.css"
-            ],
-            "server": "src/main.server.ts",
-            "outputMode": "server",
-            "ssr": {
-              "entry": "src/server.ts"
-            }
+            ]
           },
           "configurations": {
             "production": {
@@ -62,10 +67,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "albertoRepaso:build:production"
+              "buildTarget": "albertoBien:build:production"
             },
             "development": {
-              "buildTarget": "albertoRepaso:build:development"
+              "buildTarget": "albertoBien:build:development"
             }
           },
           "defaultConfiguration": "development"
