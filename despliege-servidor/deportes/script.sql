@@ -1,10 +1,36 @@
 -- usuario con permisos normales ( Este lo que podra hacer son interacciones de usuario por defecto)
 CREATE USER 'user_Normal'@'localhost' IDENTIFIED BY '123456';
-GRANT SELECT, INSERT, UPDATE, DELETE ON polideportivo.* TO 'user_Normal'@'localhost';
+GRANT SELECT, INSERT, UPDATE, DELETE ON deportes.* TO 'user_Normal'@'localhost';
 
 -- usuarios con todos los privilegios ( Para poder comprobar todo)
 CREATE USER 'user_Admin'@'localhost' IDENTIFIED BY 'admin123';
-GRANT ALL PRIVILEGES ON polideportivo.* TO 'user_Admin'@'localhost';
+GRANT ALL PRIVILEGES ON deportes.* TO 'user_Admin'@'localhost';
+
+-- usuario que solo podra hacer selects este no quiero que pueda hacer la inscripcion
+CREATE USER 'user_select'@'localhost' IDENTIFIED BY 'consulta123';
+GRANT SELECT ON deportes.* TO 'user_select'@'localhost';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
