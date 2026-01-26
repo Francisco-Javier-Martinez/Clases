@@ -5,7 +5,7 @@
     <title>Inscripción</title>
 </head>
 <body>
-    <form action="index.php?controlador=Usuarios&metodo=registrarUsuario" method="POST">
+    <form action="index.php?controlador=Inscripcion&metodo=registrarUsuario" method="POST">
         <label for="username">Nombre usuario: (no se puede repetir)</label>
         <input type="text" name="username"/>
         <br/><br/>
