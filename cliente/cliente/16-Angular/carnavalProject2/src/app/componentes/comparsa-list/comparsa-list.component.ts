@@ -42,4 +42,6 @@ export class ComparsaListComponent {
   editarComparsa(nombre:string){
     this.comparsaService.actualizarComparsa(nombre);
   }
+
+  
 }

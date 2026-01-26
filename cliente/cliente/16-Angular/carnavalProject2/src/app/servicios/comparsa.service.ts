@@ -7,12 +7,12 @@ export class ComparsaService {
 
   constructor() { }
   //nombres de las comparsas y personas que las integran
-  private arrayCompparsas: { nombre: string,problacion: string, integrantes: number }[] = [
-    { nombre: 'Los Alegres', problacion: 'San Juan', integrantes: 25 },
-    { nombre: 'Las Estrellas', problacion: 'Santiago', integrantes: 30 },
-    { nombre: 'Ritmo y Color', problacion: 'Valparaíso', integrantes: 20 },
-    { nombre: 'Sonrisas del Carnaval', problacion: 'Concepción', integrantes: 15 },
-    { nombre: 'Fantasía Nocturna', problacion: 'Antofagasta', integrantes: 28 }
+  private arrayCompparsas: { nombre: string,problacion: string, integrantes: number, puntacion: number }[] = [
+    { nombre: 'Los Alegres', problacion: 'San Juan', integrantes: 25 ,puntacion: 0},
+    { nombre: 'Las Estrellas', problacion: 'Santiago', integrantes: 30, puntacion: 0 },
+    { nombre: 'Ritmo y Color', problacion: 'Valparaíso', integrantes: 20, puntacion: 0 },
+    { nombre: 'Sonrisas del Carnaval', problacion: 'Concepción', integrantes: 15, puntacion: 0 },
+    { nombre: 'Fantasía Nocturna', problacion: 'Antofagasta', integrantes: 28, puntacion: 0 }
   ];
   //método para obtener las comparsas
   obtenerComparsas(){
@@ -21,7 +21,7 @@ export class ComparsaService {
 
   //añadir una nueva comparsa
   anadirComparsa(nombre:string,problacion:string,integrantes:number){
-    this.arrayCompparsas.push({nombre,problacion,integrantes});
+    this.arrayCompparsas.push({nombre,problacion,integrantes,puntacion:0});
   }
   //metodo para actualizar una comparsa
   actualizarComparsa(nombreBuscar: string){
@@ -42,6 +42,15 @@ export class ComparsaService {
       if(comparsa.nombre === nombreBuscar){
         let indiceBorrar = this.arrayCompparsas.indexOf(comparsa);
         this.arrayCompparsas.splice(indiceBorrar, 1);
+      }
+    });
+  }
+
+  //añadir puntuacion a una comparsa
+  añadirPuntuacion(nombreBuscar: string, puntuacion:number){
+    this.arrayCompparsas.forEach((comparsa) => {
+      if(comparsa.nombre===nombreBuscar){
+        comparsa.puntacion=puntuacion;
       }
     });
   }

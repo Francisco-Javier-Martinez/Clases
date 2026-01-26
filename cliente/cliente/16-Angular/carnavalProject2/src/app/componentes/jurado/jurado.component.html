@@ -3,3 +3,16 @@
     <li>ID: {{jurados.id}}</li>
     <li>puntuacion: {{jurados.puntuacion}}</li>
 </ul>
+
+
+<h1> Asignar Puntuación a Comparsas</h1>
+<ul>
+  <li *ngFor="let comparsa of comparsas" appDComparsas>
+    Nombre: {{ comparsa.nombre}}
+    Población: {{ comparsa.problacion  | pComparsas}}
+    Integrantes: {{ comparsa.integrantes }}
+    Puntuación: {{ comparsa.puntacion }}
+    <input type="number" placeholder="Puntuación" [(ngModel)]="puntuacion">
+    <button (click)="darPuntuacion(comparsa.nombre, puntuacion)">Asignar Puntuación</button>
+  </li>
+</ul>
