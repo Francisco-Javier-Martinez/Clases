@@ -5,7 +5,7 @@
         //sacar los deportes disponibles
         public function obtenerDeportes(){
             try{
-                $sql="SELECT * FROM deportes";
+                $sql="SELECT * FROM Deportes";
                 $stmt=$this->conexion->prepare($sql);
                 $stmt->execute();
                 $deportes=$stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -88,10 +88,10 @@
         //metodo para obtener las inscripciones de un usuario
         public function obtenerInscripciones(){
             try{
-                $sql="SELECT usuarios.nombreUsuario,deportes.nombreDep
-                    FROM usuarios_deportes
-                    INNER JOIN  deportes ON usuarios_deportes.idDeporte=deportes.idDeporte
-                    INNER JOIN usuarios on usuarios_deportes.idUsuario=usuarios.idUsuario;";
+                $sql="SELECT Usuarios.nombreUsuario,Deportes.nombreDep
+                    FROM Usuarios_deportes
+                    INNER JOIN  Deportes ON Usuarios_deportes.idDeporte=Deportes.idDeporte
+                    INNER JOIN Usuarios on Usuarios_deportes.idUsuario=Usuarios.idUsuario;";
                 $stmt=$this->conexion->prepare($sql);
                 $stmt->execute();
                 $inscripciones=$stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -117,10 +117,10 @@
         //metodo para ver el total de deportes inscritos por usuario
         public function totalDeportesUsuarios(){
             try{
-                $sql="SELECT deportes.nombreDep,COUNT(usuarios_deportes.idDeporte) as Total_Gente_Inscrita
-	        FROM deportes 
-    	inner join usuarios_deportes on deportes.idDeporte=usuarios_deportes.idDeporte
-        GROUP BY deportes.idDeporte;";
+                $sql="SELECT Deportes.nombreDep,COUNT(Usuarios_deportes.idDeporte) as Total_Gente_Inscrita
+	        FROM Deportes 
+    	inner join Usuarios_deportes on Deportes.idDeporte=Usuarios_deportes.idDeporte
+        GROUP BY Deportes.idDeporte;";
                 $stmt=$this->conexion->prepare($sql);
                 $stmt->execute();
                 $totalUsuarios=$stmt->fetchAll(PDO::FETCH_ASSOC);
