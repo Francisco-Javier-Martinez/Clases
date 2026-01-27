@@ -8,7 +8,7 @@ import { TenistaService } from 'src/app/servicios/tenista.service';
 })
 export class TenistaListComponent {
   constructor(private serTenis : TenistaService){}
-
+  arrayNoGanadores:any[]=[];
   listaTenistas:any[]=[];
   nuevoNombre: string='';
   nuevoPais: string='';
@@ -17,9 +17,15 @@ export class TenistaListComponent {
   nuevoAltura: number=0;
   nuevoGolpe: string='';
 
+  //variables de consultas
+  tenistaAlto:string ='';
+  tenistaMasTrofeo:string ='';
+
   //inicnializar
   ngOnInit(){
     this.listaTenistas=this.serTenis.getTenis();
+    this.tenistaAlto=this.serTenis.sacarTenistaMasAlto();
+    this.tenistaMasTrofeo=this.serTenis.sacarElQueMasPremiosTiene();
   }
 
   //nuevo
@@ -50,5 +56,9 @@ export class TenistaListComponent {
     this.nuevoNombre='';
     this.nuevoPeso=0;
     this.nuevoGolpe='';
+  }
+
+  monstrarNoGanadores(){
+    this.arrayNoGanadores = this.serTenis.monstrarLosQueNoGanaron();
   }
 }

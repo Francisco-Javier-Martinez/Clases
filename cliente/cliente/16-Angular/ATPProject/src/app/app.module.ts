@@ -5,11 +5,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TenistaListComponent } from './componentes/tenista-list/tenista-list.component';
 import { FormsModule } from '@angular/forms';
+import { TenisMayusPipe } from './pipes/tenis-mayus.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TenistaListComponent
+    TenistaListComponent,
+    TenisMayusPipe
   ],
   imports: [
     BrowserModule,

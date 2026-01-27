@@ -4,7 +4,7 @@
     <li *ngFor="let tenis of listaTenistas">
         id: {{tenis.id}}
         nombre: {{tenis.nombre}}
-        nacionalidad: {{tenis.nacionalidad}}
+        nacionalidad: {{tenis.nacionalidad | tenisMayus}}
         numeroGrandSlams: {{tenis.numeroGrandSlams}}
         peso: {{tenis.peso}}
         altura: {{tenis.altura}}
@@ -13,7 +13,6 @@
         <button (click)="actualizarTenisa(tenis.id)">Actualizarr</button>
     </li>
 </ul>
-
 <input type="text" placeholder="NombreTenista" [(ngModel)]="nuevoNombre">
 <input type="text" placeholder="Nacionalidad" [(ngModel)]="nuevoPais">
 <input type="number" placeholder="Grand Slams" [(ngModel)]="nuevoGrandSlams">
@@ -21,3 +20,18 @@
 <input type="number" placeholder="Altura" [(ngModel)]="nuevoAltura">
 <input type="text" placeholder="Golpe Dominante" [(ngModel)]="nuevoGolpe">
 <button (click)="meterTenista()">Meter nuevo tenista</button>
+
+<h1>Ver los que no ganaron</h1>
+<button (click)="monstrarNoGanadores()">Ver tenistas que no han ganado los slams</button>
+<ul>
+    <li *ngFor="let noGanadores of arrayNoGanadores">
+        {{noGanadores.nombre}}
+    </li>
+</ul>
+
+<div>
+    <h1>El tenista mas alto es:</h1>
+    <h2>{{tenistaAlto}}</h2>
+    <h1>El tenista con mas trofeos es:</h1>
+    <h2>{{tenistaMasTrofeo}}</h2>
+</div>

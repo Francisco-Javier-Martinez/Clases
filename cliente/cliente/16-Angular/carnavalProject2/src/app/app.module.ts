@@ -8,6 +8,7 @@ import { DComparsasDirective } from './directivas/d-comparsas.directive';
 import { PComparsasPipe } from './pipes/p-comparsas.pipe';
 import { JuradoComponent } from './componentes/jurado/jurado.component';
 import { FormsModule } from '@angular/forms';
+import { TenisMayusPipe } from './pipes/tenis-mayus.pipe';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { FormsModule } from '@angular/forms';
     ComparsaListComponent,
     DComparsasDirective,
     PComparsasPipe,
-    JuradoComponent
+    JuradoComponent,
+    TenisMayusPipe
   ],
   imports: [
     BrowserModule,

@@ -117,4 +117,37 @@ export class TenistaService {
       }
     
   }
+    monstrarLosQueNoGanaron(){
+    let deportisasNoGanados:any[]=[];
+    this.listaTenista.forEach(element => {
+      if(element.numeroGrandSlams==0){
+        deportisasNoGanados.push({nombre:element.nombre});
+      }
+    });
+    return deportisasNoGanados;
+  }
+
+  sacarTenistaMasAlto(){
+    let tenistaAltura=this.listaTenista[0]['altura'];
+    let tenista:string='';
+    this.listaTenista.forEach(element => {
+      if(element.altura>tenistaAltura){
+        tenistaAltura=element.altura;
+        tenista=element.nombre;
+      }
+    });
+    return tenista;
+  }
+
+  sacarElQueMasPremiosTiene(){
+    let tenistaGananador=this.listaTenista[0]['numeroGrandSlams'];
+    let tenistaN:string='';
+    this.listaTenista.forEach(element => {
+        if(element.numeroGrandSlams>tenistaGananador){
+          tenistaGananador=element.numeroGrandSlams;
+          tenistaN=element.nombre;
+        }
+    });
+    return tenistaN;
+  }
 }
