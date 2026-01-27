@@ -129,7 +129,7 @@ export class TenistaService {
 
   sacarTenistaMasAlto(){
     let tenistaAltura=this.listaTenista[0]['altura'];
-    let tenista:string='';
+    let tenista:string=this.listaTenista[0]['nombre'];
     this.listaTenista.forEach(element => {
       if(element.altura>tenistaAltura){
         tenistaAltura=element.altura;
@@ -141,7 +141,7 @@ export class TenistaService {
 
   sacarElQueMasPremiosTiene(){
     let tenistaGananador=this.listaTenista[0]['numeroGrandSlams'];
-    let tenistaN:string='';
+    let tenistaN:string=this.listaTenista[0]['nombre'];
     this.listaTenista.forEach(element => {
         if(element.numeroGrandSlams>tenistaGananador){
           tenistaGananador=element.numeroGrandSlams;
