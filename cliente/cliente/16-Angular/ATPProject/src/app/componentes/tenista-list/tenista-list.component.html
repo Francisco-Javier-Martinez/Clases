@@ -1,0 +1,23 @@
+<h1>Tenistas</h1>
+
+<ul>
+    <li *ngFor="let tenis of listaTenistas">
+        id: {{tenis.id}}
+        nombre: {{tenis.nombre}}
+        nacionalidad: {{tenis.nacionalidad}}
+        numeroGrandSlams: {{tenis.numeroGrandSlams}}
+        peso: {{tenis.peso}}
+        altura: {{tenis.altura}}
+        golpeDominante: {{tenis.golpeDominante}}
+        <button (click)="borrarTenista(tenis.id)">Eliminar</button>
+        <button (click)="actualizarTenisa(tenis.id)">Actualizarr</button>
+    </li>
+</ul>
+
+<input type="text" placeholder="NombreTenista" [(ngModel)]="nuevoNombre">
+<input type="text" placeholder="Nacionalidad" [(ngModel)]="nuevoPais">
+<input type="number" placeholder="Grand Slams" [(ngModel)]="nuevoGrandSlams">
+<input type="number" placeholder="Peso" [(ngModel)]="nuevoPeso">
+<input type="number" placeholder="Altura" [(ngModel)]="nuevoAltura">
+<input type="text" placeholder="Golpe Dominante" [(ngModel)]="nuevoGolpe">
+<button (click)="meterTenista()">Meter nuevo tenista</button>
