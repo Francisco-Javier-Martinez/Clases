@@ -1,18 +1,20 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { VidiojuegosComponent } from './componentes/vidiojuegos/vidiojuegos.component';
-import { FormsModule } from '@angular/forms';
+import { Prueba1Component } from './componentes/prueba1/prueba1.component';
+import { Prueba2Component } from './componentes/prueba2/prueba2.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    VidiojuegosComponent
+    Prueba1Component,
+    Prueba2Component
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
