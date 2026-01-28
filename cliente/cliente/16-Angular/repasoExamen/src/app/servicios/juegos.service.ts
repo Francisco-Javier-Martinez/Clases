@@ -33,6 +33,19 @@ export class JuegosService {
   }
 
   actualizar(id:number){
-    let nuevoNombre= prompt("mete nombre a actualizarñ")
+    let nuevoNombre= prompt("mete nombre a actualizar:");
+    let precioNuevo= Number(prompt("Mete precio  nuevo:"));
+    let valoracionNueva= Number(prompt("Valoracion Nueva"));
+    if(nuevoNombre==null || precioNuevo==null || valoracionNueva==null){
+      alert("Mete las cosas bien coño");
+      return;
+    }
+    this.arrayJuegos.forEach(element => {
+      if(element.id==id){
+        element.nombre=nuevoNombre as string;
+        element.precio=precioNuevo as number;
+        element.valoracion=valoracionNueva as number;
+      }
+    });
   }
 } 

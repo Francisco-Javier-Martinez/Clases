@@ -1,0 +1,16 @@
+<h1>Vidiojuegos kiko</h1>
+<ul>
+    <li *ngFor="let Juegos of arrayJuegos" appDirecGame>
+        id {{Juegos.id}}
+        nombre: {{Juegos.nombre | vidioPipes}}
+        precio: {{Juegos.precio}}
+        valoracion: {{Juegos.valoracion}}
+        <button (click)="borrarGame(Juegos.id)">Borrar</button>
+        <button (click)="actuGame(Juegos.id)">ActualizarJuego</button>
+    </li>
+</ul>
+
+<input type="text" placeholder="Nombre del juego" [(ngModel)]="nuevoNombre"/>
+<input type="number" placeholder="Precio" [(ngModel)]="nuevoPrecio"/>
+<input type="number" placeholder="valoracion del juego" [(ngModel)]="nuevaValoracion"/>
+<button (click)="meterGame()">Enviar Juego</button>
