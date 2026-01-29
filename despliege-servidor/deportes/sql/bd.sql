@@ -20,7 +20,7 @@ CREATE TABLE Usuarios (
 CREATE TABLE Usuarios_deportes (
 	idDeporte 	tinyint unsigned	NOT NULL,
 	idUsuario 	smallint unsigned	NOT NULL,
-	PRIMARY KEY (idDeporte, idUsuario)
+	PRIMARY KEY (idDeporte, idUsuario),
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
