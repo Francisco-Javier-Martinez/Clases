@@ -40,8 +40,8 @@ alter table preguntas
 
 
 alter table tema
-	MODIFY abreviatura char (10) not null
-
+	MODIFY abreviatura char (10) not null 
+ 
 CREATE INDEX ind_titulo on preguntas(titulo)
 
 CREATE UNIQUE INDEX idc_unique_titulo on preguntas(titulo)
