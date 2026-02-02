@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <h5><a href="index.php">Volver</a></h5>
     <form action="index.php?controlador=Inscripcion&metodo=registrarUsuario" method="POST">
         <label for="username">Nombre usuario: (no se puede repetir)</label>
         <input type="text" name="username"/>

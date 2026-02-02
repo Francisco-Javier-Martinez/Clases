@@ -216,3 +216,86 @@ form br {
     display: inline-block;
     margin-top: 10px;
 }
+/* Estenedor principal para la vista de deportes */
+.deportes-container {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+    width: 100%;
+    max-width: 600px;
+}
+
+.deportes-container h1 {
+    font-size: 1.6rem;
+    color: #222;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* El botón de añadir deporte (h2 con enlace) */
+.deportes-container h2 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.deportes-container h2 a {
+    background-color: #28a745; /* Verde para diferenciar la acción de "crear" */
+}
+
+.deportes-container h2 a:hover {
+    background-color: #218838;
+}
+
+/* Lista de deportes */
+.deportes-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Cada bloque de deporte generado por el foreach */
+.deporte-item {
+    border: 1px solid #eee;
+    padding: 15px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: #fafafa;
+}
+
+.deporte-item img {
+    border-radius: 4px;
+    object-fit: cover;
+    border: 2px solid #fff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.deporte-item p {
+    margin: 0;
+    font-weight: bold;
+    color: #333;
+    flex-grow: 1; /* Empuja los botones a la derecha */
+}
+
+/* Botones de acción (Editar / Eliminar) */
+.deporte-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.deporte-actions a {
+    padding: 6px 12px;
+    font-size: 0.85rem;
+}
+
+.deporte-actions a[href*="eliminar"] {
+    background-color: #dc3545; /* Rojo para eliminar */
+}
+
+.deporte-actions a[href*="eliminar"]:hover {
+    background-color: #c82333;
+}

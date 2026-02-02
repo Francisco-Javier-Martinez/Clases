@@ -14,8 +14,9 @@
     <nav id="adminNav">
         <ul>
             <li><a href="index.php?controlador=Inscripcion&metodo=obtenerInscripciones">Deportes_Usuarios</a></li>
-            <li><a href="index.php?controlador=Inscripcion&metodo=totalDeportesInscritos">Total Deportes</a></li>
-            <li><a href="index.php?controlador=Inscripcion&metodo=totalInscripcionesPorDeporte">Total Inscripciones por Deporte</a></li>
+            <li><a href="index.php?controlador=Deportes&metodo=verDeportes">Total Deportes</a></li>
+            <li><a href="index.php?controlador=Deportes&metodo=totalInscripcionesPorDeporte">Total Inscripciones por Deporte</a></li>
+            <li><a href="index.php?controlador=Deportes&metodo=verDeportes">Deportes</a></li>
             <li><a href="index.php?controlador=Usuarios&metodo=cerrarSesion">Cerrar sesión</a></li>
         </ul>
     </nav>
