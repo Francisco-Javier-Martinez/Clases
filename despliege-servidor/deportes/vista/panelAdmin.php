@@ -24,6 +24,12 @@
         <section class="card">
             <h3>Resumen</h3>
             <p>Aquí puedes ver estadísticas y acciones de administración</p>
+            <?php
+            //mostrar mensaje si existe
+                if(isset($mensaje)){
+                    echo "<p>".$mensaje."</p>";
+                }
+            ?>
         </section>
     </main>
 </body>

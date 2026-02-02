@@ -88,5 +88,37 @@
                 return "Error : ".$e->getMessage();
             }
         }
+
+        //metodo para obtener un deporte por id
+        public function obtenerDeportePorId($idDeporte){
+            try{
+                $sql="SELECT * FROM Deportes WHERE idDeporte=:idDeporte";
+                $stmt=$this->conexion->prepare($sql);
+                $stmt->bindParam(':idDeporte',$idDeporte);
+                $stmt->execute();
+                $deporte = $stmt->fetch(PDO::FETCH_ASSOC);
+                return $deporte;
+            }catch (PDOException $e){
+                return "Error : ".$e->getMessage();
+            }
+        }
+
+        //metodo para guardar la edicion de un deporte
+        public function actualizarDeporte($idDeporte,$imagen){
+            //regoger el nombre
+            $nombreDep=$_POST['nombreDep'];
+            try{
+                $sql="UPDATE Deportes SET nombreDep=:nombreDep, imagen=:imagen WHERE idDeporte=:idDeporte";
+                $stmt=$this->conexion->prepare($sql);
+                $stmt->bindParam(':imagen',$imagen);
+                $stmt->bindParam(':nombreDep',$nombreDep);
+                $stmt->bindParam(':idDeporte',$idDeporte);
+                $stmt->execute();
+                return true;
+            }catch (PDOException $e){
+                return "Error : ".$e->getMessage();
+            }
+        }
+
     }
 ?>

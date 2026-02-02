@@ -9,6 +9,7 @@
 <body>
     <div class="deportes-container">
         <h1>Vista de Deportes</h1>
+        <h2><a href="index.php?controlador=Usuarios&metodo=volverPanelAdmin">Volver atras</a></h2>
         <h2><a href="index.php?controlador=Deportes&metodo=crearDeporte">Añadir Deporte</a></h2>
         <div class="deportes-list">
             <?php 
@@ -23,7 +24,7 @@
                         }
                         echo "<p>".$deporte['nombreDep']."</p>";
                         echo "<div class='deporte-actions'>";
-                            echo "<a href='index.php?controlador=Deportes&metodo=editar&id=".$deporte['idDeporte']."'>Editar</a>";
+                            echo "<a href='index.php?controlador=Deportes&metodo=mostrarEditar&id=".$deporte['idDeporte']."'>Editar</a>";
                             echo "<a href='index.php?controlador=Deportes&metodo=eliminar&id=".$deporte['idDeporte']."'>Eliminar</a>";
                         echo "</div>";
 

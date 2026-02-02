@@ -169,5 +169,60 @@
                 return "Error : ".$e->getMessage();
             }
         }
+        //metodo para editar un deporte
+        public function mostrarEditar(){
+            $idDeporte = $_GET['id'];
+            $deporte = $this->modeloDeporte->obtenerDeportePorId($idDeporte);
+            if(!$deporte){
+                $this->mensaje = 'Deporte no encontrado';
+                $this->vista = 'falloDeportes.php';
+                return;
+            }
+            $this->vista='monstrarEditar.php';
+            return $deporte;
+        }
+
+        //metodo para guardar la edicion de un deporte
+        public function guardarEdicion(){
+            //recoger id deporte
+            $idDeporte=$_GET['id'];
+            //validar que el nombre del deporte no este vacio
+            if(empty($_POST['nombreDep']) || !$idDeporte){
+                $this->mensaje='Datos incompletos para actualizar';
+                $this->vista='falloDeportes.php';
+                return;
+            }
+            //obtenemos la imagen actual de la BD
+            $imagenActual=$this->modeloDeporte->obtenerImagen($idDeporte);
+            $imagenRuta=$imagenActual; 
+
+            //si hay nueva imagen
+            if(isset($_FILES['imagen']) && $_FILES['imagen']['error'] == UPLOAD_ERR_OK){ //el upload_err_ok es que se subio bien
+                //guardar la nueva imagen en la carpeta
+                $resultado=$this->meterImagenCarpeta($_FILES['imagen']);
+                if($resultado!==false){//si no hubo error al subir la imagen
+                    $imagenRuta=RUTA_IMAGENES_DEPORTES . $resultado;
+                    // Borrar la imagen antigua solo si es distinta a la nueva
+                    if($imagenActual != $imagenRuta){
+                        $rutaCompletaAntigua = __DIR__ . '/../' . $imagenActual;
+                        if(file_exists($rutaCompletaAntigua)){
+                            unlink($rutaCompletaAntigua);
+                        }
+                    }
+                }
+            }
+            //actualizamos los datos del deporte en la bd con el nuevo nombre y la nueva imagen si hemos cambiado
+            $resultadoGuardar=$this->modeloDeporte->actualizarDeporte($idDeporte, $imagenRuta);
+            if($resultadoGuardar==true){//si se actualizo correctamente
+                if (session_status() == PHP_SESSION_NONE){ //verificar si la sesion no esta iniciada
+                    session_start(); 
+                }
+                $this->mensaje = 'Deporte actualizado correctamente';
+                $this->vista = 'panelAdmin.php';
+            } else {
+                $this->mensaje = $resultadoGuardar;
+                $this->vista = 'falloDeportes.php';
+            }
+        }
     }
 ?>
