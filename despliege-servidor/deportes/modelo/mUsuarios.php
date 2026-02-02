@@ -34,6 +34,7 @@
                 $stmt->execute();
                 if($stmt->rowCount()>0){
                     $contenido = $stmt->fetch(PDO::FETCH_ASSOC);
+                    //retornos los datos 
                     return $contenido;
                 }else{
                     return false;
