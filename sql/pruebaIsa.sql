@@ -30,9 +30,9 @@ INSERT INTO grupos(`nombre`, `clase`, `max_alumnos`) VALUES (
 );
 
 -- fallo de check 
-INSERT INTO grupos(`nombre`, `clase`, `max_alumnos`) VALUES (
+/* INSERT INTO grupos(`nombre`, `clase`, `max_alumnos`) VALUES (
 	'grupo1','gpr1',241
-);
+); */
 --#4025 - CONSTRAINT `chk_max_alu` failed for `clase`.`grupos`
 
 create UNIQUE INDEX ind_unq_nombre on grupos(nombre);
