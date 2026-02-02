@@ -2,7 +2,7 @@
     require_once __DIR__ .'/../modelo/mDeportes.php';
     //arhivo de rutas
     require_once __DIR__ .'/../config/configrt.php';
-    class Cdeportes {
+    class CDeportes {
         private $modeloDeporte;
         public $vista;
         public $mensaje;
@@ -150,7 +150,9 @@
                     return false;
                 }
                 //el nombre de la imagen sera el nombreDeporte + la extension
-                $nombreImagen = $_POST['nombreDep'] . '.' . $extension;
+                //sanitizar el nombre para evitar caracteres no válidos en nombre de archivo
+                $nombreSanitizado = preg_replace('/[^a-zA-Z0-9\-_\.]/', '_', $_POST['nombreDep']);
+                $nombreImagen = $nombreSanitizado . '.' . $extension;
                 //ruta carpeta donde se van a guardar las imagenes
                 $rutaCarpeta = __DIR__ . '/../' . RUTA_IMAGENES_DEPORTES;
                 //ruta destino es la ruta completa donde se va a guardar la imagen
