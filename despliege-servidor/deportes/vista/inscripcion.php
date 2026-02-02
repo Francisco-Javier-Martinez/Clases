@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Inscripción</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <form action="index.php?controlador=Inscripcion&metodo=registrarUsuario" method="POST">
