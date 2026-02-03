@@ -18,9 +18,22 @@
 
         #game-container {
             width: 100vw; height: 100vh;
-            background: radial-gradient(circle at center, #0a0a2e 0%, #000 100%);
-            position: relative; overflow: hidden; cursor: none;
+            background: radial-gradient(circle at center, #071026 0%, #000 100%);
+            position: relative; overflow: hidden; cursor: auto;
         }
+        .overlay { cursor: auto; }
+
+        /* Parallax clouds */
+        .bg-cloud {
+            position: absolute; top: 10%; left: -30%; width: 300px; height: 120px; background: rgba(255,255,255,0.06);
+            border-radius: 60px; filter: blur(12px) saturate(1.2); transform: scale(1.6);
+            animation: cloud-move linear infinite;
+            pointer-events: none; z-index: 20;
+        }
+        .bg-cloud.small { width: 180px; height: 70px; top: 30%; opacity: 0.08; transform: scale(1); filter: blur(6px); }
+        .bg-cloud.med { width: 260px; height: 100px; top: 5%; opacity: 0.09; transform: scale(1.2); }
+        .bg-cloud.large { width: 420px; height: 170px; top: 50%; opacity: 0.06; transform: scale(1.8); }
+        @keyframes cloud-move { from { transform: translateX(-40vw) } to { transform: translateX(140vw) } }
 
         /* --- HUD --- */
         #hud { position: absolute; top: 20px; left: 20px; z-index: 1000; }
@@ -30,15 +43,25 @@
 
         /* --- PLAYER (NUBE QUANTICA) --- */
         #player {
-            position: absolute; width: 90px; height: 55px; z-index: 500;
-            filter: drop-shadow(0 0 15px var(--neon-blue));
+            position: absolute; width: 160px; height: 96px; z-index: 500; left: 80px;
+            filter: none; transition: transform 0.08s linear;
         }
+        .cloud-body { box-shadow: 0 18px 48px rgba(0,243,255,0.12), 0 4px 12px rgba(0,0,0,0.12); }
         .cloud-body {
-            width: 100%; height: 100%; background: #fff; border-radius: 50px; position: relative;
+            width: 100%; height: 100%; background: transparent;
+            border-radius: 50px; position: relative; overflow: hidden; transform-origin: center;
+            animation: cloud-bob 3.6s ease-in-out infinite;
         }
-        .cloud-body::before { content: ''; position: absolute; width: 50px; height: 50px; background: #fff; border-radius: 50%; top: -20px; left: 10px; }
-        .cloud-body::after { content: ''; position: absolute; width: 40px; height: 40px; background: #fff; border-radius: 50%; top: -15px; right: 10px; }
-        .visor { position: absolute; top: 25px; left: 25px; width: 40px; height: 6px; background: #000; border-radius: 10px; display: flex; justify-content: space-around; align-items: center; z-index: 10; }
+        .cloud-body::before, .cloud-body::after { display:none; }
+        .cloud-body canvas { position:absolute; left:0; top:0; width:100%; height:100%; z-index:1; pointer-events:none; }
+        .cloud-sheen { position:absolute; left:8px; top:6px; width:60%; height:30%; background: linear-gradient(90deg, rgba(255,255,255,0.9), rgba(255,255,255,0)); border-radius:40px; transform: rotate(-18deg); opacity:0.85; pointer-events:none; }
+        #cloud-img { position:absolute; left:-6%; top:-6%; width:112%; height:112%; object-fit:cover; z-index:5; filter: drop-shadow(0 20px 50px rgba(0,243,255,0.12)) saturate(1.05); transform-origin:center; transition: transform 0.18s ease, filter 0.25s ease; }
+        #cloud-img.loaded { filter: drop-shadow(0 30px 70px rgba(0,243,255,0.2)) saturate(1.2); }
+
+        @keyframes cloud-bob { 0% { transform: translateY(0) } 50% { transform: translateY(-8px) } 100% { transform: translateY(0) } }
+        .visor { position: absolute; top: 22px; left: 28px; width: 52px; height: 10px; background: linear-gradient(90deg,#00121a,#000); border-radius: 10px; display: flex; justify-content: space-around; align-items: center; z-index: 10; box-shadow: 0 2px 8px rgba(0,0,0,0.6) inset; }
+        .visor::after { content: ''; position:absolute; right:4px; top:2px; width:12px; height:6px; background: linear-gradient(90deg,#00f3ff,#7beeff); border-radius:6px; opacity:0.9; }
+        .eye { width: 8px; height: 3px; background: var(--neon-blue); border-radius:3px; box-shadow: 0 0 8px rgba(0,243,255,0.6); }
         .eye { width: 8px; height: 3px; background: var(--neon-blue); }
 
         /* --- ENEMIGOS Y OBJETOS --- */
@@ -54,7 +77,11 @@
             display: none; flex-direction: column; align-items: center; justify-content: center;
             transition: top 0.5s ease-out;
         }
-        .boss-icon { font-size: 10rem; filter: drop-shadow(0 0 30px var(--neon-red)); animation: pulse 1s infinite alternate; }
+        .boss-icon { font-size: 10rem; filter: drop-shadow(0 0 40px var(--neon-red)); animation: pulse 1s infinite alternate; transform-origin: center; }
+        .boss-entrance { animation: boss-entrance 1s ease-out forwards; }
+        @keyframes boss-entrance { 0% { transform: translateY(-100px) scale(0.2) rotate(-20deg); opacity:0 } 60% { transform: translateY(20px) scale(1.15) rotate(10deg); opacity:1 } 100% { transform: translateY(0) scale(1) rotate(0deg); } }
+        .boss-icon.glow { animation: glow 1.6s infinite alternate; }
+        @keyframes glow { from { filter: drop-shadow(0 0 20px var(--neon-red)) } to { filter: drop-shadow(0 0 50px #ff7a7a) } }
         .boss-label { 
             background: var(--neon-red); color: white; padding: 5px 15px; font-weight: 900;
             font-size: 1.2rem; white-space: nowrap; border-radius: 5px; box-shadow: 0 0 20px var(--neon-red);
@@ -67,11 +94,18 @@
             box-shadow: 0 0 20px var(--neon-yellow); border-radius: 10px; z-index: 700;
         }
 
+
         /* DISPAROS DEL JUGADOR */
         .player-bolt {
             position: absolute; width: 20px; height: 5px; background: var(--neon-blue);
             box-shadow: 0 0 10px var(--neon-blue); border-radius: 5px; z-index: 600;
         }
+
+        /* Balas enemigo/jugador */
+        .bullet { width: 14px; height: 6px; border-radius: 6px; }
+
+        /* Partículas para explosiones */
+        .particle { position: absolute; width: 6px; height: 6px; border-radius: 50%; z-index: 1500; pointer-events: none; }
 
         /* VERDURAS */
         .vegetable { filter: drop-shadow(0 0 10px #0f0); }
@@ -82,6 +116,7 @@
             background: rgba(0,0,0,0.9); z-index: 2000; display: flex; flex-direction: column;
             justify-content: center; align-items: center; text-align: center;
         }
+        #credits-screen p { font-size:1.2rem; color:#cfeeff; margin:8px 0; }
         .hidden { display: none !important; }
         h1 { font-size: 4rem; margin: 0; color: var(--neon-blue); }
         .btn {
@@ -108,14 +143,29 @@
         </div>
 
         <div id="boss">
-            <div class="boss-label">SOY EL DELEGADO DE DAW</div>
-            <div class="boss-icon">💀</div>
+            <div class="boss-label">Pablo el hacker de la nube</div>
+            <div class="boss-icon">👾</div>
+        </div>
+
+        <div id="credits-screen" class="overlay hidden">
+            <h1>CRÉDITOS</h1>
+            <div id="credits-content" style="background:#04101a; padding:20px; border-radius:12px; margin-top:18px;">
+                <p>Grupo 1 de la optativa del Alberto</p>
+                <p>Desarrollo y diseño: Grupo 1</p>
+                <p>Jefe: Pablo el hacker de la nuve</p>
+            </div>
+            <button class="btn" onclick="hideCredits()">VOLVER</button>
         </div>
 
         <div id="start-screen" class="overlay">
             <h1>CLOUD DEFENDER</h1>
             <p style="letter-spacing: 5px; color: var(--neon-red);">MODO: DELEGADO FINAL BOSS</p>
-            <button class="btn" onclick="startGame()">INICIAR SISTEMA</button>
+            <div style="margin-top:25px; display:flex; gap:12px;">
+                <button class="btn" onclick="startGame('normal')">INICIAR (NORMAL)</button>
+                <button class="btn" onclick="startGame('hard')">INICIAR (HARD)</button>
+            </div>
+            <button class="btn" onclick="showCredits()" style="margin-top:18px;">CRÉDITOS</button>
+            <p style="margin-top:18px; font-size:0.9rem; color:#ccc;">Presiona <strong>Espacio</strong> o click izquierdo para disparar.</p>
         </div>
 
         <div id="theory-screen" class="overlay hidden">
@@ -133,7 +183,12 @@
         </div>
 
         <div id="player">
-            <div class="cloud-body"><div class="visor"><div class="eye"></div><div class="eye"></div></div></div>
+            <div class="cloud-body">
+                <canvas id="cloud-canvas"></canvas>
+                <img id="cloud-img" src="https://png.pngtree.com/png-vector/20250813/ourlarge/pngtree-cartoon-cloud-png-image_17161091.webp" alt="cloud">
+                <div class="cloud-sheen"></div>
+                <div class="visor"><div class="eye"></div><div class="eye"></div></div>
+            </div>
         </div>
     </div>
 
@@ -168,12 +223,185 @@
         const boss = document.getElementById('boss');
         let mouseY = window.innerHeight / 2;
         let playerY = window.innerHeight / 2;
+        const playerX = 80;
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        // Cloud canvas and particles
+        const cloudCanvas = document.getElementById('cloud-canvas');
+        const cloudCtx = cloudCanvas.getContext('2d');
+        let cloudParticles = [];
+        function initCloudCanvas() {
+            const dpr = window.devicePixelRatio || 1;
+            const bodyRect = document.querySelector('.cloud-body').getBoundingClientRect();
+            cloudCanvas.width = Math.floor(bodyRect.width * dpr);
+            cloudCanvas.height = Math.floor(bodyRect.height * dpr);
+            cloudCanvas.style.width = bodyRect.width + 'px';
+            cloudCanvas.style.height = bodyRect.height + 'px';
+            cloudCtx.setTransform(dpr,0,0,dpr,0,0);
+            // create particles relative to canvas
+            cloudParticles = [];
+            const count = 26;
+            for (let i=0;i<count;i++) {
+                cloudParticles.push({
+                    x: Math.random() * cloudCanvas.width / dpr,
+                    y: Math.random() * cloudCanvas.height / dpr,
+                    r: 10 + Math.random()*36,
+                    ax: (Math.random()-0.5) * 0.3,
+                    ay: (Math.random()-0.5) * 0.15,
+                    phase: Math.random()*Math.PI*2
+                });
+            }
 
-        function startGame() {
+            // layered structure for soft, volumetric cloud
+            cloudLayers = [
+                { scale: 1.0, blur: 18, alpha: 0.95, yOff: 0 },
+                { scale: 0.86, blur: 28, alpha: 0.7, yOff: -6 },
+                { scale: 0.7, blur: 42, alpha: 0.4, yOff: -14 }
+            ];
+
+            // trail positions for motion blur effect
+            cloudTrail = [];
+        }
+
+        function drawCloud() {
+            if (!cloudCtx) return;
+            const w = cloudCanvas.width / (window.devicePixelRatio || 1);
+            const h = cloudCanvas.height / (window.devicePixelRatio || 1);
+            cloudCtx.clearRect(0,0,w,h);
+
+            // center of cloud in canvas coordinates
+            const cx = w * 0.5;
+            const cy = h * 0.55;
+
+            // update trail
+            cloudTrail.unshift({x:cx, y:cy});
+            if (cloudTrail.length > 8) cloudTrail.pop();
+
+            // draw subtle motion trail for realism
+            for (let i=cloudTrail.length-1;i>=0;i--) {
+                const t = cloudTrail[i];
+                const a = 0.06 * (1 - i/cloudTrail.length);
+                cloudCtx.fillStyle = `rgba(230,248,255,${a})`;
+                cloudCtx.beginPath();
+                cloudCtx.ellipse(t.x, t.y, w*0.45 * (1 - i*0.03), h*0.38 * (1 - i*0.03), 0, 0, Math.PI*2);
+                cloudCtx.fill();
+            }
+
+            // light vector from cursor to cloud center
+            const lx = (mouseX || (window.innerWidth/2)) - (player.getBoundingClientRect().left + player.clientWidth/2);
+            const ly = (mouseY || (window.innerHeight/2)) - (player.getBoundingClientRect().top + player.clientHeight/2);
+            const ldist = Math.hypot(lx,ly) || 1;
+            const lnx = lx/ldist, lny = ly/ldist;
+
+            // layered rendering gives soft volumetric look
+            cloudCtx.save();
+            for (let li=0; li<cloudLayers.length; li++) {
+                const layer = cloudLayers[li];
+                cloudCtx.filter = `blur(${layer.blur}px)`;
+                cloudCtx.globalCompositeOperation = 'lighter';
+                cloudCtx.globalAlpha = layer.alpha;
+
+                // main shape with slight offset based on light (gives shadow)
+                const ox = lnx * (8 * (li+1));
+                const oy = lny * (8 * (li+1));
+                cloudCtx.fillStyle = 'rgba(255,255,255,1)';
+                cloudCtx.beginPath();
+                cloudCtx.ellipse(cx + ox, cy + layer.yOff + oy, w*0.5*layer.scale, h*0.42*layer.scale, 0, 0, Math.PI*2);
+                cloudCtx.fill();
+
+                // bumps
+                const bumps = [ {x:0.22,y:0.25,s:0.18},{x:0.5,y:0.12,s:0.26},{x:0.78,y:0.28,s:0.16} ];
+                for (let b of bumps) {
+                    cloudCtx.beginPath();
+                    cloudCtx.ellipse(cx*b.x + ox*0.6, h*b.y + layer.yOff + oy*0.6, w*b.s*layer.scale, h*b.s*layer.scale*0.9, 0, 0, Math.PI*2);
+                    cloudCtx.fill();
+                }
+
+                cloudCtx.globalAlpha = 1.0;
+                cloudCtx.filter = 'none';
+            }
+            cloudCtx.restore();
+
+            // sheen/specular highlight towards mouse
+            const spex = cx + lnx * 24;
+            const spey = cy + lny * 12;
+            const spg = cloudCtx.createRadialGradient(spex, spey, 0, spex, spey, Math.max(w*0.06,20));
+            spg.addColorStop(0, 'rgba(255,255,255,0.95)');
+            spg.addColorStop(0.6, 'rgba(255,255,255,0.06)');
+            spg.addColorStop(1, 'rgba(255,255,255,0)');
+            cloudCtx.globalCompositeOperation = 'screen';
+            cloudCtx.fillStyle = spg;
+            cloudCtx.beginPath();
+            cloudCtx.ellipse(spex, spey, Math.max(w*0.12,30), Math.max(h*0.06,12), -0.35, 0, Math.PI*2);
+            cloudCtx.fill();
+
+            // animated soft particles (mist / highlights)
+            for (let p of cloudParticles) {
+                p.phase += 0.02 + (p.r/220);
+                const px = p.x + Math.sin(p.phase) * p.ax * 20;
+                const py = p.y + Math.cos(p.phase) * p.ay * 10;
+                const rg = cloudCtx.createRadialGradient(px, py, 0, px, py, p.r);
+                rg.addColorStop(0, 'rgba(255,255,255,0.85)');
+                rg.addColorStop(0.6, 'rgba(200,235,255,0.08)');
+                rg.addColorStop(1, 'rgba(200,235,255,0)');
+                cloudCtx.globalCompositeOperation = 'lighter';
+                cloudCtx.fillStyle = rg;
+                cloudCtx.beginPath();
+                cloudCtx.arc(px, py, p.r*0.9, 0, Math.PI*2);
+                cloudCtx.fill();
+            }
+
+            // inner volume shadow
+            cloudCtx.globalCompositeOperation = 'multiply';
+            const ig = cloudCtx.createLinearGradient(0, h*0.3, 0, h);
+            ig.addColorStop(0, 'rgba(0,0,0,0.02)');
+            ig.addColorStop(1, 'rgba(0,0,0,0.12)');
+            cloudCtx.fillStyle = ig;
+            cloudCtx.beginPath();
+            cloudCtx.ellipse(cx, cy + 6, w*0.52, h*0.46, 0, 0, Math.PI*2);
+            cloudCtx.fill();
+
+            // reset composite
+            cloudCtx.globalCompositeOperation = 'source-over';
+            cloudCtx.filter = 'none';
+        }
+        
+
+        window.addEventListener('resize', () => { try{ initCloudCanvas(); } catch(e){} });
+        // initialize immediately
+        setTimeout(()=>{ try{ initCloudCanvas(); drawCloud();
+                const im = document.getElementById('cloud-img'); if (im) { im.classList.add('loaded'); }
+            } catch(e){} }, 200);
+        // update cloud each frame for motion, call from update loop. also keep mouse X
+        let mouseX = window.innerWidth/2;
+        window.addEventListener('mousemove', e => { mouseY = e.clientY; mouseX = e.clientX; 
+            const im = document.getElementById('cloud-img'); if (im) { const dx = (e.clientX - (player.getBoundingClientRect().left + player.clientWidth/2))/120; const dy = (e.clientY - (player.getBoundingClientRect().top + player.clientHeight/2))/160; im.style.transform = `translate(${dx}px, ${dy}px) scale(1.01)`; }
+        });
+
+        function startGame(difficulty) {
             document.getElementById('start-screen').classList.add('hidden');
             state.active = true;
             state.lastTime = performance.now();
+            state.theoryIdx = 0;
+            state.score = 0;
+            document.getElementById('score').innerText = 0;
+            // Difficulty tuning
+            state.spawnBase = difficulty === 'hard' ? 420 : 700;
+            // ensure boss hidden
+            boss.style.display = 'none';
+            state.bossMode = false;
             requestAnimationFrame(update);
+            playSfx('start');
+        }
+
+        function showCredits() {
+            document.getElementById('credits-screen').classList.remove('hidden');
+            // pause game while credits open
+            state.paused = true;
+        }
+
+        function hideCredits() {
+            document.getElementById('credits-screen').classList.add('hidden');
+            state.paused = false;
         }
 
         function update(time) {
@@ -186,9 +414,12 @@
                 return;
             }
 
-            // Movimiento Nube
+            // Movimiento Nube con ligera inclinación
             playerY += (mouseY - playerY) * 0.15;
-            player.style.transform = `translate(100px, ${playerY - 30}px)`;
+            player.style.top = (playerY - 30) + 'px';
+            player.style.left = playerX + 'px';
+            const tilt = (mouseY - playerY) * 0.02;
+            player.style.transform = `rotate(${tilt}deg)`;
 
             // Boss Logic
             if (state.bossMode) {
@@ -197,30 +428,35 @@
                 // Spawn normal (Virus más rápidos y frecuentes)
                 state.spawnTimer -= delta;
                 if (state.spawnTimer <= 0) {
-                    spawnEntity();
-                    state.spawnTimer = 600 - (state.theoryIdx * 40); // Mucho más rápido que antes
+                    // Spawnear varios enemigos según progreso
+                    const count = 1 + Math.floor(Math.random() * (1 + state.theoryIdx / 2));
+                    for (let i = 0; i < count; i++) spawnEntity();
+                    state.spawnTimer = (state.spawnBase || 600) - (state.theoryIdx * 50) - (Math.random()*200);
                 }
             }
 
+            // update visuals
+            drawCloud();
             moveEntities(delta);
             requestAnimationFrame(update);
         }
 
         function spawnEntity() {
             const el = document.createElement('div');
-            const isVirus = Math.random() > 0.35; // Más virus
-            el.className = `entity ${isVirus ? 'virus' : 'file'}`;
-            el.innerText = isVirus ? '🦠' : '💾';
-            el.dataset.type = isVirus ? 'bad' : 'good';
-            
-            // Velocidades más altas
-            const baseSpeed = isVirus ? 0.5 : 0.4;
-            el.dataset.speed = baseSpeed + (Math.random() * 0.5) + (state.theoryIdx * 0.05);
-            
-            el.style.left = window.innerWidth + 'px';
-            el.style.top = Math.random() * (window.innerHeight - 80) + 'px';
+            // Tipos: virus pequeño, virus rápido, file (bueno)
+            const r = Math.random();
+            if (r < 0.7) { el.className = 'entity virus'; el.innerText = '🦠'; el.dataset.type = 'bad'; el.dataset.hp = 1; }
+            else if (r < 0.92) { el.className = 'entity virus'; el.innerText = '☣️'; el.dataset.type = 'bad'; el.dataset.hp = 2; }
+            else { el.className = 'entity file'; el.innerText = '💾'; el.dataset.type = 'good'; el.dataset.hp = 1; }
+
+            const baseSpeed = el.dataset.type === 'bad' ? 0.45 + Math.random()*0.6 : 0.35 + Math.random()*0.4;
+            el.dataset.speed = baseSpeed + (state.theoryIdx * 0.06);
+
+            el.style.left = (window.innerWidth + Math.random()*200) + 'px';
+            el.style.top = (50 + Math.random() * (window.innerHeight - 140)) + 'px';
             document.getElementById('game-container').appendChild(el);
         }
+
 
         function spawnVegetable() {
             const el = document.createElement('div');
@@ -287,33 +523,85 @@
 
         function shootPlayerBolt() {
             const bolt = document.createElement('div');
-            bolt.className = 'player-bolt';
-            bolt.style.left = (parseFloat(player.style.transform.split(',')[0].split('(')[1]) + 190) + 'px'; // Ajustar posición
-            bolt.style.top = (playerY + 25) + 'px';
+            bolt.className = 'player-bolt bullet';
+            const startX = playerX + 120;
+            bolt.style.left = startX + 'px';
+            bolt.style.top = (playerY + 28) + 'px';
             document.getElementById('game-container').appendChild(bolt);
-            
-            let bx = parseFloat(bolt.style.left);
+            playSfx('shoot');
+
+            let bx = startX;
             function moveBolt() {
-                bx += 10;
+                bx += 18;
                 bolt.style.left = bx + 'px';
-                
-                const bRect = boss.getBoundingClientRect();
+
+                // Colisiones con entidades
                 const blRect = bolt.getBoundingClientRect();
-                
-                if (checkCol(blRect, bRect)) {
-                    bolt.remove();
-                    state.bossHealth--;
-                    document.getElementById('boss-health-value').innerText = state.bossHealth;
-                    if (state.bossHealth <= 0) {
-                        gameOver("¡HAS DERROTADO AL DELEGADO! VICTORIA");
+                let hit = false;
+                document.querySelectorAll('.entity').forEach(ent => {
+                    if (ent.dataset.type === 'bad' || ent.dataset.type === 'good') {
+                        if (!hit && checkCol(blRect, ent.getBoundingClientRect())) {
+                            hit = true;
+                            // Reducir vida si existe
+                            ent.dataset.hp = (parseInt(ent.dataset.hp) || 1) - 1;
+                            if (ent.dataset.hp <= 0) {
+                                explodeEntity(ent);
+                                ent.remove();
+                                if (ent.dataset.type === 'bad') { state.score += 75; document.getElementById('score').innerText = state.score; }
+                                else { state.score += 125; document.getElementById('score').innerText = state.score; }
+                            } else {
+                                // Mark damaged
+                                ent.style.opacity = 0.6;
+                            }
+                            bolt.remove();
+                        }
                     }
-                    return;
+                });
+
+                // Colisión con boss
+                if (!hit && state.bossMode) {
+                    const bRect = boss.getBoundingClientRect();
+                    if (checkCol(blRect, bRect)) {
+                        hit = true;
+                        bolt.remove();
+                        state.bossHealth--;
+                        playSfx('hit');
+                        document.getElementById('boss-health-value').innerText = state.bossHealth;
+                        if (state.bossHealth <= 0) {
+                            gameOver("¡HAS DERROTADO AL DELEGADO! VICTORIA");
+                        }
+                    }
                 }
-                
+
                 if (bx < window.innerWidth + 50 && state.active) requestAnimationFrame(moveBolt);
-                else bolt.remove();
+                else if (bolt.parentNode) bolt.remove();
             }
             moveBolt();
+        }
+
+        function explodeEntity(ent) {
+            createParticles(parseFloat(ent.style.left) + 10, parseFloat(ent.style.top) + 10, ['#ff003c','#00f3ff','#fbff00']);
+            playSfx('explode');
+        }
+
+        function createParticles(x,y,colors, count=12) {
+            for (let i=0;i<count;i++) {
+                const p = document.createElement('div');
+                p.className = 'particle';
+                p.style.left = x + 'px'; p.style.top = y + 'px';
+                p.style.background = colors[Math.floor(Math.random()*colors.length)];
+                document.getElementById('game-container').appendChild(p);
+                const vx = (Math.random()-0.5)*6; const vy = (Math.random()-0.8)*6;
+                let t = 0;
+                function step() {
+                    t += 1;
+                    p.style.left = (x + vx * t) + 'px';
+                    p.style.top = (y + vy * t + 0.5 * t) + 'px';
+                    p.style.opacity = Math.max(0, 1 - t/20);
+                    if (t < 30) requestAnimationFrame(step); else p.remove();
+                }
+                step();
+            }
         }
 
         function moveEntities(delta) {
@@ -321,7 +609,7 @@
                 if (ent.dataset.type === 'vegetable') {
                     const y = parseFloat(ent.style.top) + (ent.dataset.speed * delta);
                     ent.style.top = y + 'px';
-                    
+
                     if (checkCol(player.getBoundingClientRect(), ent.getBoundingClientRect())) {
                         collectVegetable(ent);
                     }
@@ -331,14 +619,18 @@
                     ent.style.left = x + 'px';
 
                     if (checkCol(player.getBoundingClientRect(), ent.getBoundingClientRect())) {
-                        if (ent.dataset.type === 'bad') gameOver("VIRUS DETECTADO");
-                        else collectFile(ent);
+                        if (ent.dataset.type === 'bad') {
+                            explodeEntity(ent);
+                            ent.remove();
+                            gameOver("VIRUS DETECTADO");
+                        } else collectFile(ent);
                     }
+
                     if (x < -100) ent.remove();
                 }
             });
         }
-
+        
         function collectFile(ent) {
             ent.remove();
             state.paused = true;
@@ -364,15 +656,39 @@
             document.getElementById('progress-fill').style.width = progress + '%';
             
             if (state.theoryIdx >= 8) {
-                state.bossMode = true;
-                state.bossHealth = 10;
-                boss.style.display = 'flex';
-                document.getElementById('boss-health').style.display = 'block';
-                document.querySelectorAll('.entity').forEach(e => e.remove());
+                // Entrada épica del jefe
+                enterBoss();
             }
             
             state.lastTime = performance.now();
             state.paused = false;
+        }
+
+        function enterBoss() {
+            state.bossMode = true;
+            state.bossHealth = 16 + (Math.random()*8|0);
+            document.getElementById('boss-health-value').innerText = state.bossHealth;
+            document.getElementById('boss-health').style.display = 'block';
+            document.querySelectorAll('.entity').forEach(e => e.remove());
+            boss.style.display = 'flex';
+            boss.style.top = '-400px';
+            boss.style.left = (window.innerWidth/2 - 120) + 'px';
+            boss.style.transform = 'scale(0.2)';
+            // animación de zoom y shake
+            let t=0;
+            function anim() {
+                t++;
+                boss.style.top = (-400 + t*18) + 'px';
+                boss.style.transform = 'scale(' + Math.min(1, 0.2 + t*0.02) + ')';
+                if (t < 10) {
+                    // start boss icon entrance
+                    const ic = boss.querySelector('.boss-icon');
+                    if (ic && !ic.classList.contains('boss-entrance')) ic.classList.add('boss-entrance','glow');
+                }
+                if (t < 40) requestAnimationFrame(anim);
+                else { playSfx('boss'); state.bossY = parseFloat(boss.style.top); }
+            }
+            anim();
         }
 
         function gameOver(msg) {
@@ -388,11 +704,51 @@
         }
 
         window.addEventListener('mousemove', e => mouseY = e.clientY);
+        // Disparar con espacio o click
         window.addEventListener('keydown', e => {
-            if (e.key === 'Enter' && state.active && !state.paused && state.bossMode) {
+            if ((e.code === 'Space' || e.key === ' ') && state.active && !state.paused) {
                 shootPlayerBolt();
+                e.preventDefault();
             }
         });
+        window.addEventListener('click', e => {
+            if (state.active && !state.paused) shootPlayerBolt();
+        });
+
+        // Simple SFX con WebAudio
+        function playSfx(kind) {
+            try {
+                const now = audioCtx.currentTime;
+                if (kind === 'shoot') {
+                    const o = audioCtx.createOscillator(); const g = audioCtx.createGain();
+                    o.type = 'sawtooth'; o.frequency.setValueAtTime(900, now);
+                    g.gain.setValueAtTime(0.001, now); g.gain.exponentialRampToValueAtTime(0.08, now+0.02);
+                    g.gain.exponentialRampToValueAtTime(0.0001, now+0.25);
+                    o.connect(g); g.connect(audioCtx.destination); o.start(now); o.stop(now+0.26);
+                } else if (kind === 'explode' || kind === 'hit') {
+                    const o = audioCtx.createOscillator(); const g = audioCtx.createGain();
+                    o.type = 'square'; o.frequency.setValueAtTime(200, now); o.frequency.exponentialRampToValueAtTime(40, now+0.3);
+                    g.gain.setValueAtTime(0.02, now); g.gain.exponentialRampToValueAtTime(0.0001, now+0.5);
+                    o.connect(g); g.connect(audioCtx.destination); o.start(now); o.stop(now+0.4);
+                } else if (kind === 'start' || kind === 'boss') {
+                    const o = audioCtx.createOscillator(); const g = audioCtx.createGain();
+                    o.type = 'triangle'; o.frequency.setValueAtTime(kind==='boss'?120:400, now);
+                    g.gain.setValueAtTime(0.001, now); g.gain.exponentialRampToValueAtTime(0.06, now+0.05);
+                    g.gain.exponentialRampToValueAtTime(0.0001, now+1.2);
+                    o.connect(g); g.connect(audioCtx.destination); o.start(now); o.stop(now+1.2);
+                } else if (kind === 'victory') {
+                    const o = audioCtx.createOscillator(); const g = audioCtx.createGain();
+                    o.type = 'sine'; o.frequency.setValueAtTime(600, now); o.frequency.exponentialRampToValueAtTime(1200, now+0.4);
+                    g.gain.setValueAtTime(0.001, now); g.gain.exponentialRampToValueAtTime(0.08, now+0.01);
+                    g.gain.exponentialRampToValueAtTime(0.0001, now+0.9);
+                    o.connect(g); g.connect(audioCtx.destination); o.start(now); o.stop(now+0.9);
+                } else if (kind === 'dead') {
+                    const o = audioCtx.createOscillator(); const g = audioCtx.createGain();
+                    o.type = 'sawtooth'; o.frequency.setValueAtTime(120, now); g.gain.setValueAtTime(0.02, now);
+                    g.gain.exponentialRampToValueAtTime(0.0001, now+1.2); o.connect(g); g.connect(audioCtx.destination); o.start(now); o.stop(now+1.2);
+                }
+            } catch(e) { /* audioCtx podría estar bloqueado por autoplay */ }
+        }
     </script>
 </body>
 </html>
