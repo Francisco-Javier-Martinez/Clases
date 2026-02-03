@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cloud Defender: DAW BOSS EDITION</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&display=swap');
+
+        :root {
+            --bg-dark: #020205;
+            --neon-blue: #00f3ff;
+            --neon-red: #ff003c;
+            --neon-yellow: #fbff00;
+        }
+
+        body { margin: 0; overflow: hidden; font-family: 'Orbitron', sans-serif; background: var(--bg-dark); color: white; }
+
+        #game-container {
+            width: 100vw; height: 100vh;
+            background: radial-gradient(circle at center, #0a0a2e 0%, #000 100%);
+            position: relative; overflow: hidden; cursor: none;
+        }
+
+        /* --- HUD --- */
+        #hud { position: absolute; top: 20px; left: 20px; z-index: 1000; }
+        .stat { font-size: 1.2rem; color: var(--neon-blue); margin-bottom: 10px; text-shadow: 0 0 10px var(--neon-blue); }
+        #progress-bar { width: 250px; height: 12px; border: 2px solid #333; background: #111; border-radius: 10px; overflow: hidden; }
+        #progress-fill { width: 0%; height: 100%; background: var(--neon-blue); box-shadow: 0 0 15px var(--neon-blue); transition: width 0.3s; }
+
+        /* --- PLAYER (NUBE QUANTICA) --- */
+        #player {
+            position: absolute; width: 90px; height: 55px; z-index: 500;
+            filter: drop-shadow(0 0 15px var(--neon-blue));
+        }
+        .cloud-body {
+            width: 100%; height: 100%; background: #fff; border-radius: 50px; position: relative;
+        }
+        .cloud-body::before { content: ''; position: absolute; width: 50px; height: 50px; background: #fff; border-radius: 50%; top: -20px; left: 10px; }
+        .cloud-body::after { content: ''; position: absolute; width: 40px; height: 40px; background: #fff; border-radius: 50%; top: -15px; right: 10px; }
+        .visor { position: absolute; top: 25px; left: 25px; width: 40px; height: 6px; background: #000; border-radius: 10px; display: flex; justify-content: space-around; align-items: center; z-index: 10; }
+        .eye { width: 8px; height: 3px; background: var(--neon-blue); }
+
+        /* --- ENEMIGOS Y OBJETOS --- */
+        .entity { position: absolute; font-size: 2.5rem; z-index: 100; pointer-events: none; }
+        .virus { filter: drop-shadow(0 0 10px var(--neon-red)); animation: glitch 0.2s infinite; }
+        .file { filter: drop-shadow(0 0 10px #0f0); }
+
+        @keyframes glitch { 0% { transform: translate(0); } 50% { transform: translate(-3px, 3px); } 100% { transform: translate(3px, -3px); } }
+
+        /* --- JEFE FINAL --- */
+        #boss {
+            position: absolute; width: 200px; height: 200px; z-index: 800;
+            display: none; flex-direction: column; align-items: center; justify-content: center;
+            transition: top 0.5s ease-out;
+        }
+        .boss-icon { font-size: 10rem; filter: drop-shadow(0 0 30px var(--neon-red)); animation: pulse 1s infinite alternate; }
+        .boss-label { 
+            background: var(--neon-red); color: white; padding: 5px 15px; font-weight: 900;
+            font-size: 1.2rem; white-space: nowrap; border-radius: 5px; box-shadow: 0 0 20px var(--neon-red);
+        }
+        @keyframes pulse { from { transform: scale(1); } to { transform: scale(1.1); } }
+
+        /* RAYOS */
+        .bolt {
+            position: absolute; height: 15px; background: var(--neon-yellow);
+            box-shadow: 0 0 20px var(--neon-yellow); border-radius: 10px; z-index: 700;
+        }
+
+        /* DISPAROS DEL JUGADOR */
+        .player-bolt {
+            position: absolute; width: 20px; height: 5px; background: var(--neon-blue);
+            box-shadow: 0 0 10px var(--neon-blue); border-radius: 5px; z-index: 600;
+        }
+
+        /* VERDURAS */
+        .vegetable { filter: drop-shadow(0 0 10px #0f0); }
+
+        /* --- OVERLAYS --- */
+        .overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.9); z-index: 2000; display: flex; flex-direction: column;
+            justify-content: center; align-items: center; text-align: center;
+        }
+        .hidden { display: none !important; }
+        h1 { font-size: 4rem; margin: 0; color: var(--neon-blue); }
+        .btn {
+            margin-top: 30px; padding: 15px 40px; background: transparent; 
+            border: 2px solid var(--neon-blue); color: var(--neon-blue);
+            font-family: 'Orbitron'; font-size: 1.5rem; cursor: pointer; transition: 0.3s;
+        }
+        .btn:hover { background: var(--neon-blue); color: black; box-shadow: 0 0 30px var(--neon-blue); }
+
+        /* MODAL DE ESTUDIO */
+        #theory-modal {
+            background: #050510; border: 3px solid #0f0; padding: 30px; border-radius: 20px;
+            max-width: 500px; text-align: left; box-shadow: 0 0 50px rgba(0,255,0,0.2);
+        }
+    </style>
+</head>
+<body>
+
+    <div id="game-container">
+        <div id="hud">
+            <div class="stat">ENERGÍA: <span id="score">0</span> MB</div>
+            <div class="stat" id="boss-health" style="display:none;">VIDA JEFE: <span id="boss-health-value">10</span></div>
+            <div id="progress-bar"><div id="progress-fill"></div></div>
+        </div>
+
+        <div id="boss">
+            <div class="boss-label">SOY EL DELEGADO DE DAW</div>
+            <div class="boss-icon">💀</div>
+        </div>
+
+        <div id="start-screen" class="overlay">
+            <h1>CLOUD DEFENDER</h1>
+            <p style="letter-spacing: 5px; color: var(--neon-red);">MODO: DELEGADO FINAL BOSS</p>
+            <button class="btn" onclick="startGame()">INICIAR SISTEMA</button>
+        </div>
+
+        <div id="theory-screen" class="overlay hidden">
+            <div id="theory-modal">
+                <h2 id="theory-title" style="color:#0f0">TEMA</h2>
+                <p id="theory-content" style="line-height:1.6; font-size:1.1rem;"></p>
+                <button class="btn" style="border-color:#0f0; color:#0f0;" onclick="resumeGame()">CONTINUAR COMPILACIÓN</button>
+            </div>
+        </div>
+
+        <div id="end-screen" class="overlay hidden">
+            <h1 id="end-title">SISTEMA INFECTADO</h1>
+            <p id="end-msg"></p>
+            <button class="btn" onclick="location.reload()">REINTENTAR</button>
+        </div>
+
+        <div id="player">
+            <div class="cloud-body"><div class="visor"><div class="eye"></div><div class="eye"></div></div></div>
+        </div>
+    </div>
+
+    <script>
+        const theoryData = [
+            { t: "1. NUBE Y NIVELES", c: "El Cloud Computing ofrece servicios bajo demanda. Niveles: <b>IaaS</b> (Infraestructura), <b>PaaS</b> (Plataforma) y <b>SaaS</b> (Software)." },
+            { t: "2. TRABAJO EN LA NUBE", c: "Permite la deslocalización y colaboración en tiempo real. Los activos digitales están siempre disponibles y sincronizados." },
+            { t: "3. PROS Y CONTRAS", c: "Ventajas: Escalabilidad y ahorro. Desventajas: Dependencia de conexión y riesgos de seguridad externos." },
+            { t: "4. RENTABILIDAD", c: "Paso de CAPEX a <b>OPEX</b>. Solo pagas por lo que consumes, eliminando costes fijos de mantenimiento de servidores." },
+            { t: "5. EDGE COMPUTING", c: "Procesa los datos cerca de la fuente (sensores/móviles) para reducir latencia y ahorrar ancho de banda hacia la nube." },
+            { t: "6. FOG Y MIST", c: "<b>Fog:</b> Capa intermedia de red. <b>Mist:</b> Procesamiento en el micro-chip del propio sensor. Distribución total de carga." },
+            { t: "7. SOSTENIBILIDAD", c: "La nube centraliza recursos, optimizando el consumo energético y reduciendo la huella de carbono del hardware infrautilizado." },
+            { t: "8. CIBERSEGURIDAD", c: "Incidentes: Ransomware, DDoS y Phishing. Clave: Encriptación, MFA y cumplimiento de normativas (RGPD)." }
+        ];
+
+        let state = {
+            active: false,
+            paused: false,
+            score: 0,
+            theoryIdx: 0,
+            bossMode: false,
+            bossY: 200,
+            bossDir: 1,
+            lastTime: 0,
+            spawnTimer: 0,
+            bossAttackTimer: 0,
+            bossHealth: 10,
+            vegetableTimer: 0
+        };
+
+        const player = document.getElementById('player');
+        const boss = document.getElementById('boss');
+        let mouseY = window.innerHeight / 2;
+        let playerY = window.innerHeight / 2;
+
+        function startGame() {
+            document.getElementById('start-screen').classList.add('hidden');
+            state.active = true;
+            state.lastTime = performance.now();
+            requestAnimationFrame(update);
+        }
+
+        function update(time) {
+            if (!state.active) return;
+            const delta = time - state.lastTime;
+            state.lastTime = time;
+
+            if (state.paused) {
+                requestAnimationFrame(update);
+                return;
+            }
+
+            // Movimiento Nube
+            playerY += (mouseY - playerY) * 0.15;
+            player.style.transform = `translate(100px, ${playerY - 30}px)`;
+
+            // Boss Logic
+            if (state.bossMode) {
+                updateBoss(delta);
+            } else {
+                // Spawn normal (Virus más rápidos y frecuentes)
+                state.spawnTimer -= delta;
+                if (state.spawnTimer <= 0) {
+                    spawnEntity();
+                    state.spawnTimer = 600 - (state.theoryIdx * 40); // Mucho más rápido que antes
+                }
+            }
+
+            moveEntities(delta);
+            requestAnimationFrame(update);
+        }
+
+        function spawnEntity() {
+            const el = document.createElement('div');
+            const isVirus = Math.random() > 0.35; // Más virus
+            el.className = `entity ${isVirus ? 'virus' : 'file'}`;
+            el.innerText = isVirus ? '🦠' : '💾';
+            el.dataset.type = isVirus ? 'bad' : 'good';
+            
+            // Velocidades más altas
+            const baseSpeed = isVirus ? 0.5 : 0.4;
+            el.dataset.speed = baseSpeed + (Math.random() * 0.5) + (state.theoryIdx * 0.05);
+            
+            el.style.left = window.innerWidth + 'px';
+            el.style.top = Math.random() * (window.innerHeight - 80) + 'px';
+            document.getElementById('game-container').appendChild(el);
+        }
+
+        function spawnVegetable() {
+            const el = document.createElement('div');
+            el.className = 'entity vegetable';
+            el.innerText = '🥕'; // Verdura
+            el.dataset.type = 'vegetable';
+            el.dataset.speed = 0.3; // Velocidad de caída
+            
+            el.style.left = Math.random() * (window.innerWidth - 100) + 'px';
+            el.style.top = '-50px';
+            document.getElementById('game-container').appendChild(el);
+        }
+
+        function updateBoss(delta) {
+            // Movimiento vertical del jefe
+            state.bossY += 0.3 * delta * state.bossDir;
+            if (state.bossY > window.innerHeight - 250 || state.bossY < 50) state.bossDir *= -1;
+            
+            boss.style.top = state.bossY + 'px';
+            boss.style.left = (window.innerWidth - 300) + 'px';
+
+            // Ataque de rayos
+            state.bossAttackTimer -= delta;
+            if (state.bossAttackTimer <= 0) {
+                shootLightning();
+                state.bossAttackTimer = 1200; // Un rayo cada 1.2s
+            }
+
+            // Spawn verduras si vida <=5
+            if (state.bossHealth <= 5) {
+                state.vegetableTimer -= delta;
+                if (state.vegetableTimer <= 0) {
+                    spawnVegetable();
+                    state.vegetableTimer = 2000; // Cada 2s
+                }
+            }
+        }
+
+        function shootLightning() {
+            const bolt = document.createElement('div');
+            bolt.className = 'bolt';
+            bolt.style.width = '100px';
+            bolt.style.left = (window.innerWidth - 300) + 'px';
+            bolt.style.top = (state.bossY + 120) + 'px';
+            document.getElementById('game-container').appendChild(bolt);
+            
+            // Animación del rayo cruzando la pantalla
+            let bx = (window.innerWidth - 300);
+            function moveBolt() {
+                bx -= 15;
+                bolt.style.left = bx + 'px';
+                bolt.style.width = (Math.random() * 50 + 100) + 'px'; // Efecto parpadeo
+                
+                const bRect = bolt.getBoundingClientRect();
+                const pRect = player.getBoundingClientRect();
+                
+                if (checkCol(pRect, bRect)) gameOver("EL DELEGADO TE HA FULMINADO");
+                
+                if (bx > -200 && state.active) requestAnimationFrame(moveBolt);
+                else bolt.remove();
+            }
+            moveBolt();
+        }
+
+        function shootPlayerBolt() {
+            const bolt = document.createElement('div');
+            bolt.className = 'player-bolt';
+            bolt.style.left = (parseFloat(player.style.transform.split(',')[0].split('(')[1]) + 190) + 'px'; // Ajustar posición
+            bolt.style.top = (playerY + 25) + 'px';
+            document.getElementById('game-container').appendChild(bolt);
+            
+            let bx = parseFloat(bolt.style.left);
+            function moveBolt() {
+                bx += 10;
+                bolt.style.left = bx + 'px';
+                
+                const bRect = boss.getBoundingClientRect();
+                const blRect = bolt.getBoundingClientRect();
+                
+                if (checkCol(blRect, bRect)) {
+                    bolt.remove();
+                    state.bossHealth--;
+                    document.getElementById('boss-health-value').innerText = state.bossHealth;
+                    if (state.bossHealth <= 0) {
+                        gameOver("¡HAS DERROTADO AL DELEGADO! VICTORIA");
+                    }
+                    return;
+                }
+                
+                if (bx < window.innerWidth + 50 && state.active) requestAnimationFrame(moveBolt);
+                else bolt.remove();
+            }
+            moveBolt();
+        }
+
+        function moveEntities(delta) {
+            document.querySelectorAll('.entity').forEach(ent => {
+                if (ent.dataset.type === 'vegetable') {
+                    const y = parseFloat(ent.style.top) + (ent.dataset.speed * delta);
+                    ent.style.top = y + 'px';
+                    
+                    if (checkCol(player.getBoundingClientRect(), ent.getBoundingClientRect())) {
+                        collectVegetable(ent);
+                    }
+                    if (y > window.innerHeight) ent.remove();
+                } else {
+                    const x = parseFloat(ent.style.left) - (ent.dataset.speed * delta);
+                    ent.style.left = x + 'px';
+
+                    if (checkCol(player.getBoundingClientRect(), ent.getBoundingClientRect())) {
+                        if (ent.dataset.type === 'bad') gameOver("VIRUS DETECTADO");
+                        else collectFile(ent);
+                    }
+                    if (x < -100) ent.remove();
+                }
+            });
+        }
+
+        function collectFile(ent) {
+            ent.remove();
+            state.paused = true;
+            const data = theoryData[state.theoryIdx];
+            document.getElementById('theory-title').innerText = data.t;
+            document.getElementById('theory-content').innerHTML = data.c;
+            document.getElementById('theory-screen').classList.remove('hidden');
+            
+            state.score += 125;
+            document.getElementById('score').innerText = state.score;
+        }
+
+        function collectVegetable(ent) {
+            ent.remove();
+            state.score += 50; // Puntos por verdura
+            document.getElementById('score').innerText = state.score;
+        }
+
+        function resumeGame() {
+            document.getElementById('theory-screen').classList.add('hidden');
+            state.theoryIdx++;
+            const progress = (state.theoryIdx / 8) * 100;
+            document.getElementById('progress-fill').style.width = progress + '%';
+            
+            if (state.theoryIdx >= 8) {
+                state.bossMode = true;
+                state.bossHealth = 10;
+                boss.style.display = 'flex';
+                document.getElementById('boss-health').style.display = 'block';
+                document.querySelectorAll('.entity').forEach(e => e.remove());
+            }
+            
+            state.lastTime = performance.now();
+            state.paused = false;
+        }
+
+        function gameOver(msg) {
+            state.active = false;
+            document.getElementById('end-screen').classList.remove('hidden');
+            document.getElementById('end-title').innerText = msg.includes("VICTORIA") ? "¡VICTORIA!" : "SISTEMA INFECTADO";
+            document.getElementById('end-msg').innerText = msg;
+            document.getElementById('game-container').style.filter = msg.includes("VICTORIA") ? "hue-rotate(90deg)" : "hue-rotate(180deg)";
+        }
+
+        function checkCol(r1, r2) {
+            return !(r1.right < r2.left + 20 || r1.left > r2.right - 20 || r1.bottom < r2.top + 20 || r1.top > r2.bottom - 20);
+        }
+
+        window.addEventListener('mousemove', e => mouseY = e.clientY);
+        window.addEventListener('keydown', e => {
+            if (e.key === 'Enter' && state.active && !state.paused && state.bossMode) {
+                shootPlayerBolt();
+            }
+        });
+    </script>
+</body>
+</html>
