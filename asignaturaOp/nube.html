@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,132 +15,414 @@
             --neon-yellow: #fbff00;
         }
 
-        body { margin: 0; overflow: hidden; font-family: 'Orbitron', sans-serif; background: var(--bg-dark); color: white; }
+        body {
+            margin: 0;
+            overflow: hidden;
+            font-family: 'Orbitron', sans-serif;
+            background: var(--bg-dark);
+            color: white;
+        }
 
         #game-container {
-            width: 100vw; height: 100vh;
+            width: 100vw;
+            height: 100vh;
             background: radial-gradient(circle at center, #071026 0%, #000 100%);
-            position: relative; overflow: hidden; cursor: auto;
+            position: relative;
+            overflow: hidden;
+            cursor: auto;
         }
-        .overlay { cursor: auto; }
+
+        .overlay {
+            cursor: auto;
+        }
 
         /* Parallax clouds */
         .bg-cloud {
-            position: absolute; top: 10%; left: -30%; width: 300px; height: 120px; background: rgba(255,255,255,0.06);
-            border-radius: 60px; filter: blur(12px) saturate(1.2); transform: scale(1.6);
+            position: absolute;
+            top: 10%;
+            left: -30%;
+            width: 300px;
+            height: 120px;
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: 60px;
+            filter: blur(12px) saturate(1.2);
+            transform: scale(1.6);
             animation: cloud-move linear infinite;
-            pointer-events: none; z-index: 20;
+            pointer-events: none;
+            z-index: 20;
         }
-        .bg-cloud.small { width: 180px; height: 70px; top: 30%; opacity: 0.08; transform: scale(1); filter: blur(6px); }
-        .bg-cloud.med { width: 260px; height: 100px; top: 5%; opacity: 0.09; transform: scale(1.2); }
-        .bg-cloud.large { width: 420px; height: 170px; top: 50%; opacity: 0.06; transform: scale(1.8); }
-        @keyframes cloud-move { from { transform: translateX(-40vw) } to { transform: translateX(140vw) } }
+
+        .bg-cloud.small {
+            width: 180px;
+            height: 70px;
+            top: 30%;
+            opacity: 0.08;
+            transform: scale(1);
+            filter: blur(6px);
+        }
+
+        .bg-cloud.med {
+            width: 260px;
+            height: 100px;
+            top: 5%;
+            opacity: 0.09;
+            transform: scale(1.2);
+        }
+
+        .bg-cloud.large {
+            width: 420px;
+            height: 170px;
+            top: 50%;
+            opacity: 0.06;
+            transform: scale(1.8);
+        }
+
+        @keyframes cloud-move {
+            from {
+                transform: translateX(-40vw)
+            }
+
+            to {
+                transform: translateX(140vw)
+            }
+        }
 
         /* --- HUD --- */
-        #hud { position: absolute; top: 20px; left: 20px; z-index: 1000; }
-        .stat { font-size: 1.2rem; color: var(--neon-blue); margin-bottom: 10px; text-shadow: 0 0 10px var(--neon-blue); }
-        #progress-bar { width: 250px; height: 12px; border: 2px solid #333; background: #111; border-radius: 10px; overflow: hidden; }
-        #progress-fill { width: 0%; height: 100%; background: var(--neon-blue); box-shadow: 0 0 15px var(--neon-blue); transition: width 0.3s; }
+        #hud {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+        }
+
+        .stat {
+            font-size: 1.2rem;
+            color: var(--neon-blue);
+            margin-bottom: 10px;
+            text-shadow: 0 0 10px var(--neon-blue);
+        }
+
+        #progress-bar {
+            width: 250px;
+            height: 12px;
+            border: 2px solid #333;
+            background: #111;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        #progress-fill {
+            width: 0%;
+            height: 100%;
+            background: var(--neon-blue);
+            box-shadow: 0 0 15px var(--neon-blue);
+            transition: width 0.3s;
+        }
 
         /* --- PLAYER (NUBE QUANTICA) --- */
         #player {
-            position: absolute; width: 160px; height: 96px; z-index: 500; left: 80px;
-            filter: none; transition: transform 0.08s linear;
+            position: absolute;
+            width: 150px;
+            height: 95px;
+            z-index: 500;
+            left: 80px;
+            filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.5));
+            transition: transform 0.1s ease-out;
         }
-        .cloud-body { box-shadow: 0 18px 48px rgba(0,243,255,0.12), 0 4px 12px rgba(0,0,0,0.12); }
-        .cloud-body {
-            width: 100%; height: 100%; background: transparent;
-            border-radius: 50px; position: relative; overflow: hidden; transform-origin: center;
-            animation: cloud-bob 3.6s ease-in-out infinite;
-        }
-        .cloud-body::before, .cloud-body::after { display:none; }
-        .cloud-body canvas { position:absolute; left:0; top:0; width:100%; height:100%; z-index:1; pointer-events:none; }
-        .cloud-sheen { position:absolute; left:8px; top:6px; width:60%; height:30%; background: linear-gradient(90deg, rgba(255,255,255,0.9), rgba(255,255,255,0)); border-radius:40px; transform: rotate(-18deg); opacity:0.85; pointer-events:none; }
-        #cloud-img { position:absolute; left:-6%; top:-6%; width:112%; height:112%; object-fit:cover; z-index:5; filter: drop-shadow(0 20px 50px rgba(0,243,255,0.12)) saturate(1.05); transform-origin:center; transition: transform 0.18s ease, filter 0.25s ease; }
-        #cloud-img.loaded { filter: drop-shadow(0 30px 70px rgba(0,243,255,0.2)) saturate(1.2); }
 
-        @keyframes cloud-bob { 0% { transform: translateY(0) } 50% { transform: translateY(-8px) } 100% { transform: translateY(0) } }
-        .visor { position: absolute; top: 22px; left: 28px; width: 52px; height: 10px; background: linear-gradient(90deg,#00121a,#000); border-radius: 10px; display: flex; justify-content: space-around; align-items: center; z-index: 10; box-shadow: 0 2px 8px rgba(0,0,0,0.6) inset; }
-        .visor::after { content: ''; position:absolute; right:4px; top:2px; width:12px; height:6px; background: linear-gradient(90deg,#00f3ff,#7beeff); border-radius:6px; opacity:0.9; }
-        .eye { width: 8px; height: 3px; background: var(--neon-blue); border-radius:3px; box-shadow: 0 0 8px rgba(0,243,255,0.6); }
-        .eye { width: 8px; height: 3px; background: var(--neon-blue); }
+        .cloud-body {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .cloud-body canvas {
+            position: absolute;
+            left: -20%;
+            top: -20%;
+            width: 140%;
+            height: 140%;
+            z-index: 1;
+            filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.4));
+        }
+
+        /* Visor integrado mejor */
+        .visor {
+            position: absolute;
+            top: 45%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 14px;
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            z-index: 10;
+            box-shadow: 0 0 10px rgba(0, 243, 255, 0.5);
+            backdrop-filter: blur(2px);
+        }
+
+        .visor::after {
+            content: none;
+        }
+
+        .eye {
+            width: 10px;
+            height: 4px;
+            background: var(--neon-blue);
+            border-radius: 2px;
+            box-shadow: 0 0 8px var(--neon-blue);
+        }
+
+        /* Remove old specific cloud styles that might conflict */
+        .cloud-sheen {
+            display: none;
+        }
+
+        #cloud-img {
+            display: none;
+        }
+
+        @keyframes cloud-bob {
+            0% {
+                transform: translateY(0)
+            }
+
+            50% {
+                transform: translateY(-8px)
+            }
+
+            100% {
+                transform: translateY(0)
+            }
+        }
+
 
         /* --- ENEMIGOS Y OBJETOS --- */
-        .entity { position: absolute; font-size: 2.5rem; z-index: 100; pointer-events: none; }
-        .virus { filter: drop-shadow(0 0 10px var(--neon-red)); animation: glitch 0.2s infinite; }
-        .file { filter: drop-shadow(0 0 10px #0f0); }
+        .entity {
+            position: absolute;
+            font-size: 2.5rem;
+            z-index: 100;
+            pointer-events: none;
+        }
 
-        @keyframes glitch { 0% { transform: translate(0); } 50% { transform: translate(-3px, 3px); } 100% { transform: translate(3px, -3px); } }
+        .virus {
+            filter: drop-shadow(0 0 10px var(--neon-red));
+            animation: glitch 0.2s infinite;
+        }
+
+        .file {
+            filter: drop-shadow(0 0 10px #0f0);
+        }
+
+        @keyframes glitch {
+            0% {
+                transform: translate(0);
+            }
+
+            50% {
+                transform: translate(-3px, 3px);
+            }
+
+            100% {
+                transform: translate(3px, -3px);
+            }
+        }
 
         /* --- JEFE FINAL --- */
         #boss {
-            position: absolute; width: 200px; height: 200px; z-index: 800;
-            display: none; flex-direction: column; align-items: center; justify-content: center;
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            z-index: 800;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
             transition: top 0.5s ease-out;
         }
-        .boss-icon { font-size: 10rem; filter: drop-shadow(0 0 40px var(--neon-red)); animation: pulse 1s infinite alternate; transform-origin: center; }
-        .boss-entrance { animation: boss-entrance 1s ease-out forwards; }
-        @keyframes boss-entrance { 0% { transform: translateY(-100px) scale(0.2) rotate(-20deg); opacity:0 } 60% { transform: translateY(20px) scale(1.15) rotate(10deg); opacity:1 } 100% { transform: translateY(0) scale(1) rotate(0deg); } }
-        .boss-icon.glow { animation: glow 1.6s infinite alternate; }
-        @keyframes glow { from { filter: drop-shadow(0 0 20px var(--neon-red)) } to { filter: drop-shadow(0 0 50px #ff7a7a) } }
-        .boss-label { 
-            background: var(--neon-red); color: white; padding: 5px 15px; font-weight: 900;
-            font-size: 1.2rem; white-space: nowrap; border-radius: 5px; box-shadow: 0 0 20px var(--neon-red);
+
+        .boss-icon {
+            font-size: 10rem;
+            filter: drop-shadow(0 0 40px var(--neon-red));
+            animation: pulse 1s infinite alternate;
+            transform-origin: center;
         }
-        @keyframes pulse { from { transform: scale(1); } to { transform: scale(1.1); } }
+
+        .boss-entrance {
+            animation: boss-entrance 1s ease-out forwards;
+        }
+
+        @keyframes boss-entrance {
+            0% {
+                transform: translateY(-100px) scale(0.2) rotate(-20deg);
+                opacity: 0
+            }
+
+            60% {
+                transform: translateY(20px) scale(1.15) rotate(10deg);
+                opacity: 1
+            }
+
+            100% {
+                transform: translateY(0) scale(1) rotate(0deg);
+            }
+        }
+
+        .boss-icon.glow {
+            animation: glow 1.6s infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                filter: drop-shadow(0 0 20px var(--neon-red))
+            }
+
+            to {
+                filter: drop-shadow(0 0 50px #ff7a7a)
+            }
+        }
+
+        .boss-label {
+            background: var(--neon-red);
+            color: white;
+            padding: 5px 15px;
+            font-weight: 900;
+            font-size: 1.2rem;
+            white-space: nowrap;
+            border-radius: 5px;
+            box-shadow: 0 0 20px var(--neon-red);
+        }
+
+        @keyframes pulse {
+            from {
+                transform: scale(1);
+            }
+
+            to {
+                transform: scale(1.1);
+            }
+        }
 
         /* RAYOS */
         .bolt {
-            position: absolute; height: 15px; background: var(--neon-yellow);
-            box-shadow: 0 0 20px var(--neon-yellow); border-radius: 10px; z-index: 700;
+            position: absolute;
+            height: 15px;
+            background: var(--neon-yellow);
+            box-shadow: 0 0 20px var(--neon-yellow);
+            border-radius: 10px;
+            z-index: 700;
         }
 
 
         /* DISPAROS DEL JUGADOR */
         .player-bolt {
-            position: absolute; width: 20px; height: 5px; background: var(--neon-blue);
-            box-shadow: 0 0 10px var(--neon-blue); border-radius: 5px; z-index: 600;
+            position: absolute;
+            width: 20px;
+            height: 5px;
+            background: var(--neon-blue);
+            box-shadow: 0 0 10px var(--neon-blue);
+            border-radius: 5px;
+            z-index: 600;
         }
 
         /* Balas enemigo/jugador */
-        .bullet { width: 14px; height: 6px; border-radius: 6px; }
+        .bullet {
+            width: 14px;
+            height: 6px;
+            border-radius: 6px;
+        }
 
         /* Partículas para explosiones */
-        .particle { position: absolute; width: 6px; height: 6px; border-radius: 50%; z-index: 1500; pointer-events: none; }
+        .particle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            z-index: 1500;
+            pointer-events: none;
+        }
 
         /* VERDURAS */
-        .vegetable { filter: drop-shadow(0 0 10px #0f0); }
+        .vegetable {
+            filter: drop-shadow(0 0 10px #0f0);
+        }
 
         /* --- OVERLAYS --- */
         .overlay {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.9); z-index: 2000; display: flex; flex-direction: column;
-            justify-content: center; align-items: center; text-align: center;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
         }
-        #credits-screen p { font-size:1.2rem; color:#cfeeff; margin:8px 0; }
-        .hidden { display: none !important; }
-        h1 { font-size: 4rem; margin: 0; color: var(--neon-blue); }
+
+        #credits-screen p {
+            font-size: 1.2rem;
+            color: #cfeeff;
+            margin: 8px 0;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        h1 {
+            font-size: 4rem;
+            margin: 0;
+            color: var(--neon-blue);
+        }
+
         .btn {
-            margin-top: 30px; padding: 15px 40px; background: transparent; 
-            border: 2px solid var(--neon-blue); color: var(--neon-blue);
-            font-family: 'Orbitron'; font-size: 1.5rem; cursor: pointer; transition: 0.3s;
+            margin-top: 30px;
+            padding: 15px 40px;
+            background: transparent;
+            border: 2px solid var(--neon-blue);
+            color: var(--neon-blue);
+            font-family: 'Orbitron';
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: 0.3s;
         }
-        .btn:hover { background: var(--neon-blue); color: black; box-shadow: 0 0 30px var(--neon-blue); }
+
+        .btn:hover {
+            background: var(--neon-blue);
+            color: black;
+            box-shadow: 0 0 30px var(--neon-blue);
+        }
 
         /* MODAL DE ESTUDIO */
         #theory-modal {
-            background: #050510; border: 3px solid #0f0; padding: 30px; border-radius: 20px;
-            max-width: 500px; text-align: left; box-shadow: 0 0 50px rgba(0,255,0,0.2);
+            background: #050510;
+            border: 3px solid #0f0;
+            padding: 30px;
+            border-radius: 20px;
+            max-width: 500px;
+            text-align: left;
+            box-shadow: 0 0 50px rgba(0, 255, 0, 0.2);
         }
     </style>
 </head>
+
 <body>
 
     <div id="game-container">
         <div id="hud">
             <div class="stat">ENERGÍA: <span id="score">0</span> MB</div>
-            <div class="stat" id="boss-health" style="display:none;">VIDA JEFE: <span id="boss-health-value">10</span></div>
-            <div id="progress-bar"><div id="progress-fill"></div></div>
+            <div class="stat" id="boss-health" style="display:none;">VIDA JEFE: <span id="boss-health-value">10</span>
+            </div>
+            <div id="progress-bar">
+                <div id="progress-fill"></div>
+            </div>
         </div>
 
         <div id="boss">
@@ -165,14 +448,16 @@
                 <button class="btn" onclick="startGame('hard')">INICIAR (HARD)</button>
             </div>
             <button class="btn" onclick="showCredits()" style="margin-top:18px;">CRÉDITOS</button>
-            <p style="margin-top:18px; font-size:0.9rem; color:#ccc;">Presiona <strong>Espacio</strong> o click izquierdo para disparar.</p>
+            <p style="margin-top:18px; font-size:0.9rem; color:#ccc;">Presiona <strong>Espacio</strong> o click
+                izquierdo para disparar.</p>
         </div>
 
         <div id="theory-screen" class="overlay hidden">
             <div id="theory-modal">
                 <h2 id="theory-title" style="color:#0f0">TEMA</h2>
                 <p id="theory-content" style="line-height:1.6; font-size:1.1rem;"></p>
-                <button class="btn" style="border-color:#0f0; color:#0f0;" onclick="resumeGame()">CONTINUAR COMPILACIÓN</button>
+                <button class="btn" style="border-color:#0f0; color:#0f0;" onclick="resumeGame()">CONTINUAR
+                    COMPILACIÓN</button>
             </div>
         </div>
 
@@ -185,9 +470,10 @@
         <div id="player">
             <div class="cloud-body">
                 <canvas id="cloud-canvas"></canvas>
-                <img id="cloud-img" src="https://png.pngtree.com/png-vector/20250813/ourlarge/pngtree-cartoon-cloud-png-image_17161091.webp" alt="cloud">
-                <div class="cloud-sheen"></div>
-                <div class="visor"><div class="eye"></div><div class="eye"></div></div>
+                <div class="visor">
+                    <div class="eye"></div>
+                    <div class="eye"></div>
+                </div>
             </div>
         </div>
     </div>
@@ -225,156 +511,90 @@
         let playerY = window.innerHeight / 2;
         const playerX = 80;
         const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        // Cloud canvas and particles
+        // Realistic Cloud Rendering System
         const cloudCanvas = document.getElementById('cloud-canvas');
         const cloudCtx = cloudCanvas.getContext('2d');
-        let cloudParticles = [];
+        let cloudPuffs = [];
+
         function initCloudCanvas() {
             const dpr = window.devicePixelRatio || 1;
+            // Make canvas slightly larger than container for overflow fluffiness
             const bodyRect = document.querySelector('.cloud-body').getBoundingClientRect();
-            cloudCanvas.width = Math.floor(bodyRect.width * dpr);
-            cloudCanvas.height = Math.floor(bodyRect.height * dpr);
-            cloudCanvas.style.width = bodyRect.width + 'px';
-            cloudCanvas.style.height = bodyRect.height + 'px';
-            cloudCtx.setTransform(dpr,0,0,dpr,0,0);
-            // create particles relative to canvas
-            cloudParticles = [];
-            const count = 26;
-            for (let i=0;i<count;i++) {
-                cloudParticles.push({
-                    x: Math.random() * cloudCanvas.width / dpr,
-                    y: Math.random() * cloudCanvas.height / dpr,
-                    r: 10 + Math.random()*36,
-                    ax: (Math.random()-0.5) * 0.3,
-                    ay: (Math.random()-0.5) * 0.15,
-                    phase: Math.random()*Math.PI*2
+            // Actually use getComputedStyle because element might be hidden or off-screen
+            const width = 150; // fixed relative to player css
+            const height = 95;
+
+            cloudCanvas.width = Math.floor(width * 1.4 * dpr);
+            cloudCanvas.height = Math.floor(height * 1.4 * dpr);
+            // No direct style reset here to avoid layout trashing, handle via CSS mostly
+            cloudCtx.scale(dpr, dpr);
+
+            // Generate "Puffs" - circles that make up the cloud
+            cloudPuffs = [];
+            const numPuffs = 45;
+
+            // Central mass
+            for (let i = 0; i < numPuffs; i++) {
+                const angle = Math.random() * Math.PI * 2;
+                const dist = Math.random() * 25; // spread from center reduced
+                // Elliptical distribution
+                const x = (width * 1.4) / 2 + Math.cos(angle) * dist * 1.5;
+                const y = (height * 1.4) / 2 + Math.sin(angle) * dist * 0.8;
+                const r = 18 + Math.random() * 22;
+
+                cloudPuffs.push({
+                    x: x, y: y,
+                    baseX: x, baseY: y,
+                    r: r,
+                    phase: Math.random() * Math.PI * 2,
+                    speed: 0.002 + Math.random() * 0.002
                 });
             }
-
-            // layered structure for soft, volumetric cloud
-            cloudLayers = [
-                { scale: 1.0, blur: 18, alpha: 0.95, yOff: 0 },
-                { scale: 0.86, blur: 28, alpha: 0.7, yOff: -6 },
-                { scale: 0.7, blur: 42, alpha: 0.4, yOff: -14 }
-            ];
-
-            // trail positions for motion blur effect
-            cloudTrail = [];
         }
 
         function drawCloud() {
             if (!cloudCtx) return;
             const w = cloudCanvas.width / (window.devicePixelRatio || 1);
             const h = cloudCanvas.height / (window.devicePixelRatio || 1);
-            cloudCtx.clearRect(0,0,w,h);
+            cloudCtx.clearRect(0, 0, w, h);
 
-            // center of cloud in canvas coordinates
-            const cx = w * 0.5;
-            const cy = h * 0.55;
+            const time = performance.now();
 
-            // update trail
-            cloudTrail.unshift({x:cx, y:cy});
-            if (cloudTrail.length > 8) cloudTrail.pop();
+            // Draw puffs
+            cloudPuffs.forEach(p => {
+                // Gentle movement
+                p.x = p.baseX + Math.sin(time * p.speed + p.phase) * 6;
+                p.y = p.baseY + Math.cos(time * p.speed * 1.3 + p.phase) * 4;
 
-            // draw subtle motion trail for realism
-            for (let i=cloudTrail.length-1;i>=0;i--) {
-                const t = cloudTrail[i];
-                const a = 0.06 * (1 - i/cloudTrail.length);
-                cloudCtx.fillStyle = `rgba(230,248,255,${a})`;
+                const grd = cloudCtx.createRadialGradient(p.x, p.y, p.r * 0.1, p.x, p.y, p.r);
+                grd.addColorStop(0, "rgba(255, 255, 255, 0.95)");
+                grd.addColorStop(0.6, "rgba(240, 248, 255, 0.8)"); // slight blueish white
+                grd.addColorStop(1, "rgba(255, 255, 255, 0)");
+
+                cloudCtx.fillStyle = grd;
                 cloudCtx.beginPath();
-                cloudCtx.ellipse(t.x, t.y, w*0.45 * (1 - i*0.03), h*0.38 * (1 - i*0.03), 0, 0, Math.PI*2);
+                cloudCtx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
                 cloudCtx.fill();
-            }
+            });
 
-            // light vector from cursor to cloud center
-            const lx = (mouseX || (window.innerWidth/2)) - (player.getBoundingClientRect().left + player.clientWidth/2);
-            const ly = (mouseY || (window.innerHeight/2)) - (player.getBoundingClientRect().top + player.clientHeight/2);
-            const ldist = Math.hypot(lx,ly) || 1;
-            const lnx = lx/ldist, lny = ly/ldist;
-
-            // layered rendering gives soft volumetric look
-            cloudCtx.save();
-            for (let li=0; li<cloudLayers.length; li++) {
-                const layer = cloudLayers[li];
-                cloudCtx.filter = `blur(${layer.blur}px)`;
-                cloudCtx.globalCompositeOperation = 'lighter';
-                cloudCtx.globalAlpha = layer.alpha;
-
-                // main shape with slight offset based on light (gives shadow)
-                const ox = lnx * (8 * (li+1));
-                const oy = lny * (8 * (li+1));
-                cloudCtx.fillStyle = 'rgba(255,255,255,1)';
-                cloudCtx.beginPath();
-                cloudCtx.ellipse(cx + ox, cy + layer.yOff + oy, w*0.5*layer.scale, h*0.42*layer.scale, 0, 0, Math.PI*2);
-                cloudCtx.fill();
-
-                // bumps
-                const bumps = [ {x:0.22,y:0.25,s:0.18},{x:0.5,y:0.12,s:0.26},{x:0.78,y:0.28,s:0.16} ];
-                for (let b of bumps) {
-                    cloudCtx.beginPath();
-                    cloudCtx.ellipse(cx*b.x + ox*0.6, h*b.y + layer.yOff + oy*0.6, w*b.s*layer.scale, h*b.s*layer.scale*0.9, 0, 0, Math.PI*2);
-                    cloudCtx.fill();
-                }
-
-                cloudCtx.globalAlpha = 1.0;
-                cloudCtx.filter = 'none';
-            }
-            cloudCtx.restore();
-
-            // sheen/specular highlight towards mouse
-            const spex = cx + lnx * 24;
-            const spey = cy + lny * 12;
-            const spg = cloudCtx.createRadialGradient(spex, spey, 0, spex, spey, Math.max(w*0.06,20));
-            spg.addColorStop(0, 'rgba(255,255,255,0.95)');
-            spg.addColorStop(0.6, 'rgba(255,255,255,0.06)');
-            spg.addColorStop(1, 'rgba(255,255,255,0)');
-            cloudCtx.globalCompositeOperation = 'screen';
-            cloudCtx.fillStyle = spg;
+            // Optional: Internal light glow
+            cloudCtx.globalCompositeOperation = 'overlay';
+            cloudCtx.fillStyle = 'rgba(255, 255, 255, 0.3)';
             cloudCtx.beginPath();
-            cloudCtx.ellipse(spex, spey, Math.max(w*0.12,30), Math.max(h*0.06,12), -0.35, 0, Math.PI*2);
+            cloudCtx.ellipse(w / 2, h / 2 - 10, w * 0.3, h * 0.2, 0, 0, Math.PI * 2);
             cloudCtx.fill();
-
-            // animated soft particles (mist / highlights)
-            for (let p of cloudParticles) {
-                p.phase += 0.02 + (p.r/220);
-                const px = p.x + Math.sin(p.phase) * p.ax * 20;
-                const py = p.y + Math.cos(p.phase) * p.ay * 10;
-                const rg = cloudCtx.createRadialGradient(px, py, 0, px, py, p.r);
-                rg.addColorStop(0, 'rgba(255,255,255,0.85)');
-                rg.addColorStop(0.6, 'rgba(200,235,255,0.08)');
-                rg.addColorStop(1, 'rgba(200,235,255,0)');
-                cloudCtx.globalCompositeOperation = 'lighter';
-                cloudCtx.fillStyle = rg;
-                cloudCtx.beginPath();
-                cloudCtx.arc(px, py, p.r*0.9, 0, Math.PI*2);
-                cloudCtx.fill();
-            }
-
-            // inner volume shadow
-            cloudCtx.globalCompositeOperation = 'multiply';
-            const ig = cloudCtx.createLinearGradient(0, h*0.3, 0, h);
-            ig.addColorStop(0, 'rgba(0,0,0,0.02)');
-            ig.addColorStop(1, 'rgba(0,0,0,0.12)');
-            cloudCtx.fillStyle = ig;
-            cloudCtx.beginPath();
-            cloudCtx.ellipse(cx, cy + 6, w*0.52, h*0.46, 0, 0, Math.PI*2);
-            cloudCtx.fill();
-
-            // reset composite
             cloudCtx.globalCompositeOperation = 'source-over';
-            cloudCtx.filter = 'none';
         }
-        
 
-        window.addEventListener('resize', () => { try{ initCloudCanvas(); } catch(e){} });
+        window.addEventListener('resize', () => { setTimeout(initCloudCanvas, 100); });
         // initialize immediately
-        setTimeout(()=>{ try{ initCloudCanvas(); drawCloud();
-                const im = document.getElementById('cloud-img'); if (im) { im.classList.add('loaded'); }
-            } catch(e){} }, 200);
-        // update cloud each frame for motion, call from update loop. also keep mouse X
-        let mouseX = window.innerWidth/2;
-        window.addEventListener('mousemove', e => { mouseY = e.clientY; mouseX = e.clientX; 
-            const im = document.getElementById('cloud-img'); if (im) { const dx = (e.clientX - (player.getBoundingClientRect().left + player.clientWidth/2))/120; const dy = (e.clientY - (player.getBoundingClientRect().top + player.clientHeight/2))/160; im.style.transform = `translate(${dx}px, ${dy}px) scale(1.01)`; }
+        setTimeout(() => { try { initCloudCanvas(); } catch (e) { } }, 100);
+
+        // Mouse tracking for slight 3D tilt effect on the whole player div is in update()
+        let mouseX = window.innerWidth / 2;
+        window.addEventListener('mousemove', e => {
+            mouseY = e.clientY;
+            mouseX = e.clientX;
         });
 
         function startGame(difficulty) {
@@ -431,7 +651,7 @@
                     // Spawnear varios enemigos según progreso
                     const count = 1 + Math.floor(Math.random() * (1 + state.theoryIdx / 2));
                     for (let i = 0; i < count; i++) spawnEntity();
-                    state.spawnTimer = (state.spawnBase || 600) - (state.theoryIdx * 50) - (Math.random()*200);
+                    state.spawnTimer = (state.spawnBase || 600) - (state.theoryIdx * 50) - (Math.random() * 200);
                 }
             }
 
@@ -449,10 +669,10 @@
             else if (r < 0.92) { el.className = 'entity virus'; el.innerText = '☣️'; el.dataset.type = 'bad'; el.dataset.hp = 2; }
             else { el.className = 'entity file'; el.innerText = '💾'; el.dataset.type = 'good'; el.dataset.hp = 1; }
 
-            const baseSpeed = el.dataset.type === 'bad' ? 0.45 + Math.random()*0.6 : 0.35 + Math.random()*0.4;
+            const baseSpeed = el.dataset.type === 'bad' ? 0.45 + Math.random() * 0.6 : 0.35 + Math.random() * 0.4;
             el.dataset.speed = baseSpeed + (state.theoryIdx * 0.06);
 
-            el.style.left = (window.innerWidth + Math.random()*200) + 'px';
+            el.style.left = (window.innerWidth + Math.random() * 200) + 'px';
             el.style.top = (50 + Math.random() * (window.innerHeight - 140)) + 'px';
             document.getElementById('game-container').appendChild(el);
         }
@@ -464,7 +684,7 @@
             el.innerText = '🥕'; // Verdura
             el.dataset.type = 'vegetable';
             el.dataset.speed = 0.3; // Velocidad de caída
-            
+
             el.style.left = Math.random() * (window.innerWidth - 100) + 'px';
             el.style.top = '-50px';
             document.getElementById('game-container').appendChild(el);
@@ -474,7 +694,7 @@
             // Movimiento vertical del jefe
             state.bossY += 0.3 * delta * state.bossDir;
             if (state.bossY > window.innerHeight - 250 || state.bossY < 50) state.bossDir *= -1;
-            
+
             boss.style.top = state.bossY + 'px';
             boss.style.left = (window.innerWidth - 300) + 'px';
 
@@ -502,19 +722,19 @@
             bolt.style.left = (window.innerWidth - 300) + 'px';
             bolt.style.top = (state.bossY + 120) + 'px';
             document.getElementById('game-container').appendChild(bolt);
-            
+
             // Animación del rayo cruzando la pantalla
             let bx = (window.innerWidth - 300);
             function moveBolt() {
                 bx -= 15;
                 bolt.style.left = bx + 'px';
                 bolt.style.width = (Math.random() * 50 + 100) + 'px'; // Efecto parpadeo
-                
+
                 const bRect = bolt.getBoundingClientRect();
                 const pRect = player.getBoundingClientRect();
-                
+
                 if (checkCol(pRect, bRect)) gameOver("EL DELEGADO TE HA FULMINADO");
-                
+
                 if (bx > -200 && state.active) requestAnimationFrame(moveBolt);
                 else bolt.remove();
             }
@@ -580,24 +800,24 @@
         }
 
         function explodeEntity(ent) {
-            createParticles(parseFloat(ent.style.left) + 10, parseFloat(ent.style.top) + 10, ['#ff003c','#00f3ff','#fbff00']);
+            createParticles(parseFloat(ent.style.left) + 10, parseFloat(ent.style.top) + 10, ['#ff003c', '#00f3ff', '#fbff00']);
             playSfx('explode');
         }
 
-        function createParticles(x,y,colors, count=12) {
-            for (let i=0;i<count;i++) {
+        function createParticles(x, y, colors, count = 12) {
+            for (let i = 0; i < count; i++) {
                 const p = document.createElement('div');
                 p.className = 'particle';
                 p.style.left = x + 'px'; p.style.top = y + 'px';
-                p.style.background = colors[Math.floor(Math.random()*colors.length)];
+                p.style.background = colors[Math.floor(Math.random() * colors.length)];
                 document.getElementById('game-container').appendChild(p);
-                const vx = (Math.random()-0.5)*6; const vy = (Math.random()-0.8)*6;
+                const vx = (Math.random() - 0.5) * 6; const vy = (Math.random() - 0.8) * 6;
                 let t = 0;
                 function step() {
                     t += 1;
                     p.style.left = (x + vx * t) + 'px';
                     p.style.top = (y + vy * t + 0.5 * t) + 'px';
-                    p.style.opacity = Math.max(0, 1 - t/20);
+                    p.style.opacity = Math.max(0, 1 - t / 20);
                     if (t < 30) requestAnimationFrame(step); else p.remove();
                 }
                 step();
@@ -630,7 +850,7 @@
                 }
             });
         }
-        
+
         function collectFile(ent) {
             ent.remove();
             state.paused = true;
@@ -638,7 +858,7 @@
             document.getElementById('theory-title').innerText = data.t;
             document.getElementById('theory-content').innerHTML = data.c;
             document.getElementById('theory-screen').classList.remove('hidden');
-            
+
             state.score += 125;
             document.getElementById('score').innerText = state.score;
         }
@@ -654,36 +874,38 @@
             state.theoryIdx++;
             const progress = (state.theoryIdx / 8) * 100;
             document.getElementById('progress-fill').style.width = progress + '%';
-            
+
             if (state.theoryIdx >= 8) {
                 // Entrada épica del jefe
                 enterBoss();
             }
-            
+
             state.lastTime = performance.now();
+            // Align mouse target to current player position to prevent jump
+            mouseY = playerY;
             state.paused = false;
         }
 
         function enterBoss() {
             state.bossMode = true;
-            state.bossHealth = 16 + (Math.random()*8|0);
+            state.bossHealth = 16 + (Math.random() * 8 | 0);
             document.getElementById('boss-health-value').innerText = state.bossHealth;
             document.getElementById('boss-health').style.display = 'block';
             document.querySelectorAll('.entity').forEach(e => e.remove());
             boss.style.display = 'flex';
             boss.style.top = '-400px';
-            boss.style.left = (window.innerWidth/2 - 120) + 'px';
+            boss.style.left = (window.innerWidth / 2 - 120) + 'px';
             boss.style.transform = 'scale(0.2)';
             // animación de zoom y shake
-            let t=0;
+            let t = 0;
             function anim() {
                 t++;
-                boss.style.top = (-400 + t*18) + 'px';
-                boss.style.transform = 'scale(' + Math.min(1, 0.2 + t*0.02) + ')';
+                boss.style.top = (-400 + t * 18) + 'px';
+                boss.style.transform = 'scale(' + Math.min(1, 0.2 + t * 0.02) + ')';
                 if (t < 10) {
                     // start boss icon entrance
                     const ic = boss.querySelector('.boss-icon');
-                    if (ic && !ic.classList.contains('boss-entrance')) ic.classList.add('boss-entrance','glow');
+                    if (ic && !ic.classList.contains('boss-entrance')) ic.classList.add('boss-entrance', 'glow');
                 }
                 if (t < 40) requestAnimationFrame(anim);
                 else { playSfx('boss'); state.bossY = parseFloat(boss.style.top); }
@@ -722,33 +944,34 @@
                 if (kind === 'shoot') {
                     const o = audioCtx.createOscillator(); const g = audioCtx.createGain();
                     o.type = 'sawtooth'; o.frequency.setValueAtTime(900, now);
-                    g.gain.setValueAtTime(0.001, now); g.gain.exponentialRampToValueAtTime(0.08, now+0.02);
-                    g.gain.exponentialRampToValueAtTime(0.0001, now+0.25);
-                    o.connect(g); g.connect(audioCtx.destination); o.start(now); o.stop(now+0.26);
+                    g.gain.setValueAtTime(0.001, now); g.gain.exponentialRampToValueAtTime(0.08, now + 0.02);
+                    g.gain.exponentialRampToValueAtTime(0.0001, now + 0.25);
+                    o.connect(g); g.connect(audioCtx.destination); o.start(now); o.stop(now + 0.26);
                 } else if (kind === 'explode' || kind === 'hit') {
                     const o = audioCtx.createOscillator(); const g = audioCtx.createGain();
-                    o.type = 'square'; o.frequency.setValueAtTime(200, now); o.frequency.exponentialRampToValueAtTime(40, now+0.3);
-                    g.gain.setValueAtTime(0.02, now); g.gain.exponentialRampToValueAtTime(0.0001, now+0.5);
-                    o.connect(g); g.connect(audioCtx.destination); o.start(now); o.stop(now+0.4);
+                    o.type = 'square'; o.frequency.setValueAtTime(200, now); o.frequency.exponentialRampToValueAtTime(40, now + 0.3);
+                    g.gain.setValueAtTime(0.02, now); g.gain.exponentialRampToValueAtTime(0.0001, now + 0.5);
+                    o.connect(g); g.connect(audioCtx.destination); o.start(now); o.stop(now + 0.4);
                 } else if (kind === 'start' || kind === 'boss') {
                     const o = audioCtx.createOscillator(); const g = audioCtx.createGain();
-                    o.type = 'triangle'; o.frequency.setValueAtTime(kind==='boss'?120:400, now);
-                    g.gain.setValueAtTime(0.001, now); g.gain.exponentialRampToValueAtTime(0.06, now+0.05);
-                    g.gain.exponentialRampToValueAtTime(0.0001, now+1.2);
-                    o.connect(g); g.connect(audioCtx.destination); o.start(now); o.stop(now+1.2);
+                    o.type = 'triangle'; o.frequency.setValueAtTime(kind === 'boss' ? 120 : 400, now);
+                    g.gain.setValueAtTime(0.001, now); g.gain.exponentialRampToValueAtTime(0.06, now + 0.05);
+                    g.gain.exponentialRampToValueAtTime(0.0001, now + 1.2);
+                    o.connect(g); g.connect(audioCtx.destination); o.start(now); o.stop(now + 1.2);
                 } else if (kind === 'victory') {
                     const o = audioCtx.createOscillator(); const g = audioCtx.createGain();
-                    o.type = 'sine'; o.frequency.setValueAtTime(600, now); o.frequency.exponentialRampToValueAtTime(1200, now+0.4);
-                    g.gain.setValueAtTime(0.001, now); g.gain.exponentialRampToValueAtTime(0.08, now+0.01);
-                    g.gain.exponentialRampToValueAtTime(0.0001, now+0.9);
-                    o.connect(g); g.connect(audioCtx.destination); o.start(now); o.stop(now+0.9);
+                    o.type = 'sine'; o.frequency.setValueAtTime(600, now); o.frequency.exponentialRampToValueAtTime(1200, now + 0.4);
+                    g.gain.setValueAtTime(0.001, now); g.gain.exponentialRampToValueAtTime(0.08, now + 0.01);
+                    g.gain.exponentialRampToValueAtTime(0.0001, now + 0.9);
+                    o.connect(g); g.connect(audioCtx.destination); o.start(now); o.stop(now + 0.9);
                 } else if (kind === 'dead') {
                     const o = audioCtx.createOscillator(); const g = audioCtx.createGain();
                     o.type = 'sawtooth'; o.frequency.setValueAtTime(120, now); g.gain.setValueAtTime(0.02, now);
-                    g.gain.exponentialRampToValueAtTime(0.0001, now+1.2); o.connect(g); g.connect(audioCtx.destination); o.start(now); o.stop(now+1.2);
+                    g.gain.exponentialRampToValueAtTime(0.0001, now + 1.2); o.connect(g); g.connect(audioCtx.destination); o.start(now); o.stop(now + 1.2);
                 }
-            } catch(e) { /* audioCtx podría estar bloqueado por autoplay */ }
+            } catch (e) { /* audioCtx podría estar bloqueado por autoplay */ }
         }
     </script>
 </body>
+
 </html>
